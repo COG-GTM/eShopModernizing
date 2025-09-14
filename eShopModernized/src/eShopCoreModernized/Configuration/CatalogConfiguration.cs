@@ -23,6 +23,8 @@ namespace eShopCoreModernized.Configuration
 
         public string AppInsightsInstrumentationKey => _configuration["Azure:ApplicationInsights:InstrumentationKey"] ?? string.Empty;
 
+        public string AppInsightsConnectionString => _configuration["Azure:ApplicationInsights:ConnectionString"] ?? string.Empty;
+
         public string AzureActiveDirectoryClientId => _configuration["Azure:ActiveDirectory:ClientId"] ?? string.Empty;
 
         public string AzureActiveDirectoryTenant => _configuration["Azure:ActiveDirectory:TenantId"] ?? string.Empty;

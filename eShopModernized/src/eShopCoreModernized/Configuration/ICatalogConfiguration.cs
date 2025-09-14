@@ -9,6 +9,7 @@ namespace eShopCoreModernized.Configuration
         bool UseAzureActiveDirectory { get; }
         string StorageConnectionString { get; }
         string AppInsightsInstrumentationKey { get; }
+        string AppInsightsConnectionString { get; }
         string AzureActiveDirectoryClientId { get; }
         string AzureActiveDirectoryTenant { get; }
         string PostLogoutRedirectUri { get; }
