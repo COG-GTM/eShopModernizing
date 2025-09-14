@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace eShopModernized.Models
+namespace eShopCoreModernized.Models
 {
     public class CatalogItem
     {
@@ -27,6 +27,7 @@ namespace eShopModernized.Models
         public string PictureFileName { get; set; } = DefaultPictureName;
 
         public string? PictureUri { get; set; }
+        public string? TempImageName { get; set; }
 
         [Display(Name = "Type")]
         public int CatalogTypeId { get; set; }

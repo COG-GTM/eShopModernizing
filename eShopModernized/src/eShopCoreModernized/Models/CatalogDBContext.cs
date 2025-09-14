@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace eShopModernized.Models
+namespace eShopCoreModernized.Models
 {
     public class CatalogDBContext : DbContext
     {

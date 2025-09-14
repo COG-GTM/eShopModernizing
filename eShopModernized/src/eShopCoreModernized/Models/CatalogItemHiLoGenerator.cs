@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace eShopModernized.Models
+namespace eShopCoreModernized.Models
 {
     public class CatalogItemHiLoGenerator
     {

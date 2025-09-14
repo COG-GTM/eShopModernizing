@@ -1,4 +1,4 @@
-namespace eShopModernized.Models
+namespace eShopCoreModernized.Models
 {
     public class CatalogType
     {

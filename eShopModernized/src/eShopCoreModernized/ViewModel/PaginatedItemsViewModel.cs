@@ -1,4 +1,4 @@
-namespace eShopModernized.ViewModel
+namespace eShopCoreModernized.ViewModel
 {
     public class PaginatedItemsViewModel<TEntity> where TEntity : class
     {

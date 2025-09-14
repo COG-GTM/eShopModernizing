@@ -1,7 +1,7 @@
-using eShopModernized.Models;
-using eShopModernized.ViewModel;
+using eShopCoreModernized.Models;
+using eShopCoreModernized.ViewModel;
 
-namespace eShopModernized.Services
+namespace eShopCoreModernized.Services
 {
     public interface ICatalogService : IDisposable
     {

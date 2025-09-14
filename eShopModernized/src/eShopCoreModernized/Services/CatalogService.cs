@@ -1,8 +1,8 @@
-using eShopModernized.Models;
-using eShopModernized.ViewModel;
+using eShopCoreModernized.Models;
+using eShopCoreModernized.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
-namespace eShopModernized.Services
+namespace eShopCoreModernized.Services
 {
     public class CatalogService : ICatalogService
     {

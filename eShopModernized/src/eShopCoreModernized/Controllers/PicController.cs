@@ -1,7 +1,7 @@
-using eShopModernized.Services;
+using eShopCoreModernized.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eShopModernized.Controllers
+namespace eShopCoreModernized.Controllers
 {
     public class PicController : Controller
     {
