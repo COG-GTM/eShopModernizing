@@ -1,6 +1,7 @@
 using eShopCoreModernized.Models;
 using eShopCoreModernized.Services;
 using eShopCoreModernized.Configuration;
+using eShopCoreModernized.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Azure.Storage.Blobs;
 using Azure.Identity;
@@ -21,7 +22,7 @@ if (!builder.Environment.IsDevelopment())
 
 builder.Services.AddApplicationInsightsTelemetry(options =>
 {
-    options.InstrumentationKey = builder.Configuration["Azure:ApplicationInsights:InstrumentationKey"];
+    options.ConnectionString = builder.Configuration["Azure:ApplicationInsights:ConnectionString"];
 });
 
 builder.Services.AddDbContext<CatalogDBContext>(options =>
@@ -30,6 +31,15 @@ builder.Services.AddDbContext<CatalogDBContext>(options =>
 builder.Services.AddSingleton<ICatalogConfiguration, CatalogConfiguration>();
 
 var catalogConfig = new CatalogConfiguration(builder.Configuration);
+
+if (catalogConfig.UseManagedIdentity)
+{
+    builder.Services.AddSingleton<ISqlConnectionFactory, ManagedIdentitySqlConnectionFactory>();
+}
+else
+{
+    builder.Services.AddSingleton<ISqlConnectionFactory, AppSettingsSqlConnectionFactory>();
+}
 
 if (catalogConfig.UseMockData)
 {
@@ -65,6 +75,13 @@ if (catalogConfig.UseAzureActiveDirectory)
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+if (!catalogConfig.UseMockData)
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<CatalogDBContext>();
+    context.Database.EnsureCreated();
+}
 
 if (!app.Environment.IsDevelopment())
 {
