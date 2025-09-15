@@ -8,6 +8,17 @@ services:
     ports:
      - "5113:80"
 
+  eshopcoreapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__CatalogDBContext=Server=sql.data;Database=eShopDatabase;User Id=sa;Password=Pass@word
+      - FeatureFlags__UseMockData=true
+      - FeatureFlags__UseAzureStorage=false
+      - FeatureFlags__UseAzureManagedIdentity=false
+    ports:
+      - "5116:80"
+      - "7116:443"
+
   sql.data:
     environment:
       - SA_PASSWORD=Pass@word
