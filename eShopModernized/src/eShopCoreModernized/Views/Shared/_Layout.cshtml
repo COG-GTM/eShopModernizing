@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Catalog manager (MVC)</title>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/base.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <header class="navbar navbar-light navbar-static-top">
+        <div class="esh-header-brand">
+            <a href="@Url.Action("index", "catalog")">
+                <img src="/images/brand.png" />
+            </a>
+            @if (ViewBag.UseAzureActiveDirectory == true)
+            {
+                <partial name="_LoginPartial" />
+            }
+        </div>
+    </header>
+    <section class="esh-app-hero">
+        <div class="container esh-header">
+            <h1 class="esh-header-title">Catalog Manager<span>(MVC)</span></h1>
+        </div>
+    </section>
+
+    @RenderBody()
+
+    <footer class="esh-app-footer">
+        <div class="container">
+            <article class="row">
+                <section class="col-sm-6">
+                    <img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+                </section>
+                <section class="col-sm-6">
+                    <img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+                    <br />
+                    @{ var sessionInfo = $"{Environment.MachineName}, {DateTime.Now:yyyy-MM-dd HH:mm:ss}";}
+                    <small>@sessionInfo</small>
+                </section>
+            </article>
+        </div>
+    </footer>
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/respond.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("scripts", required: false)
+</body>
+</html>
