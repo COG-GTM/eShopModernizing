@@ -31,7 +31,7 @@ monitor_health() {
     log "Monitoring health for $duration seconds"
     
     for i in $(seq 1 $duration); do
-        curl -s http://localhost/health > /dev/null
+        curl -s http://localhost/api/health > /dev/null
         if [ $? -eq 0 ]; then
             echo -n "."
         else
