@@ -71,6 +71,23 @@ if (catalogConfig.UseAzureActiveDirectory)
     builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("Azure:ActiveDirectory"));
 }
+else
+{
+    builder.Services.AddAuthentication("Cookies")
+        .AddCookie("Cookies", options =>
+        {
+            options.LoginPath = "/Account/Login";
+            options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/Account/AccessDenied";
+        });
+}
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -93,11 +110,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
-if (catalogConfig.UseAzureActiveDirectory)
-{
-    app.UseAuthentication();
-}
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
