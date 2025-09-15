@@ -23,7 +23,11 @@ if (!builder.Environment.IsDevelopment())
 builder.Services.AddApplicationInsightsTelemetry(options =>
 {
     options.ConnectionString = builder.Configuration["Azure:ApplicationInsights:ConnectionString"];
+    options.EnableAdaptiveSampling = false;
+    options.EnableQuickPulseMetricStream = true;
 });
+
+builder.Services.AddSingleton<Microsoft.ApplicationInsights.Extensibility.ITelemetryInitializer, eShopCoreModernized.Infrastructure.MigrationTelemetryInitializer>();
 
 builder.Services.AddDbContext<CatalogDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CatalogDBContext")));

@@ -47,6 +47,24 @@ services:
       interval: 1s
       retries: 20
 
+  eshop.core.modernized:
+    environment:
+      - CatalogDBContext=Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word
+      - UseMockData=False
+      - UseCustomizationData=False
+      - UseAzureStorage=${ESHOP_USE_AZURE_STORAGE:-False}
+      - UseAzureManagedIdentity=${ESHOP_USE_MANAGED_IDENTITY:-False}
+      - StorageConnectionString=${ESHOP_AZURE_STORAGE_CONNECTION_STRING}
+      - AppInsightsConnectionString=${APP_INSIGHTS_CONNECTION_STRING}
+      - UseAzureActiveDirectory=${ESHOP_USE_AZURE_AD:-False}
+      - AzureActiveDirectoryClientId=${AZURE_ACTIVE_DIRECTORY_CLIENT_ID}
+      - AzureActiveDirectoryTenant=${AZURE_ACTIVE_DIRECTORY_TENANT}
+      - PostLogoutRedirectUri=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP:-10.0.75.1}:5002/
+    ports:
+      - "5002:80"
+    depends_on:
+      - sql.data
+
 networks:
   default:
     external:

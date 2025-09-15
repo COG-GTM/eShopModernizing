@@ -26,6 +26,14 @@ services:
     depends_on:
       - sql.data      
     
+  eshop.core.modernized:
+    image: eshop/coremodernized:${TAG:-latest}
+    build:
+      context: ./eShopModernized/src/eShopCoreModernized
+      dockerfile: Dockerfile
+    depends_on:
+      - sql.data
+
   sql.data:
     image: microsoft/mssql-server-windows-developer
 
