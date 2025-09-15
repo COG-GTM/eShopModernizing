@@ -9,5 +9,13 @@ services:
     depends_on:
       - sql.data
 
+  eshopcoreapi:
+    image: eshop/coreapi
+    build:
+      context: .
+      dockerfile: src/eShopCoreAPI/Dockerfile
+    depends_on:
+      - sql.data
+
   sql.data:
     image: microsoft/mssql-server-windows-developer
