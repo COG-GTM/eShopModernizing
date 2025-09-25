@@ -19,5 +19,7 @@ namespace eShopCoreModernized.Services
         void UpdateCatalogItem(CatalogItem catalogItem);
         Task RemoveCatalogItemAsync(CatalogItem catalogItem);
         void RemoveCatalogItem(CatalogItem catalogItem);
+        Task<IEnumerable<CatalogItem>> GetCatalogItemsAsync(int brandIdFilter, int typeIdFilter);
+        IEnumerable<CatalogItem> GetCatalogItems(int brandIdFilter, int typeIdFilter);
     }
 }
