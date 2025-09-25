@@ -130,6 +130,21 @@ namespace eShopCoreModernized.Services
             catalogItems.RemoveAll(i => i.Id == catalogItem.Id);
         }
 
+        public Task<IEnumerable<CatalogItem>> GetCatalogItemsAsync(int brandIdFilter, int typeIdFilter)
+        {
+            return Task.FromResult(GetCatalogItems(brandIdFilter, typeIdFilter));
+        }
+
+        public IEnumerable<CatalogItem> GetCatalogItems(int brandIdFilter, int typeIdFilter)
+        {
+            bool brandFilterIsNull = brandIdFilter == 0;
+            bool typeFilterIsNull = typeIdFilter == 0;
+            
+            return catalogItems.Where(x =>
+                (brandFilterIsNull || x.CatalogBrandId == brandIdFilter) &&
+                (typeFilterIsNull || x.CatalogTypeId == typeIdFilter)).ToList();
+        }
+
         public void Dispose()
         {
         }

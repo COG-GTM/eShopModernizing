@@ -121,6 +121,52 @@ namespace eShopCoreModernized.Services
             db.SaveChanges();
         }
 
+        public async Task<IEnumerable<CatalogItem>> GetCatalogItemsAsync(int brandIdFilter, int typeIdFilter)
+        {
+            bool brandFilterIsNull = brandIdFilter == 0;
+            bool typeFilterIsNull = typeIdFilter == 0;
+            
+            var query = db.CatalogItems
+                .Include(c => c.CatalogBrand)
+                .Include(c => c.CatalogType)
+                .AsQueryable();
+                
+            if (!brandFilterIsNull)
+            {
+                query = query.Where(x => x.CatalogBrandId == brandIdFilter);
+            }
+            
+            if (!typeFilterIsNull)
+            {
+                query = query.Where(x => x.CatalogTypeId == typeIdFilter);
+            }
+            
+            return await query.ToListAsync();
+        }
+
+        public IEnumerable<CatalogItem> GetCatalogItems(int brandIdFilter, int typeIdFilter)
+        {
+            bool brandFilterIsNull = brandIdFilter == 0;
+            bool typeFilterIsNull = typeIdFilter == 0;
+            
+            var query = db.CatalogItems
+                .Include(c => c.CatalogBrand)
+                .Include(c => c.CatalogType)
+                .AsQueryable();
+                
+            if (!brandFilterIsNull)
+            {
+                query = query.Where(x => x.CatalogBrandId == brandIdFilter);
+            }
+            
+            if (!typeFilterIsNull)
+            {
+                query = query.Where(x => x.CatalogTypeId == typeIdFilter);
+            }
+            
+            return query.ToList();
+        }
+
         public void Dispose()
         {
             db.Dispose();
