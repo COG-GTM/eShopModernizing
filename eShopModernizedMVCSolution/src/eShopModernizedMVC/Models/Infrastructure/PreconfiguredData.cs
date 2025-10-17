@@ -20,6 +20,11 @@ namespace eShopModernizedMVC.Models.Infrastructure
                 new CatalogItem { Id =10, CatalogTypeId = 3, CatalogBrandId = 2, AvailableStock = 100, Description = ".NET Foundation Sheet", Name = ".NET Foundation Sheet", Price = 12, PictureFileName = "10.png" },
                 new CatalogItem { Id =11, CatalogTypeId = 3, CatalogBrandId = 2, AvailableStock = 100, Description = "Cup<T> Sheet", Name = "Cup<T> Sheet", Price = 8.5M, PictureFileName = "11.png" },
                 new CatalogItem { Id =12, CatalogTypeId = 2, CatalogBrandId = 5, AvailableStock = 100, Description = "Prism White TShirt", Name = "Prism White TShirt", Price = 12, PictureFileName = "12.png" },
+                new CatalogItem { Id =13, CatalogTypeId = 4, CatalogBrandId = 1, AvailableStock = 100, Description = "Azure Logo USB Memory Stick", Name = "Azure Logo USB Memory Stick", Price = 15.5M, PictureFileName = "13.png" },
+                new CatalogItem { Id =14, CatalogTypeId = 1, CatalogBrandId = 3, AvailableStock = 100, Description = "Visual Studio Coffee Mug", Name = "Visual Studio Coffee Mug", Price = 10M, PictureFileName = "14.png" },
+                new CatalogItem { Id =15, CatalogTypeId = 2, CatalogBrandId = 4, AvailableStock = 100, Description = "SQL Server Gray T-Shirt", Name = "SQL Server Gray T-Shirt", Price = 14M, PictureFileName = "15.png" },
+                new CatalogItem { Id =16, CatalogTypeId = 3, CatalogBrandId = 1, AvailableStock = 100, Description = "Azure Blue Sheet", Name = "Azure Blue Sheet", Price = 9M, PictureFileName = "16.png" },
+                new CatalogItem { Id =17, CatalogTypeId = 2, CatalogBrandId = 3, AvailableStock = 100, Description = "Visual Studio Purple T-Shirt", Name = "Visual Studio Purple T-Shirt", Price = 13M, PictureFileName = "17.png" },
             };
         }
 
