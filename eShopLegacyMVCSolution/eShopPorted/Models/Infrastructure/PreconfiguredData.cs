@@ -28,6 +28,11 @@ namespace eShopPorted.Models.Infrastructure
                 new CatalogItem { Id =15, CatalogTypeId = 2, CatalogBrandId = 4, AvailableStock = 100, Description = "SQL Server Gray T-Shirt", Name = "SQL Server Gray T-Shirt", Price = 14M, PictureFileName = "15.png" },
                 new CatalogItem { Id =16, CatalogTypeId = 3, CatalogBrandId = 1, AvailableStock = 100, Description = "Azure Blue Sheet", Name = "Azure Blue Sheet", Price = 9M, PictureFileName = "16.png" },
                 new CatalogItem { Id =17, CatalogTypeId = 2, CatalogBrandId = 3, AvailableStock = 100, Description = "Visual Studio Purple T-Shirt", Name = "Visual Studio Purple T-Shirt", Price = 13M, PictureFileName = "17.png" },
+                new CatalogItem { Id =18, CatalogTypeId = 1, CatalogBrandId = 4, AvailableStock = 100, Description = "SQL Server Red Mug", Name = "SQL Server Red Mug", Price = 11M, PictureFileName = "18.png" },
+                new CatalogItem { Id =19, CatalogTypeId = 4, CatalogBrandId = 3, AvailableStock = 100, Description = "Visual Studio USB Drive", Name = "Visual Studio USB Drive", Price = 16M, PictureFileName = "19.png" },
+                new CatalogItem { Id =20, CatalogTypeId = 3, CatalogBrandId = 4, AvailableStock = 100, Description = "SQL Server Data Sheet", Name = "SQL Server Data Sheet", Price = 7.5M, PictureFileName = "20.png" },
+                new CatalogItem { Id =21, CatalogTypeId = 2, CatalogBrandId = 1, AvailableStock = 100, Description = "Azure Cloud T-Shirt", Name = "Azure Cloud T-Shirt", Price = 12.5M, PictureFileName = "21.png" },
+                new CatalogItem { Id =22, CatalogTypeId = 1, CatalogBrandId = 1, AvailableStock = 100, Description = "Azure Developer Mug", Name = "Azure Developer Mug", Price = 9.5M, PictureFileName = "22.png" },
             };
         }
 
