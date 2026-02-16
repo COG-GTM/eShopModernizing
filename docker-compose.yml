@@ -34,6 +34,14 @@ services:
     depends_on:
       - sql.data
 
+  eshop.ported.net8:
+    image: eshop/portednet8:${TAG:-latest}
+    build:
+      context: ./eShopLegacyMVCSolution
+      dockerfile: eShopPorted/Dockerfile
+    depends_on:
+      - sql.data
+
   sql.data:
     image: microsoft/mssql-server-windows-developer
 

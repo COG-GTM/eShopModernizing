@@ -1,28 +1,28 @@
-﻿using System.Collections.Generic;
-using System.Net;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using eShopPorted.Models;
 using eShopPorted.Services;
-using log4net;
+using Microsoft.Extensions.Logging;
 
 namespace eShopPorted.Controllers
 {
     public class CatalogController : Controller
     {
-        private static readonly ILog _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly ILogger<CatalogController> _logger;
 
         private ICatalogService service;
 
-        public CatalogController(ICatalogService service)
+        public CatalogController(ICatalogService service, ILogger<CatalogController> logger)
         {
             this.service = service;
+            _logger = logger;
         }
 
         // GET /[?pageSize=3&pageIndex=10]
         public ActionResult Index(int pageSize = 10, int pageIndex = 0)
         {
-            _log.Info($"Now loading... /Catalog/Index?pageSize={pageSize}&pageIndex={pageIndex}");
+            _logger.LogInformation("Now loading... /Catalog/Index?pageSize={PageSize}&pageIndex={PageIndex}", pageSize, pageIndex);
             var paginatedItems = service.GetCatalogItemsPaginated(pageSize, pageIndex);
             ChangeUriPlaceholder(paginatedItems.Data);
             return View(paginatedItems);
@@ -31,7 +31,7 @@ namespace eShopPorted.Controllers
         // GET: Catalog/Details/5
         public ActionResult Details(int? id)
         {
-            _log.Info($"Now loading... /Catalog/Details?id={id}");
+            _logger.LogInformation("Now loading... /Catalog/Details?id={Id}", id);
             if (id == null)
             {
                 return BadRequest();
@@ -49,7 +49,7 @@ namespace eShopPorted.Controllers
         // GET: Catalog/Create
         public ActionResult Create()
         {
-            _log.Info($"Now loading... /Catalog/Create");
+            _logger.LogInformation("Now loading... /Catalog/Create");
             ViewBag.CatalogBrandId = new SelectList(service.GetCatalogBrands(), "Id", "Brand");
             ViewBag.CatalogTypeId = new SelectList(service.GetCatalogTypes(), "Id", "Type");
             return View(new CatalogItem());
@@ -62,7 +62,7 @@ namespace eShopPorted.Controllers
 [ValidateAntiForgeryToken]
 public ActionResult Create([Bind("Id,Name,Description,Price,PictureFileName,CatalogTypeId,CatalogBrandId,AvailableStock,RestockThreshold,MaxStockThreshold,OnReorder")] CatalogItem catalogItem)
 {
-            _log.Info($"Now processing... /Catalog/Create?catalogItemName={catalogItem.Name}");
+            _logger.LogInformation("Now processing... /Catalog/Create?catalogItemName={Name}", catalogItem.Name);
             if (ModelState.IsValid)
             {
                 service.CreateCatalogItem(catalogItem);
@@ -77,7 +77,7 @@ public ActionResult Create([Bind("Id,Name,Description,Price,PictureFileName,Cata
         // GET: Catalog/Edit/5
         public ActionResult Edit(int? id)
         {
-            _log.Info($"Now loading... /Catalog/Edit?id={id}");
+            _logger.LogInformation("Now loading... /Catalog/Edit?id={Id}", id);
             if (id == null)
             {
                 return BadRequest();
@@ -100,7 +100,7 @@ public ActionResult Create([Bind("Id,Name,Description,Price,PictureFileName,Cata
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind("Id,Name,Description,Price,PictureFileName,CatalogTypeId,CatalogBrandId,AvailableStock,RestockThreshold,MaxStockThreshold,OnReorder")] CatalogItem catalogItem)
         {
-            _log.Info($"Now processing... /Catalog/Edit?id={catalogItem.Id}");
+            _logger.LogInformation("Now processing... /Catalog/Edit?id={Id}", catalogItem.Id);
             if (ModelState.IsValid)
             {
                 service.UpdateCatalogItem(catalogItem);
@@ -114,7 +114,7 @@ public ActionResult Create([Bind("Id,Name,Description,Price,PictureFileName,Cata
         // GET: Catalog/Delete/5
         public ActionResult Delete(int? id)
         {
-            _log.Info($"Now loading... /Catalog/Delete?id={id}");
+            _logger.LogInformation("Now loading... /Catalog/Delete?id={Id}", id);
             if (id == null)
             {
                 return BadRequest();
@@ -134,7 +134,7 @@ public ActionResult Create([Bind("Id,Name,Description,Price,PictureFileName,Cata
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _log.Info($"Now processing... /Catalog/DeleteConfirmed?id={id}");
+            _logger.LogInformation("Now processing... /Catalog/DeleteConfirmed?id={Id}", id);
             CatalogItem catalogItem = service.FindCatalogItem(id);
             service.RemoveCatalogItem(catalogItem);
             return RedirectToAction("Index");
@@ -142,7 +142,7 @@ public ActionResult Create([Bind("Id,Name,Description,Price,PictureFileName,Cata
 
         protected override void Dispose(bool disposing)
         {
-            _log.Debug($"Now disposing");
+            _logger.LogDebug("Now disposing");
             if (disposing)
             {
                 service.Dispose();

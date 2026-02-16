@@ -1,7 +1,6 @@
-﻿using eShopLegacy.Utilities;
+using eShopLegacy.Utilities;
 using eShopPorted.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 
 namespace eShopPorted.Controllers
@@ -27,12 +26,11 @@ namespace eShopPorted.Controllers
                 }).ToList();
             var serializer = new Serializing();
 
-            var data = serializer.SerializeBinary(brands);
+            var data = serializer.SerializeJson(brands);
 
             return Ok(data);
         }
 
-        [Serializable]
         public class BrandDTO
         {
             public int Id { get; set; }
