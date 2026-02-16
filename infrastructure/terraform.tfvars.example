@@ -1,0 +1,33 @@
+# Project Configuration
+project_name = "eshop"
+environment  = "dev"
+location     = "eastus"
+
+# Azure Container Registry
+acr_sku = "Standard"
+
+# SQL Server Configuration
+sql_admin_login    = "eshopadmin"
+sql_admin_password = "Ch@ngeMe12345!"
+sql_sku_name       = "S0"
+
+# Network Configuration
+vnet_address_space = ["10.0.0.0/16"]
+aci_subnet_prefix  = "10.0.1.0/24"
+sql_subnet_prefix  = "10.0.2.0/24"
+
+# Container Configuration
+mvc_image_tag      = "latest"
+webforms_image_tag = "latest"
+container_cpu      = 1
+container_memory_gb = 1.5
+
+# Application Settings
+use_mock_data      = false
+use_azure_storage  = false
+
+# Optional: Azure Storage (set if use_azure_storage = true)
+# azure_storage_connection_string = "DefaultEndpointsProtocol=https;AccountName=...;AccountKey=...;EndpointSuffix=core.windows.net"
+
+# Optional: Application Insights
+# app_insights_instrumentation_key = "00000000-0000-0000-0000-000000000000"
