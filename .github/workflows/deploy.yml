@@ -1,0 +1,248 @@
+name: Build, Test & Deploy eShop to Azure
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "*.md"
+      - "Docs/**"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+        default: dev
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  MVC_SOLUTION: eShopModernizedMVCSolution/eShopModernizedMVC.sln
+  WEBFORMS_SOLUTION: eShopModernizedWebFormsSolution/eShopModernizedWebForms.sln
+  MVC_IMAGE: eshop/modernizedmvc
+  WEBFORMS_IMAGE: eshop/modernizedwebforms
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Stage 1: Build
+  # ---------------------------------------------------------------------------
+  build:
+    name: Build Applications
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages (MVC)
+        run: nuget restore ${{ env.MVC_SOLUTION }}
+
+      - name: Build MVC solution
+        run: msbuild ${{ env.MVC_SOLUTION }} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=DefaultContainer
+
+      - name: Restore NuGet packages (WebForms)
+        run: nuget restore ${{ env.WEBFORMS_SOLUTION }}
+
+      - name: Build WebForms solution
+        run: msbuild ${{ env.WEBFORMS_SOLUTION }} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=DefaultContainer
+
+      - name: Upload MVC build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mvc-build
+          path: eShopModernizedMVCSolution/src/eShopModernizedMVC/obj/Docker/publish/
+          retention-days: 5
+
+      - name: Upload WebForms build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: webforms-build
+          path: eShopModernizedWebFormsSolution/src/eShopModernizedWebForms/obj/Docker/publish/
+          retention-days: 5
+
+  # ---------------------------------------------------------------------------
+  # Stage 2: Test
+  # ---------------------------------------------------------------------------
+  test:
+    name: Run Tests
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Setup VSTest
+        uses: darenm/Setup-VSTest@v1.3
+
+      - name: Restore and build MVC for testing
+        run: |
+          nuget restore ${{ env.MVC_SOLUTION }}
+          msbuild ${{ env.MVC_SOLUTION }} /p:Configuration=Release
+
+      - name: Run MVC tests
+        run: |
+          $testDlls = Get-ChildItem -Path eShopModernizedMVCSolution -Recurse -Filter "*Test*.dll" | Where-Object { $_.FullName -match "bin\\Release" }
+          if ($testDlls.Count -gt 0) {
+            vstest.console.exe $testDlls.FullName
+          } else {
+            Write-Host "No test assemblies found — skipping."
+          }
+        shell: pwsh
+
+      - name: Restore and build WebForms for testing
+        run: |
+          nuget restore ${{ env.WEBFORMS_SOLUTION }}
+          msbuild ${{ env.WEBFORMS_SOLUTION }} /p:Configuration=Release
+
+      - name: Run WebForms tests
+        run: |
+          $testDlls = Get-ChildItem -Path eShopModernizedWebFormsSolution -Recurse -Filter "*Test*.dll" | Where-Object { $_.FullName -match "bin\\Release" }
+          if ($testDlls.Count -gt 0) {
+            vstest.console.exe $testDlls.FullName
+          } else {
+            Write-Host "No test assemblies found — skipping."
+          }
+        shell: pwsh
+
+  # ---------------------------------------------------------------------------
+  # Stage 3: Build & Push Docker Images
+  # ---------------------------------------------------------------------------
+  docker:
+    name: Build & Push Docker Images
+    runs-on: windows-latest
+    needs: test
+    if: github.event_name != 'pull_request'
+    outputs:
+      image_tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download MVC build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: mvc-build
+          path: eShopModernizedMVCSolution/src/eShopModernizedMVC/obj/Docker/publish/
+
+      - name: Download WebForms build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: webforms-build
+          path: eShopModernizedWebFormsSolution/src/eShopModernizedWebForms/obj/Docker/publish/
+
+      - name: Generate image tag
+        id: meta
+        run: |
+          $tag = "${{ github.sha }}".Substring(0, 8)
+          echo "tag=$tag" >> $env:GITHUB_OUTPUT
+        shell: pwsh
+
+      - name: Log in to Azure Container Registry
+        run: docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} -p ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build & push MVC image
+        run: |
+          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.MVC_IMAGE }}:${{ steps.meta.outputs.tag }} `
+            -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.MVC_IMAGE }}:latest `
+            -f eShopModernizedMVCSolution/src/eShopModernizedMVC/Dockerfile `
+            eShopModernizedMVCSolution/src/eShopModernizedMVC
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.MVC_IMAGE }}:${{ steps.meta.outputs.tag }}
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.MVC_IMAGE }}:latest
+
+      - name: Build & push WebForms image
+        run: |
+          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.WEBFORMS_IMAGE }}:${{ steps.meta.outputs.tag }} `
+            -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.WEBFORMS_IMAGE }}:latest `
+            -f eShopModernizedWebFormsSolution/src/eShopModernizedWebForms/Dockerfile `
+            eShopModernizedWebFormsSolution/src/eShopModernizedWebForms
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.WEBFORMS_IMAGE }}:${{ steps.meta.outputs.tag }}
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.WEBFORMS_IMAGE }}:latest
+
+  # ---------------------------------------------------------------------------
+  # Stage 4: Deploy Infrastructure & Containers
+  # ---------------------------------------------------------------------------
+  deploy:
+    name: Deploy to Azure (${{ github.event.inputs.environment || 'dev' }})
+    runs-on: ubuntu-latest
+    needs: docker
+    if: github.event_name != 'pull_request'
+    environment:
+      name: ${{ github.event.inputs.environment || 'dev' }}
+      url: ${{ steps.urls.outputs.mvc_url }}
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      TF_VAR_sql_admin_login: ${{ secrets.SQL_ADMIN_LOGIN }}
+      TF_VAR_sql_admin_password: ${{ secrets.SQL_ADMIN_PASSWORD }}
+      TF_VAR_environment: ${{ github.event.inputs.environment || 'dev' }}
+      TF_VAR_mvc_image_tag: ${{ needs.docker.outputs.image_tag }}
+      TF_VAR_webforms_image_tag: ${{ needs.docker.outputs.image_tag }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.5.7"
+          terraform_wrapper: false
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform Init
+        working-directory: infrastructure
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ secrets.TFSTATE_RESOURCE_GROUP }}" \
+            -backend-config="storage_account_name=${{ secrets.TFSTATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=tfstate" \
+            -backend-config="key=eshopmodernizing.${{ github.event.inputs.environment || 'dev' }}.tfstate"
+
+      - name: Terraform Plan
+        working-directory: infrastructure
+        run: terraform plan -out=tfplan -input=false
+
+      - name: Terraform Apply
+        working-directory: infrastructure
+        run: terraform apply -auto-approve -input=false tfplan
+
+      - name: Capture deployment URLs
+        id: urls
+        working-directory: infrastructure
+        run: |
+          echo "mvc_url=$(terraform output -raw mvc_app_url)" >> "$GITHUB_OUTPUT"
+          echo "webforms_url=$(terraform output -raw webforms_app_url)" >> "$GITHUB_OUTPUT"
+
+      - name: Deployment summary
+        run: |
+          echo "## Deployment Complete" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Application | URL |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|-------------|-----|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| MVC App | ${{ steps.urls.outputs.mvc_url }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| WebForms App | ${{ steps.urls.outputs.webforms_url }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Environment:** ${{ github.event.inputs.environment || 'dev' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Image Tag:** ${{ needs.docker.outputs.image_tag }}" >> "$GITHUB_STEP_SUMMARY"
