@@ -65,6 +65,17 @@ services:
     depends_on:
       - sql.data
 
+  eshop.ported.net8:
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word;TrustServerCertificate=True
+      - UseMockData=False
+      - UseCustomizationData=False
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5003:8080"
+    depends_on:
+      - sql.data
+
 networks:
   default:
     external:
