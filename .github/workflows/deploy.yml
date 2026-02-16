@@ -23,8 +23,10 @@ on:
 env:
   DOTNET_NOLOGO: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
-  MVC_SOLUTION: eShopModernizedMVCSolution/eShopModernizedMVC.sln
-  WEBFORMS_SOLUTION: eShopModernizedWebFormsSolution/eShopModernizedWebForms.sln
+  MVC_PROJECT: eShopModernizedMVCSolution/src/eShopModernizedMVC/eShopModernizedMVC.csproj
+  MVC_SOLUTION_DIR: eShopModernizedMVCSolution
+  WEBFORMS_PROJECT: eShopModernizedWebFormsSolution/src/eShopModernizedWebForms/eShopModernizedWebForms.csproj
+  WEBFORMS_SOLUTION_DIR: eShopModernizedWebFormsSolution
   MVC_IMAGE: eshop/modernizedmvc
   WEBFORMS_IMAGE: eshop/modernizedwebforms
 
@@ -46,16 +48,16 @@ jobs:
         uses: NuGet/setup-nuget@v2
 
       - name: Restore NuGet packages (MVC)
-        run: nuget restore ${{ env.MVC_SOLUTION }}
+        run: nuget restore ${{ env.MVC_PROJECT }} -SolutionDirectory ${{ env.MVC_SOLUTION_DIR }}
 
-      - name: Build MVC solution
-        run: msbuild ${{ env.MVC_SOLUTION }} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=DefaultContainer
+      - name: Build and publish MVC project
+        run: msbuild ${{ env.MVC_PROJECT }} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile /p:docker_publish_root=""
 
       - name: Restore NuGet packages (WebForms)
-        run: nuget restore ${{ env.WEBFORMS_SOLUTION }}
+        run: nuget restore ${{ env.WEBFORMS_PROJECT }} -SolutionDirectory ${{ env.WEBFORMS_SOLUTION_DIR }}
 
-      - name: Build WebForms solution
-        run: msbuild ${{ env.WEBFORMS_SOLUTION }} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=DefaultContainer
+      - name: Build and publish WebForms project
+        run: msbuild ${{ env.WEBFORMS_PROJECT }} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile /p:docker_publish_root=""
 
       - name: Upload MVC build artifacts
         uses: actions/upload-artifact@v4
@@ -93,8 +95,8 @@ jobs:
 
       - name: Restore and build MVC for testing
         run: |
-          nuget restore ${{ env.MVC_SOLUTION }}
-          msbuild ${{ env.MVC_SOLUTION }} /p:Configuration=Release
+          nuget restore ${{ env.MVC_PROJECT }} -SolutionDirectory ${{ env.MVC_SOLUTION_DIR }}
+          msbuild ${{ env.MVC_PROJECT }} /p:Configuration=Release
 
       - name: Run MVC tests
         run: |
@@ -108,8 +110,8 @@ jobs:
 
       - name: Restore and build WebForms for testing
         run: |
-          nuget restore ${{ env.WEBFORMS_SOLUTION }}
-          msbuild ${{ env.WEBFORMS_SOLUTION }} /p:Configuration=Release
+          nuget restore ${{ env.WEBFORMS_PROJECT }} -SolutionDirectory ${{ env.WEBFORMS_SOLUTION_DIR }}
+          msbuild ${{ env.WEBFORMS_PROJECT }} /p:Configuration=Release
 
       - name: Run WebForms tests
         run: |
@@ -155,7 +157,7 @@ jobs:
         shell: pwsh
 
       - name: Log in to Azure Container Registry
-        run: docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} -p ${{ secrets.ACR_PASSWORD }}
+        run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
 
       - name: Build & push MVC image
         run: |
