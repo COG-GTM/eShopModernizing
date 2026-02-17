@@ -5,6 +5,8 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 
+var appStartTime = DateTime.UtcNow;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -29,8 +31,7 @@ builder.Services.AddHealthChecks()
     .AddCheck("self", () => Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Healthy())
     .AddCheck("ready", () =>
     {
-        var startTime = builder.Configuration.GetValue<DateTime?>("StartTime") ?? DateTime.UtcNow;
-        return DateTime.UtcNow - startTime > TimeSpan.FromSeconds(5)
+        return DateTime.UtcNow - appStartTime > TimeSpan.FromSeconds(5)
             ? Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Healthy("Warm-up complete.")
             : Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Degraded("Still warming up.");
     }, tags: new[] { "ready" });

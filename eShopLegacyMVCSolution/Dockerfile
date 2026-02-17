@@ -19,6 +19,6 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 COPY --from=build /app/publish .
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:8080/health/live || exit 1
+    CMD wget --no-verbose --tries=1 --spider http://localhost:8080/health/live || exit 1
 
 ENTRYPOINT ["dotnet", "eShopPorted.dll"]
