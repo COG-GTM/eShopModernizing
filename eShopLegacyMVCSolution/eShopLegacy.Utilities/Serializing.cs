@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 
 namespace eShopLegacy.Utilities
 {
@@ -8,17 +7,15 @@ namespace eShopLegacy.Utilities
         public Stream SerializeBinary(object input)
         {
             var stream = new MemoryStream();
-            var binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(stream, input);
+            JsonSerializer.Serialize(stream, input);
             stream.Seek(0, SeekOrigin.Begin);
             return stream;
         }
 
-        public object DeserializeBinary(Stream stream)
+        public T? Deserialize<T>(Stream stream)
         {
-            var binaryFormatter = new BinaryFormatter();
             stream.Seek(0, SeekOrigin.Begin);
-            return binaryFormatter.Deserialize(stream);
+            return JsonSerializer.Deserialize<T>(stream);
         }
     }
 }
