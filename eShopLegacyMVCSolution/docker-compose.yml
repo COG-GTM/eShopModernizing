@@ -1,0 +1,36 @@
+services:
+
+  eshop.mvc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5115:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sql.data;Database=eShopCatalogDb;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True
+      - UseMockData=true
+      - UseCustomizationData=false
+    depends_on:
+      sql.data:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  sql.data:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - SA_PASSWORD=${SA_PASSWORD}
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+    healthcheck:
+      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "${SA_PASSWORD}" -C -Q "SELECT 1" -b -o /dev/null
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
