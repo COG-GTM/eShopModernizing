@@ -2,20 +2,24 @@
 
 ## Migration Overview
 
-The strangler fig migration from .NET Framework to .NET Core has been completed successfully. This document outlines the final architecture and operational procedures.
+The strangler fig migration from .NET Framework to .NET Core has been completed successfully. Phase 4 migrates all remaining routes (Account, Home, upload image, static files, and catch-all) to .NET Core, preparing the modernized .NET Framework service for decommissioning.
 
 ## Final Architecture
 
-### Traffic Routing
+### Traffic Routing (Phase 4 Complete)
 - **API Endpoints** (`/api/*`): 100% .NET Core (port 5002)
 - **Catalog Endpoints** (`/Catalog/*`): 100% .NET Core (port 5002)
+- **Account Endpoints** (`/Account/*`): 100% .NET Core (port 5002) - *Phase 4*
+- **Home Endpoints** (`/Home/*`): 100% .NET Core (port 5002) - *Phase 4*
+- **Upload Image** (`/uploadimage`): 100% .NET Core (port 5002) - *Phase 4*
+- **Static Files** (CSS, JS, images): 100% .NET Core (port 5002) - *Phase 4*
 - **Health Checks** (`/health*`): .NET Core (port 5002)
-- **Legacy Endpoints**: Modernized .NET Framework (port 5001)
+- **All Other Routes** (`/`): 100% .NET Core (port 5002) - *Phase 4*
 
 ### Service Ports
 - **Legacy .NET Framework**: localhost:5000 (decommissioned)
-- **Modernized .NET Framework**: localhost:5001 (remaining functionality)
-- **.NET Core**: localhost:5002 (primary catalog service)
+- **Modernized .NET Framework**: localhost:5001 (ready for decommissioning after Phase 4)
+- **.NET Core**: localhost:5002 (full application service)
 
 ## Azure Integrations
 
@@ -68,24 +72,36 @@ See [ROLLBACK-PROCEDURES.md](./ROLLBACK-PROCEDURES.md) for detailed rollback pro
 
 The migration uses nginx upstream weighting for gradual traffic distribution:
 
-### Migration Phases
+### Phase 3: Catalog Migration (Complete)
 1. **25% Phase**: `nginx-25percent.conf` - 25% to .NET Core, 75% to .NET Framework
 2. **50% Phase**: `nginx-50percent.conf` - 50% to .NET Core, 50% to .NET Framework
 3. **75% Phase**: `nginx-75percent.conf` - 75% to .NET Core, 25% to .NET Framework
 4. **100% Phase**: `nginx-100percent.conf` - 100% to .NET Core
 
+### Phase 4: Remaining Routes Migration
+1. **25% Phase**: `phase4-nginx-25percent.conf` - 25% remaining traffic to .NET Core
+2. **50% Phase**: `phase4-nginx-50percent.conf` - 50% remaining traffic to .NET Core
+3. **75% Phase**: `phase4-nginx-75percent.conf` - 75% remaining traffic to .NET Core
+4. **100% Phase**: `phase4-nginx-100percent.conf` - All traffic to .NET Core
+
 ### Migration Script
-Use `./migrate-traffic.sh {25|50|75|100}` to apply each phase with automatic health monitoring.
+- Catalog routes: `./migrate-traffic.sh {25|50|75|100}`
+- Remaining routes: `./migrate-traffic.sh {phase4-25|phase4-50|phase4-75|phase4-100}`
 
 ## Legacy System Decommission
 
-The legacy .NET Framework system (port 5000) can now be safely decommissioned:
+### Port 5000 (Legacy .NET Framework) - Decommissioned
+The legacy .NET Framework system (port 5000) has been safely decommissioned.
 
-1. **Verify Traffic**: Ensure no traffic is routed to port 5000
+### Port 5001 (Modernized .NET Framework) - Ready for Decommissioning
+After Phase 4 reaches 100%, the modernized .NET Framework service (port 5001) can be decommissioned:
+
+1. **Verify Traffic**: Ensure no traffic is routed to port 5001 (check `phase4-nginx-100percent.conf` is active)
 2. **Data Migration**: Confirm all data is accessible via .NET Core
-3. **Remove Infrastructure**: Decommission legacy containers/services
-4. **Update Documentation**: Remove references to legacy system
-5. **Clean Up**: Remove legacy code and configurations
+3. **Monitor Stability**: Run at 100% for at least 48 hours before decommissioning
+4. **Remove Infrastructure**: Decommission modernized .NET Framework containers/services
+5. **Update Documentation**: Remove references to modernized backend
+6. **Clean Up**: Remove legacy code, configurations, and Phase 3 nginx configs
 
 ## Feature Validation
 
@@ -109,22 +125,28 @@ Use `./validate-features.ps1` to test all feature flag combinations automaticall
 ## Success Metrics
 
 The migration is considered successful based on:
-- ✅ 100% traffic routed to .NET Core for catalog functionality
-- ✅ All Azure integrations working correctly
-- ✅ Performance metrics meet or exceed legacy system
-- ✅ Error rates remain below 1%
-- ✅ All feature flags tested and validated
-- ✅ Comprehensive monitoring and alerting in place
-- ✅ Rollback procedures documented and tested
+- 100% traffic routed to .NET Core for catalog functionality (Phase 3)
+- 100% traffic routed to .NET Core for all remaining routes (Phase 4)
+- All Azure integrations working correctly
+- Performance metrics meet or exceed legacy system
+- Error rates remain below 1%
+- All feature flags tested and validated
+- Comprehensive monitoring and alerting in place
+- Rollback procedures documented and tested for both Phase 3 and Phase 4
+- Modernized .NET Framework service (port 5001) ready for decommissioning
 
 ## Configuration Files
 
 ### Nginx Configurations
-- `nginx.conf`: Final configuration (100% .NET Core)
-- `nginx-25percent.conf`: 25% migration phase
-- `nginx-50percent.conf`: 50% migration phase
-- `nginx-75percent.conf`: 75% migration phase
-- `nginx-100percent.conf`: 100% migration phase (same as nginx.conf)
+- `nginx.conf`: Active configuration
+- `nginx-25percent.conf`: Phase 3 - 25% catalog migration
+- `nginx-50percent.conf`: Phase 3 - 50% catalog migration
+- `nginx-75percent.conf`: Phase 3 - 75% catalog migration
+- `nginx-100percent.conf`: Phase 3 - 100% catalog migration
+- `phase4-nginx-25percent.conf`: Phase 4 - 25% remaining routes migration
+- `phase4-nginx-50percent.conf`: Phase 4 - 50% remaining routes migration
+- `phase4-nginx-75percent.conf`: Phase 4 - 75% remaining routes migration
+- `phase4-nginx-100percent.conf`: Phase 4 - 100% all routes to .NET Core (final)
 
 ### Docker Compose
 - `docker-compose.yml`: Service definitions including .NET Core service

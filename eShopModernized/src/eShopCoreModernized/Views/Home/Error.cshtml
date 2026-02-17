@@ -1,0 +1,31 @@
+@{
+    ViewBag.Title = "Error";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/base.css" />
+</head>
+<body>
+    <div class="container">
+        <hgroup>
+            <h1>Error.</h1>
+            <h2>An error occurred while processing your request.</h2>
+        </hgroup>
+        @if (ViewData["RequestId"] != null)
+        {
+            <p>
+                <strong>Request ID:</strong> <code>@ViewData["RequestId"]</code>
+            </p>
+        }
+        <p>
+            <a href="@Url.Action("Index", "Catalog")" class="btn btn-primary">Back to Catalog</a>
+        </p>
+    </div>
+</body>
+</html>
