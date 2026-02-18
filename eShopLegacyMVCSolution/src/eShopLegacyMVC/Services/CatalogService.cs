@@ -1,21 +1,21 @@
-﻿using eShopLegacyMVC.Models;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+using eShopLegacyMVC.Models;
 using eShopLegacyMVC.ViewModel;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace eShopLegacyMVC.Services
 {
-
     public class CatalogService : ICatalogService
     {
-        private CatalogDBContext db;
-        private CatalogItemHiLoGenerator indexGenerator;
+        private readonly CatalogDBContext db;
+        private readonly CatalogItemHiLoGenerator indexGenerator;
+        private readonly ILogger<CatalogService> _logger;
 
-        public CatalogService(CatalogDBContext db, CatalogItemHiLoGenerator indexGenerator)
+        public CatalogService(CatalogDBContext db, CatalogItemHiLoGenerator indexGenerator, ILogger<CatalogService> logger)
         {
             this.db = db;
             this.indexGenerator = indexGenerator;
+            _logger = logger;
         }
 
         public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
@@ -34,18 +34,19 @@ namespace eShopLegacyMVC.Services
                 pageIndex, pageSize, totalItems, itemsOnPage);
         }
 
-        public CatalogItem FindCatalogItem(int id)
+        public CatalogItem? FindCatalogItem(int id)
         {
             return db.CatalogItems.Include(c => c.CatalogBrand).Include(c => c.CatalogType).FirstOrDefault(ci => ci.Id == id);
         }
+
         public IEnumerable<CatalogType> GetCatalogTypes()
         {
-            return db.CatalogTypes;
+            return db.CatalogTypes.ToList();
         }
 
         public IEnumerable<CatalogBrand> GetCatalogBrands()
         {
-            return db.CatalogBrands;
+            return db.CatalogBrands.ToList();
         }
 
         public void CreateCatalogItem(CatalogItem catalogItem)

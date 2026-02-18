@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Catalog manager (MVC)</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/Site.css" />
 </head>
 <body>
     <header class="navbar navbar-light navbar-static-top">
@@ -32,16 +31,16 @@
                 <section class="col-sm-6">
                     <img class="esh-app-footer-text hidden-xs" src="~/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
                     <br />
-                    @{ var sessionInfo = new HtmlString($"{HttpContext.Current.Session["MachineName"]}, {HttpContext.Current.Session["SessionStartTime"]}");}
-                    <small>@sessionInfo</small>
+                    @{ var machineName = Context.Session.GetString("MachineName") ?? Environment.MachineName; var sessionStart = Context.Session.GetString("SessionStartTime") ?? DateTime.Now.ToString(); }
+                    <small>@machineName, @sessionStart</small>
                 </section>
                 
             </article>
         </div>
     </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @await RenderSectionAsync("scripts", required: false)
 </body>
 </html>
