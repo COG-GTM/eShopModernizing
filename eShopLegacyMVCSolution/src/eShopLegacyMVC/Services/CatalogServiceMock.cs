@@ -1,6 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using eShopLegacyMVC.Models;
 using eShopLegacyMVC.Models.Infrastructure;
 using eShopLegacyMVC.ViewModel;
@@ -9,7 +6,7 @@ namespace eShopLegacyMVC.Services
 {
     public class CatalogServiceMock : ICatalogService
     {
-        private List<CatalogItem> catalogItems;
+        private readonly List<CatalogItem> catalogItems;
 
         public CatalogServiceMock()
         {
@@ -19,7 +16,7 @@ namespace eShopLegacyMVC.Services
         public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize = 10, int pageIndex = 0)
         {
             var items = ComposeCatalogItems(catalogItems);
-            
+
             var itemsOnPage = items
                 .OrderBy(c => c.Id)
                 .Skip(pageSize * pageIndex)
@@ -30,7 +27,7 @@ namespace eShopLegacyMVC.Services
                 pageIndex, pageSize, items.Count, itemsOnPage);
         }
 
-        public CatalogItem FindCatalogItem(int id)
+        public CatalogItem? FindCatalogItem(int id)
         {
             return catalogItems.FirstOrDefault(x => x.Id == id);
         }
@@ -78,7 +75,6 @@ namespace eShopLegacyMVC.Services
             items.ForEach(i => i.CatalogType = catalogTypes.First(b => b.Id == i.CatalogTypeId));
 
             return items;
-            ;
         }
     }
 }

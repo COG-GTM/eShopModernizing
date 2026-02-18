@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace eShopLegacyMVC.Models.Infrastructure
 {
     public static class PreconfiguredData

@@ -1,6 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-
 namespace eShopLegacyMVC.ViewModel
 {
     public class PaginatedItemsViewModel<TEntity> where TEntity : class
