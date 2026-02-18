@@ -91,7 +91,7 @@ namespace eShopCoreModernized.Services
                 var folder = item.TempImageName.Replace("/pics/", string.Empty);
                 var tempBlobClient = containerClient.GetBlobClient(folder);
 
-                await foreach (var blobItem in containerClient.GetBlobsAsync(prefix: $"{item.Id}/"))
+                await foreach (var blobItem in containerClient.GetBlobsAsync(BlobTraits.None, BlobStates.None, $"{item.Id}/", default))
                 {
                     var blobToDelete = containerClient.GetBlobClient(blobItem.Name);
                     await blobToDelete.DeleteIfExistsAsync();
