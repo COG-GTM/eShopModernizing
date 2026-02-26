@@ -1,6 +1,6 @@
 # eShop Legacy to .NET Core Migration
 
-This document describes the strangler fig migration approach for modernizing the eShopLegacyMVC application from .NET Framework 4.7.2 to .NET 6.
+This document describes the strangler fig migration approach for modernizing the eShopLegacyMVC application from .NET Framework 4.7.2 to .NET 8.
 
 ## Migration Strategy
 
@@ -12,7 +12,7 @@ This document describes the strangler fig migration approach for modernizing the
 ### Current Status: Phase 1 Complete ✅
 
 #### What's Been Created:
-- New `eShopModernized` .NET 6 ASP.NET Core MVC project
+- New `eShopModernized` .NET 8 ASP.NET Core MVC project
 - Modern SDK-style project structure
 - EF Core migration from Entity Framework 6
 - Built-in ASP.NET Core DI replacing Autofac
@@ -20,7 +20,7 @@ This document describes the strangler fig migration approach for modernizing the
 - Modern logging with ILogger replacing log4net
 
 #### Key Dependency Mappings:
-- **EntityFramework 6.2.0** → **Microsoft.EntityFrameworkCore 6.0.25**
+- **EntityFramework 6.2.0** → **Microsoft.EntityFrameworkCore 8.0.24**
 - **Autofac 4.9.1** → **Built-in ASP.NET Core DI**
 - **log4net 2.0.10** → **Microsoft.Extensions.Logging**
 - **System.Web.Mvc 5.2.7** → **Microsoft.AspNetCore.Mvc**
@@ -123,9 +123,9 @@ nginx -t -c nginx.conf
 
 | Component | Legacy (.NET Framework) | Modernized (.NET Core) |
 |-----------|------------------------|------------------------|
-| **Framework** | .NET Framework 4.7.2 | .NET 6 |
+| **Framework** | .NET Framework 4.7.2 | .NET 8 |
 | **Project Style** | packages.config | SDK-style |
-| **ORM** | Entity Framework 6.2.0 | EF Core 6.0.25 |
+| **ORM** | Entity Framework 6.2.0 | EF Core 8.0.24 |
 | **DI Container** | Autofac 4.9.1 | Built-in ASP.NET Core DI |
 | **Logging** | log4net 2.0.10 | ILogger |
 | **Hosting** | IIS/IIS Express | Kestrel |

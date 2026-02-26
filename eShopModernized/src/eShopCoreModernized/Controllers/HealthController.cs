@@ -40,7 +40,7 @@ namespace eShopCoreModernized.Controllers
             {
                 status = "Healthy",
                 timestamp = DateTime.UtcNow,
-                version = ".NET Core 6.0",
+                version = ".NET 8",
                 services = await GetServiceHealthAsync()
             };
 

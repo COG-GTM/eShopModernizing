@@ -7,7 +7,7 @@ namespace eShopCoreModernized.Infrastructure
     {
         public void Initialize(ITelemetry telemetry)
         {
-            telemetry.Context.GlobalProperties["ApplicationVersion"] = ".NET Core 6.0";
+            telemetry.Context.GlobalProperties["ApplicationVersion"] = ".NET 8";
             telemetry.Context.GlobalProperties["MigrationPhase"] = "StranglerFig-Complete";
             telemetry.Context.GlobalProperties["ServiceType"] = "Catalog-Core";
         }
