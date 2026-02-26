@@ -4,7 +4,7 @@ This project represents the .NET Core foundation for migrating the eShopLegacyMV
 
 ## Features
 
-- **Modern .NET 6+ ASP.NET Core MVC application**
+- **Modern .NET 8 ASP.NET Core MVC application**
 - **Comprehensive Azure integrations:**
   - Azure Key Vault for configuration management
   - Azure Blob Storage for image handling
@@ -69,7 +69,7 @@ The application uses `appsettings.json` for configuration with support for Azure
 ## Development Setup
 
 1. **Prerequisites:**
-   - .NET 6+ SDK
+   - .NET 8 SDK
    - SQL Server LocalDB (for local development)
    - Visual Studio 2022 or VS Code
 
