@@ -22,6 +22,7 @@ namespace eShopModernizedMVC.Controllers
         }
 
         // GET /[?pageSize=3&pageIndex=10]
+        [OutputCache(Duration = 60, VaryByParam = "*", Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index(int pageSize = 10, int pageIndex = 0)
         {
             _log.Info($"Now loading... /Catalog/Index?pageSize={pageSize}&pageIndex={pageIndex}");
@@ -31,6 +32,7 @@ namespace eShopModernizedMVC.Controllers
         }
 
         // GET: Catalog/Details/5
+        [OutputCache(Duration = 60, VaryByParam = "*", Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -84,6 +86,7 @@ namespace eShopModernizedMVC.Controllers
                 {
                     _imageService.UpdateImage(catalogItem);
                 }
+                Response.RemoveOutputCacheItem(Url.Action("Index"));
                 return RedirectToAction("Index");
             }
 
@@ -134,6 +137,8 @@ namespace eShopModernizedMVC.Controllers
                 }
 
                 _service.UpdateCatalogItem(catalogItem);
+                Response.RemoveOutputCacheItem(Url.Action("Index"));
+                Response.RemoveOutputCacheItem(Url.Action("Details", new { id = catalogItem.Id }));
                 return RedirectToAction("Index");
             }
             ViewBag.CatalogBrandId = new SelectList(_service.GetCatalogBrands(), "Id", "Brand", catalogItem.CatalogBrandId);
@@ -169,6 +174,8 @@ namespace eShopModernizedMVC.Controllers
             _log.Info($"Now processing... /Catalog/DeleteConfirmed?id={id}");
             CatalogItem catalogItem = _service.FindCatalogItem(id);
             _service.RemoveCatalogItem(catalogItem);
+            Response.RemoveOutputCacheItem(Url.Action("Index"));
+            Response.RemoveOutputCacheItem(Url.Action("Details", new { id }));
             return RedirectToAction("Index");
         }
 

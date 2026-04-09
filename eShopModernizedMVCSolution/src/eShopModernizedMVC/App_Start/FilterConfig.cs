@@ -9,6 +9,8 @@ namespace eShopModernizedMVC
         {
             filters.Add(new ActionTracerFilter());
             filters.Add(new HandleErrorAttribute());
+            // Global no-cache default — safe for mutations and auth actions.
+            // Read-only actions opt in via [OutputCache] on the action method.
             filters.Add(new OutputCacheAttribute
             {
                 VaryByParam = "*",
