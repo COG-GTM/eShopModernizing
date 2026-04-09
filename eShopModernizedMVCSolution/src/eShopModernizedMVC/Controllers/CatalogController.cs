@@ -22,6 +22,7 @@ namespace eShopModernizedMVC.Controllers
         }
 
         // GET /[?pageSize=3&pageIndex=10]
+        [OutputCache(Duration = 60, VaryByParam = "*", Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index(int pageSize = 10, int pageIndex = 0)
         {
             _log.Info($"Now loading... /Catalog/Index?pageSize={pageSize}&pageIndex={pageIndex}");
@@ -31,6 +32,7 @@ namespace eShopModernizedMVC.Controllers
         }
 
         // GET: Catalog/Details/5
+        [OutputCache(Duration = 60, VaryByParam = "*", Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Details(int? id)
         {
             if (id == null)
