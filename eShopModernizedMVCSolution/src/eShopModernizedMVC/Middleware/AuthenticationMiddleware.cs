@@ -6,6 +6,17 @@ namespace eShopModernizedMVC.Middleware
 {
     public class AuthenticationMiddleware : OwinMiddleware
     {
+        private static readonly ClaimsPrincipal SharedPrincipal = CreatePrincipal();
+
+        private static ClaimsPrincipal CreatePrincipal()
+        {
+            var identity = new ClaimsIdentity("cookies");
+            identity.AddClaim(new Claim("iat", "1234"));
+            var principal = new ClaimsPrincipal();
+            principal.AddIdentity(identity);
+            return principal;
+        }
+
         public AuthenticationMiddleware(OwinMiddleware next)
         : base(next)
         {
@@ -13,10 +24,7 @@ namespace eShopModernizedMVC.Middleware
 
         public async override Task Invoke(IOwinContext context)
         {
-            var identity = new ClaimsIdentity("cookies");
-            identity.AddClaim(new Claim("iat", "1234"));
-            context.Authentication.User = new ClaimsPrincipal();
-            context.Authentication.User.AddIdentity(identity);
+            context.Authentication.User = SharedPrincipal;
             await Next.Invoke(context);
         }
     }
