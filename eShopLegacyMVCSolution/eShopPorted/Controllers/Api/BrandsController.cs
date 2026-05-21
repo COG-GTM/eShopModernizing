@@ -1,12 +1,11 @@
-﻿using eShopPorted.Services;
+using eShopPorted.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
-namespace eShopPorted.Controllers
+namespace eShopPorted.Controllers.Api
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BrandsController : Controller
+    public class BrandsController : ControllerBase
     {
         private readonly ICatalogService _service;
 
@@ -15,10 +14,19 @@ namespace eShopPorted.Controllers
             _service = service;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Get()
         {
             var brands = _service.GetCatalogBrands();
             return Ok(brands);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var brand = _service.GetCatalogBrands().FirstOrDefault(x => x.Id == id);
+            if (brand == null) return NotFound();
+            return Ok(brand);
         }
 
         [HttpDelete("{id}")]

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
 using eShopPorted.Models;
-using System;
 using eShopPorted.ViewModel;
 
 namespace eShopPorted.Services

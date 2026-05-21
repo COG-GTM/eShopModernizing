@@ -1,6 +1,4 @@
-﻿using eShopPorted.Models;
-using System.Collections.Generic;
-using System.Linq;
+using eShopPorted.Models;
 using eShopPorted.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +8,7 @@ namespace eShopPorted.Services
     {
         private CatalogDBContext db;
 
-        public CatalogService(CatalogDBContext db)            
+        public CatalogService(CatalogDBContext db)
         {
             this.db = db;
         }
@@ -38,14 +36,15 @@ namespace eShopPorted.Services
                 .Include(c => c.CatalogType)
                 .FirstOrDefault(ci => ci.Id == id);
         }
+
         public IEnumerable<CatalogType> GetCatalogTypes()
         {
-            return db.CatalogTypes;
+            return db.CatalogTypes.ToList();
         }
 
         public IEnumerable<CatalogBrand> GetCatalogBrands()
         {
-            return db.CatalogBrands;
+            return db.CatalogBrands.ToList();
         }
 
         public void CreateCatalogItem(CatalogItem catalogItem)

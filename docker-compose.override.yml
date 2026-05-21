@@ -47,6 +47,14 @@ services:
       interval: 1s
       retries: 20
 
+  eshop.ported.mvc:
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sql.data;Database=eShopPorted;User Id=sa;Password=Pass@word;TrustServerCertificate=True
+      - UseMockData=True
+      - UseCustomizationData=False
+    ports:
+      - "5116:80"
+
   eshop.core.modernized:
     environment:
       - CatalogDBContext=Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word
