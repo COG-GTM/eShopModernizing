@@ -1,6 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using eShopPorted.Models;
 using eShopPorted.Models.Infrastructure;
 using eShopPorted.ViewModel;
@@ -19,7 +16,7 @@ namespace eShopPorted.Services
         public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize = 10, int pageIndex = 0)
         {
             var items = ComposeCatalogItems(catalogItems);
-            
+
             var itemsOnPage = items
                 .OrderBy(c => c.Id)
                 .Skip(pageSize * pageIndex)
@@ -76,9 +73,7 @@ namespace eShopPorted.Services
             var catalogBrands = PreconfiguredData.GetPreconfiguredCatalogBrands();
             items.ForEach(i => i.CatalogBrand = catalogBrands.First(b => b.Id == i.CatalogBrandId));
             items.ForEach(i => i.CatalogType = catalogTypes.First(b => b.Id == i.CatalogTypeId));
-
             return items;
-            ;
         }
     }
 }
