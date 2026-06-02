@@ -1,33 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Web;
 
-namespace eShopWCFService.Models
+namespace eShopWCFService.Models;
+
+public class DiscountItem
 {
-    [DataContract]
-    public class DiscountItem
-    {
-        public DiscountItem()
-        {
-        }
+    public double Size { get; set; }
 
-        [DataMember]
-        public double Size { get; set; }
+    [Column(TypeName = "date")]
+    public DateTime Start { get; set; }
 
-        [Column(TypeName = "date")]
-        [DataMember]
-        public DateTime Start { get; set; }
+    [Column(TypeName = "date")]
+    public DateTime End { get; set; }
 
-        [Column(TypeName = "date")]
-        [DataMember]
-        public DateTime End { get; set; }
-
-        [Key]
-        [DataMember]
-        public int Id { get; set; }
-    }
+    [Key]
+    public int Id { get; set; }
 }

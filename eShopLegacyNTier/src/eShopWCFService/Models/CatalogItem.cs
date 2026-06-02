@@ -1,37 +1,27 @@
-namespace eShopWCFService.Models
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace eShopWCFService.Models;
+
+public partial class CatalogItem
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using System.Runtime.Serialization;
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public int Id { get; set; }
 
-    [DataContract]
-    public partial class CatalogItem
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        public string Description { get; set; }
-        [DataMember]
-        public string Name { get; set; }
+    public string Description { get; set; } = string.Empty;
 
-        [Column(TypeName = "money")]
-        [DataMember]
-        public decimal Price { get; set; }
-        [DataMember]
-        public string Picturefilename { get; set; }
-        [DataMember]
-        public int CatalogBrandId { get; set; }
-        [DataMember]
-        public int CatalogTypeId { get; set; }
+    public string Name { get; set; } = string.Empty;
 
-        [DataMember]
-        public CatalogType CatalogType { get; set; }
+    [Column(TypeName = "money")]
+    public decimal Price { get; set; }
 
-        [DataMember]
-        public CatalogBrand CatalogBrand { get; set; }
-    }
+    public string Picturefilename { get; set; } = string.Empty;
+
+    public int CatalogBrandId { get; set; }
+
+    public int CatalogTypeId { get; set; }
+
+    public CatalogType? CatalogType { get; set; }
+
+    public CatalogBrand? CatalogBrand { get; set; }
 }

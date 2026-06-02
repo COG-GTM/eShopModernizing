@@ -2,30 +2,17 @@ version: '3.4'
 
 services:
 
+  # N-Tier backend: the former WCF service, now an ASP.NET Core (net8.0) Web API
+  # built as a Linux container.
   eshopwcfservice:
     image: eshop/wcfservice:${TAG:-latest}
     build:
-      context: ./deploy/wcf
-      dockerfile: Dockerfile
+      context: ./eShopLegacyNTier
+      dockerfile: src/eShopWCFService/Dockerfile
     depends_on:
       - sql.data
 
-  eshop.modernized.webforms:
-    image: eshop/modernizedwebforms:${TAG:-latest}
-    build:
-      context: ./deploy/webforms
-      dockerfile: Dockerfile
-    depends_on:
-      - sql.data      
-
-  eshop.modernized.mvc:
-    image: eshop/modernizedmvc:${TAG:-latest}
-    build:
-      context: ./deploy/mvc
-      dockerfile: Dockerfile
-    depends_on:
-      - sql.data      
-    
+  # Modernized .NET (net8.0) core API used as the strangler-fig core_backend.
   eshop.core.modernized:
     image: eshop/coremodernized:${TAG:-latest}
     build:
@@ -34,6 +21,10 @@ services:
     depends_on:
       - sql.data
 
-  sql.data:
-    image: microsoft/mssql-server-windows-developer
+  # NOTE: eshop.modernized.mvc and eshop.modernized.webforms are .NET Framework
+  # (Windows-only) apps and are tracked under separate tickets. They cannot run
+  # as Linux containers and are intentionally excluded from this Linux compose
+  # stack. Re-introduce them in a dedicated Windows compose file if needed.
 
+  sql.data:
+    image: mcr.microsoft.com/mssql/server:2022-latest

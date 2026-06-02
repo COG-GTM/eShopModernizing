@@ -1,27 +1,19 @@
-namespace eShopWCFService
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace eShopWCFService.Models;
+
+[Table("CatalogItemsStock")]
+public partial class CatalogItemsStock
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using System.Runtime.Serialization;
+    [Column(TypeName = "date")]
+    public DateTime Date { get; set; }
 
-    [Table("CatalogItemsStock")]
-    [DataContract]
-    public partial class CatalogItemsStock
-    {
-        [Column(TypeName = "date")]
-        [DataMember]
-        public DateTime Date { get; set; }
-        [DataMember]
-        public int CatalogItemId { get; set; }
-        [DataMember]
-        public int AvailableStock { get; set; }
+    public int CatalogItemId { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [DataMember]
-        public int StockId { get; set; }
-    }
+    public int AvailableStock { get; set; }
+
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public int StockId { get; set; }
 }

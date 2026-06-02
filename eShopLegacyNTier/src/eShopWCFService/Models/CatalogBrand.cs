@@ -1,21 +1,13 @@
-namespace eShopWCFService.Models
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace eShopWCFService.Models;
+
+public partial class CatalogBrand
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using System.Runtime.Serialization;
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public int Id { get; set; }
 
-    [DataContract]
-    public partial class CatalogBrand
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [DataMember]
-        public int Id { get; set; }
-
-        [StringLength(50)]
-        [DataMember]
-        public string Brand { get; set; }
-    }
+    [StringLength(50)]
+    public string Brand { get; set; } = string.Empty;
 }
