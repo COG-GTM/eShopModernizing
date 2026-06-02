@@ -15,6 +15,10 @@
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
+    <!-- Pin transitive dependencies to patched versions to address known advisories -->
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
+    <PackageReference Include="System.Runtime.Caching" Version="8.0.1" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
 </Project>
