@@ -1,51 +1,18 @@
 version: '3.4'
 
 services:
-  eshop.modernized.mvc:
-    environment:
-      - CatalogDBContext=Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word
-      - UseMockData=False
-      - UseCustomizationData=False
-      - UseAzureStorage=False
-      - StorageConnectionString=${ESHOP_AZURE_STORAGE_CONNECTION_STRING}
-      - AppInsightsInstrumentationKey=${APP_INSIGHTS_INSTRUMENTATION_KEY}
-      - UseAzureActiveDirectory=false
-      - AzureActiveDirectoryClientId=${AZURE_ACTIVE_DIRECTORY_CLIENT_ID}
-      - AzureActiveDirectoryTenant=${AZURE_ACTIVE_DIRECTORY_TENANT}
-      - PostLogoutRedirectUri=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP:-10.0.75.1}:5115/
-    ports:
-      - "5115:80"
-
-  eshop.modernized.webforms:
-    environment:
-      - CatalogDBContext=Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word
-      - UseMockData=False
-      - UseCustomizationData=False
-      - UseAzureStorage=False
-      - StorageConnectionString=${ESHOP_AZURE_STORAGE_CONNECTION_STRING}
-      - AppInsightsInstrumentationKey=${APP_INSIGHTS_INSTRUMENTATION_KEY}
-      - UseAzureActiveDirectory=false
-      - AzureActiveDirectoryClientId=${AZURE_ACTIVE_DIRECTORY_CLIENT_ID}
-      - AzureActiveDirectoryTenant=${AZURE_ACTIVE_DIRECTORY_TENANT}
-      - PostLogoutRedirectUri=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP:-10.0.75.1}:5114/
-    ports:
-      - "5114:80"
-
   eshopwcfservice:
     environment:
-      - CatalogDBContext=Server=sql.data;Database=eShopDatabase;User Id=sa;Password=Pass@word
-    ports:   
-     - "5113:80"       
-  sql.data:
-    environment:
-      - SA_PASSWORD=Pass@word
-      - ACCEPT_EULA=Y
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__CatalogDBContext=Server=sql.data;Database=eShopDatabase;User Id=sa;Password=Pass@word;TrustServerCertificate=True
+      - FeatureFlags__UseMockData=false
+      - FeatureFlags__UseAzureStorage=false
+      - FeatureFlags__UseAzureManagedIdentity=false
     ports:
-      - "5433:1433"
-    healthcheck:
-      test: [ "CMD", "sqlcmd", "-U", "sa", "-P", "Pass@word", "-Q", "select 1" ]
-      interval: 1s
-      retries: 20
+      - "5113:8080"
+    depends_on:
+      - sql.data
 
   eshop.core.modernized:
     environment:
@@ -65,7 +32,14 @@ services:
     depends_on:
       - sql.data
 
-networks:
-  default:
-    external:
-      name: nat
+  sql.data:
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Pass@word
+      - SA_PASSWORD=Pass@word
+    ports:
+      - "5433:1433"
+    healthcheck:
+      test: [ "CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Pass@word", "-C", "-Q", "select 1" ]
+      interval: 5s
+      retries: 20
