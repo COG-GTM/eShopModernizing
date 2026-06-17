@@ -231,3 +231,25 @@
     }
 }
 
+/* Low Stock Badge */
+.esh-stock-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.esh-stock-badge--low {
+    background-color: #E52638;
+    color: #FFFFFF;
+}
+
+.esh-stock-badge--ok {
+    background-color: #83D01B;
+    color: #FFFFFF;
+}
+
