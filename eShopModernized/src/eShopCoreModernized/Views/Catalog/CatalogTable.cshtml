@@ -32,6 +32,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.MaxStockThreshold)
             </th>
+            <th>
+                Stock Status
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -68,6 +71,28 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MaxStockThreshold)
+                </td>
+                <td>
+                    @{
+                        string stockBadgeClass;
+                        string stockBadgeText;
+                        if (item.AvailableStock == 0)
+                        {
+                            stockBadgeClass = "badge-danger";
+                            stockBadgeText = "Out of Stock";
+                        }
+                        else if (item.AvailableStock <= item.RestockThreshold)
+                        {
+                            stockBadgeClass = "badge-warning";
+                            stockBadgeText = "Low Stock";
+                        }
+                        else
+                        {
+                            stockBadgeClass = "badge-success";
+                            stockBadgeText = "In Stock";
+                        }
+                    }
+                    <span class="badge @stockBadgeClass">@stockBadgeText</span>
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "esh-table-link" }) |
