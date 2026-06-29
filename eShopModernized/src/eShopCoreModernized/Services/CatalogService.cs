@@ -15,13 +15,21 @@ namespace eShopCoreModernized.Services
             this.indexGenerator = indexGenerator;
         }
 
-        public async Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex)
+        public async Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex, int? brandId = null, int? typeId = null)
         {
-            var totalItems = await db.CatalogItems.LongCountAsync();
-
-            var itemsOnPage = await db.CatalogItems
+            var query = db.CatalogItems
                 .Include(c => c.CatalogBrand)
                 .Include(c => c.CatalogType)
+                .AsQueryable();
+
+            if (brandId.HasValue)
+                query = query.Where(c => c.CatalogBrandId == brandId.Value);
+            if (typeId.HasValue)
+                query = query.Where(c => c.CatalogTypeId == typeId.Value);
+
+            var totalItems = await query.LongCountAsync();
+
+            var itemsOnPage = await query
                 .OrderBy(c => c.Id)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
@@ -31,13 +39,21 @@ namespace eShopCoreModernized.Services
                 pageIndex, pageSize, totalItems, itemsOnPage);
         }
 
-        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
+        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex, int? brandId = null, int? typeId = null)
         {
-            var totalItems = db.CatalogItems.LongCount();
-
-            var itemsOnPage = db.CatalogItems
+            var query = db.CatalogItems
                 .Include(c => c.CatalogBrand)
                 .Include(c => c.CatalogType)
+                .AsQueryable();
+
+            if (brandId.HasValue)
+                query = query.Where(c => c.CatalogBrandId == brandId.Value);
+            if (typeId.HasValue)
+                query = query.Where(c => c.CatalogTypeId == typeId.Value);
+
+            var totalItems = query.LongCount();
+
+            var itemsOnPage = query
                 .OrderBy(c => c.Id)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)

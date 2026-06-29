@@ -44,15 +44,23 @@ namespace eShopCoreModernized.Services
             }
         }
 
-        public Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex)
+        public Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex, int? brandId = null, int? typeId = null)
         {
-            return Task.FromResult(GetCatalogItemsPaginated(pageSize, pageIndex));
+            return Task.FromResult(GetCatalogItemsPaginated(pageSize, pageIndex, brandId, typeId));
         }
 
-        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
+        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex, int? brandId = null, int? typeId = null)
         {
-            var totalItems = catalogItems.Count;
-            var itemsOnPage = catalogItems
+            var filtered = catalogItems.AsEnumerable();
+
+            if (brandId.HasValue)
+                filtered = filtered.Where(c => c.CatalogBrandId == brandId.Value);
+            if (typeId.HasValue)
+                filtered = filtered.Where(c => c.CatalogTypeId == typeId.Value);
+
+            var filteredList = filtered.ToList();
+            var totalItems = filteredList.Count;
+            var itemsOnPage = filteredList
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
                 .ToList();
