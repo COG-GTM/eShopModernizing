@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    ViewData["pageSize"] = Model.ItemsPerPage;
+    ViewData["pageIndex"] = Model.ActualPage;
 }
 
 <div class="esh-table">

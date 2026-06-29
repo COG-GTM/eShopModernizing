@@ -1,5 +1,10 @@
 @model IEnumerable<eShopCoreModernized.Models.CatalogItem>
 
+@{
+    var pageSize = ViewData["pageSize"] ?? 10;
+    var pageIndex = ViewData["pageIndex"] ?? 0;
+}
+
 <table class="table">
     <thead>
         <tr class="esh-table-header">
@@ -70,9 +75,9 @@
                     @Html.DisplayFor(modelItem => item.MaxStockThreshold)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "esh-table-link" }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id, pageSize, pageIndex }, new { @class = "esh-table-link" }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "esh-table-link" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "esh-table-link" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id, pageSize, pageIndex }, new { @class = "esh-table-link" })
                 </td>
             </tr>
         }

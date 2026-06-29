@@ -89,7 +89,9 @@
             <dd class="esh-button-actions">
                 @using (Html.BeginForm())
                 {
-                    @Html.ActionLink("[ Cancel ]", "Index", null, new { @class = "btn esh-button esh-button-secondary" })
+                    <input type="hidden" name="pageSize" value="@ViewData["pageSize"]" />
+                    <input type="hidden" name="pageIndex" value="@ViewData["pageIndex"]" />
+                    @Html.ActionLink("[ Cancel ]", "Index", new { pageSize = ViewData["pageSize"], pageIndex = ViewData["pageIndex"] }, new { @class = "btn esh-button esh-button-secondary" })
                     <button type="submit" class="btn esh-button esh-button-primary">[ Delete ]</button>
                 }
             </dd>

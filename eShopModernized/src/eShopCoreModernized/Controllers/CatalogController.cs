@@ -96,7 +96,7 @@ namespace eShopCoreModernized.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int pageSize = 10, int pageIndex = 0)
         {
             _logger.LogInformation("Now loading... /Catalog/Edit?id={Id}", id);
             if (id == null)
@@ -112,13 +112,15 @@ namespace eShopCoreModernized.Controllers
             ViewBag.CatalogBrandId = new SelectList(await _service.GetCatalogBrandsAsync(), "Id", "Brand", catalogItem.CatalogBrandId);
             ViewBag.CatalogTypeId = new SelectList(await _service.GetCatalogTypesAsync(), "Id", "Type", catalogItem.CatalogTypeId);
             ViewBag.UseAzureStorage = _catalogConfiguration.UseAzureStorage;
+            ViewData["pageSize"] = pageSize;
+            ViewData["pageIndex"] = pageIndex;
             return View(catalogItem);
         }
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Id,Name,Description,Price,PictureFileName,CatalogTypeId,CatalogBrandId,AvailableStock,RestockThreshold,MaxStockThreshold,OnReorder,TempImageName")] CatalogItem catalogItem)
+        public async Task<IActionResult> Edit([Bind("Id,Name,Description,Price,PictureFileName,CatalogTypeId,CatalogBrandId,AvailableStock,RestockThreshold,MaxStockThreshold,OnReorder,TempImageName")] CatalogItem catalogItem, int pageSize = 10, int pageIndex = 0)
         {
             _logger.LogInformation("Now processing... /Catalog/Edit?id={Id}", catalogItem.Id);
             if (ModelState.IsValid)
@@ -131,16 +133,18 @@ namespace eShopCoreModernized.Controllers
                 }
 
                 await _service.UpdateCatalogItemAsync(catalogItem);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { pageSize, pageIndex });
             }
             ViewBag.CatalogBrandId = new SelectList(await _service.GetCatalogBrandsAsync(), "Id", "Brand", catalogItem.CatalogBrandId);
             ViewBag.CatalogTypeId = new SelectList(await _service.GetCatalogTypesAsync(), "Id", "Type", catalogItem.CatalogTypeId);
             ViewBag.UseAzureStorage = _catalogConfiguration.UseAzureStorage;
+            ViewData["pageSize"] = pageSize;
+            ViewData["pageIndex"] = pageIndex;
             return View(catalogItem);
         }
 
         [Authorize]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int pageSize = 10, int pageIndex = 0)
         {
             _logger.LogInformation("Now loading... /Catalog/Delete?id={Id}", id);
             if (id == null)
@@ -153,6 +157,8 @@ namespace eShopCoreModernized.Controllers
                 return NotFound();
             }
             AddUriPlaceHolder(catalogItem);
+            ViewData["pageSize"] = pageSize;
+            ViewData["pageIndex"] = pageIndex;
 
             return View(catalogItem);
         }
@@ -160,7 +166,7 @@ namespace eShopCoreModernized.Controllers
         [HttpPost, ActionName("Delete")]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, int pageSize = 10, int pageIndex = 0)
         {
             _logger.LogInformation("Now processing... /Catalog/DeleteConfirmed?id={Id}", id);
             CatalogItem? catalogItem = await _service.FindCatalogItemAsync(id);
@@ -168,7 +174,7 @@ namespace eShopCoreModernized.Controllers
             {
                 await _service.RemoveCatalogItemAsync(catalogItem);
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { pageSize, pageIndex });
         }
 
         private void ChangeUriPlaceholder(IEnumerable<CatalogItem> items)
