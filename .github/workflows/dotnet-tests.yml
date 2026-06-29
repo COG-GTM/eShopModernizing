@@ -1,0 +1,32 @@
+name: eShopModernized .NET Tests
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'eShopModernized/**'
+      - '.github/workflows/dotnet-tests.yml'
+  pull_request:
+    paths:
+      - 'eShopModernized/**'
+      - '.github/workflows/dotnet-tests.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore eShopModernized/tests/eShopModernized.Tests/eShopModernized.Tests.csproj
+
+      - name: Build
+        run: dotnet build eShopModernized/tests/eShopModernized.Tests/eShopModernized.Tests.csproj --configuration Release --no-restore
+
+      - name: Test with coverage
+        run: dotnet test eShopModernized/tests/eShopModernized.Tests/eShopModernized.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --logger "console;verbosity=detailed"
