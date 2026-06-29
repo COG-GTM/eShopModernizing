@@ -30,11 +30,11 @@ namespace eShopCoreModernized.Services
 
             catalogItems = new List<CatalogItem>
             {
-                new CatalogItem { Id = 1, Name = ".NET Bot Black Hoodie", Description = ".NET Bot Black Hoodie", Price = 19.5M, PictureFileName = "1.png", CatalogTypeId = 2, CatalogBrandId = 2, AvailableStock = 100, RestockThreshold = 0, MaxStockThreshold = 0, OnReorder = false },
-                new CatalogItem { Id = 2, Name = ".NET Black & White Mug", Description = ".NET Black & White Mug", Price = 8.50M, PictureFileName = "2.png", CatalogTypeId = 1, CatalogBrandId = 2, AvailableStock = 100, RestockThreshold = 0, MaxStockThreshold = 0, OnReorder = false },
-                new CatalogItem { Id = 3, Name = "Prism White T-Shirt", Description = "Prism White T-Shirt", Price = 12M, PictureFileName = "3.png", CatalogTypeId = 2, CatalogBrandId = 5, AvailableStock = 100, RestockThreshold = 0, MaxStockThreshold = 0, OnReorder = false },
-                new CatalogItem { Id = 4, Name = ".NET Foundation T-shirt", Description = ".NET Foundation T-shirt", Price = 12M, PictureFileName = "4.png", CatalogTypeId = 2, CatalogBrandId = 2, AvailableStock = 100, RestockThreshold = 0, MaxStockThreshold = 0, OnReorder = false },
-                new CatalogItem { Id = 5, Name = "Roslyn Red Sheet", Description = "Roslyn Red Sheet", Price = 8.5M, PictureFileName = "5.png", CatalogTypeId = 3, CatalogBrandId = 2, AvailableStock = 100, RestockThreshold = 0, MaxStockThreshold = 0, OnReorder = false }
+                new CatalogItem { Id = 1, Name = ".NET Bot Black Hoodie", Description = ".NET Bot Black Hoodie", Price = 19.5M, PictureFileName = "1.png", CatalogTypeId = 2, CatalogBrandId = 2, AvailableStock = 100, RestockThreshold = 20, MaxStockThreshold = 200, OnReorder = false },
+                new CatalogItem { Id = 2, Name = ".NET Black & White Mug", Description = ".NET Black & White Mug", Price = 8.50M, PictureFileName = "2.png", CatalogTypeId = 1, CatalogBrandId = 2, AvailableStock = 8, RestockThreshold = 15, MaxStockThreshold = 200, OnReorder = false },
+                new CatalogItem { Id = 3, Name = "Prism White T-Shirt", Description = "Prism White T-Shirt", Price = 12M, PictureFileName = "3.png", CatalogTypeId = 2, CatalogBrandId = 5, AvailableStock = 100, RestockThreshold = 20, MaxStockThreshold = 200, OnReorder = false },
+                new CatalogItem { Id = 4, Name = ".NET Foundation T-shirt", Description = ".NET Foundation T-shirt", Price = 12M, PictureFileName = "4.png", CatalogTypeId = 2, CatalogBrandId = 2, AvailableStock = 3, RestockThreshold = 10, MaxStockThreshold = 200, OnReorder = true },
+                new CatalogItem { Id = 5, Name = "Roslyn Red Sheet", Description = "Roslyn Red Sheet", Price = 8.5M, PictureFileName = "5.png", CatalogTypeId = 3, CatalogBrandId = 2, AvailableStock = 0, RestockThreshold = 10, MaxStockThreshold = 200, OnReorder = false }
             };
 
             foreach (var item in catalogItems)

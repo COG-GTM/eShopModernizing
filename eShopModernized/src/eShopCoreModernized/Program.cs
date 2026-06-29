@@ -1,6 +1,7 @@
 using eShopCoreModernized.Models;
 using eShopCoreModernized.Services;
 using eShopCoreModernized.Configuration;
+using eShopCoreModernized.Domain;
 using eShopCoreModernized.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Azure.Storage.Blobs;
@@ -69,6 +70,8 @@ else
 }
 
 builder.Services.AddSingleton<CatalogItemHiLoGenerator>();
+
+builder.Services.AddSingleton<IInventoryReorderPolicy, InventoryReorderPolicy>();
 
 if (catalogConfig.UseAzureActiveDirectory)
 {
