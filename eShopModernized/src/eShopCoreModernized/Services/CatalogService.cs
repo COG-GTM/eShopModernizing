@@ -15,11 +15,22 @@ namespace eShopCoreModernized.Services
             this.indexGenerator = indexGenerator;
         }
 
-        public async Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex)
+        public async Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex, int? brandIdFilter = null, int? typeIdFilter = null)
         {
-            var totalItems = await db.CatalogItems.LongCountAsync();
+            var query = db.CatalogItems.AsQueryable();
 
-            var itemsOnPage = await db.CatalogItems
+            if (brandIdFilter.HasValue)
+            {
+                query = query.Where(c => c.CatalogBrandId == brandIdFilter.Value);
+            }
+            if (typeIdFilter.HasValue)
+            {
+                query = query.Where(c => c.CatalogTypeId == typeIdFilter.Value);
+            }
+
+            var totalItems = await query.LongCountAsync();
+
+            var itemsOnPage = await query
                 .Include(c => c.CatalogBrand)
                 .Include(c => c.CatalogType)
                 .OrderBy(c => c.Id)
@@ -31,11 +42,22 @@ namespace eShopCoreModernized.Services
                 pageIndex, pageSize, totalItems, itemsOnPage);
         }
 
-        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
+        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex, int? brandIdFilter = null, int? typeIdFilter = null)
         {
-            var totalItems = db.CatalogItems.LongCount();
+            var query = db.CatalogItems.AsQueryable();
 
-            var itemsOnPage = db.CatalogItems
+            if (brandIdFilter.HasValue)
+            {
+                query = query.Where(c => c.CatalogBrandId == brandIdFilter.Value);
+            }
+            if (typeIdFilter.HasValue)
+            {
+                query = query.Where(c => c.CatalogTypeId == typeIdFilter.Value);
+            }
+
+            var totalItems = query.LongCount();
+
+            var itemsOnPage = query
                 .Include(c => c.CatalogBrand)
                 .Include(c => c.CatalogType)
                 .OrderBy(c => c.Id)

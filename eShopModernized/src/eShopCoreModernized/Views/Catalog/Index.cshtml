@@ -2,9 +2,43 @@
 
 @{
     ViewBag.Title = "Index";
+    var brands = (IEnumerable<eShopCoreModernized.Models.CatalogBrand>)ViewBag.Brands;
+    var types = (IEnumerable<eShopCoreModernized.Models.CatalogType>)ViewBag.Types;
+    int? brandFilterApplied = ViewBag.BrandFilterApplied;
+    int? typeFilterApplied = ViewBag.TypeFilterApplied;
 }
 
 <div class="esh-table">
+    <div class="container">
+        <form asp-action="Index" method="get" class="esh-catalog-filters row" style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px;">
+            <div>
+                <label for="brandFilterApplied"><strong>Brand:</strong></label>
+                <select name="brandFilterApplied" id="brandFilterApplied" class="form-control" style="display: inline-block; width: auto; min-width: 150px;">
+                    <option value="">All</option>
+                    @foreach (var brand in brands)
+                    {
+                        <option value="@brand.Id" selected="@(brandFilterApplied == brand.Id ? "selected" : null)">@brand.Brand</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <label for="typeFilterApplied"><strong>Type:</strong></label>
+                <select name="typeFilterApplied" id="typeFilterApplied" class="form-control" style="display: inline-block; width: auto; min-width: 150px;">
+                    <option value="">All</option>
+                    @foreach (var type in types)
+                    {
+                        <option value="@type.Id" selected="@(typeFilterApplied == type.Id ? "selected" : null)">@type.Type</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <input type="hidden" name="pageSize" value="@Model.ItemsPerPage" />
+                <button type="submit" class="btn esh-button esh-button-primary">Filter</button>
+                <a asp-action="Index" class="btn esh-button" style="margin-left: 5px;">Reset</a>
+            </div>
+        </form>
+    </div>
+
     <p class="esh-link-wrapper">
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn esh-button esh-button-primary" })
     </p>
@@ -18,11 +52,11 @@
 
                     @if (Model.ActualPage > 0)
                     {
-                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1 }, new { @class = "esh-pager-item esh-pager-item--navigable" })
+                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1, brandFilterApplied = brandFilterApplied, typeFilterApplied = typeFilterApplied }, new { @class = "esh-pager-item esh-pager-item--navigable" })
                     }
                     else
                     {
-                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1 }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
+                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1, brandFilterApplied = brandFilterApplied, typeFilterApplied = typeFilterApplied }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
                     }
 
                     <span class="esh-pager-item">
@@ -31,11 +65,11 @@
 
                     @if (Model.ActualPage < Model.TotalPages - 1)
                     {
-                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1 }, new { @class = "esh-pager-item esh-pager-item--navigable" })
+                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1, brandFilterApplied = brandFilterApplied, typeFilterApplied = typeFilterApplied }, new { @class = "esh-pager-item esh-pager-item--navigable" })
                     }
                     else
                     {
-                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1 }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
+                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1, brandFilterApplied = brandFilterApplied, typeFilterApplied = typeFilterApplied }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
                     }
 
             </nav>

@@ -26,11 +26,17 @@ namespace eShopCoreModernized.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0)
+        public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, int? brandFilterApplied = null, int? typeFilterApplied = null)
         {
-            _logger.LogInformation("Now loading... /Catalog/Index?pageSize={PageSize}&pageIndex={PageIndex}", pageSize, pageIndex);
-            var paginatedItems = await _service.GetCatalogItemsPaginatedAsync(pageSize, pageIndex);
+            _logger.LogInformation("Now loading... /Catalog/Index?pageSize={PageSize}&pageIndex={PageIndex}&brand={Brand}&type={Type}", pageSize, pageIndex, brandFilterApplied, typeFilterApplied);
+            var paginatedItems = await _service.GetCatalogItemsPaginatedAsync(pageSize, pageIndex, brandFilterApplied, typeFilterApplied);
             ChangeUriPlaceholder(paginatedItems.Data);
+
+            ViewBag.BrandFilterApplied = brandFilterApplied;
+            ViewBag.TypeFilterApplied = typeFilterApplied;
+            ViewBag.Brands = await _service.GetCatalogBrandsAsync();
+            ViewBag.Types = await _service.GetCatalogTypesAsync();
+
             return View(paginatedItems);
         }
 
