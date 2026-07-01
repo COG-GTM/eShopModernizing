@@ -1,0 +1,48 @@
+@model eShopPortedWebForms.Pages.Catalog.ICatalogItemFormModel
+
+<input type="hidden" asp-for="Item.Id" />
+<div class="mb-3">
+    <label asp-for="Item.Name" class="form-label"></label>
+    <input asp-for="Item.Name" class="form-control" />
+    <span asp-validation-for="Item.Name" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.Description" class="form-label"></label>
+    <input asp-for="Item.Description" class="form-control" />
+    <span asp-validation-for="Item.Description" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.CatalogBrandId" class="form-label"></label>
+    <select asp-for="Item.CatalogBrandId" asp-items="Model.Brands" class="form-select"></select>
+    <span asp-validation-for="Item.CatalogBrandId" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.CatalogTypeId" class="form-label"></label>
+    <select asp-for="Item.CatalogTypeId" asp-items="Model.Types" class="form-select"></select>
+    <span asp-validation-for="Item.CatalogTypeId" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.Price" class="form-label"></label>
+    <input asp-for="Item.Price" class="form-control" />
+    <span asp-validation-for="Item.Price" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.PictureFileName" class="form-label"></label>
+    <input asp-for="Item.PictureFileName" class="form-control" />
+    <span asp-validation-for="Item.PictureFileName" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.AvailableStock" class="form-label"></label>
+    <input asp-for="Item.AvailableStock" class="form-control" />
+    <span asp-validation-for="Item.AvailableStock" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.RestockThreshold" class="form-label"></label>
+    <input asp-for="Item.RestockThreshold" class="form-control" />
+    <span asp-validation-for="Item.RestockThreshold" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Item.MaxStockThreshold" class="form-label"></label>
+    <input asp-for="Item.MaxStockThreshold" class="form-control" />
+    <span asp-validation-for="Item.MaxStockThreshold" class="text-danger"></span>
+</div>
