@@ -44,15 +44,27 @@ namespace eShopCoreModernized.Services
             }
         }
 
-        public Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex)
+        public Task<PaginatedItemsViewModel<CatalogItem>> GetCatalogItemsPaginatedAsync(int pageSize, int pageIndex, int? brandIdFilter = null, int? typeIdFilter = null)
         {
-            return Task.FromResult(GetCatalogItemsPaginated(pageSize, pageIndex));
+            return Task.FromResult(GetCatalogItemsPaginated(pageSize, pageIndex, brandIdFilter, typeIdFilter));
         }
 
-        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
+        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex, int? brandIdFilter = null, int? typeIdFilter = null)
         {
-            var totalItems = catalogItems.Count;
-            var itemsOnPage = catalogItems
+            var filtered = catalogItems.AsEnumerable();
+
+            if (brandIdFilter.HasValue)
+            {
+                filtered = filtered.Where(c => c.CatalogBrandId == brandIdFilter.Value);
+            }
+            if (typeIdFilter.HasValue)
+            {
+                filtered = filtered.Where(c => c.CatalogTypeId == typeIdFilter.Value);
+            }
+
+            var filteredList = filtered.ToList();
+            var totalItems = filteredList.Count;
+            var itemsOnPage = filteredList
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
                 .ToList();
