@@ -93,7 +93,10 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<eShopCoreModernized.Filters.ActionTracerFilter>();
+});
 
 var app = builder.Build();
 
@@ -102,11 +105,14 @@ if (!catalogConfig.UseMockData)
     using var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<CatalogDBContext>();
     context.Database.EnsureCreated();
+
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    await CatalogDBInitializer.SeedAsync(context, logger);
 }
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
