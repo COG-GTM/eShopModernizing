@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Text.Json;
 
 namespace eShopLegacy.Utilities
 {
@@ -7,18 +7,20 @@ namespace eShopLegacy.Utilities
     {
         public Stream SerializeBinary(object input)
         {
-            var stream = new MemoryStream();
-            var binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(stream, input);
-            stream.Seek(0, SeekOrigin.Begin);
-            return stream;
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(input, input?.GetType() ?? typeof(object));
+            return new MemoryStream(bytes);
         }
 
         public object DeserializeBinary(Stream stream)
         {
-            var binaryFormatter = new BinaryFormatter();
             stream.Seek(0, SeekOrigin.Begin);
-            return binaryFormatter.Deserialize(stream);
+            return JsonSerializer.Deserialize<JsonElement>(stream);
+        }
+
+        public T DeserializeBinary<T>(Stream stream)
+        {
+            stream.Seek(0, SeekOrigin.Begin);
+            return JsonSerializer.Deserialize<T>(stream);
         }
     }
 }
