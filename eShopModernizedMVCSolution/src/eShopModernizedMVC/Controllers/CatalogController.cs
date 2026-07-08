@@ -22,11 +22,18 @@ namespace eShopModernizedMVC.Controllers
         }
 
         // GET /[?pageSize=3&pageIndex=10]
-        public ActionResult Index(int pageSize = 10, int pageIndex = 0)
+        public ActionResult Index(int pageSize = 10, int pageIndex = 0, string searchText = null, int? brandId = null, int? typeId = null)
         {
-            _log.Info($"Now loading... /Catalog/Index?pageSize={pageSize}&pageIndex={pageIndex}");
-            var paginatedItems = _service.GetCatalogItemsPaginated(pageSize, pageIndex);
+            _log.Info($"Now loading... /Catalog/Index?pageSize={pageSize}&pageIndex={pageIndex}&searchText={searchText}&brandId={brandId}&typeId={typeId}");
+            var paginatedItems = _service.GetCatalogItemsPaginated(pageSize, pageIndex, searchText, brandId, typeId);
             ChangeUriPlaceholder(paginatedItems.Data);
+
+            ViewBag.CatalogBrandId = new SelectList(_service.GetCatalogBrands(), "Id", "Brand", brandId);
+            ViewBag.CatalogTypeId = new SelectList(_service.GetCatalogTypes(), "Id", "Type", typeId);
+            ViewBag.SearchText = searchText;
+            ViewBag.BrandId = brandId;
+            ViewBag.TypeId = typeId;
+
             return View(paginatedItems);
         }
 

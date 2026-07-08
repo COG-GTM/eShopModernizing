@@ -29,6 +29,38 @@ namespace eShopModernizedMVC.Services
                 pageIndex, pageSize, items.Count, itemsOnPage);
         }
 
+        public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex, string searchText, int? brandId, int? typeId)
+        {
+            var items = ComposeCatalogItems(catalogItems).AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                items = items.Where(c => (c.Name != null && c.Name.Contains(searchText))
+                    || (c.Description != null && c.Description.Contains(searchText)));
+            }
+
+            if (brandId.HasValue)
+            {
+                items = items.Where(c => c.CatalogBrandId == brandId.Value);
+            }
+
+            if (typeId.HasValue)
+            {
+                items = items.Where(c => c.CatalogTypeId == typeId.Value);
+            }
+
+            var filteredItems = items.ToList();
+
+            var itemsOnPage = filteredItems
+                .OrderBy(c => c.Id)
+                .Skip(pageSize * pageIndex)
+                .Take(pageSize)
+                .ToList();
+
+            return new PaginatedItemsViewModel<CatalogItem>(
+                pageIndex, pageSize, filteredItems.Count, itemsOnPage);
+        }
+
         public CatalogItem FindCatalogItem(int id)
         {
             return catalogItems.FirstOrDefault(x => x.Id == id);
