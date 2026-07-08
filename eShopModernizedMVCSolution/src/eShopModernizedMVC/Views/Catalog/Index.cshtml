@@ -9,6 +9,20 @@
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn esh-button esh-button-primary" })
     </p>
 
+    @using (Html.BeginForm("Index", "Catalog", FormMethod.Get, new { @class = "esh-search form-inline" }))
+    {
+        <div class="form-group">
+            @Html.TextBox("searchText", (string)ViewBag.SearchText, new { @class = "form-control", @placeholder = "Search name or description" })
+        </div>
+        <div class="form-group">
+            @Html.DropDownList("brandId", (SelectList)ViewBag.CatalogBrandId, "All brands", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.DropDownList("typeId", (SelectList)ViewBag.CatalogTypeId, "All types", new { @class = "form-control" })
+        </div>
+        <input type="submit" value="[ Search ]" class="btn esh-button esh-button-primary" />
+    }
+
     @Html.Partial("CatalogTable", Model.Data)
 
     <div class="esh-pager">
@@ -18,11 +32,11 @@
 
                     @if (Model.ActualPage > 0)
                     {
-                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1 }, new { @class = "esh-pager-item esh-pager-item--navigable" })
+                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1, searchText = (string)ViewBag.SearchText, brandId = (int?)ViewBag.BrandId, typeId = (int?)ViewBag.TypeId }, new { @class = "esh-pager-item esh-pager-item--navigable" })
                     }
                     else
                     {
-                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1 }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
+                        @Html.ActionLink("Previous", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage - 1, searchText = (string)ViewBag.SearchText, brandId = (int?)ViewBag.BrandId, typeId = (int?)ViewBag.TypeId }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
                     }
 
                     <span class="esh-pager-item">
@@ -31,11 +45,11 @@
 
                     @if (Model.ActualPage < Model.TotalPages - 1)
                     {
-                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1 }, new { @class = "esh-pager-item esh-pager-item--navigable" })
+                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1, searchText = (string)ViewBag.SearchText, brandId = (int?)ViewBag.BrandId, typeId = (int?)ViewBag.TypeId }, new { @class = "esh-pager-item esh-pager-item--navigable" })
                     }
                     else
                     {
-                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1 }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
+                        @Html.ActionLink("Next", "Index", new { pageSize = Model.ItemsPerPage, pageIndex = Model.ActualPage + 1, searchText = (string)ViewBag.SearchText, brandId = (int?)ViewBag.BrandId, typeId = (int?)ViewBag.TypeId }, new { @class = "esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" })
                     }
 
             </nav>
