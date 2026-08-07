@@ -48,10 +48,12 @@ else
 if (catalogConfig.UseMockData)
 {
     builder.Services.AddSingleton<ICatalogService, CatalogServiceMock>();
+    builder.Services.AddSingleton<IBrandService, BrandServiceMock>();
 }
 else
 {
     builder.Services.AddScoped<ICatalogService, CatalogService>();
+    builder.Services.AddScoped<IBrandService, BrandService>();
 }
 
 if (catalogConfig.UseAzureStorage)
@@ -69,6 +71,7 @@ else
 }
 
 builder.Services.AddSingleton<CatalogItemHiLoGenerator>();
+builder.Services.AddSingleton<IBrandIdGenerator, CatalogBrandHiLoGenerator>();
 
 if (catalogConfig.UseAzureActiveDirectory)
 {

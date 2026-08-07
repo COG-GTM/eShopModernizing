@@ -1,0 +1,44 @@
+@model IEnumerable<eShopCoreModernized.Models.CatalogBrand>
+
+@{
+    ViewBag.Title = "Brands";
+}
+
+<div class="esh-table">
+    <p class="esh-link-wrapper">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn esh-button esh-button-primary" })
+        @Html.ActionLink("[ Catalog ]", "Index", "Catalog", null, new { @class = "btn esh-button esh-button-secondary" })
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr class="esh-table-header">
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Brand)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var brand in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => brand.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => brand.Brand)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = brand.Id }, new { @class = "esh-table-link" }) |
+                        @Html.ActionLink("Details", "Details", new { id = brand.Id }, new { @class = "esh-table-link" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = brand.Id }, new { @class = "esh-table-link" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

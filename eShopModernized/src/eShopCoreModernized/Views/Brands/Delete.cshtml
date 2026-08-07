@@ -1,0 +1,42 @@
+@model eShopCoreModernized.Models.CatalogBrand
+
+@{
+    ViewBag.Title = "Delete brand";
+}
+
+<h2 class="esh-body-title">Delete</h2>
+
+<div class="container">
+    <h3>Are you sure you want to delete this?</h3>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @if (ViewBag.IsBrandInUse == true)
+    {
+        <p class="text-danger">Catalog items still reference this brand, so it cannot be deleted.</p>
+    }
+
+    <dl class="col-md-6 dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+
+        <dd class="esh-button-actions">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ActionLink("[ Cancel ]", "Index", null, new { @class = "btn esh-button esh-button-secondary" })
+                <button type="submit" class="btn esh-button esh-button-primary" disabled="@(ViewBag.IsBrandInUse == true)">[ Delete ]</button>
+            }
+        </dd>
+    </dl>
+</div>

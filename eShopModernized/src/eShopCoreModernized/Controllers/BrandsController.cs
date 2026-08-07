@@ -1,55 +1,143 @@
 using Microsoft.AspNetCore.Mvc;
-using eShopCoreModernized.Services;
+using Microsoft.AspNetCore.Authorization;
 using eShopCoreModernized.Models;
+using eShopCoreModernized.Services;
 
 namespace eShopCoreModernized.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BrandsController : ControllerBase
+    public class BrandsController : Controller
     {
-        private readonly ICatalogService _service;
+        private readonly IBrandService _service;
         private readonly ILogger<BrandsController> _logger;
 
-        public BrandsController(ICatalogService service, ILogger<BrandsController> logger)
+        public BrandsController(IBrandService service, ILogger<BrandsController> logger)
         {
             _service = service;
             _logger = logger;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CatalogBrand>>> Get()
+        public async Task<IActionResult> Index()
         {
-            var brands = await _service.GetCatalogBrandsAsync();
-            return Ok(brands);
+            _logger.LogInformation("Now loading... /Brands/Index");
+            return View(await _service.GetBrandsAsync());
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<CatalogBrand>> Get(int id)
+        public async Task<IActionResult> Details(int? id)
         {
-            var brands = await _service.GetCatalogBrandsAsync();
-            var brand = brands.FirstOrDefault(x => x.Id == id);
-            
+            _logger.LogInformation("Now loading... /Brands/Details?id={Id}", id);
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var brand = await _service.FindBrandAsync(id.Value);
             if (brand == null)
             {
                 return NotFound();
             }
 
-            return Ok(brand);
+            return View(brand);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [Authorize]
+        public IActionResult Create()
         {
-            var brands = await _service.GetCatalogBrandsAsync();
-            var brandToDelete = brands.FirstOrDefault(x => x.Id == id);
-            
-            if (brandToDelete == null)
+            _logger.LogInformation("Now loading... /Brands/Create");
+            return View(new CatalogBrand());
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Brand")] CatalogBrand catalogBrand)
+        {
+            _logger.LogInformation("Now processing... /Brands/Create?brand={Brand}", catalogBrand.Brand);
+            if (!ModelState.IsValid)
+            {
+                return View(catalogBrand);
+            }
+
+            await _service.CreateBrandAsync(catalogBrand);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            _logger.LogInformation("Now loading... /Brands/Edit?id={Id}", id);
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var brand = await _service.FindBrandAsync(id.Value);
+            if (brand == null)
             {
                 return NotFound();
             }
 
-            return Ok();
+            return View(brand);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind("Id,Brand")] CatalogBrand catalogBrand)
+        {
+            _logger.LogInformation("Now processing... /Brands/Edit?id={Id}", catalogBrand.Id);
+            if (!ModelState.IsValid)
+            {
+                return View(catalogBrand);
+            }
+
+            var existing = await _service.FindBrandAsync(catalogBrand.Id);
+            if (existing == null)
+            {
+                return NotFound();
+            }
+
+            existing.Brand = catalogBrand.Brand;
+            await _service.UpdateBrandAsync(existing);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            _logger.LogInformation("Now loading... /Brands/Delete?id={Id}", id);
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var brand = await _service.FindBrandAsync(id.Value);
+            if (brand == null)
+            {
+                return NotFound();
+            }
+            ViewBag.IsBrandInUse = await _service.IsBrandInUseAsync(id.Value);
+
+            return View(brand);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            _logger.LogInformation("Now processing... /Brands/DeleteConfirmed?id={Id}", id);
+            var brand = await _service.FindBrandAsync(id);
+            if (brand == null)
+            {
+                return NotFound();
+            }
+
+            if (await _service.IsBrandInUseAsync(id))
+            {
+                ModelState.AddModelError(string.Empty, "This brand cannot be deleted while catalog items still reference it.");
+                ViewBag.IsBrandInUse = true;
+                return View(brand);
+            }
+
+            await _service.RemoveBrandAsync(brand);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
