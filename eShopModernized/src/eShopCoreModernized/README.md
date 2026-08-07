@@ -123,8 +123,19 @@ This .NET Core application is designed to gradually replace the legacy system:
 - **Microsoft.ApplicationInsights.AspNetCore**: Telemetry and monitoring
 - **Microsoft.Identity.Web**: Azure AD authentication
 
+## Brands management (strangler-fig slice)
+
+Catalog brand reference data is owned by this application:
+
+- `/Brands` — MVC list/details/create/edit/delete screens (write actions require sign-in).
+- `/api/brands` — `GET`, `GET/{id}`, `POST`, `PUT/{id}`, `DELETE/{id}`. Deleting a brand that catalog
+  items still reference returns `409 Conflict`, matching the legacy foreign key constraint.
+- New brand ids come from the `catalog_brand_hilo` SQL sequence created by the legacy database
+  initializer, so ids stay compatible with the legacy application writing to the same database.
+
 ## Testing
 
+Unit tests live in `eShopModernized/tests/eShopCoreModernized.Tests` and run with `dotnet test`.
 The application includes comprehensive logging and can be tested locally with mock services or against real Azure services depending on configuration.
 
 ## Migration from Legacy System

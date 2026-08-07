@@ -1,0 +1,30 @@
+@model eShopCoreModernized.Models.CatalogBrand
+
+@{
+    ViewBag.Title = "Brand details";
+}
+
+<h2 class="esh-body-title">Details</h2>
+
+<div class="container">
+    <dl class="col-md-6 dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+
+        <dd class="esh-button-actions">
+            @Html.ActionLink("[ Back ]", "Index", null, new { @class = "btn esh-button esh-button-secondary" })
+            @Html.ActionLink("[ Edit ]", "Edit", new { id = Model.Id }, new { @class = "btn esh-button esh-button-primary" })
+        </dd>
+    </dl>
+</div>
