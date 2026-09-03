@@ -1,0 +1,29 @@
+@page "{id:int}"
+@model eShopPortedWebForms.Pages.Catalog.DeleteModel
+@{
+    ViewData["Title"] = "Delete catalog item";
+}
+
+<h2>Delete</h2>
+<h4>Are you sure you want to delete this item?</h4>
+
+<div>
+    <img style="max-height:150px" src="/Pics/@Model.Item.PictureFileName" alt="@Model.Item.Name" />
+    <dl class="row mt-3">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Item.Name</dd>
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Item.Description</dd>
+        <dt class="col-sm-3">Brand</dt>
+        <dd class="col-sm-9">@Model.Item.CatalogBrand?.Brand</dd>
+        <dt class="col-sm-3">Type</dt>
+        <dd class="col-sm-9">@Model.Item.CatalogType?.Type</dd>
+        <dt class="col-sm-3">Price</dt>
+        <dd class="col-sm-9">@Model.Item.Price.ToString("C")</dd>
+    </dl>
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="/Index" class="btn btn-secondary">Back to list</a>
+</form>

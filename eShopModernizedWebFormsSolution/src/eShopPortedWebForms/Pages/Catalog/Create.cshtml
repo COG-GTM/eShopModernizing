@@ -1,0 +1,20 @@
+@page
+@model eShopPortedWebForms.Pages.Catalog.CreateModel
+@{
+    ViewData["Title"] = "Create catalog item";
+}
+
+<h2>Create catalog item</h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <partial name="_CatalogItemFormFields" model="Model" />
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-page="/Index" class="btn btn-secondary">Back to list</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

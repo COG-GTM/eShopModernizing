@@ -1,0 +1,72 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Catalog";
+}
+
+<div class="esh-table">
+    <p>
+        <a asp-page="/Catalog/Create" class="btn btn-primary">Create New</a>
+    </p>
+
+    @if (!Model.Catalog.Data.Any())
+    {
+        <p>No data was returned.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Brand</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Picture name</th>
+                    <th>Stock</th>
+                    <th>Restock</th>
+                    <th>Max stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Catalog.Data)
+                {
+                    <tr>
+                        <td><img class="esh-thumbnail" style="max-height:65px" src="/Pics/@item.PictureFileName" alt="@item.Name" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.CatalogBrand?.Brand</td>
+                        <td>@item.CatalogType?.Type</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>@item.PictureFileName</td>
+                        <td>@item.AvailableStock</td>
+                        <td>@item.RestockThreshold</td>
+                        <td>@item.MaxStockThreshold</td>
+                        <td>
+                            <a asp-page="/Catalog/Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="/Catalog/Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="/Catalog/Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <nav>
+            <ul class="pagination">
+                <li class="page-item @(Model.Catalog.ActualPage <= 0 ? "disabled" : "")">
+                    <a class="page-link" asp-page="/Index" asp-route-pageIndex="@(Model.Catalog.ActualPage - 1)">Previous</a>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link">Page @(Model.Catalog.ActualPage + 1) of @Math.Max(Model.Catalog.TotalPages, 1)</span>
+                </li>
+                <li class="page-item @(Model.Catalog.ActualPage + 1 >= Model.Catalog.TotalPages ? "disabled" : "")">
+                    <a class="page-link" asp-page="/Index" asp-route-pageIndex="@(Model.Catalog.ActualPage + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>

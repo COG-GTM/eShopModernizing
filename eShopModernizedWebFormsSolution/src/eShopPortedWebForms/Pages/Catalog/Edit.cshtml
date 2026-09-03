@@ -1,0 +1,20 @@
+@page "{id:int}"
+@model eShopPortedWebForms.Pages.Catalog.EditModel
+@{
+    ViewData["Title"] = "Edit catalog item";
+}
+
+<h2>Edit catalog item</h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <partial name="_CatalogItemFormFields" model="Model" />
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-page="/Index" class="btn btn-secondary">Back to list</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

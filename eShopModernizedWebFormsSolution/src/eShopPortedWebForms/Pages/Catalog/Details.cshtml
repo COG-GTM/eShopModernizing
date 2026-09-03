@@ -1,0 +1,36 @@
+@page "{id:int}"
+@model eShopPortedWebForms.Pages.Catalog.DetailsModel
+@{
+    ViewData["Title"] = "Catalog item details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <img style="max-height:150px" src="/Pics/@Model.Item.PictureFileName" alt="@Model.Item.Name" />
+    <dl class="row mt-3">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Item.Name</dd>
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Item.Description</dd>
+        <dt class="col-sm-3">Brand</dt>
+        <dd class="col-sm-9">@Model.Item.CatalogBrand?.Brand</dd>
+        <dt class="col-sm-3">Type</dt>
+        <dd class="col-sm-9">@Model.Item.CatalogType?.Type</dd>
+        <dt class="col-sm-3">Price</dt>
+        <dd class="col-sm-9">@Model.Item.Price.ToString("C")</dd>
+        <dt class="col-sm-3">Picture name</dt>
+        <dd class="col-sm-9">@Model.Item.PictureFileName</dd>
+        <dt class="col-sm-3">Stock</dt>
+        <dd class="col-sm-9">@Model.Item.AvailableStock</dd>
+        <dt class="col-sm-3">Restock</dt>
+        <dd class="col-sm-9">@Model.Item.RestockThreshold</dd>
+        <dt class="col-sm-3">Max stock</dt>
+        <dd class="col-sm-9">@Model.Item.MaxStockThreshold</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-page="/Catalog/Edit" asp-route-id="@Model.Item.Id" class="btn btn-primary">Edit</a>
+    <a asp-page="/Index" class="btn btn-secondary">Back to list</a>
+</p>
