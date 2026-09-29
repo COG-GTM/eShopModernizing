@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Side-by-side parity tests: compiles the unmodified legacy EF6 data layer (linked from ..\..\src\eShopLegacyMVC)
+    together with the ported EF Core 8 library and runs both against the same SQL Server instance.
+    Requires ESHOP_TEST_SQLSERVER (a connection string without a database name); tests are skipped otherwise.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- The legacy EF6 provider is built on the deprecated System.Data.SqlClient. -->
+    <NoWarn>$(NoWarn);CS0618</NoWarn>
+    <LegacyDir>..\..\src\eShopLegacyMVC\</LegacyDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="Xunit.SkippableFact" Version="1.5.23" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Aliased so the ported types (same namespaces and names as the legacy ones) don't clash with the linked legacy sources. -->
+    <ProjectReference Include="..\..\src\eShopLegacyMVC.Data\eShopLegacyMVC.Data.csproj" Aliases="ported" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(LegacyDir)Models\CatalogBrand.cs" Link="Legacy\Models\CatalogBrand.cs" />
+    <Compile Include="$(LegacyDir)Models\CatalogType.cs" Link="Legacy\Models\CatalogType.cs" />
+    <Compile Include="$(LegacyDir)Models\CatalogItem.cs" Link="Legacy\Models\CatalogItem.cs" />
+    <Compile Include="$(LegacyDir)Models\CatalogDBContext.cs" Link="Legacy\Models\CatalogDBContext.cs" />
+    <Compile Include="$(LegacyDir)Models\CatalogItemHiLoGenerator.cs" Link="Legacy\Models\CatalogItemHiLoGenerator.cs" />
+    <Compile Include="$(LegacyDir)Models\Infrastructure\CatalogDBInitializer.cs" Link="Legacy\Models\Infrastructure\CatalogDBInitializer.cs" />
+    <Compile Include="$(LegacyDir)Models\Infrastructure\PreconfiguredData.cs" Link="Legacy\Models\Infrastructure\PreconfiguredData.cs" />
+    <Compile Include="$(LegacyDir)Services\ICatalogService.cs" Link="Legacy\Services\ICatalogService.cs" />
+    <Compile Include="$(LegacyDir)Services\CatalogService.cs" Link="Legacy\Services\CatalogService.cs" />
+    <Compile Include="$(LegacyDir)Services\CatalogServiceMock.cs" Link="Legacy\Services\CatalogServiceMock.cs" />
+    <Compile Include="$(LegacyDir)ViewModel\PaginatedItemsViewModel.cs" Link="Legacy\ViewModel\PaginatedItemsViewModel.cs" />
+  </ItemGroup>
+
+</Project>
