@@ -1,0 +1,1993 @@
+{
+  "WebForms": {
+    "solution": "eShopLegacyWebFormsSolution/eShopLegacyWebForms.sln",
+    "projects": [
+      {
+        "path": "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/eShopLegacyWebForms.csproj",
+        "style": "legacy (non-SDK)",
+        "target_framework": "v4.7.2",
+        "output_type": "Library",
+        "assembly_name": "eShopLegacyWebForms",
+        "project_types": [
+          "ASP.NET Web Application",
+          "C#"
+        ],
+        "framework_references": [
+          "Antlr3.Runtime",
+          "AspNet.ScriptManager.bootstrap",
+          "AspNet.ScriptManager.jQuery",
+          "Autofac",
+          "Autofac.Integration.Web",
+          "EntityFramework",
+          "EntityFramework.SqlServer",
+          "Microsoft.AI.Agent.Intercept",
+          "Microsoft.AI.DependencyCollector",
+          "Microsoft.AI.PerfCounterCollector",
+          "Microsoft.AI.ServerTelemetryChannel",
+          "Microsoft.AI.Web",
+          "Microsoft.AI.WindowsServer",
+          "Microsoft.ApplicationInsights",
+          "Microsoft.AspNet.FriendlyUrls",
+          "Microsoft.AspNet.SessionState.SessionStateModule",
+          "Microsoft.AspNet.TelemetryCorrelation",
+          "Microsoft.AspNet.Web.Optimization.WebForms",
+          "Microsoft.CSharp",
+          "Microsoft.CodeDom.Providers.DotNetCompilerPlatform",
+          "Microsoft.ScriptManager.MSAjax",
+          "Microsoft.ScriptManager.WebForms",
+          "Microsoft.Web.Infrastructure",
+          "Newtonsoft.Json",
+          "Pipelines.Sockets.Unofficial",
+          "System",
+          "System.Buffers",
+          "System.ComponentModel.DataAnnotations",
+          "System.Configuration",
+          "System.Data",
+          "System.Data.DataSetExtensions",
+          "System.Diagnostics.DiagnosticSource",
+          "System.Diagnostics.PerformanceCounter",
+          "System.Drawing",
+          "System.EnterpriseServices",
+          "System.IO.Compression",
+          "System.IO.Compression.FileSystem",
+          "System.IO.Compression.ZipFile",
+          "System.IO.Pipelines",
+          "System.Management",
+          "System.Memory",
+          "System.Net.Http",
+          "System.Numerics",
+          "System.Numerics.Vectors",
+          "System.Runtime.Caching",
+          "System.Runtime.CompilerServices.Unsafe",
+          "System.Threading.Channels",
+          "System.Threading.Tasks.Extensions",
+          "System.Web",
+          "System.Web.ApplicationServices",
+          "System.Web.DynamicData",
+          "System.Web.Entity",
+          "System.Web.Extensions",
+          "System.Web.Optimization",
+          "System.Web.Services",
+          "System.Xml",
+          "System.Xml.Linq",
+          "WebGrease",
+          "log4net"
+        ],
+        "framework_only_references": [
+          "System.Configuration",
+          "System.Drawing",
+          "System.EnterpriseServices",
+          "System.Web",
+          "System.Web.ApplicationServices",
+          "System.Web.DynamicData",
+          "System.Web.Entity",
+          "System.Web.Extensions",
+          "System.Web.Optimization",
+          "System.Web.Services"
+        ],
+        "package_references": {},
+        "project_references": [],
+        "imports": [
+          "$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v10.0\\WebApplications\\Microsoft.WebApplication.targets",
+          "$(VSToolsPath)\\WebApplications\\Microsoft.WebApplication.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.DependencyCollector.2.9.1\\build\\Microsoft.ApplicationInsights.DependencyCollector.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.PerfCounterCollector.2.9.1\\build\\Microsoft.ApplicationInsights.PerfCounterCollector.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.Web.2.9.1\\build\\Microsoft.ApplicationInsights.Web.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.WindowsServer.2.9.1\\build\\Microsoft.ApplicationInsights.WindowsServer.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.9.1\\build\\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets",
+          "..\\..\\packages\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\\build\\net46\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props",
+          "..\\..\\packages\\Microsoft.Net.Compilers.2.10.0\\build\\Microsoft.Net.Compilers.props"
+        ],
+        "wcf_metadata": [],
+        "bootstrapper": [],
+        "iis_express": true,
+        "iis_url": "http://localhost:50586/",
+        "name": "eShopLegacyWebForms",
+        "packages_config": "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/packages.config",
+        "packages": [
+          {
+            "id": "Antlr",
+            "version": "3.5.0.2",
+            "disposition": "remove",
+            "net8": "Transitive of WebGrease"
+          },
+          {
+            "id": "AspNet.ScriptManager.bootstrap",
+            "version": "4.3.1",
+            "disposition": "remove",
+            "net8": "ScriptManager mapping; reference static assets directly"
+          },
+          {
+            "id": "AspNet.ScriptManager.jQuery",
+            "version": "3.3.1",
+            "disposition": "remove",
+            "net8": "ScriptManager mapping; reference static assets directly"
+          },
+          {
+            "id": "Autofac",
+            "version": "4.9.1",
+            "disposition": "upgrade",
+            "net8": "Autofac 8.x (netstandard2.0/net8)"
+          },
+          {
+            "id": "Autofac.Web",
+            "version": "4.0.0",
+            "disposition": "remove",
+            "net8": "WebForms-only; use Autofac.Extensions.DependencyInjection or built-in DI"
+          },
+          {
+            "id": "bootstrap",
+            "version": "4.3.1",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm; static files under wwwroot"
+          },
+          {
+            "id": "EntityFramework",
+            "version": "6.2.0",
+            "disposition": "upgrade",
+            "net8": "EF 6.4.4+/6.5 runs on net8 (keep EDMX-free code-first); EF Core 8 is the long-term target"
+          },
+          {
+            "id": "jQuery",
+            "version": "3.5.0",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm; static files under wwwroot"
+          },
+          {
+            "id": "log4net",
+            "version": "2.0.10",
+            "disposition": "upgrade",
+            "net8": "log4net 2.0.17+/3.x supports netstandard2.0; or Microsoft.Extensions.Logging provider"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights",
+            "version": "2.9.1",
+            "disposition": "upgrade",
+            "net8": "Microsoft.ApplicationInsights 2.22+ (or OpenTelemetry/Azure Monitor exporter)"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.Agent.Intercept",
+            "version": "2.4.0",
+            "disposition": "remove",
+            "net8": ".NET Framework profiler shim"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.DependencyCollector",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Included by Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.PerfCounterCollector",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Included by Microsoft.ApplicationInsights.AspNetCore (EventCounters)"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.Web",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.WindowsServer",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.AspNet.FriendlyUrls",
+            "version": "1.0.2",
+            "disposition": "remove",
+            "net8": "WebForms-only; ASP.NET Core routing"
+          },
+          {
+            "id": "Microsoft.AspNet.FriendlyUrls.Core",
+            "version": "1.0.2",
+            "disposition": "remove",
+            "net8": "WebForms-only; ASP.NET Core routing"
+          },
+          {
+            "id": "Microsoft.AspNet.ScriptManager.MSAjax",
+            "version": "5.0.0",
+            "disposition": "remove",
+            "net8": "WebForms ScriptManager/MS AJAX; no equivalent"
+          },
+          {
+            "id": "Microsoft.AspNet.ScriptManager.WebForms",
+            "version": "5.0.0",
+            "disposition": "remove",
+            "net8": "WebForms ScriptManager; no equivalent"
+          },
+          {
+            "id": "Microsoft.AspNet.SessionState.SessionStateModule",
+            "version": "1.1.0",
+            "disposition": "replace",
+            "net8": "ASP.NET Core session middleware + IDistributedCache"
+          },
+          {
+            "id": "Microsoft.AspNet.TelemetryCorrelation",
+            "version": "1.0.5",
+            "disposition": "remove",
+            "net8": "Built into System.Diagnostics.Activity on .NET 8"
+          },
+          {
+            "id": "Microsoft.AspNet.Web.Optimization",
+            "version": "1.1.3",
+            "disposition": "replace",
+            "net8": "Static bundling (LibMan/WebOptimizer/npm build); no System.Web bundling"
+          },
+          {
+            "id": "Microsoft.AspNet.Web.Optimization.WebForms",
+            "version": "1.1.3",
+            "disposition": "remove",
+            "net8": "WebForms bundling control"
+          },
+          {
+            "id": "Microsoft.CodeDom.Providers.DotNetCompilerPlatform",
+            "version": "2.0.1",
+            "disposition": "remove",
+            "net8": "ASP.NET runtime compilation of .aspx/.cshtml; not used by SDK projects"
+          },
+          {
+            "id": "Microsoft.Net.Compilers",
+            "version": "2.10.0",
+            "disposition": "remove",
+            "net8": "SDK ships Roslyn"
+          },
+          {
+            "id": "Microsoft.Web.Infrastructure",
+            "version": "1.0.0.0",
+            "disposition": "remove",
+            "net8": "System.Web dynamic module registration"
+          },
+          {
+            "id": "Modernizr",
+            "version": "2.8.3",
+            "disposition": "client-side",
+            "net8": "Likely drop"
+          },
+          {
+            "id": "Newtonsoft.Json",
+            "version": "12.0.1",
+            "disposition": "upgrade",
+            "net8": "13.0.3 (CVE-2024-21907 fixed in 13.0.1); or System.Text.Json"
+          },
+          {
+            "id": "Pipelines.Sockets.Unofficial",
+            "version": "1.0.7",
+            "disposition": "remove",
+            "net8": "Transitive (StackExchange.Redis); re-evaluate"
+          },
+          {
+            "id": "popper.js",
+            "version": "1.14.3",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm"
+          },
+          {
+            "id": "Respond",
+            "version": "1.4.2",
+            "disposition": "client-side",
+            "net8": "IE8 polyfill; drop"
+          },
+          {
+            "id": "System.Buffers",
+            "version": "4.4.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Diagnostics.DiagnosticSource",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Diagnostics.PerformanceCounter",
+            "version": "4.5.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.IO.Compression",
+            "version": "4.3.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.IO.Compression.ZipFile",
+            "version": "4.3.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.IO.Pipelines",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Memory",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Numerics.Vectors",
+            "version": "4.4.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Runtime.CompilerServices.Unsafe",
+            "version": "4.5.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Threading.Channels",
+            "version": "4.5.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Threading.Tasks.Extensions",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "WebGrease",
+            "version": "1.6.0",
+            "disposition": "remove",
+            "net8": "System.Web.Optimization minifier"
+          }
+        ],
+        "configs": [
+          {
+            "path": "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Web.config",
+            "compilation_targetFramework": "4.7.2",
+            "httpRuntime_targetFramework": "4.6.1",
+            "sessionState": "InProc",
+            "connection_strings": [
+              {
+                "name": "CatalogDBContext",
+                "provider": "System.Data.SqlClient",
+                "localdb": true
+              }
+            ],
+            "app_settings": [
+              "UseMockData",
+              "UseCustomizationData"
+            ],
+            "http_modules": [
+              "ApplicationInsightsWebTracking",
+              "ContainerDisposal",
+              "PropertyInjection",
+              "Session",
+              "TelemetryCorrelationHttpModule"
+            ],
+            "http_handlers": [],
+            "binding_redirects": 5,
+            "ef6_config_section": true
+          }
+        ],
+        "api_usage": {
+          "using System.Web*": {
+            "count": 28,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/About.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/App_Start/BundleConfig.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/App_Start/RouteConfig.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Delete.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Details.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Edit.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Contact.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Default.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/CatalogBrand.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/CatalogItemHiLoGenerator.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/CatalogType.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/Infrastructure/CatalogDBInitializer.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/Infrastructure/PreconfiguredData.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Mobile.Master.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/ViewSwitcher.ascx.cs"
+            ]
+          },
+          "System.Web.UI (WebForms controls)": {
+            "count": 50,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/About.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/App_Start/BundleConfig.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Create.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Create.aspx.designer.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Delete.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Details.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Edit.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Edit.aspx.designer.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Contact.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Default.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Default.aspx.designer.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master.designer.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Mobile.Master.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Mobile.Master.designer.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/ViewSwitcher.ascx.cs"
+            ]
+          },
+          "HttpContext.Current": {
+            "count": 6,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master.cs"
+            ]
+          },
+          "Session[...]": {
+            "count": 4,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master.cs"
+            ]
+          },
+          "HostingEnvironment": {
+            "count": 4,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "HttpApplication / Global.asax": {
+            "count": 1,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs"
+            ]
+          },
+          "Page lifecycle (Page_Load/IsPostBack)": {
+            "count": 11,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/About.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Create.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Delete.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Details.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Edit.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Contact.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Default.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Mobile.Master.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/ViewSwitcher.ascx.cs"
+            ]
+          },
+          "DataBind()": {
+            "count": 4,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Delete.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Details.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Edit.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Default.aspx.cs"
+            ]
+          },
+          "Response.Redirect": {
+            "count": 3,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Create.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Delete.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Edit.aspx.cs"
+            ]
+          },
+          "RouteTable / MapPageRoute": {
+            "count": 8,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/App_Start/RouteConfig.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/ViewSwitcher.ascx.cs"
+            ]
+          },
+          "BundleTable / ScriptManager": {
+            "count": 5,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/App_Start/BundleConfig.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Site.Master"
+            ]
+          },
+          "ConfigurationManager": {
+            "count": 3,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "EF6 DbContext / System.Data.Entity": {
+            "count": 5,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/CatalogDBContext.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/Infrastructure/CatalogDBInitializer.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Services/CatalogService.cs"
+            ]
+          },
+          "EF6 database initializer": {
+            "count": 2,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "Raw SQL / sequences": {
+            "count": 5,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/CatalogItemHiLoGenerator.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "log4net": {
+            "count": 18,
+            "files": [
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/About.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Create.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Delete.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Details.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Catalog/Edit.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Contact.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Default.aspx.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Global.asax.cs",
+              "eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Properties/AssemblyInfo.cs"
+            ]
+          }
+        },
+        "file_types": {
+          ".cs": 36,
+          ".aspx": 7,
+          ".config": 6,
+          ".sql": 3,
+          ".master": 2,
+          ".asax": 1,
+          ".ascx": 1
+        },
+        "wcf_contracts": [],
+        "uncompiled_cs_files": []
+      }
+    ]
+  },
+  "MVC": {
+    "solution": "eShopLegacyMVCSolution/eShopLegacyMVC.sln",
+    "projects": [
+      {
+        "path": "eShopLegacyMVCSolution/src/eShopLegacyMVC/eShopLegacyMVC.csproj",
+        "style": "legacy (non-SDK)",
+        "target_framework": "v4.7.2",
+        "output_type": "Library",
+        "assembly_name": "eShopLegacyMVC",
+        "project_types": [
+          "ASP.NET Web Application",
+          "C#"
+        ],
+        "framework_references": [
+          "Autofac.Integration.Mvc",
+          "EntityFramework",
+          "EntityFramework.SqlServer",
+          "Microsoft.AI.Agent.Intercept",
+          "Microsoft.AI.DependencyCollector",
+          "Microsoft.AI.PerfCounterCollector",
+          "Microsoft.AI.ServerTelemetryChannel",
+          "Microsoft.AI.Web",
+          "Microsoft.AI.WindowsServer",
+          "Microsoft.CSharp",
+          "Newtonsoft.Json",
+          "Pipelines.Sockets.Unofficial",
+          "System",
+          "System.Buffers",
+          "System.ComponentModel.DataAnnotations",
+          "System.Configuration",
+          "System.Data",
+          "System.Data.DataSetExtensions",
+          "System.Diagnostics.DiagnosticSource",
+          "System.Diagnostics.PerformanceCounter",
+          "System.Drawing",
+          "System.EnterpriseServices",
+          "System.IO.Compression",
+          "System.IO.Compression.FileSystem",
+          "System.IO.Compression.ZipFile",
+          "System.IO.Pipelines",
+          "System.Management",
+          "System.Memory",
+          "System.Net.Http",
+          "System.Net.Http.WebRequest",
+          "System.Numerics",
+          "System.Numerics.Vectors",
+          "System.Runtime.Caching",
+          "System.Runtime.CompilerServices.Unsafe",
+          "System.Threading.Channels",
+          "System.Threading.Tasks.Extensions",
+          "System.Web",
+          "System.Web.Abstractions",
+          "System.Web.ApplicationServices",
+          "System.Web.DynamicData",
+          "System.Web.Entity",
+          "System.Web.Extensions",
+          "System.Web.Helpers",
+          "System.Web.Mvc",
+          "System.Web.Optimization",
+          "System.Web.Razor",
+          "System.Web.Routing",
+          "System.Web.Services",
+          "System.Web.WebPages",
+          "System.Web.WebPages.Deployment",
+          "System.Web.WebPages.Razor",
+          "System.Xml",
+          "System.Xml.Linq",
+          "WebGrease"
+        ],
+        "framework_only_references": [
+          "System.Configuration",
+          "System.Drawing",
+          "System.EnterpriseServices",
+          "System.Web",
+          "System.Web.Abstractions",
+          "System.Web.ApplicationServices",
+          "System.Web.DynamicData",
+          "System.Web.Entity",
+          "System.Web.Extensions",
+          "System.Web.Helpers",
+          "System.Web.Mvc",
+          "System.Web.Optimization",
+          "System.Web.Razor",
+          "System.Web.Routing",
+          "System.Web.Services",
+          "System.Web.WebPages",
+          "System.Web.WebPages.Deployment",
+          "System.Web.WebPages.Razor"
+        ],
+        "package_references": {
+          "Autofac": "6.1.0",
+          "autofac.webapi2": "6.0.1",
+          "EntityFramework": "6.2.0",
+          "Microsoft.AspNet.WebApi": "5.2.7",
+          "Microsoft.AspNet.WebApi.Client": "5.2.7",
+          "Microsoft.AspNet.WebApi.Core": "5.2.7",
+          "Microsoft.AspNet.WebApi.WebHost": "5.2.7",
+          "Newtonsoft.Json": "12.0.1",
+          "Pipelines.Sockets.Unofficial": "1.0.7",
+          "System.Buffers": "4.4.0",
+          "System.Diagnostics.DiagnosticSource": "4.5.1",
+          "System.Diagnostics.PerformanceCounter": "4.5.0",
+          "System.IO.Compression": "4.3.0",
+          "System.IO.Compression.ZipFile": "4.3.0",
+          "System.IO.Pipelines": "4.5.1",
+          "System.Memory": "4.5.1",
+          "System.Net.Http": "4.3.4",
+          "System.Numerics.Vectors": "4.4.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.0",
+          "System.Threading.Channels": "4.5.0",
+          "System.Threading.Tasks.Extensions": "4.5.1",
+          "WebGrease": "1.6.0",
+          "Antlr": "3.5.0.2",
+          "log4net": "2.0.10",
+          "Microsoft.ApplicationInsights": "2.9.1",
+          "Microsoft.AspNet.SessionState.SessionStateModule": "1.1.0",
+          "Microsoft.AspNet.TelemetryCorrelation": "1.0.5",
+          "Microsoft.CodeDom.Providers.DotNetCompilerPlatform": "2.0.1",
+          "Microsoft.Web.Infrastructure": "1.0.0.0",
+          "Autofac.Mvc5": "4.0.2",
+          "bootstrap": "4.3.1",
+          "jQuery": "3.5.0",
+          "jQuery.Validation": "1.19.4",
+          "Microsoft.ApplicationInsights.Agent.Intercept": "2.4.0",
+          "Microsoft.ApplicationInsights.DependencyCollector": "2.9.1",
+          "Microsoft.ApplicationInsights.PerfCounterCollector": "2.9.1",
+          "Microsoft.ApplicationInsights.Web": "2.9.1",
+          "Microsoft.ApplicationInsights.WindowsServer": "2.9.1",
+          "Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel": "2.9.1",
+          "Microsoft.AspNet.Mvc": "5.2.7",
+          "Microsoft.AspNet.Razor": "3.2.7",
+          "Microsoft.AspNet.Web.Optimization": "1.1.3",
+          "Microsoft.AspNet.WebPages": "3.2.7",
+          "Microsoft.jQuery.Unobtrusive.Validation": "3.2.11",
+          "Microsoft.Net.Compilers": "2.10.0",
+          "Modernizr": "2.8.3",
+          "popper.js": "1.14.3",
+          "Respond": "1.4.2"
+        },
+        "project_references": [
+          "eShopLegacyMVCSolution/eShopLegacy.Utilities/eShopLegacy.Utilities.csproj"
+        ],
+        "imports": [
+          "$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v10.0\\WebApplications\\Microsoft.WebApplication.targets",
+          "$(VSToolsPath)\\WebApplications\\Microsoft.WebApplication.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.DependencyCollector.2.9.1\\build\\Microsoft.ApplicationInsights.DependencyCollector.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.PerfCounterCollector.2.9.1\\build\\Microsoft.ApplicationInsights.PerfCounterCollector.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.Web.2.9.1\\build\\Microsoft.ApplicationInsights.Web.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.WindowsServer.2.9.1\\build\\Microsoft.ApplicationInsights.WindowsServer.targets",
+          "..\\..\\packages\\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.9.1\\build\\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets",
+          "..\\..\\packages\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\\build\\net46\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props",
+          "..\\..\\packages\\Microsoft.Net.Compilers.2.10.0\\build\\Microsoft.Net.Compilers.props"
+        ],
+        "wcf_metadata": [],
+        "bootstrapper": [],
+        "iis_express": true,
+        "iis_url": "http://localhost:52429/",
+        "name": "eShopLegacyMVC",
+        "packages_config": "eShopLegacyMVCSolution/src/eShopLegacyMVC/packages.config",
+        "packages": [
+          {
+            "id": "Antlr",
+            "version": "3.5.0.2",
+            "disposition": "remove",
+            "net8": "Transitive of WebGrease"
+          },
+          {
+            "id": "Autofac",
+            "version": "4.9.1",
+            "disposition": "upgrade",
+            "net8": "Autofac 8.x (netstandard2.0/net8)"
+          },
+          {
+            "id": "Autofac.Mvc5",
+            "version": "4.0.2",
+            "disposition": "remove",
+            "net8": "MVC5-only; use Autofac.Extensions.DependencyInjection"
+          },
+          {
+            "id": "bootstrap",
+            "version": "4.3.1",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm; static files under wwwroot"
+          },
+          {
+            "id": "EntityFramework",
+            "version": "6.2.0",
+            "disposition": "upgrade",
+            "net8": "EF 6.4.4+/6.5 runs on net8 (keep EDMX-free code-first); EF Core 8 is the long-term target"
+          },
+          {
+            "id": "jQuery",
+            "version": "3.5.0",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm; static files under wwwroot"
+          },
+          {
+            "id": "jQuery.Validation",
+            "version": "1.19.4",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm"
+          },
+          {
+            "id": "log4net",
+            "version": "2.0.10",
+            "disposition": "upgrade",
+            "net8": "log4net 2.0.17+/3.x supports netstandard2.0; or Microsoft.Extensions.Logging provider"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights",
+            "version": "2.9.1",
+            "disposition": "upgrade",
+            "net8": "Microsoft.ApplicationInsights 2.22+ (or OpenTelemetry/Azure Monitor exporter)"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.Agent.Intercept",
+            "version": "2.4.0",
+            "disposition": "remove",
+            "net8": ".NET Framework profiler shim"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.DependencyCollector",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Included by Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.PerfCounterCollector",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Included by Microsoft.ApplicationInsights.AspNetCore (EventCounters)"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.Web",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.WindowsServer",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel",
+            "version": "2.9.1",
+            "disposition": "replace",
+            "net8": "Microsoft.ApplicationInsights.AspNetCore"
+          },
+          {
+            "id": "Microsoft.AspNet.Mvc",
+            "version": "5.2.7",
+            "disposition": "replace",
+            "net8": "ASP.NET Core MVC (shared framework Microsoft.AspNetCore.App)"
+          },
+          {
+            "id": "Microsoft.AspNet.Razor",
+            "version": "3.2.7",
+            "disposition": "replace",
+            "net8": "ASP.NET Core Razor (shared framework)"
+          },
+          {
+            "id": "Microsoft.AspNet.SessionState.SessionStateModule",
+            "version": "1.1.0",
+            "disposition": "replace",
+            "net8": "ASP.NET Core session middleware + IDistributedCache"
+          },
+          {
+            "id": "Microsoft.AspNet.TelemetryCorrelation",
+            "version": "1.0.5",
+            "disposition": "remove",
+            "net8": "Built into System.Diagnostics.Activity on .NET 8"
+          },
+          {
+            "id": "Microsoft.AspNet.Web.Optimization",
+            "version": "1.1.3",
+            "disposition": "replace",
+            "net8": "Static bundling (LibMan/WebOptimizer/npm build); no System.Web bundling"
+          },
+          {
+            "id": "Microsoft.AspNet.WebPages",
+            "version": "3.2.7",
+            "disposition": "replace",
+            "net8": "ASP.NET Core Razor / Tag Helpers"
+          },
+          {
+            "id": "Microsoft.CodeDom.Providers.DotNetCompilerPlatform",
+            "version": "2.0.1",
+            "disposition": "remove",
+            "net8": "ASP.NET runtime compilation of .aspx/.cshtml; not used by SDK projects"
+          },
+          {
+            "id": "Microsoft.jQuery.Unobtrusive.Validation",
+            "version": "3.2.11",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm"
+          },
+          {
+            "id": "Microsoft.Net.Compilers",
+            "version": "2.10.0",
+            "disposition": "remove",
+            "net8": "SDK ships Roslyn"
+          },
+          {
+            "id": "Microsoft.Web.Infrastructure",
+            "version": "1.0.0.0",
+            "disposition": "remove",
+            "net8": "System.Web dynamic module registration"
+          },
+          {
+            "id": "Modernizr",
+            "version": "2.8.3",
+            "disposition": "client-side",
+            "net8": "Likely drop"
+          },
+          {
+            "id": "Newtonsoft.Json",
+            "version": "12.0.1",
+            "disposition": "upgrade",
+            "net8": "13.0.3 (CVE-2024-21907 fixed in 13.0.1); or System.Text.Json"
+          },
+          {
+            "id": "Pipelines.Sockets.Unofficial",
+            "version": "1.0.7",
+            "disposition": "remove",
+            "net8": "Transitive (StackExchange.Redis); re-evaluate"
+          },
+          {
+            "id": "popper.js",
+            "version": "1.14.3",
+            "disposition": "client-side",
+            "net8": "Move to LibMan/npm"
+          },
+          {
+            "id": "Respond",
+            "version": "1.4.2",
+            "disposition": "client-side",
+            "net8": "IE8 polyfill; drop"
+          },
+          {
+            "id": "System.Buffers",
+            "version": "4.4.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Diagnostics.DiagnosticSource",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Diagnostics.PerformanceCounter",
+            "version": "4.5.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.IO.Compression",
+            "version": "4.3.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.IO.Compression.ZipFile",
+            "version": "4.3.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.IO.Pipelines",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Memory",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Numerics.Vectors",
+            "version": "4.4.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Runtime.CompilerServices.Unsafe",
+            "version": "4.5.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Threading.Channels",
+            "version": "4.5.0",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "System.Threading.Tasks.Extensions",
+            "version": "4.5.1",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          },
+          {
+            "id": "WebGrease",
+            "version": "1.6.0",
+            "disposition": "remove",
+            "net8": "System.Web.Optimization minifier"
+          },
+          {
+            "id": "autofac.webapi2",
+            "version": "6.0.1",
+            "disposition": "remove",
+            "net8": "Web API 2-only; use Autofac.Extensions.DependencyInjection"
+          },
+          {
+            "id": "Microsoft.AspNet.WebApi",
+            "version": "5.2.7",
+            "disposition": "replace",
+            "net8": "ASP.NET Core controllers ([ApiController])"
+          },
+          {
+            "id": "Microsoft.AspNet.WebApi.Client",
+            "version": "5.2.7",
+            "disposition": "upgrade",
+            "net8": "6.0.0 targets netstandard2.0; or System.Net.Http.Json"
+          },
+          {
+            "id": "Microsoft.AspNet.WebApi.Core",
+            "version": "5.2.7",
+            "disposition": "replace",
+            "net8": "ASP.NET Core controllers ([ApiController])"
+          },
+          {
+            "id": "Microsoft.AspNet.WebApi.WebHost",
+            "version": "5.2.7",
+            "disposition": "remove",
+            "net8": "IIS System.Web host for Web API; Kestrel/IIS ANCM instead"
+          },
+          {
+            "id": "System.Net.Http",
+            "version": "4.3.4",
+            "disposition": "remove",
+            "net8": "System.* compat package; in-box on net8 (drop unless a netstandard lib needs it)"
+          }
+        ],
+        "configs": [
+          {
+            "path": "eShopLegacyMVCSolution/src/eShopLegacyMVC/Web.config",
+            "compilation_targetFramework": "4.7.2",
+            "httpRuntime_targetFramework": "4.6.1",
+            "sessionState": "InProc",
+            "connection_strings": [
+              {
+                "name": "CatalogDBContext",
+                "provider": "System.Data.SqlClient",
+                "localdb": true
+              }
+            ],
+            "app_settings": [
+              "webpages:Version",
+              "webpages:Enabled",
+              "ClientValidationEnabled",
+              "UnobtrusiveJavaScriptEnabled",
+              "UseMockData",
+              "UseCustomizationData"
+            ],
+            "http_modules": [
+              "ApplicationInsightsWebTracking",
+              "Session",
+              "TelemetryCorrelationHttpModule"
+            ],
+            "http_handlers": [
+              "ExtensionlessUrlHandler-ISAPI-4.0_32bit",
+              "ExtensionlessUrlHandler-ISAPI-4.0_64bit",
+              "ExtensionlessUrlHandler-Integrated-4.0"
+            ],
+            "binding_redirects": 10,
+            "ef6_config_section": true
+          }
+        ],
+        "api_usage": {
+          "using System.Web*": {
+            "count": 22,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/App_Start/BundleConfig.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/App_Start/FilterConfig.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/App_Start/RouteConfig.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/App_Start/WebApiConfig.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/Api/CatalogController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/CatalogController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/PicController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/WebApi/BrandsController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/WebApi/FilesController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/CatalogBrand.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/CatalogItemHiLoGenerator.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/CatalogType.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/Infrastructure/CatalogDBInitializer.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/Infrastructure/PreconfiguredData.cs"
+            ]
+          },
+          "HttpContext.Current": {
+            "count": 6,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Views/Shared/_Layout.cshtml"
+            ]
+          },
+          "Session[...]": {
+            "count": 4,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Views/Shared/_Layout.cshtml"
+            ]
+          },
+          "Server.MapPath": {
+            "count": 1,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/PicController.cs"
+            ]
+          },
+          "HostingEnvironment": {
+            "count": 4,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "HttpApplication / Global.asax": {
+            "count": 1,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs"
+            ]
+          },
+          "RouteTable / MapPageRoute": {
+            "count": 1,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs"
+            ]
+          },
+          "BundleTable / ScriptManager": {
+            "count": 1,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs"
+            ]
+          },
+          "MVC `: Controller` base (MVC 5 or Core)": {
+            "count": 3,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/Api/CatalogController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/CatalogController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/PicController.cs"
+            ]
+          },
+          "Web API 2 ApiController": {
+            "count": 2,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/WebApi/BrandsController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/WebApi/FilesController.cs"
+            ]
+          },
+          "IHttpActionResult / HttpResponseMessage": {
+            "count": 6,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/WebApi/BrandsController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/WebApi/FilesController.cs"
+            ]
+          },
+          "GlobalConfiguration / DependencyResolver": {
+            "count": 3,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs"
+            ]
+          },
+          "ConfigurationManager": {
+            "count": 3,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "System.Runtime.Remoting": {
+            "count": 1,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/WebApi/BrandsController.cs"
+            ]
+          },
+          "EF6 DbContext / System.Data.Entity": {
+            "count": 5,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/CatalogDBContext.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/Infrastructure/CatalogDBInitializer.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Services/CatalogService.cs"
+            ]
+          },
+          "EF6 database initializer": {
+            "count": 2,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "Raw SQL / sequences": {
+            "count": 5,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/CatalogItemHiLoGenerator.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "log4net": {
+            "count": 8,
+            "files": [
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/CatalogController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Controllers/PicController.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Global.asax.cs",
+              "eShopLegacyMVCSolution/src/eShopLegacyMVC/Properties/AssemblyInfo.cs"
+            ]
+          }
+        },
+        "file_types": {
+          ".cs": 23,
+          ".cshtml": 9,
+          ".config": 6,
+          ".sql": 3,
+          ".asax": 1
+        },
+        "wcf_contracts": [],
+        "uncompiled_cs_files": []
+      },
+      {
+        "path": "eShopLegacyMVCSolution/eShopPorted/eShopPorted.csproj",
+        "style": "SDK (Microsoft.NET.Sdk.Web)",
+        "target_framework": "net461",
+        "output_type": "Exe",
+        "assembly_name": "eShopPorted",
+        "project_types": [],
+        "framework_references": [],
+        "framework_only_references": [],
+        "package_references": {
+          "Autofac.Extensions.DependencyInjection": "4.4.0",
+          "Microsoft.AspNetCore": "2.2.0",
+          "Antlr": "3.5.0.2",
+          "Autofac": "4.9.1",
+          "Autofac.Mvc5": "4.0.2",
+          "log4net": "2.0.10",
+          "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "Microsoft.AspNetCore.StaticFiles": "2.2.0",
+          "Microsoft.CSharp": "4.7.0",
+          "Microsoft.EntityFrameworkCore": "2.2.6",
+          "Microsoft.EntityFrameworkCore.Design": "2.2.6",
+          "Microsoft.EntityFrameworkCore.Relational": "2.2.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "Newtonsoft.Json": "13.0.2",
+          "WebGrease": "1.6.0"
+        },
+        "project_references": [
+          "eShopLegacyMVCSolution/eShopLegacy.Utilities/eShopLegacy.Utilities.csproj"
+        ],
+        "imports": [],
+        "wcf_metadata": [],
+        "bootstrapper": [],
+        "iis_express": false,
+        "iis_url": null,
+        "name": "eShopPorted",
+        "packages_config": null,
+        "packages": [
+          {
+            "id": "Autofac.Extensions.DependencyInjection",
+            "version": "4.4.0",
+            "disposition": "upgrade",
+            "net8": "9.x"
+          },
+          {
+            "id": "Microsoft.AspNetCore",
+            "version": "2.2.0",
+            "disposition": "upgrade",
+            "net8": "ASP.NET Core 2.2 metapackage -> FrameworkReference Microsoft.AspNetCore.App"
+          },
+          {
+            "id": "Antlr",
+            "version": "3.5.0.2",
+            "disposition": "remove",
+            "net8": "Transitive of WebGrease"
+          },
+          {
+            "id": "Autofac",
+            "version": "4.9.1",
+            "disposition": "upgrade",
+            "net8": "Autofac 8.x (netstandard2.0/net8)"
+          },
+          {
+            "id": "Autofac.Mvc5",
+            "version": "4.0.2",
+            "disposition": "remove",
+            "net8": "MVC5-only; use Autofac.Extensions.DependencyInjection"
+          },
+          {
+            "id": "log4net",
+            "version": "2.0.10",
+            "disposition": "upgrade",
+            "net8": "log4net 2.0.17+/3.x supports netstandard2.0; or Microsoft.Extensions.Logging provider"
+          },
+          {
+            "id": "Microsoft.AspNetCore.Mvc",
+            "version": "2.2.0",
+            "disposition": "upgrade",
+            "net8": "Part of shared framework on net8"
+          },
+          {
+            "id": "Microsoft.AspNetCore.StaticFiles",
+            "version": "2.2.0",
+            "disposition": "upgrade",
+            "net8": "Part of shared framework on net8"
+          },
+          {
+            "id": "Microsoft.CSharp",
+            "version": "4.7.0",
+            "disposition": "remove",
+            "net8": "In-box on net8"
+          },
+          {
+            "id": "Microsoft.EntityFrameworkCore",
+            "version": "2.2.6",
+            "disposition": "upgrade",
+            "net8": "EF Core 2.2 -> 8.0 (breaking changes 3.0: client eval)"
+          },
+          {
+            "id": "Microsoft.EntityFrameworkCore.Design",
+            "version": "2.2.6",
+            "disposition": "upgrade",
+            "net8": "8.0"
+          },
+          {
+            "id": "Microsoft.EntityFrameworkCore.Relational",
+            "version": "2.2.6",
+            "disposition": "upgrade",
+            "net8": "8.0"
+          },
+          {
+            "id": "Microsoft.EntityFrameworkCore.SqlServer",
+            "version": "2.2.6",
+            "disposition": "upgrade",
+            "net8": "8.0 (Microsoft.Data.SqlClient; Encrypt=true default)"
+          },
+          {
+            "id": "Newtonsoft.Json",
+            "version": "13.0.2",
+            "disposition": "upgrade",
+            "net8": "13.0.3 (CVE-2024-21907 fixed in 13.0.1); or System.Text.Json"
+          },
+          {
+            "id": "WebGrease",
+            "version": "1.6.0",
+            "disposition": "remove",
+            "net8": "System.Web.Optimization minifier"
+          }
+        ],
+        "configs": [
+          {
+            "path": "eShopLegacyMVCSolution/eShopPorted/app.config",
+            "compilation_targetFramework": null,
+            "httpRuntime_targetFramework": null,
+            "sessionState": null,
+            "connection_strings": [],
+            "app_settings": [],
+            "http_modules": [],
+            "http_handlers": [],
+            "binding_redirects": 0,
+            "ef6_config_section": false
+          }
+        ],
+        "api_usage": {
+          "using System.Web*": {
+            "count": 3,
+            "files": [
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/PicController.cs",
+              "eShopLegacyMVCSolution/eShopPorted/Models/CatalogBrand.cs",
+              "eShopLegacyMVCSolution/eShopPorted/Models/Infrastructure/PreconfiguredData.cs"
+            ]
+          },
+          "Server.MapPath": {
+            "count": 1,
+            "files": [
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/PicController.cs"
+            ]
+          },
+          "MVC `: Controller` base (MVC 5 or Core)": {
+            "count": 4,
+            "files": [
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/Api/BrandsController.cs",
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/Api/FilesController.cs",
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/CatalogController.cs",
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/PicController.cs"
+            ]
+          },
+          "log4net": {
+            "count": 4,
+            "files": [
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/CatalogController.cs",
+              "eShopLegacyMVCSolution/eShopPorted/Controllers/PicController.cs"
+            ]
+          }
+        },
+        "file_types": {
+          ".cs": 22,
+          ".cshtml": 9,
+          ".config": 2
+        },
+        "wcf_contracts": [],
+        "uncompiled_cs_files": []
+      },
+      {
+        "path": "eShopLegacyMVCSolution/eShopLegacy.Utilities/eShopLegacy.Utilities.csproj",
+        "style": "legacy (non-SDK)",
+        "target_framework": "v4.6.1",
+        "output_type": "Library",
+        "assembly_name": "eShopLegacy.Utilities",
+        "project_types": [],
+        "framework_references": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Data.DataSetExtensions",
+          "System.Net.Http",
+          "System.Xml",
+          "System.Xml.Linq"
+        ],
+        "framework_only_references": [],
+        "package_references": {},
+        "project_references": [],
+        "imports": [],
+        "wcf_metadata": [],
+        "bootstrapper": [],
+        "iis_express": false,
+        "iis_url": null,
+        "name": "eShopLegacy.Utilities",
+        "packages_config": null,
+        "packages": [],
+        "configs": [],
+        "api_usage": {
+          "BinaryFormatter": {
+            "count": 2,
+            "files": [
+              "eShopLegacyMVCSolution/eShopLegacy.Utilities/Serializing.cs"
+            ]
+          }
+        },
+        "file_types": {
+          ".cs": 2
+        },
+        "wcf_contracts": [],
+        "uncompiled_cs_files": []
+      }
+    ]
+  },
+  "N-Tier (WCF + WinForms)": {
+    "solution": "eShopLegacyNTier/eShopLegacyNTier.sln",
+    "projects": [
+      {
+        "path": "eShopLegacyNTier/src/eShopWinForms/eShopWinForms.csproj",
+        "style": "legacy (non-SDK)",
+        "target_framework": "v4.7",
+        "output_type": "WinExe",
+        "assembly_name": "eShopWinForms",
+        "project_types": [],
+        "framework_references": [
+          "EntityFramework",
+          "EntityFramework.SqlServer",
+          "Microsoft.CSharp",
+          "Newtonsoft.Json",
+          "System",
+          "System.ComponentModel.DataAnnotations",
+          "System.Configuration",
+          "System.Core",
+          "System.Data",
+          "System.Data.DataSetExtensions",
+          "System.Deployment",
+          "System.Drawing",
+          "System.IO.Compression",
+          "System.IO.Compression.FileSystem",
+          "System.Net.Http",
+          "System.Net.Http.Formatting",
+          "System.Runtime.Serialization",
+          "System.ServiceModel",
+          "System.Windows.Forms",
+          "System.Xml",
+          "System.Xml.Linq"
+        ],
+        "framework_only_references": [
+          "System.Configuration",
+          "System.Deployment",
+          "System.Drawing",
+          "System.ServiceModel",
+          "System.Windows.Forms"
+        ],
+        "package_references": {},
+        "project_references": [],
+        "imports": [],
+        "wcf_metadata": [
+          "Connected Services\\eShopServiceReference\\"
+        ],
+        "bootstrapper": [
+          "Microsoft.Net.Framework.3.5.SP1"
+        ],
+        "iis_express": false,
+        "iis_url": null,
+        "name": "eShopWinForms",
+        "packages_config": "eShopLegacyNTier/src/eShopWinForms/packages.config",
+        "packages": [
+          {
+            "id": "EntityFramework",
+            "version": "6.1.3",
+            "disposition": "upgrade",
+            "net8": "EF 6.4.4+/6.5 runs on net8 (keep EDMX-free code-first); EF Core 8 is the long-term target"
+          },
+          {
+            "id": "Microsoft.AspNet.WebApi.Client",
+            "version": "5.2.3",
+            "disposition": "upgrade",
+            "net8": "6.0.0 targets netstandard2.0; or System.Net.Http.Json"
+          },
+          {
+            "id": "Newtonsoft.Json",
+            "version": "6.0.4",
+            "disposition": "upgrade",
+            "net8": "13.0.3 (CVE-2024-21907 fixed in 13.0.1); or System.Text.Json"
+          }
+        ],
+        "configs": [
+          {
+            "path": "eShopLegacyNTier/src/eShopWinForms/App.config",
+            "compilation_targetFramework": null,
+            "httpRuntime_targetFramework": null,
+            "sessionState": null,
+            "connection_strings": [],
+            "app_settings": [],
+            "http_modules": [],
+            "http_handlers": [],
+            "binding_redirects": 0,
+            "ef6_config_section": false,
+            "wcf": {
+              "services": [],
+              "client_endpoints": [
+                {
+                  "name": "BasicHttpBinding_ICatalogService",
+                  "address": "http://localhost:62314/CatalogService.svc",
+                  "binding": "basicHttpBinding",
+                  "contract": "eShopServiceReference.ICatalogService"
+                }
+              ],
+              "binding_configs": [
+                "basicHttpBinding/BasicHttpBinding_ICatalogService"
+              ],
+              "protocol_mapping": [],
+              "aspNetCompatibilityEnabled": null,
+              "behaviors": []
+            }
+          }
+        ],
+        "api_usage": {
+          "[ServiceContract]": {
+            "count": 1,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Connected Services/eShopServiceReference/Reference.cs"
+            ]
+          },
+          "[OperationContract]": {
+            "count": 20,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Connected Services/eShopServiceReference/Reference.cs"
+            ]
+          },
+          "[DataContract]": {
+            "count": 5,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Connected Services/eShopServiceReference/Reference.cs"
+            ]
+          },
+          "[DataMember]": {
+            "count": 21,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Connected Services/eShopServiceReference/Reference.cs"
+            ]
+          },
+          "ClientBase<T> (WCF proxy)": {
+            "count": 1,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Connected Services/eShopServiceReference/Reference.cs"
+            ]
+          },
+          "WinForms Form / controls": {
+            "count": 246,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Program.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Views/CatalogView.Designer.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Views/CatalogView.cs"
+            ]
+          },
+          "Image.FromFile / System.Drawing": {
+            "count": 142,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Properties/Resources.Designer.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Views/CatalogView.Designer.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Views/CatalogView.cs"
+            ]
+          },
+          "Hard-coded Windows paths": {
+            "count": 2,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Views/CatalogView.cs"
+            ]
+          },
+          "UWP / WinRT (Windows.*)": {
+            "count": 9,
+            "files": [
+              "eShopLegacyNTier/src/eShopWinForms/Helpers/DependencyObjectExtensions.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Helpers/NotificationsHelper.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Helpers/ResourceExtensions.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Helpers/SettingsStorageExtensions.cs",
+              "eShopLegacyNTier/src/eShopWinForms/Helpers/UploadImageHelper.cs"
+            ]
+          }
+        },
+        "file_types": {
+          ".cs": 16,
+          ".xsd": 4,
+          ".config": 2,
+          ".resx": 2,
+          ".wsdl": 1,
+          ".svcmap": 1
+        },
+        "wcf_contracts": [
+          {
+            "file": "eShopLegacyNTier/src/eShopWinForms/Connected Services/eShopServiceReference/Reference.cs",
+            "interface": "ICatalogService",
+            "inherits": null,
+            "operations": [
+              {
+                "returns": "eShopWinForms.eShopServiceReference.CatalogItem",
+                "name": "FindCatalogItem",
+                "params": "int id"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task<eShopWinForms.eShopServiceReference.CatalogItem>",
+                "name": "FindCatalogItemAsync",
+                "params": "int id"
+              },
+              {
+                "returns": "eShopWinForms.eShopServiceReference.CatalogBrand[]",
+                "name": "GetCatalogBrands",
+                "params": ""
+              },
+              {
+                "returns": "System.Threading.Tasks.Task<eShopWinForms.eShopServiceReference.CatalogBrand[]>",
+                "name": "GetCatalogBrandsAsync",
+                "params": ""
+              },
+              {
+                "returns": "eShopWinForms.eShopServiceReference.CatalogItem[]",
+                "name": "GetCatalogItems",
+                "params": "System.Nullable<int> brandIdFilter, System.Nullable<int> typeIdFilter"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task<eShopWinForms.eShopServiceReference.CatalogItem[]>",
+                "name": "GetCatalogItemsAsync",
+                "params": "System.Nullable<int> brandIdFilter, System.Nullable<int> typeIdFilter"
+              },
+              {
+                "returns": "eShopWinForms.eShopServiceReference.CatalogType[]",
+                "name": "GetCatalogTypes",
+                "params": ""
+              },
+              {
+                "returns": "System.Threading.Tasks.Task<eShopWinForms.eShopServiceReference.CatalogType[]>",
+                "name": "GetCatalogTypesAsync",
+                "params": ""
+              },
+              {
+                "returns": "int",
+                "name": "GetAvailableStock",
+                "params": "System.DateTime date, int catalogItemId"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task<int>",
+                "name": "GetAvailableStockAsync",
+                "params": "System.DateTime date, int catalogItemId"
+              },
+              {
+                "returns": "void",
+                "name": "CreateAvailableStock",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItemsStock catalogItemsStock"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task",
+                "name": "CreateAvailableStockAsync",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItemsStock catalogItemsStock"
+              },
+              {
+                "returns": "void",
+                "name": "CreateCatalogItem",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItem catalogItem"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task",
+                "name": "CreateCatalogItemAsync",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItem catalogItem"
+              },
+              {
+                "returns": "void",
+                "name": "UpdateCatalogItem",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItem catalogItem"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task",
+                "name": "UpdateCatalogItemAsync",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItem catalogItem"
+              },
+              {
+                "returns": "void",
+                "name": "RemoveCatalogItem",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItem catalogItem"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task",
+                "name": "RemoveCatalogItemAsync",
+                "params": "eShopWinForms.eShopServiceReference.CatalogItem catalogItem"
+              },
+              {
+                "returns": "eShopWinForms.eShopServiceReference.DiscountItem",
+                "name": "GetDiscount",
+                "params": "System.DateTime day"
+              },
+              {
+                "returns": "System.Threading.Tasks.Task<eShopWinForms.eShopServiceReference.DiscountItem>",
+                "name": "GetDiscountAsync",
+                "params": "System.DateTime day"
+              }
+            ]
+          }
+        ],
+        "uncompiled_cs_files": [
+          "eShopLegacyNTier/src/eShopWinForms/Helpers/DependencyObjectExtensions.cs",
+          "eShopLegacyNTier/src/eShopWinForms/Helpers/Json.cs",
+          "eShopLegacyNTier/src/eShopWinForms/Helpers/NotificationsHelper.cs",
+          "eShopLegacyNTier/src/eShopWinForms/Helpers/ResourceExtensions.cs",
+          "eShopLegacyNTier/src/eShopWinForms/Helpers/SettingsStorageExtensions.cs",
+          "eShopLegacyNTier/src/eShopWinForms/Helpers/Singleton.cs",
+          "eShopLegacyNTier/src/eShopWinForms/Helpers/UploadImageHelper.cs"
+        ]
+      },
+      {
+        "path": "eShopLegacyNTier/src/eShopWCFService/eShopWCFService.csproj",
+        "style": "legacy (non-SDK)",
+        "target_framework": "v4.6.1",
+        "output_type": "Library",
+        "assembly_name": "WcfService1",
+        "project_types": [
+          "ASP.NET Web Application",
+          "C#"
+        ],
+        "framework_references": [
+          "EntityFramework",
+          "EntityFramework.SqlServer",
+          "Microsoft.CSharp",
+          "System",
+          "System.ComponentModel.DataAnnotations",
+          "System.Configuration",
+          "System.Data",
+          "System.Data.DataSetExtensions",
+          "System.Data.Entity.Design",
+          "System.Drawing",
+          "System.EnterpriseServices",
+          "System.Runtime.Serialization",
+          "System.ServiceModel",
+          "System.ServiceModel.Web",
+          "System.Web",
+          "System.Web.ApplicationServices",
+          "System.Web.DynamicData",
+          "System.Web.Entity",
+          "System.Web.Extensions",
+          "System.Web.Services",
+          "System.Xml",
+          "System.Xml.Linq"
+        ],
+        "framework_only_references": [
+          "System.Configuration",
+          "System.Data.Entity.Design",
+          "System.Drawing",
+          "System.EnterpriseServices",
+          "System.ServiceModel",
+          "System.ServiceModel.Web",
+          "System.Web",
+          "System.Web.ApplicationServices",
+          "System.Web.DynamicData",
+          "System.Web.Entity",
+          "System.Web.Extensions",
+          "System.Web.Services"
+        ],
+        "package_references": {},
+        "project_references": [],
+        "imports": [
+          "$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v10.0\\WebApplications\\Microsoft.WebApplication.targets",
+          "$(VSToolsPath)\\WebApplications\\Microsoft.WebApplication.targets"
+        ],
+        "wcf_metadata": [],
+        "bootstrapper": [],
+        "iis_express": true,
+        "iis_url": "http://localhost:62314/",
+        "name": "eShopWCFService",
+        "packages_config": "eShopLegacyNTier/src/eShopWCFService/packages.config",
+        "packages": [
+          {
+            "id": "EntityFramework",
+            "version": "6.1.3",
+            "disposition": "upgrade",
+            "net8": "EF 6.4.4+/6.5 runs on net8 (keep EDMX-free code-first); EF Core 8 is the long-term target"
+          }
+        ],
+        "configs": [
+          {
+            "path": "eShopLegacyNTier/src/eShopWCFService/Web.config",
+            "compilation_targetFramework": "4.6.1",
+            "httpRuntime_targetFramework": "4.6.1",
+            "sessionState": null,
+            "connection_strings": [
+              {
+                "name": "EntityModel",
+                "provider": "System.Data.SqlClient",
+                "localdb": true
+              }
+            ],
+            "app_settings": [
+              "aspnet:UseTaskFriendlySynchronizationContext"
+            ],
+            "http_modules": [],
+            "http_handlers": [],
+            "binding_redirects": 0,
+            "ef6_config_section": true,
+            "wcf": {
+              "services": [
+                {
+                  "name": "eShopWCFService.CatalogService",
+                  "endpoints": [
+                    {
+                      "address": "",
+                      "binding": "basicHttpBinding",
+                      "contract": "eShopWCFService.ICatalogService"
+                    },
+                    {
+                      "address": "mex",
+                      "binding": "mexHttpBinding",
+                      "contract": "IMetadataExchange"
+                    }
+                  ]
+                }
+              ],
+              "client_endpoints": [],
+              "binding_configs": [],
+              "protocol_mapping": [
+                "https->basicHttpsBinding"
+              ],
+              "aspNetCompatibilityEnabled": "true",
+              "behaviors": [
+                "serviceDebug",
+                "serviceMetadata"
+              ]
+            }
+          }
+        ],
+        "api_usage": {
+          "using System.Web*": {
+            "count": 5,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/CatalogServiceClient.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/DiscountItem.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/Infrastructure/CatalogConfiguration.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/Infrastructure/CatalogDBInitializer.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/Infrastructure/PreconfiguredData.cs"
+            ]
+          },
+          "EF6 DbContext / System.Data.Entity": {
+            "count": 7,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/CatalogService.svc.cs",
+              "eShopLegacyNTier/src/eShopWCFService/EntityModel.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogBrand.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogItem.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogItemsStock.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogType.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "EF6 database initializer": {
+            "count": 2,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/EntityModel.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/Infrastructure/CatalogDBInitializer.cs"
+            ]
+          },
+          "[ServiceContract]": {
+            "count": 1,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/ICatalogService.cs"
+            ]
+          },
+          "[OperationContract]": {
+            "count": 10,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/ICatalogService.cs"
+            ]
+          },
+          "[DataContract]": {
+            "count": 5,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogBrand.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogItem.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogItemsStock.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogType.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/DiscountItem.cs"
+            ]
+          },
+          "[DataMember]": {
+            "count": 21,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogBrand.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogItem.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogItemsStock.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/CatalogType.cs",
+              "eShopLegacyNTier/src/eShopWCFService/Models/DiscountItem.cs"
+            ]
+          },
+          "ClientBase<T> (WCF proxy)": {
+            "count": 1,
+            "files": [
+              "eShopLegacyNTier/src/eShopWCFService/CatalogServiceClient.cs"
+            ]
+          }
+        },
+        "file_types": {
+          ".cs": 14,
+          ".config": 4,
+          ".svc": 1
+        },
+        "wcf_contracts": [
+          {
+            "file": "eShopLegacyNTier/src/eShopWCFService/ICatalogService.cs",
+            "interface": "ICatalogService",
+            "inherits": "IDisposable",
+            "operations": [
+              {
+                "returns": "CatalogItem",
+                "name": "FindCatalogItem",
+                "params": "int id"
+              },
+              {
+                "returns": "List<CatalogBrand>",
+                "name": "GetCatalogBrands",
+                "params": ""
+              },
+              {
+                "returns": "List<CatalogItem>",
+                "name": "GetCatalogItems",
+                "params": "int brandIdFilter, int typeIdFilter"
+              },
+              {
+                "returns": "List<CatalogType>",
+                "name": "GetCatalogTypes",
+                "params": ""
+              },
+              {
+                "returns": "int",
+                "name": "GetAvailableStock",
+                "params": "System.DateTime date, int catalogItemId"
+              },
+              {
+                "returns": "void",
+                "name": "CreateAvailableStock",
+                "params": "CatalogItemsStock catalogItemsStock"
+              },
+              {
+                "returns": "void",
+                "name": "CreateCatalogItem",
+                "params": "CatalogItem catalogItem"
+              },
+              {
+                "returns": "void",
+                "name": "UpdateCatalogItem",
+                "params": "CatalogItem catalogItem"
+              },
+              {
+                "returns": "void",
+                "name": "RemoveCatalogItem",
+                "params": "CatalogItem catalogItem"
+              },
+              {
+                "returns": "DiscountItem",
+                "name": "GetDiscount",
+                "params": "DateTime day"
+              }
+            ]
+          }
+        ],
+        "uncompiled_cs_files": [
+          "eShopLegacyNTier/src/eShopWCFService/CatalogServiceClient.cs"
+        ]
+      }
+    ]
+  }
+}
