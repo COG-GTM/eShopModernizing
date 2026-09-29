@@ -10,6 +10,7 @@ using System;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Optimization;
 using System.Web.Routing;
 
@@ -74,7 +75,7 @@ namespace eShopModernizedWebForms
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModule(new ApplicationModule(CatalogConfiguration.UseMockData, CatalogConfiguration.UseAzureStorage, CatalogConfiguration.UseManagedIdentity));
+            builder.RegisterModule(new ApplicationModule(CatalogConfiguration.UseMockData, CatalogConfiguration.UseAzureStorage, CatalogConfiguration.UseManagedIdentity, HostingEnvironment.MapPath("~/Pics")));
             container = builder.Build();
             _containerProvider = new ContainerProvider(container);
         }

@@ -49,7 +49,7 @@ namespace eShopModernizedWebForms.Catalog
             }
 
             int.TryParse(itemId, out var catalogItemId);
-            var urlImageTemp = imageService.UploadTempImage(image, catalogItemId);
+            var urlImageTemp = imageService.UploadTempImage(image.InputStream, image.FileName, image.ContentType, catalogItemId);
             var tempImage = new
             {
                 name = new Uri(urlImageTemp).PathAndQuery,

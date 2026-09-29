@@ -5,7 +5,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace eShopModernizedWebForms.Services
 {
@@ -13,9 +12,11 @@ namespace eShopModernizedWebForms.Services
     {
 
         private readonly CloudStorageAccount _storageAccount;
+        private readonly string _picsPhysicalPath;
 
-        public ImageAzureStorage()
+        public ImageAzureStorage(string picsPhysicalPath)
         {
+            _picsPhysicalPath = picsPhysicalPath;
             _storageAccount = CloudStorageAccount.Parse(CatalogConfiguration.StorageConnectionString);
         }
 
@@ -49,7 +50,7 @@ namespace eShopModernizedWebForms.Services
 
 
             Parallel.ForEach(container.ListBlobs().Where(x => x is CloudBlob), x => ((CloudBlob)x).Delete());
-            var webRoot = HttpContext.Current.Server.MapPath("~/Pics");
+            var webRoot = _picsPhysicalPath;
 
             for (int i = 1; i <= 12; i++)
             {
@@ -84,17 +85,17 @@ namespace eShopModernizedWebForms.Services
             tempBlob.Delete();
         }
 
-        public string UploadTempImage(HttpPostedFile file, int? catalogItemId)
+        public string UploadTempImage(Stream content, string fileName, string contentType, int? catalogItemId)
         {
             string path = catalogItemId.HasValue ? catalogItemId + "/temp/" : "temp/" + Guid.NewGuid().ToString() + "/";
 
             CloudBlobClient blobClient = _storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference("pics");
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(path + file.FileName.ToLower());
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(path + fileName.ToLower());
 
-            blockBlob.Properties.ContentType = file.ContentType;
-            file.InputStream.Seek(0, SeekOrigin.Begin);
-            blockBlob.UploadFromStream(file.InputStream);
+            blockBlob.Properties.ContentType = contentType;
+            content.Seek(0, SeekOrigin.Begin);
+            blockBlob.UploadFromStream(content);
 
             return blockBlob.Uri.ToString();
         }

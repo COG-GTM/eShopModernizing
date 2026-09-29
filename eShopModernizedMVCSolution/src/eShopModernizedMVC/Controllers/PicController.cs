@@ -36,7 +36,7 @@ namespace eShopModernizedMVC.Controllers
             }
 
             int.TryParse(itemId, out var catalogItemId);
-            var urlImageTemp = _imageService.UploadTempImage(image, catalogItemId);
+            var urlImageTemp = _imageService.UploadTempImage(image.InputStream, image.FileName, image.ContentType, catalogItemId);
             var tempImage = new
             {
                 name = new Uri(urlImageTemp).PathAndQuery,

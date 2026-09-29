@@ -10,12 +10,14 @@ namespace eShopModernizedMVC.Modules
         private bool useMockData;
         private bool useAzureStorage;
         private bool useManagedIdentity;
+        private string picsPhysicalPath;
 
-        public ApplicationModule(bool useMockData, bool useAzureStorage, bool useManagedIdentity)
+        public ApplicationModule(bool useMockData, bool useAzureStorage, bool useManagedIdentity, string picsPhysicalPath)
         {
             this.useMockData = useMockData;
             this.useAzureStorage = useAzureStorage;
             this.useManagedIdentity = useManagedIdentity;
+            this.picsPhysicalPath = picsPhysicalPath;
         }
         protected override void Load(ContainerBuilder builder)
         {
@@ -36,12 +38,14 @@ namespace eShopModernizedMVC.Modules
             {
                 builder.RegisterType<ImageAzureStorage>()
                     .As<IImageService>()
+                    .WithParameter("picsPhysicalPath", picsPhysicalPath)
                     .InstancePerLifetimeScope();
             }
             else
             {
                 builder.RegisterType<ImageMockStorage>()
                   .As<IImageService>()
+                  .WithParameter("picsPhysicalPath", picsPhysicalPath)
                   .InstancePerLifetimeScope();
             }
 
