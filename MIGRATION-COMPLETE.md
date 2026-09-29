@@ -52,7 +52,7 @@ All Azure services are fully integrated and tested:
 1. Build .NET Core application
 2. Update configuration in Azure Key Vault
 3. Deploy to target environment
-4. Verify health checks
+4. Verify health checks and run the canary smoke tests ([smoke-tests/README.md](./smoke-tests/README.md))
 5. Monitor Application Insights
 
 ### Rollback (if needed)

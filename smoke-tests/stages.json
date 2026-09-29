@@ -1,0 +1,65 @@
+{
+  "stages": {
+    "local": {
+      "description": "eShopCoreModernized run locally with mock data (dotnet run / docker-compose)",
+      "base_url": "http://localhost:5002",
+      "samples": 1,
+      "allow_writes": true,
+      "expect": {
+        "min_catalog_items": 1,
+        "max_latency_ms": 2000,
+        "flags": { "useMockData": true }
+      }
+    },
+    "core-direct": {
+      "description": "The .NET Core instance behind the proxy, bypassing nginx (pre-traffic check before any shift)",
+      "base_url": "http://localhost:5002",
+      "samples": 3,
+      "allow_writes": false,
+      "expect": {
+        "min_catalog_items": 1,
+        "max_latency_ms": 2000,
+        "flags": { "useMockData": false }
+      }
+    },
+    "canary-25": {
+      "description": "nginx front door with nginx-25percent.conf (1 in 4 /Catalog/ requests to .NET Core)",
+      "base_url": "http://localhost",
+      "samples": 12,
+      "allow_writes": false,
+      "expect": { "min_catalog_items": 1, "max_latency_ms": 5000, "flags": { "useMockData": false } }
+    },
+    "canary-50": {
+      "description": "nginx front door with nginx-50percent.conf",
+      "base_url": "http://localhost",
+      "samples": 8,
+      "allow_writes": false,
+      "expect": { "min_catalog_items": 1, "max_latency_ms": 5000, "flags": { "useMockData": false } }
+    },
+    "canary-75": {
+      "description": "nginx front door with nginx-75percent.conf",
+      "base_url": "http://localhost",
+      "samples": 5,
+      "allow_writes": false,
+      "expect": { "min_catalog_items": 1, "max_latency_ms": 5000, "flags": { "useMockData": false } }
+    },
+    "canary-100": {
+      "description": "nginx front door with nginx-100percent.conf (all catalog traffic on .NET Core)",
+      "base_url": "http://localhost",
+      "samples": 3,
+      "allow_writes": false,
+      "expect": { "min_catalog_items": 1, "max_latency_ms": 5000, "flags": { "useMockData": false } }
+    },
+    "production": {
+      "description": "Public production endpoint after cutover; set SMOKE_BASE_URL_PRODUCTION or --base-url",
+      "base_url": "",
+      "samples": 3,
+      "allow_writes": false,
+      "expect": {
+        "min_catalog_items": 1,
+        "max_latency_ms": 5000,
+        "flags": { "useMockData": false, "useAzureStorage": true }
+      }
+    }
+  }
+}
