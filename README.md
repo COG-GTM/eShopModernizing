@@ -43,6 +43,8 @@ The WebFoms and MVC apps are pretty similiar in regards UI and business features
 
 The winforms application is a catalog management, and uses a WCF as a back-end. Read more about the Winforms + WCF sample [here](./winforms-wcf.md)
 
+> In `eShopLegacyNTier` the WCF service has been replaced by an ASP.NET Core minimal API (`eShopCatalogApi`) with the same operations. See the [client migration guide](./eShopLegacyNTier/docs/wcf-to-minimal-api-migration.md).
+
 ### DEPLOYMENT TO AZURE CONTAINER INSTANCES
 ![image](https://user-images.githubusercontent.com/1712635/38395601-9258dd0e-38e8-11e8-8b42-cafff5f93c57.png)
 
