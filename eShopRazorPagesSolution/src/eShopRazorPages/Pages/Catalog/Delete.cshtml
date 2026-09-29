@@ -1,0 +1,24 @@
+@page "{id:int}"
+@model eShopRazorPages.Pages.Catalog.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2 class="esh-body-title">Delete</h2>
+
+<div class="container">
+    <h3>Are you sure you want to delete this?</h3>
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="@Url.Content($"~/Pics/{Model.Product.PictureFileName}")" alt="@Model.Product.Name" />
+        <dl class="col-md-6 dl-horizontal">
+            <partial name="_ProductFields" model="Model.Product" />
+
+            <dd class="text-right esh-button-actions">
+                <form method="post">
+                    <a href="~/" class="btn esh-button esh-button-secondary">[ Cancel ]</a>
+                    <input type="submit" value="[ Delete ]" class="btn esh-button esh-button-primary" />
+                </form>
+            </dd>
+        </dl>
+    </div>
+</div>

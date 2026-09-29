@@ -1,0 +1,22 @@
+@page "{id:int}"
+@model eShopRazorPages.Pages.Catalog.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 class="esh-body-title">Details</h2>
+
+<div class="container">
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="@Url.Content($"~/Pics/{Model.Product.PictureFileName}")" alt="@Model.Product.Name" />
+        <dl class="col-md-6 dl-horizontal">
+            <partial name="_ProductFields" model="Model.Product" />
+        </dl>
+    </div>
+
+    <div class="form-actions no-color esh-link-list">
+        <a href="@Url.RouteUrl(LegacyRoutes.EditProductRouteName, new { id = Model.Product.Id })" class="esh-link-item">Edit</a>
+        |
+        <a href="~/" class="esh-link-item">Back to list</a>
+    </div>
+</div>

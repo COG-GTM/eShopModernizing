@@ -1,0 +1,52 @@
+@using eShopRazorPages.Infrastructure
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Catalog manager (Razor Pages)</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/custom.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/base.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <header class="navbar navbar-light navbar-static-top">
+        <div class="esh-header-brand">
+            <a href="~/">
+                <img src="~/images/brand.png" alt="eShop" />
+            </a>
+        </div>
+    </header>
+
+    <section class="esh-app-hero">
+        <div class="container esh-header">
+            <h1 class="esh-header-title">Catalog manager <span>(Razor Pages)</span></h1>
+        </div>
+    </section>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer class="esh-app-footer">
+        <div class="container">
+            <article class="row">
+                <section class="col-sm-6">
+                    <img class="esh-app-footer-brand" src="~/images/brand_dark.png" alt="eShop" />
+                </section>
+                <section class="col-sm-6">
+                    <img class="esh-app-footer-text hidden-xs" src="~/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+                    <br />
+                    <small style="color:white"><span id="SessionInfoLabel">@SessionInfo.Describe(Context.Session)</span></small>
+                </section>
+            </article>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

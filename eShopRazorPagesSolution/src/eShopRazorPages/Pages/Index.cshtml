@@ -1,0 +1,87 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+    var previousUrl = Url.RouteUrl(LegacyRoutes.ProductsByPageRouteName, new { index = Model.Catalog.ActualPage - 1, size = Model.Catalog.ItemsPerPage });
+    var nextUrl = Url.RouteUrl(LegacyRoutes.ProductsByPageRouteName, new { index = Model.Catalog.ActualPage + 1, size = Model.Catalog.ItemsPerPage });
+}
+
+<div class="esh-table">
+    <p class="esh-link-wrapper">
+        <a href="@Url.RouteUrl(LegacyRoutes.CreateProductRouteName)" class="btn esh-button esh-button-primary">
+            Create New
+        </a>
+    </p>
+
+    @if (!Model.Catalog.Data.Any())
+    {
+        <table>
+            <tr>
+                <td>No data was returned.</td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr class="esh-table-header">
+                    <th></th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Brand</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Picture name</th>
+                    <th>Stock</th>
+                    <th>Restock</th>
+                    <th>Max stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Catalog.Data)
+                {
+                    <tr>
+                        <td>
+                            <img class="esh-thumbnail" src="@Url.Content($"~/Pics/{item.PictureFileName}")" alt="@item.Name" />
+                        </td>
+                        <td><p>@item.Name</p></td>
+                        <td><p>@item.Description</p></td>
+                        <td><p>@item.CatalogBrand?.Brand</p></td>
+                        <td><p>@item.CatalogType?.Type</p></td>
+                        <td><p><span class="esh-price">@item.Price</span></p></td>
+                        <td><p>@item.PictureFileName</p></td>
+                        <td><p>@item.AvailableStock</p></td>
+                        <td><p>@item.RestockThreshold</p></td>
+                        <td><p>@item.MaxStockThreshold</p></td>
+                        <td>
+                            <a href="@Url.RouteUrl(LegacyRoutes.EditProductRouteName, new { id = item.Id })" class="esh-table-link">Edit</a>
+                            |
+                            <a href="@Url.RouteUrl(LegacyRoutes.ProductDetailsRouteName, new { id = item.Id })" class="esh-table-link">Details</a>
+                            |
+                            <a href="@Url.RouteUrl(LegacyRoutes.DeleteProductRouteName, new { id = item.Id })" class="esh-table-link">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div class="esh-pager">
+    <div class="container">
+        <article class="esh-pager-wrapper row">
+            <nav>
+                <a id="PaginationPrevious" href="@previousUrl" class="esh-pager-item esh-pager-item--navigable@(Model.HasPreviousPage ? "" : " esh-pager-item--hidden")">
+                    Previous
+                </a>
+
+                <span class="esh-pager-item">Showing @Model.Catalog.ItemsPerPage of @Model.Catalog.TotalItems products - Page @(Model.Catalog.ActualPage + 1) - @Model.Catalog.TotalPages</span>
+
+                <a id="PaginationNext" href="@nextUrl" class="esh-pager-item esh-pager-item--navigable@(Model.HasNextPage ? "" : " esh-pager-item--hidden")">
+                    Next
+                </a>
+            </nav>
+        </article>
+    </div>
+</div>

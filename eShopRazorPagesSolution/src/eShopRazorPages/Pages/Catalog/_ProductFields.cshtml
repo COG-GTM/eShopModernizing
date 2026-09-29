@@ -1,0 +1,27 @@
+@model CatalogItem
+<dt>Name</dt>
+<dd>@Model.Name</dd>
+
+<dt>Description</dt>
+<dd>@Model.Description</dd>
+
+<dt>Brand</dt>
+<dd>@Model.CatalogBrand?.Brand</dd>
+
+<dt>Type</dt>
+<dd>@Model.CatalogType?.Type</dd>
+
+<dt>Price</dt>
+<dd><span class="esh-price">@Model.Price</span></dd>
+
+<dt>Picture name</dt>
+<dd>@Model.PictureFileName</dd>
+
+<dt>Stock</dt>
+<dd>@Model.AvailableStock</dd>
+
+<dt>Restock</dt>
+<dd>@Model.RestockThreshold</dd>
+
+<dt>Max stock</dt>
+<dd>@Model.MaxStockThreshold</dd>

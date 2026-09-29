@@ -39,6 +39,10 @@ The WebFoms and MVC apps are pretty similiar in regards UI and business features
 
 ![image](https://user-images.githubusercontent.com/1712635/30354210-0638f3b2-97e0-11e7-82c5-df18197ccdbd.png)
 
+### ASP.NET Core Razor Pages port of the WebForms catalog
+
+`eShopRazorPagesSolution` is a .NET 8 Razor Pages port of the WebForms catalog pages that keeps every legacy URL (`/Default/index/{index}/size/{size}`, `/Catalog/Edit/{id}`, ...). See the [WebForms to Razor Pages mapping](./eShopRazorPagesSolution/WEBFORMS-TO-RAZOR-PAGES-MAPPING.md).
+
 ### Winforms + WCF Application
 
 The winforms application is a catalog management, and uses a WCF as a back-end. Read more about the Winforms + WCF sample [here](./winforms-wcf.md)

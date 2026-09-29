@@ -1,0 +1,96 @@
+@page "{id:int}"
+@model eShopRazorPages.Pages.Catalog.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="esh-body-title">Edit</h2>
+
+<div class="container">
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="@Url.Content($"~/Pics/{Model.Product.PictureFileName}")" alt="@Model.Product.Name" />
+
+        <form method="post" class="col-md-6 form-horizontal">
+            <div class="form-group">
+                <label asp-for="Input.Name" class="control-label col-md-4">Name</label>
+                <div class="col-md-8">
+                    <input asp-for="Input.Name" class="form-control" />
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Description" class="control-label col-md-4">Description</label>
+                <div class="col-md-8">
+                    <input asp-for="Input.Description" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.CatalogBrandId" class="control-label col-md-4">Brand</label>
+                <div class="col-md-8">
+                    <select asp-for="Input.CatalogBrandId" asp-items="Model.Brands" class="form-control"></select>
+                    <span asp-validation-for="Input.CatalogBrandId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.CatalogTypeId" class="control-label col-md-4">Type</label>
+                <div class="col-md-8">
+                    <select asp-for="Input.CatalogTypeId" asp-items="Model.Types" class="form-control"></select>
+                    <span asp-validation-for="Input.CatalogTypeId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Price" class="control-label col-md-4">Price</label>
+                <div class="col-md-8">
+                    <input asp-for="Input.Price" class="form-control" />
+                    <span asp-validation-for="Input.Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="PictureFileName" class="control-label col-md-4">Picture name</label>
+                <div class="col-md-8">
+                    <input id="PictureFileName" type="text" value="@Model.Product.PictureFileName" readonly title="Not allowed for edition" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Stock" class="control-label col-md-4">Stock</label>
+                <div class="col-md-8">
+                    <input asp-for="Input.Stock" class="form-control" />
+                    <span asp-validation-for="Input.Stock" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Restock" class="control-label col-md-4">Restock</label>
+                <div class="col-md-8">
+                    <input asp-for="Input.Restock" class="form-control" />
+                    <span asp-validation-for="Input.Restock" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Maxstock" class="control-label col-md-4">Max stock</label>
+                <div class="col-md-8">
+                    <input asp-for="Input.Maxstock" class="form-control" />
+                    <span asp-validation-for="Input.Maxstock" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12 text-right esh-button-actions">
+                    <a href="~/" class="btn esh-button esh-button-secondary">[ Cancel ]</a>
+                    <input type="submit" value="[ Save ]" class="btn esh-button esh-button-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
