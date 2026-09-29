@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using eShopLegacyMVC.Configuration;
 using eShopLegacyMVC.Models;
 using eShopLegacyMVC.Models.Infrastructure;
 using eShopLegacyMVC.Services;
@@ -7,15 +8,19 @@ namespace eShopLegacyMVC.Modules
 {
     public class ApplicationModule : Module
     {
-        private bool useMockData;
+        private readonly ICatalogSettings catalogSettings;
 
-        public ApplicationModule(bool useMockData)
+        public ApplicationModule(ICatalogSettings catalogSettings)
         {
-            this.useMockData = useMockData;
+            this.catalogSettings = catalogSettings;
         }
         protected override void Load(ContainerBuilder builder)
         {
-            if (this.useMockData)
+            builder.RegisterInstance(catalogSettings)
+                .As<ICatalogSettings>()
+                .SingleInstance();
+
+            if (catalogSettings.UseMockData)
             {
                 builder.RegisterType<CatalogServiceMock>()
                     .As<ICatalogService>()

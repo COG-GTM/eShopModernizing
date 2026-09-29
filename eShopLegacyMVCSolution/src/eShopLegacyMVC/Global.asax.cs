@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using eShopLegacyMVC.Configuration;
 using eShopLegacyMVC.Models;
 using eShopLegacyMVC.Models.Infrastructure;
 using eShopLegacyMVC.Modules;
 using log4net;
 using System;
-using System.Configuration;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Reflection;
@@ -23,6 +23,8 @@ namespace eShopLegacyMVC
         private static readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         IContainer container;
+
+        private readonly ICatalogSettings catalogSettings = new CatalogSettings(new WebConfigConfigurationReader());
 
         protected void Application_Start()
         {
@@ -65,8 +67,7 @@ namespace eShopLegacyMVC
             builder.RegisterControllers(thisAssembly);
             builder.RegisterApiControllers(thisAssembly);
 
-            var mockData = bool.Parse(ConfigurationManager.AppSettings["UseMockData"]);
-            builder.RegisterModule(new ApplicationModule(mockData));
+            builder.RegisterModule(new ApplicationModule(catalogSettings));
 
             var container = builder.Build();
 
@@ -82,9 +83,7 @@ namespace eShopLegacyMVC
 
         private void ConfigDataBase()
         {
-            var mockData = bool.Parse(ConfigurationManager.AppSettings["UseMockData"]);
-
-            if (!mockData)
+            if (!catalogSettings.UseMockData)
             {
                 Database.SetInitializer<CatalogDBContext>(container.Resolve<CatalogDBInitializer>());
             }
