@@ -1,70 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Deprecated entry point kept for existing muscle memory and automation.
+# All stage changes go through canary/cutover.sh - see CANARY-CUTOVER-RUNBOOK.md.
+set -euo pipefail
 
+CUTOVER="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/canary/cutover.sh"
 
-NGINX_CONFIG_DIR="/etc/nginx"
-BACKUP_DIR="./nginx-backups"
-LOG_FILE="./migration.log"
-
-log() {
-    echo "$(date): $1" | tee -a $LOG_FILE
-}
-
-backup_config() {
-    mkdir -p $BACKUP_DIR
-    cp nginx.conf "$BACKUP_DIR/nginx-$(date +%s).conf"
-    log "Backed up current nginx configuration"
-}
-
-apply_config() {
-    local config_file=$1
-    local percentage=$2
-    
-    log "Applying $percentage traffic to .NET Core"
-    cp $config_file nginx.conf
-    
-    
-    log "Configuration applied: $config_file"
-}
-
-monitor_health() {
-    local duration=$1
-    log "Monitoring health for $duration seconds"
-    
-    for i in $(seq 1 $duration); do
-        curl -s http://localhost/api/health > /dev/null
-        if [ $? -eq 0 ]; then
-            echo -n "."
-        else
-            echo -n "X"
-        fi
-        sleep 1
-    done
-    echo ""
-}
-
-case $1 in
-    "25")
-        backup_config
-        apply_config "nginx-25percent.conf" "25%"
-        monitor_health 300
+case "${1:-}" in
+    0 | 25 | 50 | 75 | 100)
+        stage=$1
+        shift
+        echo "migrate-traffic.sh is deprecated; running: canary/cutover.sh advance --to $stage $*" >&2
+        exec "$CUTOVER" advance --to "$stage" "$@"
         ;;
-    "50")
-        backup_config
-        apply_config "nginx-50percent.conf" "50%"
-        monitor_health 300
-        ;;
-    "75")
-        backup_config
-        apply_config "nginx-75percent.conf" "75%"
-        monitor_health 300
-        ;;
-    "100")
-        backup_config
-        apply_config "nginx-100percent.conf" "100%"
-        monitor_health 300
+    rollback)
+        shift
+        exec "$CUTOVER" rollback "$@"
         ;;
     *)
-        echo "Usage: $0 {25|50|75|100}"
+        echo "Usage: $0 {0|25|50|75|100} [cutover options]   (advance to that stage)" >&2
+        echo "       $0 rollback [--to N]                     (roll back)" >&2
+        echo "Prefer canary/cutover.sh directly - see CANARY-CUTOVER-RUNBOOK.md." >&2
         exit 1
         ;;
 esac

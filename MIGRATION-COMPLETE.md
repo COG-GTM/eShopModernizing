@@ -9,7 +9,7 @@ The strangler fig migration from .NET Framework to .NET Core has been completed 
 ### Traffic Routing
 - **API Endpoints** (`/api/*`): 100% .NET Core (port 5002)
 - **Catalog Endpoints** (`/Catalog/*`): 100% .NET Core (port 5002)
-- **Health Checks** (`/health*`): .NET Core (port 5002)
+- **Health Checks** (`/api/health*`): .NET Core (port 5002)
 - **Legacy Endpoints**: Modernized .NET Framework (port 5001)
 
 ### Service Ports
@@ -37,8 +37,8 @@ All Azure services are fully integrated and tested:
 ## Monitoring and Health Checks
 
 ### Health Endpoints
-- `/health`: Basic health check
-- `/health/detailed`: Comprehensive service status including Azure services
+- `/api/health`: Basic health check
+- `/api/health/detailed`: Comprehensive service status including Azure services
 
 ### Application Insights
 - Custom telemetry for migration tracking
@@ -66,16 +66,22 @@ See [ROLLBACK-PROCEDURES.md](./ROLLBACK-PROCEDURES.md) for detailed rollback pro
 
 ## Traffic Migration Strategy
 
-The migration uses nginx upstream weighting for gradual traffic distribution:
+The migration uses nginx upstream weighting (consistent-hash, client-sticky) for gradual traffic
+distribution. The operator procedure (advancing, what to watch, rollback) is
+[CANARY-CUTOVER-RUNBOOK.md](./CANARY-CUTOVER-RUNBOOK.md).
 
 ### Migration Phases
+0. **Baseline**: `nginx-0percent.conf` - 100% to .NET Framework (bootstrap and full-rollback target)
 1. **25% Phase**: `nginx-25percent.conf` - 25% to .NET Core, 75% to .NET Framework
 2. **50% Phase**: `nginx-50percent.conf` - 50% to .NET Core, 50% to .NET Framework
 3. **75% Phase**: `nginx-75percent.conf` - 75% to .NET Core, 25% to .NET Framework
 4. **100% Phase**: `nginx-100percent.conf` - 100% to .NET Core
 
 ### Migration Script
-Use `./migrate-traffic.sh {25|50|75|100}` to apply each phase with automatic health monitoring.
+Use `canary/cutover.sh advance` to move one phase forward. It runs preflight checks, validates and
+reloads nginx, soaks with error-rate/latency/failover gates, and rolls back automatically on a
+breach. `canary/cutover.sh rollback` moves back. `./migrate-traffic.sh {0|25|50|75|100}` is kept as a
+deprecated wrapper.
 
 ## Legacy System Decommission
 
@@ -120,18 +126,20 @@ The migration is considered successful based on:
 ## Configuration Files
 
 ### Nginx Configurations
-- `nginx.conf`: Final configuration (100% .NET Core)
+- `nginx.conf`: Pre-runbook configuration (unmarked 25% weights), kept for reference and not managed by `canary/cutover.sh`
+- `nginx-0percent.conf`: Baseline / full-rollback stage (100% .NET Framework)
 - `nginx-25percent.conf`: 25% migration phase
 - `nginx-50percent.conf`: 50% migration phase
 - `nginx-75percent.conf`: 75% migration phase
-- `nginx-100percent.conf`: 100% migration phase (same as nginx.conf)
+- `nginx-100percent.conf`: 100% migration phase
 
 ### Docker Compose
 - `docker-compose.yml`: Service definitions including .NET Core service
 - `docker-compose.override.yml`: Environment-specific configurations
 
 ### Scripts
-- `migrate-traffic.sh`: Automated traffic migration with health monitoring
+- `canary/cutover.sh`: Scripted canary cutover (advance / rollback / watch / report), see CANARY-CUTOVER-RUNBOOK.md
+- `migrate-traffic.sh`: Deprecated wrapper around `canary/cutover.sh`
 - `validate-features.ps1`: Feature flag validation script
 
 ## Troubleshooting
@@ -145,7 +153,7 @@ The migration is considered successful based on:
 ### Monitoring
 - Application Insights dashboard for real-time metrics
 - Health check endpoints for service status
-- nginx access logs for traffic distribution verification
+- `canary/cutover.sh report` (reads `/var/log/nginx/eshop-canary.log`) for traffic distribution verification
 - Database performance counters
 
 ## Support Information
