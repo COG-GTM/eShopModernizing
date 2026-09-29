@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Restores every proposed .NET 8 replacement package from Docs/NET8-NuGet-Audit.md.
+       NU1701 (package resolved via .NET Framework fallback) is an error so a replacement
+       that only ships net4x assets fails the build instead of silently restoring. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <WarningsAsErrors>NU1701;NU1202;NU1603;NU1605</WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="11.0.2" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.5.2" />
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.20.2" />
+    <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.6.0" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.11.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.29.2" />
+    <PackageReference Include="EntityFramework" Version="6.5.2" />
+    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.477" />
+    <PackageReference Include="log4net" Version="3.4.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.31" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.31" />
+    <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters.CoreServices" Version="2.3.0" />
+    <PackageReference Include="Microsoft.EntityFramework.SqlServer" Version="6.5.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.31" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.31" />
+    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="8.0.31" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.90.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="3.15.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.23.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="System.ServiceModel.Http" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.2" />
+  </ItemGroup>
+</Project>
