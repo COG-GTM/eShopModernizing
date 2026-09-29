@@ -55,6 +55,17 @@ The winforms application is a catalog management, and uses a WCF as a back-end. 
 ### DEPLOYMENT TO AZURE WEB APP FOR CONTAINERS
 ![image](https://docs.microsoft.com/en-us/dotnet/architecture/modernize-with-azure-containers/media/image5-11.png)
 
+## Quick start: modernized ASP.NET Core MVC app + SQL Server (Linux containers)
+
+To run the .NET 8 modernized MVC app (`eShopModernized/src/eShopCoreModernized`) with a seeded SQL Server database for local development on any OS:
+
+```bash
+cd eShopModernized
+docker compose up --build -d --wait
+```
+
+Then browse to http://localhost:5002. See [eShopModernized/README.md](./eShopModernized/README.md) for the full workflow.
+
 ## Quick start: Running all apps together in your local Windows 10 PC with "Docker for Windows"
 
 You have more detailed procedures at the [Wiki](https://github.com/dotnet-architecture/eShopModernizing/wiki), but for the quickest way to get started and run all samples together using Docker for Windows, open a **"Developer Command Prompt for VS 2017 (or 2019)"** (to ensure you have right `msbuild` on `PATH`), go to the eShopModernizing root folder and run the `build.cmd` script.

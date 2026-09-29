@@ -1,0 +1,68 @@
+# Local development stack for the modernized ASP.NET Core MVC app (eShopCoreModernized)
+# plus a Linux SQL Server instance. See README.md in this folder.
+name: eshop-modernized-dev
+
+x-sql-env: &sql-env
+  MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-Pass@word1}
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      <<: *sql-env
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+    ports:
+      - "${ESHOP_SQL_PORT:-5433}:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -Q 'SELECT 1' -b -o /dev/null"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  db-init:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    depends_on:
+      sqldata:
+        condition: service_healthy
+    environment:
+      <<: *sql-env
+      DB_NAME: ${ESHOP_DB_NAME:-Microsoft.eShopOnContainers.Services.CatalogDb}
+    volumes:
+      - ./docker/sql:/scripts:ro
+    entrypoint:
+      - /bin/bash
+      - -c
+      - /opt/mssql-tools18/bin/sqlcmd -C -S sqldata -U sa -P "$$MSSQL_SA_PASSWORD" -b -v DB_NAME="$$DB_NAME" -i /scripts/init.sql
+    restart: "no"
+
+  web:
+    image: eshop/coremodernized:${TAG:-dev}
+    build:
+      context: ./src/eShopCoreModernized
+      dockerfile: Dockerfile
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ConnectionStrings__CatalogDBContext: Server=sqldata;Database=${ESHOP_DB_NAME:-Microsoft.eShopOnContainers.Services.CatalogDb};User Id=sa;Password=${MSSQL_SA_PASSWORD:-Pass@word1};TrustServerCertificate=True;MultipleActiveResultSets=True
+      AppSettings__UseMockData: ${ESHOP_USE_MOCK_DATA:-false}
+      AppSettings__UseAzureStorage: "false"
+      AppSettings__UseAzureManagedIdentity: "false"
+      AppSettings__UseAzureActiveDirectory: "false"
+    ports:
+      - "${ESHOP_WEB_PORT:-5002}:8080"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /api/health HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q Healthy <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+volumes:
+  sqldata:
