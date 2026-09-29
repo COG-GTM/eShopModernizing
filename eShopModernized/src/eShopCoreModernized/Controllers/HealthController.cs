@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using eShopCoreModernized.Configuration;
-using eShopCoreModernized.Models;
-using Azure.Storage.Blobs;
-using Microsoft.EntityFrameworkCore;
+using eShopCoreModernized.HealthChecks;
+using eShopCoreModernized.Infrastructure;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace eShopCoreModernized.Controllers
 {
@@ -11,75 +11,48 @@ namespace eShopCoreModernized.Controllers
     public class HealthController : ControllerBase
     {
         private readonly ICatalogConfiguration _config;
-        private readonly CatalogDBContext _dbContext;
-        private readonly BlobServiceClient? _blobServiceClient;
-        private readonly ILogger<HealthController> _logger;
+        private readonly HealthCheckService _healthCheckService;
+        private readonly DeploymentInfo _deployment;
 
         public HealthController(
             ICatalogConfiguration config,
-            CatalogDBContext dbContext,
-            ILogger<HealthController> logger,
-            BlobServiceClient? blobServiceClient = null)
+            HealthCheckService healthCheckService,
+            DeploymentInfo deployment)
         {
             _config = config;
-            _dbContext = dbContext;
-            _blobServiceClient = blobServiceClient;
-            _logger = logger;
+            _healthCheckService = healthCheckService;
+            _deployment = deployment;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get(CancellationToken cancellationToken)
         {
-            return Ok(new { status = "Healthy", timestamp = DateTime.UtcNow });
+            var report = await _healthCheckService.CheckHealthAsync(
+                registration => registration.Tags.Contains(HealthCheckTags.Ready),
+                cancellationToken);
+
+            return ToResult(report, new
+            {
+                status = report.Status.ToString(),
+                timestamp = DateTime.UtcNow,
+                version = _deployment.Version,
+                deploymentTrack = _deployment.Track,
+            });
         }
 
         [HttpGet("detailed")]
-        public async Task<IActionResult> GetDetailed()
+        public async Task<IActionResult> GetDetailed(CancellationToken cancellationToken)
         {
-            var healthStatus = new
-            {
-                status = "Healthy",
-                timestamp = DateTime.UtcNow,
-                version = ".NET Core 6.0",
-                services = await GetServiceHealthAsync()
-            };
+            var report = await _healthCheckService.CheckHealthAsync(cancellationToken);
 
-            return Ok(healthStatus);
-        }
-
-        private async Task<object> GetServiceHealthAsync()
-        {
-            var services = new Dictionary<string, object>();
-
-            try
-            {
-                await _dbContext.Database.CanConnectAsync();
-                services["database"] = new { status = "Healthy", type = "SQL Server" };
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Database health check failed");
-                services["database"] = new { status = "Unhealthy", error = ex.Message };
-            }
-
-            if (_config.UseAzureStorage && _blobServiceClient != null)
-            {
-                try
+            var services = report.Entries.ToDictionary(
+                entry => entry.Key,
+                entry => (object)new
                 {
-                    var containerClient = _blobServiceClient.GetBlobContainerClient("pics");
-                    await containerClient.GetPropertiesAsync();
-                    services["azureStorage"] = new { status = "Healthy", type = "Blob Storage" };
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Azure Storage health check failed");
-                    services["azureStorage"] = new { status = "Unhealthy", error = ex.Message };
-                }
-            }
-            else if (_config.UseAzureStorage)
-            {
-                services["azureStorage"] = new { status = "NotConfigured", message = "BlobServiceClient not available" };
-            }
+                    status = entry.Value.Status.ToString(),
+                    description = entry.Value.Description,
+                    durationMs = Math.Round(entry.Value.Duration.TotalMilliseconds, 2),
+                });
 
             services["configuration"] = new
             {
@@ -89,7 +62,20 @@ namespace eShopCoreModernized.Controllers
                 useAzureActiveDirectory = _config.UseAzureActiveDirectory
             };
 
-            return services;
+            return ToResult(report, new
+            {
+                status = report.Status.ToString(),
+                timestamp = DateTime.UtcNow,
+                version = _deployment.Version,
+                deploymentTrack = _deployment.Track,
+                instance = _deployment.Instance,
+                services
+            });
         }
+
+        private ObjectResult ToResult(HealthReport report, object body) =>
+            StatusCode(
+                report.Status == HealthStatus.Unhealthy ? StatusCodes.Status503ServiceUnavailable : StatusCodes.Status200OK,
+                body);
     }
 }

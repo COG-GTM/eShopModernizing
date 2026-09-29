@@ -7,8 +7,12 @@ using Azure.Storage.Blobs;
 using Azure.Identity;
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using eShopCoreModernized.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.Configure(options =>
+    options.ActivityTrackingOptions = ActivityTrackingOptions.TraceId | ActivityTrackingOptions.SpanId);
 
 if (!builder.Environment.IsDevelopment())
 {
@@ -19,6 +23,9 @@ if (!builder.Environment.IsDevelopment())
         builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
     }
 }
+
+var deploymentInfo = DeploymentInfo.FromConfiguration(builder.Configuration);
+builder.Services.AddSingleton(deploymentInfo);
 
 builder.Services.AddApplicationInsightsTelemetry(options =>
 {
@@ -93,20 +100,60 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddCatalogHealthChecks(catalogConfig);
+
+builder.Services.AddProblemDetails(options =>
+    options.CustomizeProblemDetails = context =>
+    {
+        var correlationId = RequestLoggingMiddleware.GetCorrelationId(context.HttpContext);
+        if (correlationId != null)
+        {
+            context.ProblemDetails.Extensions["correlationId"] = correlationId;
+        }
+    });
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+app.Logger.LogInformation(
+    "Starting {ServiceName} {ServiceVersion} on deployment track {DeploymentTrack} (mock data: {UseMockData}, Azure storage: {UseAzureStorage})",
+    deploymentInfo.ServiceName,
+    deploymentInfo.Version,
+    deploymentInfo.Track,
+    catalogConfig.UseMockData,
+    catalogConfig.UseAzureStorage);
+
 if (!catalogConfig.UseMockData)
 {
-    using var scope = app.Services.CreateScope();
-    var context = scope.ServiceProvider.GetRequiredService<CatalogDBContext>();
-    context.Database.EnsureCreated();
+    const int maxInitAttempts = 5;
+    for (var attempt = 1; ; attempt++)
+    {
+        using var scope = app.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<CatalogDBContext>();
+        try
+        {
+            context.Database.EnsureCreated();
+            break;
+        }
+        catch (Exception ex) when (attempt < maxInitAttempts)
+        {
+            app.Logger.LogWarning(ex, "Catalog database initialization attempt {Attempt}/{MaxAttempts} failed; retrying", attempt, maxInitAttempts);
+            Thread.Sleep(TimeSpan.FromSeconds(2 * attempt));
+        }
+        catch (Exception ex)
+        {
+            app.Logger.LogCritical(ex, "Catalog database initialization failed after {MaxAttempts} attempts; shutting down", maxInitAttempts);
+            throw;
+        }
+    }
 }
+
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler();
     app.UseHsts();
 }
 
@@ -119,8 +166,12 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapCatalogHealthChecks();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Catalog}/{action=Index}/{id?}");
 
 app.Run();
+
+public partial class Program { }

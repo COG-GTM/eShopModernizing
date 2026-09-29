@@ -4,7 +4,7 @@ This project represents the .NET Core foundation for migrating the eShopLegacyMV
 
 ## Features
 
-- **Modern .NET 6+ ASP.NET Core MVC application**
+- **Modern .NET 8 ASP.NET Core MVC application**
 - **Comprehensive Azure integrations:**
   - Azure Key Vault for configuration management
   - Azure Blob Storage for image handling
@@ -66,10 +66,27 @@ The application uses `appsettings.json` for configuration with support for Azure
 - Performance monitoring
 - Error tracking and diagnostics
 
+## Health Checks and Structured Logging
+
+| Endpoint | Checks | Used by |
+|---|---|---|
+| `/health/live` | process only | Docker `HEALTHCHECK` (default `HEALTHCHECK_PATH`) |
+| `/health/ready` | catalog DB (or mock data), Azure Blob Storage when enabled (degraded, not unhealthy) | compose health checks, `migrate-traffic.sh` |
+| `/health`, `/health/detailed` | all checks | operators / dashboards |
+| `/api/health`, `/api/health/detailed` | readiness / all checks, legacy response shape | existing consumers |
+
+Endpoints return 200 for Healthy/Degraded and 503 for Unhealthy. Each check times out after 5 seconds.
+
+Deployment metadata comes from the `Deployment` section (`Deployment__ServiceName`, `Deployment__Version`, `Deployment__Track`); the version defaults to the assembly informational version, which the Dockerfile sets from the `APP_VERSION` build argument. The metadata is added to every log scope, to Application Insights (`ApplicationVersion`, `DeploymentTrack`, cloud role name), and to the `X-App-Version` / `X-Deployment-Track` response headers.
+
+Logs are written as JSON to the console outside Development. Each request emits one `RequestCompleted` (EventId 1000) event; successful health probes are logged at Debug. The `X-Correlation-ID` request header is reused when it is at most 128 characters of `[A-Za-z0-9-_.:]`, otherwise the trace ID is used; the value is returned in the response and in ProblemDetails error responses.
+
+Tests: `dotnet test eShopModernized/tests/eShopCoreModernized.Tests`
+
 ## Development Setup
 
 1. **Prerequisites:**
-   - .NET 6+ SDK
+   - .NET 8 SDK
    - SQL Server LocalDB (for local development)
    - Visual Studio 2022 or VS Code
 

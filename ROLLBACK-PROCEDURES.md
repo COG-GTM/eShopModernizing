@@ -4,14 +4,21 @@
 
 1. **Immediate Traffic Rollback**
    ```bash
-   # Restore previous nginx configuration
+   # Restore the most recent nginx backup, reload and confirm the gateway stage
+   ./migrate-traffic.sh rollback
+
+   # or manually
    cp nginx-backups/nginx-[timestamp].conf nginx.conf
    sudo nginx -s reload
    ```
+   `migrate-traffic.sh` performs this automatically when a stage fails its health watch.
 
-2. **Verify Legacy System Health**
+2. **Verify System Health**
    ```bash
+   ./migrate-traffic.sh status
    curl http://localhost:5001/health
+   curl -i http://localhost:5002/health/ready
+   curl -I http://localhost/gateway/health   # X-Migration-Stage shows the active stage
    ```
 
 ## Gradual Rollback

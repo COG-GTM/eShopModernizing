@@ -7,6 +7,8 @@ namespace eShopCoreModernized.Services
 {
     public class ImageAzureStorage : IImageService
     {
+        public const string PicsContainerName = "pics";
+
         private readonly BlobServiceClient _blobServiceClient;
         private readonly IConfiguration _configuration;
         private readonly ICatalogConfiguration _catalogConfiguration;
