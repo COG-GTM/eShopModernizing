@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Primitives;
 using NUglify;
 using NUglify.Css;
 using NUglify.JavaScript;
@@ -111,20 +112,61 @@ namespace eShopNet8.Mvc.Hosting
         {
             foreach (var (path, contentType, files) in Bundles)
             {
-                // Built once at startup and cached, like the BundleResponse System.Web.Optimization keeps in the cache.
-                var content = BuildBundle(app.Environment.WebRootFileProvider, files, contentType);
+                var bundle = new CachedBundle(app.Environment.WebRootFileProvider, files, contentType);
                 app.MapGet(path, (HttpContext context) =>
                 {
                     // System.Web.Optimization's BundleHandler: publicly cacheable for a year.
                     context.Response.Headers.CacheControl = "public";
                     context.Response.Headers.Expires = DateTimeOffset.UtcNow.AddYears(1).ToString("R");
-                    return Results.Text(content, contentType, Encoding.UTF8);
+                    return Results.Text(bundle.Content, contentType, Encoding.UTF8);
                 });
             }
 
             app.MapControllers();
             app.MapControllerRoute("Default", "{controller=Catalog}/{action=Index}/{id?}");
             return app;
+        }
+
+        /// <summary>
+        /// Minified bundle built at startup and rebuilt when a source file changes, like the BundleResponse that
+        /// System.Web.Optimization caches with a CacheDependency on its files.
+        /// </summary>
+        internal sealed class CachedBundle
+        {
+            private readonly IFileProvider files;
+            private readonly string[] paths;
+            private readonly string contentType;
+            private volatile Snapshot current;
+
+            public CachedBundle(IFileProvider files, string[] paths, string contentType)
+            {
+                this.files = files;
+                this.paths = paths;
+                this.contentType = contentType;
+                current = Build();
+            }
+
+            public string Content
+            {
+                get
+                {
+                    var snapshot = current;
+                    if (snapshot.Changed.HasChanged)
+                    {
+                        current = snapshot = Build();
+                    }
+                    return snapshot.Content;
+                }
+            }
+
+            private Snapshot Build()
+            {
+                // Watch before reading so an edit made while minifying still invalidates this snapshot.
+                var changed = new CompositeChangeToken(paths.Select(files.Watch).ToList());
+                return new Snapshot(BuildBundle(files, paths, contentType), changed);
+            }
+
+            private sealed record Snapshot(string Content, IChangeToken Changed);
         }
 
         internal static string BuildBundle(IFileProvider files, IEnumerable<string> paths, string contentType)

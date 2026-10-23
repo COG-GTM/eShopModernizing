@@ -8,6 +8,9 @@
     <PackageReference Include="NUglify" Version="1.21.17" />
   </ItemGroup>
   <ItemGroup>
+    <InternalsVisibleTo Include="eShopNet8.Mvc.IntegrationTests" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\eShop.Catalog.Core\eShop.Catalog.Core.csproj" />
     <ProjectReference Include="..\eShop.Catalog.Infrastructure\eShop.Catalog.Infrastructure.csproj" />
   </ItemGroup>

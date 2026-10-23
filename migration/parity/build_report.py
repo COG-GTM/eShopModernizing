@@ -44,14 +44,14 @@ RULES = [
      "(the maintained fork of the Microsoft Ajax Minifier that WebGrease wraps), joining files with ';' like "
      "ScriptBundle. Before this fix /bundles/jquery was 271,752 vs 87,460 bytes; now 87,464 vs 87,460. Not a "
      "contract (CONTRACT.md excludes bundle bytes); the residual diffs are minifier output only.",
-     lambda m, f, k, d: f in JS_BUNDLE_FLOWS and k == "strict" and bundle_body_match(d, 1.01)),
+     lambda m, f, k, d: f in JS_BUNDLE_FLOWS and k == "strict" and bundle_body_match(f, d)),
     ("D5b-css-minify-failure", LEGACY, "/Content/css: legacy serves the stylesheet unminified behind a "
      "`/* Minification failed. Returning unminified contents. */` header; migrated serves it minified",
      "WebGrease CssMinify cannot parse Bootstrap 4 CSS custom properties (`--blue: #007bff;` -> run-time error "
      "CSS1062), so System.Web.Optimization falls back to the raw concatenation prefixed with the error list "
      "(199,898 bytes). NUglify parses it and the migrated bundle is minified (159,208 bytes; 197,431 before this fix). "
      "Same rules, smaller payload; bundle bytes are not a contract.",
-     lambda m, f, k, d: f == "mvc-bundle-content-css" and k == "strict" and bundle_body_match(d, 1.0)),
+     lambda m, f, k, d: f == "mvc-bundle-content-css" and k == "strict" and bundle_body_match(f, d)),
     ("D6-wf-validator-script", FORCED, "Migrated WebForms edit/create pages load one extra script (/js/webforms-validators.js)",
      "WebForms' WebResource.axd client validators (WebUIValidation.js) do not exist in ASP.NET Core; the Razor "
      "Pages port ships an equivalent validator script.",
@@ -94,12 +94,21 @@ EXTRA_ROW_HTML = ("$.response.body.html.text", "$.response.body.html.links", "$.
 EXTRA_ROW_PATHS = ("$.data_state.pager", "$.data_state.row_count", "$.data_state.rows")
 
 
-def bundle_body_match(diff: str, max_ratio: float) -> bool:
-    """Bundle body hash diffs, and length diffs only while the migrated body stays minified (<= max_ratio x legacy)."""
-    if diff.startswith("$.response.body.sha256"):
-        return True
-    m = re.match(r"\$\.response\.body\.length: (\d+) != expected (\d+)$", diff)
-    return bool(m) and int(m.group(1)) <= int(m.group(2)) * max_ratio
+# Exact NUglify output observed for the bundles whose bytes differ from WebGrease (sha256, length). Any other bundle
+# body (e.g. a bundle that lost code or went back to unminified) is left UNCLASSIFIED.
+MINIFIED_BUNDLES = {
+    "mvc-bundle-bundles-jquery": ("22e7ff9bf490546f8344db4c90b1b5648937778971aca1af69d601e52d019ab4", 87464),
+    "mvc-bundle-bundles-bootstrap": ("f68f5dff5374869cc91cd7e0c64f63b5c3805dee17d823c5335883a5ba20fe4e", 65044),
+    "mvc-bundle-content-css": ("cffb79ad18b644b7c9f54cffae99fea1a14ec71a75ca037ae668dd28f9d2d06f", 159208),
+}
+
+
+def bundle_body_match(flow_id: str, diff: str) -> bool:
+    """Bundle body diffs only when the migrated body is exactly the reviewed minified output."""
+    if flow_id not in MINIFIED_BUNDLES:
+        return False
+    sha, length = MINIFIED_BUNDLES[flow_id]
+    return diff.startswith((f'$.response.body.sha256: "{sha}" != expected', f"$.response.body.length: {length} != expected"))
 
 
 def s2_match(flow_id: str, kind: str, diff: str) -> bool:

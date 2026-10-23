@@ -1,4 +1,6 @@
 using eShop.Catalog.Infrastructure.Data;
+using eShopNet8.Mvc.Hosting;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -35,6 +37,34 @@ namespace eShopNet8.Mvc.IntegrationTests
             Assert.Contains(marker, body);
             Assert.True(body.Length < sourceLength * 0.85, $"{path}: {body.Length} chars vs {sourceLength} bytes of sources");
             Assert.DoesNotContain("\n\n", body);
+        }
+
+        [Fact]
+        public async Task Bundle_is_rebuilt_when_a_source_file_changes()
+        {
+            var root = Directory.CreateTempSubdirectory("bundle-").FullName;
+            try
+            {
+                File.WriteAllText(Path.Combine(root, "a.js"), "function first ( value ) { return value + 1 ; }");
+                using var files = new PhysicalFileProvider(root);
+                var bundle = new CatalogMvcExtensions.CachedBundle(files, new[] { "a.js" }, "text/javascript");
+                var before = bundle.Content;
+                Assert.Same(before, bundle.Content);
+
+                File.WriteAllText(Path.Combine(root, "a.js"), "function second ( value ) { return value + 2 ; }");
+                var deadline = DateTime.UtcNow.AddSeconds(15);
+                while (bundle.Content == before && DateTime.UtcNow < deadline)
+                {
+                    await Task.Delay(200);
+                }
+
+                Assert.Contains("second", bundle.Content);
+                Assert.DoesNotContain(" ( ", bundle.Content);
+            }
+            finally
+            {
+                Directory.Delete(root, true);
+            }
         }
 
         [Fact]

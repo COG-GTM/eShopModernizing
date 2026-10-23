@@ -10,7 +10,7 @@ LEGACY (.NET Framework 4.7.2 on Mono 6.12 + xsp4) and MIGRATED (.NET 8 Linux con
 - SQL mode (SQL Server 2022, UseMockData=false, both apps on the same database, reset before each sequence): 126/128 contract-identical (was 120/128 before the S2 fix), 24/24 data-state identical (was 19/24). Verdicts: 53 identical, 73 equivalent, 2 different (was 53/67/8). The 2 remaining contract diffs are S1 negative page (pre-existing legacy defect: EF6 negative OFFSET -> 500).
 - S2 (EF6 validate-on-save) FIXED and observed: wf-create-post-invalid-negative-stock is now 500 on both sides with no row written, and no downstream WebForms data-state drift. D5 (bundles) FIXED and observed: all four script bundles are minified (/bundles/jqueryval and /bundles/modernizr byte-identical to WebGrease, /bundles/jquery 87,464 vs 87,460 bytes, /bundles/bootstrap same length, different bytes); /Content/css is minified on the migrated side while legacy WebGrease fails on Bootstrap 4 custom properties and serves it unminified (D5b, legacy defect).
 - OPEN regressions: none.
-- Migrated tests: 204 passed / 0 failed / 0 skipped. Legacy: no unit/integration test project exists; the 128-check transcript suite is the legacy baseline suite and passed 128/128 on legacy in mock mode.
+- Migrated tests: 205 passed / 0 failed / 0 skipped. Legacy: no unit/integration test project exists; the 128-check transcript suite is the legacy baseline suite and passed 128/128 on legacy in mock mode.
 
 ## Environment
 
@@ -431,7 +431,7 @@ SQL mode WebForms create/edit now enforces what EF6 ValidateOnSaveEnabled enforc
 
 ## Test suites
 
-- Migrated: `dotnet test src-net8/eShopNet8.sln` -> eShop.Catalog.UnitTests 70/70 (incl. Testcontainers SQL; +2 save-validator hook tests), eShopNet8.Mvc.IntegrationTests 74/74 (+6 bundle minification tests), eShopNet8.WebForms.IntegrationTests 60/60 (+20 LegacyWebFormsSaveValidator rule tests); total 204 passed, 0 failed, 0 skipped. Build: 0 errors, 4 NU1902 warnings (AngleSharp 1.1.2 advisory in integration-test projects, pre-existing).
+- Migrated: `dotnet test src-net8/eShopNet8.sln` -> eShop.Catalog.UnitTests 70/70 (incl. Testcontainers SQL; +2 save-validator hook tests), eShopNet8.Mvc.IntegrationTests 75/75 (+7 bundle minification/rebuild tests), eShopNet8.WebForms.IntegrationTests 60/60 (+20 LegacyWebFormsSaveValidator rule tests); total 205 passed, 0 failed, 0 skipped. Build: 0 errors, 4 NU1902 warnings (AngleSharp 1.1.2 advisory in integration-test projects, pre-existing).
 - Legacy: no test projects exist in eShopLegacyMVCSolution / eShopLegacyWebFormsSolution. The transcript suite is the legacy baseline suite: legacy 128/128 (mock), migrated 128/128 (mock).
 
 ## Screenshots
