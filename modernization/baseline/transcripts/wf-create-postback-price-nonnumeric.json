@@ -1,0 +1,68 @@
+{
+ "id": "wf-create-postback-price-nonnumeric",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Create",
+  "form": [
+   [
+    "__VIEWSTATE",
+    "<masked>"
+   ],
+   [
+    "ctl00$MainContent$Name",
+    "Parity Test Mug"
+   ],
+   [
+    "ctl00$MainContent$Description",
+    "Created by the parity harness"
+   ],
+   [
+    "ctl00$MainContent$Brand",
+    "3"
+   ],
+   [
+    "ctl00$MainContent$Type",
+    "1"
+   ],
+   [
+    "ctl00$MainContent$Price",
+    "abc"
+   ],
+   [
+    "ctl00$MainContent$Stock",
+    "10"
+   ],
+   [
+    "ctl00$MainContent$Restock",
+    "2"
+   ],
+   [
+    "ctl00$MainContent$Maxstock",
+    "50"
+   ],
+   [
+    "__EVENTVALIDATION",
+    "<masked>"
+   ],
+   [
+    "ctl00$MainContent$ctl06",
+    "[ Create ]"
+   ]
+  ]
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "00f4c18ff0007d7172d14eaf0f4c2e2ddfc1e419eff9f5dfbdf94c2cde27257c",
+  "body": {
+   "kind": "opaque",
+   "length": 8253
+  }
+ },
+ "sequence": "wf-create-unvalidated",
+ "description": "decimal.Parse -> 500 (quirk Q8)",
+ "quirk": "Q8",
+ "data_state": "data-state/wf-create-postback-price-nonnumeric.json"
+}

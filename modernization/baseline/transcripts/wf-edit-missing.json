@@ -1,0 +1,21 @@
+{
+ "id": "wf-edit-missing",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Edit/999"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "55d7074c526186c0e3ba5d0491a2d48de745462cc34926b7509bf0bcdc7ceba8",
+  "body": {
+   "kind": "opaque",
+   "length": 5964
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "500 (quirk Q7)",
+ "quirk": "Q7"
+}

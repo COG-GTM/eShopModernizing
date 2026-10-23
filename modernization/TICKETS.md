@@ -1,0 +1,132 @@
+# Implementation tickets
+
+Source of truth: `modernization/tickets.json` (same content). All ticket PRs target `devin/hcl-net8-eshop`.
+
+## Rules for every ticket
+- Edit only your `owned_paths` (globs are disjoint across tickets). Frozen scaffold files must not be edited: `eShopNet8/global.json`, `eShopNet8/eShopNet8.sln`, `eShopNet8/.gitignore`, `eShopNet8/src/*/*.csproj`, `eShopNet8/src/*/Program.cs`, `eShopNet8/src/*/appsettings.json`, `eShopNet8/src/*/Properties/**`, `eShopNet8/src/eShop.Catalog.Core/**`, `modernization/baseline/**`, `modernization/parity/*.py`, `modernization/parity/requirements.txt`, `modernization/parity/legacy/**`, `modernization/*.md`, `modernization/tickets.json`.
+- Wave 1 (T1-T5) builds against the scaffold alone; wave 2 (T6-T7) is best merged after wave 1.
+- Program.cs files are frozen and call one extension method pair per ticket; implement inside your stub file, keep signatures.
+- Package references for all tickets are already in the frozen csproj files (EF Core 8.0.11 SqlServer/Design, HealthChecks.EntityFrameworkCore, Mvc.Testing, EF InMemory/Sqlite for tests). T7 owns the test csproj files.
+- Shared types in `eShop.Catalog.Core` (frozen): `CatalogItem/CatalogBrand/CatalogType` (legacy DataAnnotations verbatim), `ICatalogService`, `PaginatedItemsViewModel<T>`, `CatalogSettings` + `AddCatalogSettings` (`UseMockData` default true, env/CLI override), `Seed.PreconfiguredData`.
+- Parity: `python3 modernization/parity/replay.py --mvc-url http://127.0.0.1:5200 --webforms-url http://127.0.0.1:5201 --restart-cmd-mvc CMD --restart-cmd-webforms CMD --report-dir DIR` (CONTRACT.md). Restart commands must not render a catalog page while probing.
+- Commit messages contain `feature` or `bug`; PR descriptions end with `Devin-Org: engineering`.
+
+| ID | Wave | Title | Owned paths |
+|---|---|---|---|
+| T1 | 1 | EF Core 8 data layer, HiLo sequences and SQL seeding | `eShopNet8/src/eShop.Catalog.Infrastructure/Data/**`<br>`eShopNet8/src/eShop.Catalog.Infrastructure/Setup/**` |
+| T2 | 1 | Catalog service layer: mock service, DI, UseMockData toggle, ILogger logging | `eShopNet8/src/eShop.Catalog.Infrastructure/Services/**`<br>`eShopNet8/src/eShop.Catalog.Infrastructure/Logging/**` |
+| T3 | 1 | MVC catalog UI: controllers, Razor views, picture route, static assets, session footer | `eShopNet8/src/eShopNet8.Mvc/Controllers/**`<br>`eShopNet8/src/eShopNet8.Mvc/Views/**`<br>`eShopNet8/src/eShopNet8.Mvc/ViewModels/**`<br>`eShopNet8/src/eShopNet8.Mvc/wwwroot/**`<br>`eShopNet8/src/eShopNet8.Mvc/Pics/**`<br>`eShopNet8/src/eShopNet8.Mvc/Extensions/**` |
+| T4 | 1 | Web API: brands endpoints and /api/files with a safe BinaryFormatter replacement | `eShopNet8/src/eShopNet8.Mvc/Api/**` |
+| T5 | 1 | WebForms catalog -> Razor Pages (list/paging, details, create, edit, delete, about, contact) | `eShopNet8/src/eShopNet8.WebForms/Pages/**`<br>`eShopNet8/src/eShopNet8.WebForms/wwwroot/**`<br>`eShopNet8/src/eShopNet8.WebForms/Pics/**`<br>`eShopNet8/src/eShopNet8.WebForms/Extensions/**` |
+| T6 | 2 | Linux containers, docker compose (mock + SQL profiles), health endpoints, GitHub Actions CI | `eShopNet8/docker/**`<br>`eShopNet8/docker-compose*.yml`<br>`eShopNet8/.dockerignore`<br>`eShopNet8/src/eShopNet8.Mvc/Dockerfile`<br>`eShopNet8/src/eShopNet8.WebForms/Dockerfile`<br>`eShopNet8/src/eShopNet8.Mvc/Health/**`<br>`eShopNet8/src/eShopNet8.WebForms/Health/**`<br>`.github/workflows/eshopnet8-*.yml`<br>`modernization/parity/net8/**` |
+| T7 | 2 | xUnit unit tests and transcript-driven WebApplicationFactory integration tests | `eShopNet8/tests/**` |
+
+## T1 - EF Core 8 data layer, HiLo sequences and SQL seeding (wave 1)
+
+Owned paths: `eShopNet8/src/eShop.Catalog.Infrastructure/Data/**`, `eShopNet8/src/eShop.Catalog.Infrastructure/Setup/**`
+
+Spec:
+- Implement `AddCatalogData(IServiceCollection, IConfiguration)` and `InitializeCatalogDataAsync(IServiceProvider)` in `Data/CatalogDataExtensions.cs` (stub exists; keep signatures).
+- When `CatalogSettings.UseMockData == false`: register `CatalogDBContext : DbContext` (scoped, SQL Server, connection string `ConnectionStrings:CatalogDBContext`) and `ICatalogService` -> EF `CatalogService` (scoped, in `Data/`). When true: register nothing.
+- Schema identical to legacy EF6: tables `Catalog`, `CatalogBrand`, `CatalogType`; columns/lengths/required as in legacy `CatalogDBContext.OnModelCreating` (INVENTORY section 4); `Price` decimal(18,2); `PictureUri` not mapped.
+- Ids from sequences `catalog_hilo`, `catalog_brand_hilo`, `catalog_type_hilo` (INCREMENT BY 10) via EF Core `UseHiLo`.
+- Seeding = legacy `CatalogDBInitializer`: create DB if missing, sequences, seed `eShop.Catalog.Core.Seed.PreconfiguredData`; when `UseCustomizationData=true` read `Setup/CatalogBrands.csv`, `CatalogTypes.csv`, `CatalogItems.csv` and unzip `CatalogItems.zip` pictures (copy the legacy Setup files into `Setup/`).
+- EF `CatalogService` semantics = legacy: `GetCatalogItemsPaginated` orders by Id, Include brand/type, Skip/Take (negative values -> 500 like legacy SQL mode); `FindCatalogItem` includes brand/type; Update/Remove without null checks (unknown id -> 500, Q6/Q18).
+- Log via `ILogger<T>`; no log4net.
+
+Acceptance:
+- `dotnet build eShopNet8/eShopNet8.sln` 0 errors.
+- With the `sql` container: `UseMockData=false dotnet run --project eShopNet8/src/eShopNet8.Mvc` creates/seeds the DB: 12 items, 5 brands, 4 types, 3 sequences (sqlcmd).
+- Replay vs SQL-mode target reproduces `modernization/baseline/legacy-sql-vs-mock/`: `python3 modernization/parity/replay.py --mvc-url http://127.0.0.1:5200 --restart-cmd-mvc '<drop DB + restart in SQL mode>' --report-dir /tmp/t1` -> differences only in the 6 flows listed in BASELINE.md section 5 (requires T3/T4 merged; before that, demonstrate with unit/integration tests against SQL Server or Sqlite).
+- First created item id is 13 (flow `mvc-create-post-valid` data-state).
+
+## T2 - Catalog service layer: mock service, DI, UseMockData toggle, ILogger logging (wave 1)
+
+Owned paths: `eShopNet8/src/eShop.Catalog.Infrastructure/Services/**`, `eShopNet8/src/eShop.Catalog.Infrastructure/Logging/**`
+
+Spec:
+- Implement `AddCatalogServices` and `AddCatalogLogging` in `Services/CatalogServicesExtensions.cs` (stub exists).
+- `UseMockData=true` (default; env `UseMockData=false` or CLI `--UseMockData=false` override): `AddSingleton<ICatalogService, CatalogServiceMock>`. `false`: register nothing (T1 registers the EF service).
+- `CatalogServiceMock` = legacy behaviour exactly (INVENTORY sections 4/10): in-memory list from `PreconfiguredData`; `GetCatalogItemsPaginated` = OrderBy(Id).Skip(pageSize*pageIndex).Take(pageSize) and composes CatalogBrand/CatalogType onto the stored items only when listing (Q4 cold-navigation quirk must be reproduced: flows `mvc-details-cold-12`, `wf-details-cold-1`); create assigns max(id)+1; update replaces by id (unknown id no-op); remove is a no-op for unknown items.
+- Thread-safe enough for concurrent requests (lock around list mutations) without changing observable results.
+- Logging: console ILogger; per-request activity/correlation scope equivalent to legacy `Application_BeginRequest` log4net properties; levels from `Logging` config. No log4net package.
+
+Acceptance:
+- Unit tests in T7 cover mock paging/CRUD; until then `dotnet build` 0 errors.
+- After T3/T5 are merged: `python3 modernization/parity/replay.py --mvc-url http://127.0.0.1:5200 --webforms-url http://127.0.0.1:5201 --restart-cmd-mvc <restart> --restart-cmd-webforms <restart> --report-dir /tmp/t2 --only mvc-cold-reads mvc-create mvc-edit mvc-delete wf-cold-reads wf-create wf-edit wf-delete` -> no `different` verdicts.
+- `--UseMockData=false` with no T1 SQL available fails fast with a clear error, not a silent fallback.
+
+## T3 - MVC catalog UI: controllers, Razor views, picture route, static assets, session footer (wave 1)
+
+Owned paths: `eShopNet8/src/eShopNet8.Mvc/Controllers/**`, `eShopNet8/src/eShopNet8.Mvc/Views/**`, `eShopNet8/src/eShopNet8.Mvc/ViewModels/**`, `eShopNet8/src/eShopNet8.Mvc/wwwroot/**`, `eShopNet8/src/eShopNet8.Mvc/Pics/**`, `eShopNet8/src/eShopNet8.Mvc/Extensions/**`
+
+Spec:
+- Implement `AddCatalogMvc`, `UseCatalogMvc`, `MapCatalogMvc` in `Extensions/CatalogMvcExtensions.cs` (replace the placeholder `/`).
+- Port `CatalogController` (Index/Details/Create/Edit/Delete, GET+POST, `[ValidateAntiForgeryToken]`, `Bind` lists, 400 for missing id, 404 for unknown id, 302 to `/` on success) and `PicController` (`items/{catalogItemId:int}/pic`, 400 for id<=0, 404 unknown, image/png|gif|jpeg... by extension from `Pics/`). Default route `{controller=Catalog}/{action=Index}/{id?}`.
+- Port `_Layout`, Catalog views, `_CatalogTable`/pager partials so visible text/structure normalise identically (CONTRACT section 4): titles `X - Catalog manager (MVC)`, `[ Save ]`/`[ Create ]` captions, price `$19.50` (en-US currency), validation messages from the Core annotations, form field names `Name`, `Price`, `CatalogBrandId`...
+- Static files with legacy URLs: `/Content/*.css` incl. lower-case `/Content/site.css`, `/images/*` (lower-case), `/Pics/*.png`, `/fonts/*`, `/Scripts/*.js`, `/favicon.ico`; bundle URLs `/Content/css`, `/bundles/{jquery,jqueryval,modernizr,bootstrap}` return 200 with css/js content.
+- Session footer `{MachineName}, {session start time M/d/yyyy h:mm:ss tt}` via ASP.NET Core session.
+- Missing/invalid antiforgery token: legacy answers 500 (HttpAntiForgeryException; flows `mvc-create-post-missing-antiforgery`, `mvc-edit-post-missing-antiforgery`, `mvc-delete-post-missing-antiforgery`). ASP.NET Core defaults to 400: map antiforgery validation failures to 500 to keep status parity, with nothing saved (data-state snapshots must match).
+- Must call `app.MapControllers()`-style mapping only for its own controllers; T4 maps the API with minimal endpoints.
+
+Acceptance:
+- `python3 modernization/parity/replay.py --mvc-url http://127.0.0.1:5200 --restart-cmd-mvc <restart> --report-dir /tmp/t3 --only mvc-cold-reads mvc-reads mvc-create mvc-create-invalid mvc-edit mvc-delete` -> all non-API flows identical/equivalent (API flows owned by T4 may differ until T4 merges).
+- `python3 modernization/parity/screenshots.py --prefix net8 --mvc-url http://127.0.0.1:5200` pages visually match `legacy-mvc-*.png`.
+
+## T4 - Web API: brands endpoints and /api/files with a safe BinaryFormatter replacement (wave 1)
+
+Owned paths: `eShopNet8/src/eShopNet8.Mvc/Api/**`
+
+Spec:
+- Implement `AddCatalogApi` / `MapCatalogApi` in `Api/CatalogApiExtensions.cs` using minimal-API endpoint groups (do not depend on T3's controller mapping).
+- `GET /api/brands` -> 200 JSON array `[{"Id":1,"Brand":"Azure"},...]` (PascalCase like Web API 2/Newtonsoft); `GET /api/brands/{id:int}` -> 200 object or 404; non-int id -> 400 (flow `mvc-api-brand-nonnumeric`); `DELETE /api/brands/{id}` -> 200 without deleting for existing id, 404 for unknown (Q3).
+- `GET /api/files`: legacy returns a BinaryFormatter stream (Q2). Replacement: `application/json` array of `{Id, Brand}` built from `GetCatalogBrands()`. BinaryFormatter must stay disabled (`EnableUnsafeBinaryFormatterSerialization` false/default; no `System.Runtime.Serialization.Formatters.Binary` usage anywhere; add a test in T7).
+- `/api` stays 404 (Q1); XML content negotiation (Q16) is not reproduced unless trivial - document.
+
+Acceptance:
+- `python3 modernization/parity/replay.py --mvc-url http://127.0.0.1:5200 --report-dir /tmp/t4 --only mvc-reads mvc-api-mutations --accept-quirks` -> `mvc-api-*` flows identical/equivalent except `mvc-api-files` (semantic brand-list match, R10) and `mvc-api-brands-xml` (accepted Q16).
+- `grep -r BinaryFormatter eShopNet8/src` finds nothing.
+
+## T5 - WebForms catalog -> Razor Pages (list/paging, details, create, edit, delete, about, contact) (wave 1)
+
+Owned paths: `eShopNet8/src/eShopNet8.WebForms/Pages/**`, `eShopNet8/src/eShopNet8.WebForms/wwwroot/**`, `eShopNet8/src/eShopNet8.WebForms/Pics/**`, `eShopNet8/src/eShopNet8.WebForms/Extensions/**`
+
+Spec:
+- Implement `AddCatalogPages`, `UseCatalogPages`, `MapCatalogPages` in `Extensions/CatalogPagesExtensions.cs` (replace placeholder).
+- Legacy URLs preserved: `/`, `/Default`, `/Default.aspx`, `/Default/index/{index}/size/{size}`, `/Catalog/Create`, `/Catalog/Edit/{id}`, `/Catalog/Details/{id}`, `/Catalog/Delete/{id}`, `/About.aspx`, `/Contact.aspx`, `/Catalog/Details.aspx` (page routes/conventions).
+- Markup normalises like legacy (CONTRACT section 4): page titles, `Catalog manager (Web Forms)`, list columns, `/Pics/{file}` thumbnails, pager text, Edit/Details/Delete links, form field logical names `Name, Description, Brand, Type, Price, Stock, Restock, Maxstock`, submit captions `[ Create ]`, `[ Save ]`, `[ Delete ]`, POST then 302 to `/`.
+- Reproduce legacy server behaviour (quirks Q4/Q5/Q7/Q8): unknown id -> 500, size 0 / non-numeric route -> 500, server validators not enforced (empty name / out-of-range stock saved, non-numeric price -> 500). Client-side validators markup may be kept.
+- No ViewState: the harness posts by logical name; antiforgery tokens are allowed (harvested automatically). Footer session text as in T3.
+
+Acceptance:
+- `python3 modernization/parity/replay.py --webforms-url http://127.0.0.1:5201 --restart-cmd-webforms <restart> --report-dir /tmp/t5` -> all `wf-*` flows identical/equivalent (or accepted quirks listed).
+- `python3 modernization/parity/screenshots.py --prefix net8 --webforms-url http://127.0.0.1:5201` matches `legacy-webforms-*.png`.
+
+## T6 - Linux containers, docker compose (mock + SQL profiles), health endpoints, GitHub Actions CI (wave 2)
+
+Owned paths: `eShopNet8/docker/**`, `eShopNet8/docker-compose*.yml`, `eShopNet8/.dockerignore`, `eShopNet8/src/eShopNet8.Mvc/Dockerfile`, `eShopNet8/src/eShopNet8.WebForms/Dockerfile`, `eShopNet8/src/eShopNet8.Mvc/Health/**`, `eShopNet8/src/eShopNet8.WebForms/Health/**`, `.github/workflows/eshopnet8-*.yml`, `modernization/parity/net8/**`
+
+Spec:
+- Multi-stage Dockerfiles: build on `mcr.microsoft.com/dotnet/sdk:8.0`, run on `mcr.microsoft.com/dotnet/aspnet:8.0`, non-root, `ASPNETCORE_URLS=http://+:8080`.
+- `docker-compose.yml` with profiles `mock` (both apps, `UseMockData=true`, host ports 5200/5201) and `sql` (SQL Server 2022 + both apps with `UseMockData=false`, connection string from env/.env, healthcheck-gated startup). No committed secrets.
+- Implement `AddCatalogHealth`/`MapCatalogHealth` in both apps: `/health` (liveness) and `/health/ready` (EF DbContext check in SQL mode).
+- `modernization/parity/net8/start-net8.sh mvc|webforms [--sql]`: restart command for replay (build once, start, probe `/health`).
+- GitHub Actions `eshopnet8-ci.yml` on pull_request to `devin/hcl-net8-eshop`: setup-dotnet 8, restore/build/test `eShopNet8/eShopNet8.sln`, docker build both images, run the parity replay against the mock-profile containers and upload the report.
+
+Acceptance:
+- `docker compose -f eShopNet8/docker-compose.yml --profile mock up -d` -> 5200/5201 answer; `--profile sql` seeds the DB.
+- CI workflow green on its PR.
+- `python3 modernization/parity/replay.py --mvc-url http://127.0.0.1:5200 --webforms-url http://127.0.0.1:5201 --restart-cmd-mvc 'modernization/parity/net8/start-net8.sh mvc' --restart-cmd-webforms 'modernization/parity/net8/start-net8.sh webforms' --report-dir /tmp/t6` runs end to end.
+
+## T7 - xUnit unit tests and transcript-driven WebApplicationFactory integration tests (wave 2)
+
+Owned paths: `eShopNet8/tests/**`
+
+Spec:
+- Unit tests (`tests/eShop.Catalog.UnitTests`): DataAnnotations messages, PaginatedItemsViewModel, settings toggle, CatalogServiceMock paging/CRUD/quirks, EF CatalogService against Sqlite or InMemory, seeding/HiLo config, /api/files serializer, BinaryFormatter-disabled assertion.
+- Integration tests (`tests/eShopNet8.IntegrationTests`): `WebApplicationFactory<MvcApp::Program>` / `<PagesApp::Program>` (extern aliases already set up); load `baseline/flows.json` + transcripts (copied to output), run every sequence in-process with a fresh factory per restart-sequence, harvest antiforgery tokens, normalise like `modernization/parity/normalize.py` (port the rules in CONTRACT.md to C#) and assert status/location/content-type/body equality; quirk-tagged flows may be marked as known divergences with a reason.
+- Keep the scaffold smoke tests passing (replace the `/` placeholder assertions once T3/T5 land).
+
+Acceptance:
+- `dotnet test eShopNet8/eShopNet8.sln` green.
+- Integration test report lists 155 baseline flows with per-flow pass/known-divergence, matching `replay.py` verdicts for the same build.

@@ -1,0 +1,63 @@
+{
+ "id": "mvc-edit-post-missing-antiforgery",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Edit/2",
+  "form": [
+   [
+    "Id",
+    "2"
+   ],
+   [
+    "Name",
+    "Should not save"
+   ],
+   [
+    "Description",
+    ".NET Black & White Mug"
+   ],
+   [
+    "CatalogBrandId",
+    "2"
+   ],
+   [
+    "CatalogTypeId",
+    "1"
+   ],
+   [
+    "Price",
+    "8.50"
+   ],
+   [
+    "PictureFileName",
+    "2.png"
+   ],
+   [
+    "AvailableStock",
+    "100"
+   ],
+   [
+    "RestockThreshold",
+    "0"
+   ],
+   [
+    "MaxStockThreshold",
+    "0"
+   ]
+  ]
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e",
+  "body": {
+   "kind": "opaque",
+   "length": 17744
+  }
+ },
+ "sequence": "mvc-edit",
+ "description": "Edit without antiforgery -> 500",
+ "data_state": "data-state/mvc-edit-post-missing-antiforgery.json"
+}

@@ -1,0 +1,21 @@
+{
+ "id": "wf-delete-cold-3",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Delete/3"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "108418d4e22c17104e894169adaf2ae89676c53d3793476ee88d13bbb64531e3",
+  "body": {
+   "kind": "opaque",
+   "length": 9507
+  }
+ },
+ "sequence": "wf-cold-reads",
+ "description": "Cold delete -> 500",
+ "quirk": "Q4"
+}

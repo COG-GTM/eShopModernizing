@@ -1,0 +1,21 @@
+{
+ "id": "wf-details-cold-1",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Details/1"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "e048c0b93cc7d7e31c5e602fd91fe7562ede5f4b6e15443389e46a11073a3310",
+  "body": {
+   "kind": "opaque",
+   "length": 9511
+  }
+ },
+ "sequence": "wf-cold-reads",
+ "description": "Cold details -> NullReferenceException 500",
+ "quirk": "Q4"
+}

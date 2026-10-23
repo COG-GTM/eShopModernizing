@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.11" />
+    <PackageReference Include="AngleSharp" Version="1.7.3" />
+    <PackageReference Include="Xunit.SkippableFact" Version="1.4.13" />
+  </ItemGroup>
+
+  <!-- Both apps define a global `Program`; extern aliases keep them apart. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\eShopNet8.Mvc\eShopNet8.Mvc.csproj" Aliases="MvcApp" />
+    <ProjectReference Include="..\..\src\eShopNet8.WebForms\eShopNet8.WebForms.csproj" Aliases="PagesApp" />
+  </ItemGroup>
+
+  <!-- Legacy baseline transcripts are the oracle for transcript-driven tests (T7). -->
+  <ItemGroup>
+    <Content Include="..\..\..\modernization\baseline\flows.json" Link="baseline\flows.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\..\modernization\baseline\transcripts\*.json" Link="baseline\transcripts\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\..\modernization\baseline\data-state\*.json" Link="baseline\data-state\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Parity\known-divergences.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

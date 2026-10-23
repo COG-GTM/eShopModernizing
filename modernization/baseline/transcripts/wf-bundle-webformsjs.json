@@ -1,0 +1,21 @@
+{
+ "id": "wf-bundle-webformsjs",
+ "request": {
+  "method": "GET",
+  "path": "/bundles/WebFormsJs"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/javascript"
+  },
+  "raw_sha256": "c33d2eeb46f41ebdccc2b62b178a76466645fc91a640c3e718a9999a6b4b9965",
+  "body": {
+   "kind": "opaque",
+   "length": 61394
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "bundle",
+ "compare": "status"
+}

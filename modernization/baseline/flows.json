@@ -1,0 +1,1387 @@
+{
+ "version": 1,
+ "description": "Declarative legacy flows; see modernization/CONTRACT.md. Sequences run in order; restart=true restarts the app (fresh mock data) first.",
+ "apps": {
+  "mvc": {
+   "legacy_port": 5100,
+   "target_port": 5200,
+   "snapshot_items": "/?pageSize=1000&pageIndex=0",
+   "snapshot_lookups": "/Catalog/Create"
+  },
+  "webforms": {
+   "legacy_port": 5101,
+   "target_port": 5201,
+   "snapshot_items": "/Default/index/0/size/1000",
+   "snapshot_lookups": "/Catalog/Create"
+  }
+ },
+ "sequences": [
+  {
+   "id": "mvc-cold-reads",
+   "app": "mvc",
+   "restart": true,
+   "description": "Right after a restart, before any list page has been rendered (mock navigation properties not yet composed, quirk Q4).",
+   "flows": [
+    {
+     "id": "mvc-details-cold-12",
+     "method": "GET",
+     "path": "/Catalog/Details/12",
+     "description": "Details of an item before any list render: Brand/Type render empty in mock mode",
+     "quirk": "Q4"
+    },
+    {
+     "id": "mvc-edit-cold-11",
+     "method": "GET",
+     "path": "/Catalog/Edit/11",
+     "description": "Edit form before any list render",
+     "quirk": "Q4"
+    },
+    {
+     "id": "mvc-delete-cold-10",
+     "method": "GET",
+     "path": "/Catalog/Delete/10",
+     "description": "Delete confirmation before any list render",
+     "quirk": "Q4"
+    }
+   ]
+  },
+  {
+   "id": "mvc-reads",
+   "app": "mvc",
+   "restart": false,
+   "description": "Read-only flows (continues after mvc-cold-reads).",
+   "flows": [
+    {
+     "id": "mvc-index-root",
+     "method": "GET",
+     "path": "/",
+     "description": "Default list (pageSize 10, pageIndex 0)"
+    },
+    {
+     "id": "mvc-index-catalog",
+     "method": "GET",
+     "path": "/Catalog",
+     "description": "Controller default action"
+    },
+    {
+     "id": "mvc-index-catalog-index",
+     "method": "GET",
+     "path": "/Catalog/Index",
+     "description": "Explicit action"
+    },
+    {
+     "id": "mvc-index-size5",
+     "method": "GET",
+     "path": "/?pageSize=5",
+     "description": "Page size 5"
+    },
+    {
+     "id": "mvc-index-size5-page1",
+     "method": "GET",
+     "path": "/?pageSize=5&pageIndex=1",
+     "description": "Second page of 5"
+    },
+    {
+     "id": "mvc-index-size5-page2",
+     "method": "GET",
+     "path": "/?pageSize=5&pageIndex=2",
+     "description": "Last partial page"
+    },
+    {
+     "id": "mvc-index-size10-page1",
+     "method": "GET",
+     "path": "/Catalog/Index?pageSize=10&pageIndex=1",
+     "description": "Second page of 10 (2 items)"
+    },
+    {
+     "id": "mvc-index-beyond",
+     "method": "GET",
+     "path": "/?pageIndex=5",
+     "description": "Page beyond the end (empty table)"
+    },
+    {
+     "id": "mvc-index-size100",
+     "method": "GET",
+     "path": "/?pageSize=100",
+     "description": "Page size larger than catalog"
+    },
+    {
+     "id": "mvc-index-size1-page11",
+     "method": "GET",
+     "path": "/?pageSize=1&pageIndex=11",
+     "description": "Last single-item page"
+    },
+    {
+     "id": "mvc-index-size0",
+     "method": "GET",
+     "path": "/?pageSize=0",
+     "description": "pageSize=0 -> divide by zero -> 500 (quirk Q5)",
+     "quirk": "Q5"
+    },
+    {
+     "id": "mvc-index-negative-page",
+     "method": "GET",
+     "path": "/?pageIndex=-1",
+     "description": "Negative page index (Skip(negative) = first page in mock)"
+    },
+    {
+     "id": "mvc-index-negative-size",
+     "method": "GET",
+     "path": "/?pageSize=-1",
+     "description": "Negative page size (Take(-1) = empty, TotalPages -12)"
+    },
+    {
+     "id": "mvc-index-size-nonnumeric",
+     "method": "GET",
+     "path": "/?pageSize=abc",
+     "description": "Unparsable pageSize -> default 10"
+    },
+    {
+     "id": "mvc-index-page-nonnumeric",
+     "method": "GET",
+     "path": "/?pageIndex=x",
+     "description": "Unparsable pageIndex -> default 0"
+    },
+    {
+     "id": "mvc-details-found",
+     "method": "GET",
+     "path": "/Catalog/Details/1",
+     "description": "Details found"
+    },
+    {
+     "id": "mvc-details-found-12",
+     "method": "GET",
+     "path": "/Catalog/Details/12",
+     "description": "Details of last item (after list render)"
+    },
+    {
+     "id": "mvc-details-missing",
+     "method": "GET",
+     "path": "/Catalog/Details/999",
+     "description": "Unknown id -> 404"
+    },
+    {
+     "id": "mvc-details-no-id",
+     "method": "GET",
+     "path": "/Catalog/Details",
+     "description": "No id -> 400"
+    },
+    {
+     "id": "mvc-details-bad-id",
+     "method": "GET",
+     "path": "/Catalog/Details/abc",
+     "description": "Non-int id binds null -> 400"
+    },
+    {
+     "id": "mvc-details-query-id",
+     "method": "GET",
+     "path": "/Catalog/Details?id=2",
+     "description": "Id from query string"
+    },
+    {
+     "id": "mvc-details-zero",
+     "method": "GET",
+     "path": "/Catalog/Details/0",
+     "description": "Id 0 -> 404"
+    },
+    {
+     "id": "mvc-edit-found",
+     "method": "GET",
+     "path": "/Catalog/Edit/1",
+     "description": "Edit form"
+    },
+    {
+     "id": "mvc-edit-missing",
+     "method": "GET",
+     "path": "/Catalog/Edit/999",
+     "description": "404"
+    },
+    {
+     "id": "mvc-edit-no-id",
+     "method": "GET",
+     "path": "/Catalog/Edit",
+     "description": "400"
+    },
+    {
+     "id": "mvc-edit-bad-id",
+     "method": "GET",
+     "path": "/Catalog/Edit/abc",
+     "description": "400"
+    },
+    {
+     "id": "mvc-delete-found",
+     "method": "GET",
+     "path": "/Catalog/Delete/1",
+     "description": "Delete confirmation"
+    },
+    {
+     "id": "mvc-delete-missing",
+     "method": "GET",
+     "path": "/Catalog/Delete/999",
+     "description": "404"
+    },
+    {
+     "id": "mvc-delete-no-id",
+     "method": "GET",
+     "path": "/Catalog/Delete",
+     "description": "400"
+    },
+    {
+     "id": "mvc-delete-bad-id",
+     "method": "GET",
+     "path": "/Catalog/Delete/abc",
+     "description": "400"
+    },
+    {
+     "id": "mvc-create-get",
+     "method": "GET",
+     "path": "/Catalog/Create",
+     "description": "Create form with brand/type dropdowns"
+    },
+    {
+     "id": "mvc-pic-1",
+     "method": "GET",
+     "path": "/items/1/pic",
+     "description": "Picture via named attribute route"
+    },
+    {
+     "id": "mvc-pic-12",
+     "method": "GET",
+     "path": "/items/12/pic",
+     "description": "Picture of last item"
+    },
+    {
+     "id": "mvc-pic-zero",
+     "method": "GET",
+     "path": "/items/0/pic",
+     "description": "id 0 -> 400"
+    },
+    {
+     "id": "mvc-pic-negative",
+     "method": "GET",
+     "path": "/items/-1/pic",
+     "description": "negative id -> 400"
+    },
+    {
+     "id": "mvc-pic-missing",
+     "method": "GET",
+     "path": "/items/999/pic",
+     "description": "unknown -> 404"
+    },
+    {
+     "id": "mvc-pic-nonnumeric",
+     "method": "GET",
+     "path": "/items/abc/pic",
+     "description": "route constraint fails -> 404"
+    },
+    {
+     "id": "mvc-api-brands",
+     "method": "GET",
+     "path": "/api/brands",
+     "description": "Brand list JSON"
+    },
+    {
+     "id": "mvc-api-brands-xml",
+     "method": "GET",
+     "path": "/api/brands",
+     "description": "Content negotiation: XML",
+     "headers": {
+      "Accept": "application/xml"
+     },
+     "quirk": "Q16"
+    },
+    {
+     "id": "mvc-api-brand-1",
+     "method": "GET",
+     "path": "/api/brands/1",
+     "description": "Brand by id"
+    },
+    {
+     "id": "mvc-api-brand-5",
+     "method": "GET",
+     "path": "/api/brands/5",
+     "description": "Brand by id (last)"
+    },
+    {
+     "id": "mvc-api-brand-missing",
+     "method": "GET",
+     "path": "/api/brands/99",
+     "description": "404"
+    },
+    {
+     "id": "mvc-api-brand-nonnumeric",
+     "method": "GET",
+     "path": "/api/brands/abc",
+     "description": "Non-int id"
+    },
+    {
+     "id": "mvc-api-files",
+     "method": "GET",
+     "path": "/api/files",
+     "description": "BinaryFormatter brand list; compared semantically (brand names); target must return JSON (quirk Q2)",
+     "compare": "brands-semantic",
+     "quirk": "Q2"
+    },
+    {
+     "id": "mvc-api-root-undiscovered",
+     "method": "GET",
+     "path": "/api",
+     "description": "CatalogController2 is never discovered -> 404 (quirk Q1)"
+    },
+    {
+     "id": "mvc-unknown-path",
+     "method": "GET",
+     "path": "/does-not-exist",
+     "description": "Unknown path -> 404"
+    },
+    {
+     "id": "mvc-static-site-css",
+     "method": "GET",
+     "path": "/Content/Site.css",
+     "description": "Static CSS"
+    },
+    {
+     "id": "mvc-static-site-css-lower",
+     "method": "GET",
+     "path": "/Content/site.css",
+     "description": "Lower-case name used by the css bundle (exists on IIS: case-insensitive)"
+    },
+    {
+     "id": "mvc-static-bootstrap-css",
+     "method": "GET",
+     "path": "/Content/bootstrap.css",
+     "description": "Static CSS"
+    },
+    {
+     "id": "mvc-static-custom-css",
+     "method": "GET",
+     "path": "/Content/custom.css",
+     "description": "Static CSS"
+    },
+    {
+     "id": "mvc-static-base-css",
+     "method": "GET",
+     "path": "/Content/base.css",
+     "description": "Static CSS"
+    },
+    {
+     "id": "mvc-static-brand-png",
+     "method": "GET",
+     "path": "/images/brand.png",
+     "description": "Header image as linked by the layout (folder is Images)"
+    },
+    {
+     "id": "mvc-static-brand-dark-png",
+     "method": "GET",
+     "path": "/images/brand_dark.png",
+     "description": "Footer image"
+    },
+    {
+     "id": "mvc-static-footer-text-png",
+     "method": "GET",
+     "path": "/images/main_footer_text.png",
+     "description": "Footer image"
+    },
+    {
+     "id": "mvc-static-banner-png",
+     "method": "GET",
+     "path": "/images/main_banner.png",
+     "description": "Banner image"
+    },
+    {
+     "id": "mvc-static-pics-1",
+     "method": "GET",
+     "path": "/Pics/1.png",
+     "description": "Picture as a static file"
+    },
+    {
+     "id": "mvc-static-favicon",
+     "method": "GET",
+     "path": "/favicon.ico",
+     "description": "favicon"
+    },
+    {
+     "id": "mvc-static-font",
+     "method": "GET",
+     "path": "/fonts/Montserrat-Regular.woff",
+     "description": "Font"
+    },
+    {
+     "id": "mvc-static-jquery",
+     "method": "GET",
+     "path": "/Scripts/jquery-3.3.1.js",
+     "description": "Script referenced by the layout (debug: unbundled)"
+    },
+    {
+     "id": "mvc-static-jquery-validate",
+     "method": "GET",
+     "path": "/Scripts/jquery.validate.js",
+     "description": "Validation script"
+    },
+    {
+     "id": "mvc-static-jquery-validate-unobtrusive",
+     "method": "GET",
+     "path": "/Scripts/jquery.validate.unobtrusive.js",
+     "description": "Validation script"
+    },
+    {
+     "id": "mvc-static-modernizr",
+     "method": "GET",
+     "path": "/Scripts/modernizr-2.8.3.js",
+     "description": "Script"
+    },
+    {
+     "id": "mvc-static-bootstrap-js",
+     "method": "GET",
+     "path": "/Scripts/bootstrap.js",
+     "description": "Script"
+    },
+    {
+     "id": "mvc-static-respond-js",
+     "method": "GET",
+     "path": "/Scripts/respond.js",
+     "description": "Script"
+    },
+    {
+     "id": "mvc-bundle-css",
+     "method": "GET",
+     "path": "/Content/css",
+     "description": "Optimisation bundle URL (not referenced in debug pages): status + type only",
+     "compare": "status"
+    },
+    {
+     "id": "mvc-bundle-jquery",
+     "method": "GET",
+     "path": "/bundles/jquery",
+     "description": "bundle: status + type only",
+     "compare": "status"
+    },
+    {
+     "id": "mvc-bundle-jqueryval",
+     "method": "GET",
+     "path": "/bundles/jqueryval",
+     "description": "bundle",
+     "compare": "status"
+    },
+    {
+     "id": "mvc-bundle-modernizr",
+     "method": "GET",
+     "path": "/bundles/modernizr",
+     "description": "bundle",
+     "compare": "status"
+    },
+    {
+     "id": "mvc-bundle-bootstrap",
+     "method": "GET",
+     "path": "/bundles/bootstrap",
+     "description": "bundle",
+     "compare": "status"
+    }
+   ]
+  },
+  {
+   "id": "mvc-create",
+   "app": "mvc",
+   "restart": true,
+   "flows": [
+    {
+     "id": "mvc-create-post-valid",
+     "method": "POST",
+     "description": "Valid create -> 302 / ; new id 13",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "24.99",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     },
+     "snapshot": true
+    },
+    {
+     "id": "mvc-create-after-list",
+     "method": "GET",
+     "path": "/?pageSize=20",
+     "description": "List shows the new item"
+    },
+    {
+     "id": "mvc-create-after-details",
+     "method": "GET",
+     "path": "/Catalog/Details/13",
+     "description": "Details of the created item"
+    }
+   ]
+  },
+  {
+   "id": "mvc-create-invalid",
+   "app": "mvc",
+   "restart": true,
+   "description": "Each validation failure; the final snapshot proves nothing was created.",
+   "flows": [
+    {
+     "id": "mvc-create-post-invalid-name-missing",
+     "method": "POST",
+     "description": "Create validation failure: name-missing -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "",
+       "Description": "Created by the parity harness",
+       "Price": "24.99",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-price-regex",
+     "method": "POST",
+     "description": "Create validation failure: price-regex -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "12.345",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-price-range",
+     "method": "POST",
+     "description": "Create validation failure: price-range -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "1000001",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-price-nonnumeric",
+     "method": "POST",
+     "description": "Create validation failure: price-nonnumeric -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "abc",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-stock-range",
+     "method": "POST",
+     "description": "Create validation failure: stock-range -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "24.99",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "-1",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-restock-range",
+     "method": "POST",
+     "description": "Create validation failure: restock-range -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "24.99",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "10000001",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-maxstock-range",
+     "method": "POST",
+     "description": "Create validation failure: maxstock-range -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "24.99",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "-5",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-stock-nonnumeric",
+     "method": "POST",
+     "description": "Create validation failure: stock-nonnumeric -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "24.99",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "x",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-invalid-all-invalid",
+     "method": "POST",
+     "description": "Create validation failure: all-invalid -> 200 re-render with message",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "",
+       "Description": "Created by the parity harness",
+       "Price": "abc",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "-1",
+       "RestockThreshold": "-1",
+       "MaxStockThreshold": "10000001",
+       "PictureFileName": "dummy.png"
+      }
+     }
+    },
+    {
+     "id": "mvc-create-post-missing-antiforgery",
+     "method": "POST",
+     "description": "No __RequestVerificationToken -> HttpAntiForgeryException -> 500 error page",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Hoodie",
+       "Description": "Created by the parity harness",
+       "Price": "24.99",
+       "CatalogBrandId": "3",
+       "CatalogTypeId": "2",
+       "AvailableStock": "42",
+       "RestockThreshold": "5",
+       "MaxStockThreshold": "200",
+       "PictureFileName": "dummy.png"
+      },
+      "omit": [
+       "__RequestVerificationToken"
+      ]
+     },
+     "snapshot": true
+    }
+   ]
+  },
+  {
+   "id": "mvc-edit",
+   "app": "mvc",
+   "restart": true,
+   "flows": [
+    {
+     "id": "mvc-edit-post-valid",
+     "method": "POST",
+     "description": "Valid edit -> 302 /",
+     "form": {
+      "page": "/Catalog/Edit/1",
+      "fields": {
+       "Name": "Edited Hoodie",
+       "Price": "21.50",
+       "AvailableStock": "77"
+      }
+     },
+     "snapshot": true
+    },
+    {
+     "id": "mvc-edit-after-details",
+     "method": "GET",
+     "path": "/Catalog/Details/1",
+     "description": "Details after edit"
+    },
+    {
+     "id": "mvc-edit-post-invalid-name",
+     "method": "POST",
+     "description": "Edit validation failure: name",
+     "form": {
+      "page": "/Catalog/Edit/2",
+      "fields": {
+       "Name": ""
+      }
+     }
+    },
+    {
+     "id": "mvc-edit-post-invalid-price",
+     "method": "POST",
+     "description": "Edit validation failure: price regex",
+     "form": {
+      "page": "/Catalog/Edit/2",
+      "fields": {
+       "Price": "1.234"
+      }
+     }
+    },
+    {
+     "id": "mvc-edit-post-invalid-stock",
+     "method": "POST",
+     "description": "Edit validation failure: stock range",
+     "form": {
+      "page": "/Catalog/Edit/2",
+      "fields": {
+       "AvailableStock": "10000001"
+      }
+     }
+    },
+    {
+     "id": "mvc-edit-post-missing-antiforgery",
+     "method": "POST",
+     "description": "Edit without antiforgery -> 500",
+     "form": {
+      "page": "/Catalog/Edit/2",
+      "fields": {
+       "Name": "Should not save"
+      },
+      "omit": [
+       "__RequestVerificationToken"
+      ]
+     },
+     "snapshot": true
+    },
+    {
+     "id": "mvc-edit-post-unknown-id",
+     "method": "POST",
+     "description": "Edit posting an unknown Id -> mock no-op, 302",
+     "form": {
+      "page": "/Catalog/Edit/3",
+      "fields": {
+       "Id": "999",
+       "Name": "Ghost"
+      }
+     },
+     "snapshot": true
+    }
+   ]
+  },
+  {
+   "id": "mvc-delete",
+   "app": "mvc",
+   "restart": true,
+   "flows": [
+    {
+     "id": "mvc-delete-post-valid",
+     "method": "POST",
+     "description": "Delete confirmed -> 302 /",
+     "form": {
+      "page": "/Catalog/Delete/3",
+      "fields": {}
+     },
+     "snapshot": true
+    },
+    {
+     "id": "mvc-delete-after-details",
+     "method": "GET",
+     "path": "/Catalog/Details/3",
+     "description": "Deleted item -> 404"
+    },
+    {
+     "id": "mvc-delete-post-missing-antiforgery",
+     "method": "POST",
+     "description": "Delete without antiforgery -> 500",
+     "form": {
+      "page": "/Catalog/Delete/4",
+      "fields": {},
+      "omit": [
+       "__RequestVerificationToken"
+      ]
+     },
+     "snapshot": true
+    },
+    {
+     "id": "mvc-delete-post-unknown-id",
+     "method": "POST",
+     "description": "Delete POST for unknown id (no null check: mock no-op, EF throws; quirk Q6)",
+     "form": {
+      "page": "/Catalog/Delete/5",
+      "fields": {}
+     },
+     "quirk": "Q6",
+     "path": "/Catalog/Delete/999",
+     "snapshot": true
+    }
+   ]
+  },
+  {
+   "id": "mvc-api-mutations",
+   "app": "mvc",
+   "restart": true,
+   "flows": [
+    {
+     "id": "mvc-api-brand-delete-1",
+     "method": "DELETE",
+     "path": "/api/brands/1",
+     "description": "200 but nothing deleted (quirk Q3)",
+     "snapshot": true
+    },
+    {
+     "id": "mvc-api-brand-delete-missing",
+     "method": "DELETE",
+     "path": "/api/brands/99",
+     "description": "404"
+    },
+    {
+     "id": "mvc-api-brands-after-delete",
+     "method": "GET",
+     "path": "/api/brands",
+     "description": "Brand 1 still present"
+    }
+   ]
+  },
+  {
+   "id": "wf-cold-reads",
+   "app": "webforms",
+   "restart": true,
+   "description": "Before any list render: Details/Edit/Delete dereference null CatalogBrand -> 500 (quirk Q4).",
+   "flows": [
+    {
+     "id": "wf-details-cold-1",
+     "method": "GET",
+     "path": "/Catalog/Details/1",
+     "description": "Cold details -> NullReferenceException 500",
+     "quirk": "Q4"
+    },
+    {
+     "id": "wf-edit-cold-2",
+     "method": "GET",
+     "path": "/Catalog/Edit/2",
+     "description": "Cold edit (does not touch brand) -> 200",
+     "quirk": "Q4"
+    },
+    {
+     "id": "wf-delete-cold-3",
+     "method": "GET",
+     "path": "/Catalog/Delete/3",
+     "description": "Cold delete -> 500",
+     "quirk": "Q4"
+    }
+   ]
+  },
+  {
+   "id": "wf-reads",
+   "app": "webforms",
+   "restart": false,
+   "flows": [
+    {
+     "id": "wf-index-root",
+     "method": "GET",
+     "path": "/",
+     "description": "Default document"
+    },
+    {
+     "id": "wf-index-default",
+     "method": "GET",
+     "path": "/Default",
+     "description": "Route 'Default'"
+    },
+    {
+     "id": "wf-index-default-aspx",
+     "method": "GET",
+     "path": "/Default.aspx",
+     "description": "Physical page"
+    },
+    {
+     "id": "wf-index-page1-size5",
+     "method": "GET",
+     "path": "/Default/index/1/size/5",
+     "description": "ProductsByPageRoute"
+    },
+    {
+     "id": "wf-index-page0-size5",
+     "method": "GET",
+     "path": "/Default/index/0/size/5",
+     "description": "First page of 5"
+    },
+    {
+     "id": "wf-index-page2-size5",
+     "method": "GET",
+     "path": "/Default/index/2/size/5",
+     "description": "Last partial page"
+    },
+    {
+     "id": "wf-index-page1-size10",
+     "method": "GET",
+     "path": "/Default/index/1/size/10",
+     "description": "Second page of 10"
+    },
+    {
+     "id": "wf-index-beyond",
+     "method": "GET",
+     "path": "/Default/index/9/size/10",
+     "description": "Beyond the end"
+    },
+    {
+     "id": "wf-index-size100",
+     "method": "GET",
+     "path": "/Default/index/0/size/100",
+     "description": "Large page size"
+    },
+    {
+     "id": "wf-index-size0",
+     "method": "GET",
+     "path": "/Default/index/0/size/0",
+     "description": "size 0 -> 500 (quirk Q5)",
+     "quirk": "Q5"
+    },
+    {
+     "id": "wf-index-nonnumeric",
+     "method": "GET",
+     "path": "/Default/index/x/size/5",
+     "description": "non-numeric -> 500 (quirk Q5)",
+     "quirk": "Q5"
+    },
+    {
+     "id": "wf-index-negative-page",
+     "method": "GET",
+     "path": "/Default/index/-1/size/10",
+     "description": "Previous link target on page 0"
+    },
+    {
+     "id": "wf-details-found",
+     "method": "GET",
+     "path": "/Catalog/Details/1",
+     "description": "Details"
+    },
+    {
+     "id": "wf-details-found-12",
+     "method": "GET",
+     "path": "/Catalog/Details/12",
+     "description": "Details of last item (rendered on page 2 earlier)"
+    },
+    {
+     "id": "wf-details-missing",
+     "method": "GET",
+     "path": "/Catalog/Details/999",
+     "description": "Unknown id -> NRE 500 (quirk Q7)",
+     "quirk": "Q7"
+    },
+    {
+     "id": "wf-details-aspx-no-route",
+     "method": "GET",
+     "path": "/Catalog/Details.aspx",
+     "description": "No route data -> id 0 -> 500",
+     "quirk": "Q7"
+    },
+    {
+     "id": "wf-edit-found",
+     "method": "GET",
+     "path": "/Catalog/Edit/1",
+     "description": "Edit form"
+    },
+    {
+     "id": "wf-edit-missing",
+     "method": "GET",
+     "path": "/Catalog/Edit/999",
+     "description": "500 (quirk Q7)",
+     "quirk": "Q7"
+    },
+    {
+     "id": "wf-delete-found",
+     "method": "GET",
+     "path": "/Catalog/Delete/1",
+     "description": "Delete confirmation"
+    },
+    {
+     "id": "wf-delete-missing",
+     "method": "GET",
+     "path": "/Catalog/Delete/999",
+     "description": "500 (quirk Q7)",
+     "quirk": "Q7"
+    },
+    {
+     "id": "wf-create-get",
+     "method": "GET",
+     "path": "/Catalog/Create",
+     "description": "Create form"
+    },
+    {
+     "id": "wf-about",
+     "method": "GET",
+     "path": "/About.aspx",
+     "description": "Template page"
+    },
+    {
+     "id": "wf-contact",
+     "method": "GET",
+     "path": "/Contact.aspx",
+     "description": "Template page"
+    },
+    {
+     "id": "wf-unknown-path",
+     "method": "GET",
+     "path": "/does-not-exist",
+     "description": "404"
+    },
+    {
+     "id": "wf-static-site-css",
+     "method": "GET",
+     "path": "/Content/site.css",
+     "description": "CSS"
+    },
+    {
+     "id": "wf-static-bootstrap-css",
+     "method": "GET",
+     "path": "/Content/bootstrap.css",
+     "description": "CSS"
+    },
+    {
+     "id": "wf-static-custom-css",
+     "method": "GET",
+     "path": "/Content/custom.css",
+     "description": "CSS"
+    },
+    {
+     "id": "wf-static-base-css",
+     "method": "GET",
+     "path": "/Content/base.css",
+     "description": "CSS"
+    },
+    {
+     "id": "wf-static-brand-png",
+     "method": "GET",
+     "path": "/images/brand.png",
+     "description": "Header image"
+    },
+    {
+     "id": "wf-static-brand-dark-png",
+     "method": "GET",
+     "path": "/images/brand_dark.png",
+     "description": "Footer"
+    },
+    {
+     "id": "wf-static-footer-text-png",
+     "method": "GET",
+     "path": "/images/main_footer_text.png",
+     "description": "Footer"
+    },
+    {
+     "id": "wf-static-pics-1",
+     "method": "GET",
+     "path": "/Pics/1.png",
+     "description": "List thumbnail (static)"
+    },
+    {
+     "id": "wf-static-pics-12",
+     "method": "GET",
+     "path": "/Pics/12.png",
+     "description": "List thumbnail"
+    },
+    {
+     "id": "wf-static-modernizr",
+     "method": "GET",
+     "path": "/Scripts/modernizr-2.8.3.js",
+     "description": "Script"
+    },
+    {
+     "id": "wf-static-jquery",
+     "method": "GET",
+     "path": "/Scripts/jquery-3.3.1.js",
+     "description": "Script"
+    },
+    {
+     "id": "wf-static-webforms-js",
+     "method": "GET",
+     "path": "/Scripts/WebForms/WebForms.js",
+     "description": "WebForms client script"
+    },
+    {
+     "id": "wf-bundle-css",
+     "method": "GET",
+     "path": "/Content/css",
+     "description": "bundle: status + type only",
+     "compare": "status"
+    },
+    {
+     "id": "wf-bundle-modernizr",
+     "method": "GET",
+     "path": "/bundles/modernizr",
+     "description": "bundle",
+     "compare": "status"
+    },
+    {
+     "id": "wf-bundle-webformsjs",
+     "method": "GET",
+     "path": "/bundles/WebFormsJs",
+     "description": "bundle",
+     "compare": "status"
+    }
+   ]
+  },
+  {
+   "id": "wf-create",
+   "app": "webforms",
+   "restart": true,
+   "flows": [
+    {
+     "id": "wf-create-postback-valid",
+     "method": "POST",
+     "description": "Postback create -> 302 /",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Mug",
+       "Description": "Created by the parity harness",
+       "Brand": "3",
+       "Type": "1",
+       "Price": "9.99",
+       "Stock": "10",
+       "Restock": "2",
+       "Maxstock": "50"
+      },
+      "submit": "[ Create ]"
+     },
+     "snapshot": true
+    },
+    {
+     "id": "wf-create-after-list",
+     "method": "GET",
+     "path": "/Default/index/1/size/10",
+     "description": "Second page shows item 13"
+    },
+    {
+     "id": "wf-create-after-details",
+     "method": "GET",
+     "path": "/Catalog/Details/13",
+     "description": "Details of new item"
+    }
+   ]
+  },
+  {
+   "id": "wf-create-unvalidated",
+   "app": "webforms",
+   "restart": true,
+   "description": "Server-side validators are NOT enforced by the handler (quirk Q8): bad input is saved or crashes.",
+   "flows": [
+    {
+     "id": "wf-create-postback-name-missing",
+     "method": "POST",
+     "description": "Empty name is saved (quirk Q8)",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "",
+       "Description": "Created by the parity harness",
+       "Brand": "3",
+       "Type": "1",
+       "Price": "9.99",
+       "Stock": "10",
+       "Restock": "2",
+       "Maxstock": "50"
+      },
+      "submit": "[ Create ]"
+     },
+     "quirk": "Q8",
+     "snapshot": true
+    },
+    {
+     "id": "wf-create-postback-stock-out-of-range",
+     "method": "POST",
+     "description": "Out-of-range stock is saved (quirk Q8)",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Mug",
+       "Description": "Created by the parity harness",
+       "Brand": "3",
+       "Type": "1",
+       "Price": "9.99",
+       "Stock": "-5",
+       "Restock": "2",
+       "Maxstock": "50"
+      },
+      "submit": "[ Create ]"
+     },
+     "quirk": "Q8",
+     "snapshot": true
+    },
+    {
+     "id": "wf-create-postback-price-nonnumeric",
+     "method": "POST",
+     "description": "decimal.Parse -> 500 (quirk Q8)",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Mug",
+       "Description": "Created by the parity harness",
+       "Brand": "3",
+       "Type": "1",
+       "Price": "abc",
+       "Stock": "10",
+       "Restock": "2",
+       "Maxstock": "50"
+      },
+      "submit": "[ Create ]"
+     },
+     "quirk": "Q8",
+     "snapshot": true
+    },
+    {
+     "id": "wf-create-postback-no-viewstate",
+     "method": "POST",
+     "description": "Postback without __VIEWSTATE/__EVENTVALIDATION",
+     "form": {
+      "page": "/Catalog/Create",
+      "fields": {
+       "Name": "Parity Test Mug",
+       "Description": "Created by the parity harness",
+       "Brand": "3",
+       "Type": "1",
+       "Price": "9.99",
+       "Stock": "10",
+       "Restock": "2",
+       "Maxstock": "50"
+      },
+      "omit": [
+       "__VIEWSTATE",
+       "__VIEWSTATEGENERATOR",
+       "__EVENTVALIDATION"
+      ],
+      "submit": "[ Create ]"
+     },
+     "snapshot": true
+    }
+   ]
+  },
+  {
+   "id": "wf-edit",
+   "app": "webforms",
+   "restart": true,
+   "flows": [
+    {
+     "id": "wf-edit-warm-list",
+     "method": "GET",
+     "path": "/",
+     "description": "List render (composes navigation properties)"
+    },
+    {
+     "id": "wf-edit-postback-valid",
+     "method": "POST",
+     "description": "Postback save -> 302 /",
+     "form": {
+      "page": "/Catalog/Edit/1",
+      "fields": {
+       "Name": "Edited Hoodie",
+       "Price": "21.50",
+       "Stock": "77",
+       "Brand": "1",
+       "Type": "3"
+      },
+      "submit": "[ Save ]"
+     },
+     "snapshot": true
+    },
+    {
+     "id": "wf-edit-after-details",
+     "method": "GET",
+     "path": "/Catalog/Details/1",
+     "description": "Details after edit (navigation re-composed by the snapshot list render)"
+    },
+    {
+     "id": "wf-edit-postback-price-nonnumeric",
+     "method": "POST",
+     "description": "decimal.Parse -> 500 (quirk Q8)",
+     "form": {
+      "page": "/Catalog/Edit/2",
+      "fields": {
+       "Price": "x"
+      },
+      "submit": "[ Save ]"
+     },
+     "quirk": "Q8",
+     "snapshot": true
+    }
+   ]
+  },
+  {
+   "id": "wf-delete",
+   "app": "webforms",
+   "restart": true,
+   "flows": [
+    {
+     "id": "wf-delete-warm-list",
+     "method": "GET",
+     "path": "/",
+     "description": "List render (composes navigation properties)"
+    },
+    {
+     "id": "wf-delete-postback-valid",
+     "method": "POST",
+     "description": "Postback delete -> 302 /",
+     "form": {
+      "page": "/Catalog/Delete/3",
+      "fields": {},
+      "submit": "[ Delete ]"
+     },
+     "snapshot": true
+    },
+    {
+     "id": "wf-delete-after-details",
+     "method": "GET",
+     "path": "/Catalog/Details/3",
+     "description": "Deleted item -> NRE 500 (quirk Q7)",
+     "quirk": "Q7"
+    }
+   ]
+  }
+ ],
+ "dropped_flows": [
+  {
+   "id": "mvc-create-post-invalid-price-negative",
+   "reason": "Non-deterministic on legacy: Price=-1 fails both [RegularExpression] and [Range]; MVC 5 shows only the first error and the attribute order varies between app starts (self-replay run1 saw the Range message where capture saw the RegularExpression message). Regex-only (price-regex, price-nonnumeric) and Range-only (price-range) failures are covered separately."
+  }
+ ]
+}

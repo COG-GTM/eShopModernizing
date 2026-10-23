@@ -1,0 +1,23 @@
+{
+ "id": "mvc-api-brand-nonnumeric",
+ "request": {
+  "method": "GET",
+  "path": "/api/brands/abc"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "content-type": "application/json"
+  },
+  "raw_sha256": "028befa96da8633dcd88ad9936dacc41bd334c80f6185ed559218cb86d262982",
+  "body": {
+   "kind": "json",
+   "json": {
+    "Message": "The request is invalid.",
+    "MessageDetail": "The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32' for method 'System.Web.Http.IHttpActionResult Get(Int32)' in 'eShopLegacyMVC.Controllers.WebApi.BrandsController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter."
+   }
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Non-int id"
+}

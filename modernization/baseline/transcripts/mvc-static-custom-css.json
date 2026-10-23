@@ -1,0 +1,21 @@
+{
+ "id": "mvc-static-custom-css",
+ "request": {
+  "method": "GET",
+  "path": "/Content/custom.css"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/css"
+  },
+  "raw_sha256": "5faee0cc0bf4c55694b1772dcadb9dd726454cad4cb4ebf52e75e8b63a05eaae",
+  "body": {
+   "kind": "text",
+   "sha256": "e613fad05d9a4417bee6a05641fbc1a08a1bed9562901dd6721ab03640e6afef",
+   "length": 490
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Static CSS"
+}

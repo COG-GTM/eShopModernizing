@@ -1,0 +1,88 @@
+{
+ "id": "mvc-edit-post-unknown-id",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Edit/3",
+  "form": [
+   [
+    "__RequestVerificationToken",
+    "<masked>"
+   ],
+   [
+    "Id",
+    "999"
+   ],
+   [
+    "Name",
+    "Ghost"
+   ],
+   [
+    "Description",
+    "Prism White T-Shirt"
+   ],
+   [
+    "CatalogBrandId",
+    "5"
+   ],
+   [
+    "CatalogTypeId",
+    "2"
+   ],
+   [
+    "Price",
+    "12.00"
+   ],
+   [
+    "PictureFileName",
+    "3.png"
+   ],
+   [
+    "AvailableStock",
+    "100"
+   ],
+   [
+    "RestockThreshold",
+    "0"
+   ],
+   [
+    "MaxStockThreshold",
+    "0"
+   ]
+  ]
+ },
+ "response": {
+  "status": 302,
+  "headers": {
+   "content-type": "text/html",
+   "location": "/"
+  },
+  "raw_sha256": "9849b1adf8aca1a2f400e0ef47dd06e737e57a90746b4c51d384dbdc22668e89",
+  "body": {
+   "kind": "html",
+   "title": "Object moved",
+   "text": [
+    "Object moved to",
+    "here"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Object moved"
+    },
+    {
+     "tag": "h2",
+     "text": "Object moved to here"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": "here"
+    }
+   ],
+   "assets": []
+  }
+ },
+ "sequence": "mvc-edit",
+ "description": "Edit posting an unknown Id -> mock no-op, 302",
+ "data_state": "data-state/mvc-edit-post-unknown-id.json"
+}

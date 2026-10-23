@@ -1,0 +1,278 @@
+{
+ "id": "wf-edit-cold-2",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Edit/2"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "30d3b3bddabd67152690329a977dfebe4139df4f93a6ad44d126791a09fb2d62",
+  "body": {
+   "kind": "html",
+   "title": "Edit - Catalog manager (Web Forms)",
+   "text": [
+    "Catalog manager",
+    "(Web Forms)",
+    "Edit",
+    "Name",
+    "Description",
+    "Brand",
+    "Azure",
+    ".NET",
+    "Visual Studio",
+    "SQL Server",
+    "Other",
+    "Type",
+    "Mug",
+    "T-Shirt",
+    "Sheet",
+    "USB Memory Stick",
+    "Price",
+    "Picture name",
+    "Stock",
+    "Restock",
+    "Max stock",
+    "[ Cancel ]",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Edit - Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "form",
+     "action": "2",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__VIEWSTATE",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "a",
+     "href": "../../",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "span",
+     "text": "(Web Forms)"
+    },
+    {
+     "tag": "h2",
+     "text": "Edit"
+    },
+    {
+     "tag": "img",
+     "src": "/Pics/2.png"
+    },
+    {
+     "tag": "label",
+     "text": "Name"
+    },
+    {
+     "tag": "input",
+     "name": "Name",
+     "type": "text",
+     "value": ".NET Black & White Mug"
+    },
+    {
+     "tag": "label",
+     "text": "Description"
+    },
+    {
+     "tag": "input",
+     "name": "Description",
+     "type": "text",
+     "value": ".NET Black & White Mug"
+    },
+    {
+     "tag": "label",
+     "text": "Brand"
+    },
+    {
+     "tag": "select",
+     "name": "BrandDropDownList"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "text": "Azure"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "selected": true,
+     "text": ".NET"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "text": "Visual Studio"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "SQL Server"
+    },
+    {
+     "tag": "option",
+     "value": "5",
+     "text": "Other"
+    },
+    {
+     "tag": "label",
+     "text": "Type"
+    },
+    {
+     "tag": "select",
+     "name": "TypeDropDownList"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "selected": true,
+     "text": "Mug"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "text": "Sheet"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "USB Memory Stick"
+    },
+    {
+     "tag": "label",
+     "text": "Price"
+    },
+    {
+     "tag": "input",
+     "name": "Price",
+     "type": "text",
+     "value": "8.50"
+    },
+    {
+     "tag": "label",
+     "text": "Picture name"
+    },
+    {
+     "tag": "input",
+     "name": "PictureFileName",
+     "type": "text",
+     "value": "2.png",
+     "readonly": true
+    },
+    {
+     "tag": "label",
+     "text": "Stock"
+    },
+    {
+     "tag": "input",
+     "name": "Stock",
+     "type": "text",
+     "value": "100"
+    },
+    {
+     "tag": "label",
+     "text": "Restock"
+    },
+    {
+     "tag": "input",
+     "name": "Restock",
+     "type": "text",
+     "value": "0"
+    },
+    {
+     "tag": "label",
+     "text": "Max stock"
+    },
+    {
+     "tag": "input",
+     "name": "Maxstock",
+     "type": "text",
+     "value": "0"
+    },
+    {
+     "tag": "a",
+     "href": "../../",
+     "text": "[ Cancel ]"
+    },
+    {
+     "tag": "input",
+     "name": "ctl07",
+     "type": "submit",
+     "value": "[ Save ]"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    },
+    {
+     "tag": "span",
+     "text": "<masked>"
+    },
+    {
+     "tag": "input",
+     "name": "__EVENTVALIDATION",
+     "type": "hidden",
+     "value": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/WebForms/DetailsView.js",
+    "/Scripts/WebForms/Focus.js",
+    "/Scripts/WebForms/GridView.js",
+    "/Scripts/WebForms/MenuStandards.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js",
+    "/Scripts/WebForms/TreeView.js",
+    "/Scripts/WebForms/WebForms.js",
+    "/Scripts/WebForms/WebParts.js",
+    "/Scripts/WebForms/WebUIValidation.js",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "wf-cold-reads",
+ "description": "Cold edit (does not touch brand) -> 200",
+ "quirk": "Q4"
+}

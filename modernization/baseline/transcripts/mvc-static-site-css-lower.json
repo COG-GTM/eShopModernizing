@@ -1,0 +1,21 @@
+{
+ "id": "mvc-static-site-css-lower",
+ "request": {
+  "method": "GET",
+  "path": "/Content/site.css"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/css"
+  },
+  "raw_sha256": "5c97beade784fda94ab785361df3a1db14754e7f1182c358362aa6772d7e06ec",
+  "body": {
+   "kind": "text",
+   "sha256": "33800683d004fa43a1b73777ff4dad0736f29ad147d9824de3e06e6d67922d8c",
+   "length": 3680
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Lower-case name used by the css bundle (exists on IIS: case-insensitive)"
+}

@@ -1,0 +1,4 @@
+# local compose secrets (SQL_SA_PASSWORD); copy sql.env.example to .env
+.env
+*.env
+!sql.env.example

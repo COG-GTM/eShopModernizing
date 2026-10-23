@@ -1,0 +1,21 @@
+{
+ "id": "mvc-bundle-modernizr",
+ "request": {
+  "method": "GET",
+  "path": "/bundles/modernizr"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/javascript"
+  },
+  "raw_sha256": "4a87e4d5a949776e0197b33dbb1806748cacda1aa2afb4c2bbd7da8e6aa71fe8",
+  "body": {
+   "kind": "opaque",
+   "length": 22095
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "bundle",
+ "compare": "status"
+}

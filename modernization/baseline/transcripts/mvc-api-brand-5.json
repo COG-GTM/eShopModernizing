@@ -1,0 +1,23 @@
+{
+ "id": "mvc-api-brand-5",
+ "request": {
+  "method": "GET",
+  "path": "/api/brands/5"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "application/json"
+  },
+  "raw_sha256": "3b6bb72ebcba08a93bc4f9ec06e12161e51e0e0a1546954a5826cd86619142e4",
+  "body": {
+   "kind": "json",
+   "json": {
+    "Id": 5,
+    "Brand": "Other"
+   }
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Brand by id (last)"
+}

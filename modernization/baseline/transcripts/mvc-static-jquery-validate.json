@@ -1,0 +1,21 @@
+{
+ "id": "mvc-static-jquery-validate",
+ "request": {
+  "method": "GET",
+  "path": "/Scripts/jquery.validate.js"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "application/javascript"
+  },
+  "raw_sha256": "c9acdf688876497bbcacf7a7c83d9fdfaa4a82b92fe574fe0d0083a59fde0daa",
+  "body": {
+   "kind": "text",
+   "sha256": "c9acdf688876497bbcacf7a7c83d9fdfaa4a82b92fe574fe0d0083a59fde0daa",
+   "length": 48676
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Validation script"
+}

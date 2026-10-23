@@ -1,0 +1,23 @@
+{
+ "id": "mvc-api-brand-1",
+ "request": {
+  "method": "GET",
+  "path": "/api/brands/1"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "application/json"
+  },
+  "raw_sha256": "ceed2f18a36848920b735e6ca732e0a2d080c18b45a0ace2c9d66ad4af3a0fc7",
+  "body": {
+   "kind": "json",
+   "json": {
+    "Id": 1,
+    "Brand": "Azure"
+   }
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Brand by id"
+}

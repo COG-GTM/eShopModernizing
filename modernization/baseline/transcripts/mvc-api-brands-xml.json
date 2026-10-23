@@ -1,0 +1,25 @@
+{
+ "id": "mvc-api-brands-xml",
+ "request": {
+  "method": "GET",
+  "path": "/api/brands",
+  "headers": {
+   "Accept": "application/xml"
+  }
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "application/xml"
+  },
+  "raw_sha256": "3e8a7ab180920769fb241f986e03d7722612c731bdb4e6a9216be9c333ccfbe9",
+  "body": {
+   "kind": "text",
+   "sha256": "3e8a7ab180920769fb241f986e03d7722612c731bdb4e6a9216be9c333ccfbe9",
+   "length": 472
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Content negotiation: XML",
+ "quirk": "Q16"
+}

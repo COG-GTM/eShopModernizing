@@ -1,0 +1,337 @@
+{
+ "id": "mvc-edit-cold-11",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Edit/11"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "be404ee58ede4bafd2841cf8e470b66ffee95f41d6b3aebd2a731c9e8c2878b8",
+  "body": {
+   "kind": "html",
+   "title": "Edit - Catalog manager (MVC)",
+   "text": [
+    "Catalog manager",
+    "(MVC)",
+    "Edit",
+    "Name",
+    "Description",
+    "CatalogBrandId",
+    "Azure",
+    ".NET",
+    "Visual Studio",
+    "SQL Server",
+    "Other",
+    "CatalogTypeId",
+    "Mug",
+    "T-Shirt",
+    "Sheet",
+    "USB Memory Stick",
+    "Price",
+    "Picture name",
+    "Stock",
+    "Restock",
+    "Max stock",
+    "[ Cancel ]",
+    "[ Save ]",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Edit - Catalog manager (MVC)"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (MVC)"
+    },
+    {
+     "tag": "span",
+     "text": "(MVC)"
+    },
+    {
+     "tag": "h2",
+     "text": "Edit"
+    },
+    {
+     "tag": "form",
+     "action": "/Catalog/Edit/11",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__RequestVerificationToken",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "img",
+     "src": "/items/11/pic"
+    },
+    {
+     "tag": "input",
+     "name": "Id",
+     "type": "hidden",
+     "value": "11"
+    },
+    {
+     "tag": "label",
+     "for": "Name",
+     "text": "Name"
+    },
+    {
+     "tag": "input",
+     "name": "Name",
+     "type": "text",
+     "value": "Cup<T> Sheet"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "Description",
+     "text": "Description"
+    },
+    {
+     "tag": "input",
+     "name": "Description",
+     "type": "text",
+     "value": "Cup<T> Sheet"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "CatalogBrandId",
+     "text": "CatalogBrandId"
+    },
+    {
+     "tag": "select",
+     "name": "CatalogBrandId"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "text": "Azure"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "selected": true,
+     "text": ".NET"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "text": "Visual Studio"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "SQL Server"
+    },
+    {
+     "tag": "option",
+     "value": "5",
+     "text": "Other"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "CatalogTypeId",
+     "text": "CatalogTypeId"
+    },
+    {
+     "tag": "select",
+     "name": "CatalogTypeId"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "text": "Mug"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "selected": true,
+     "text": "Sheet"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "USB Memory Stick"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "Price",
+     "text": "Price"
+    },
+    {
+     "tag": "input",
+     "name": "Price",
+     "type": "text",
+     "value": "8.50"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "PictureFileName",
+     "text": "Picture name"
+    },
+    {
+     "tag": "input",
+     "name": "PictureFileName",
+     "type": "text",
+     "value": "11.png",
+     "readonly": true
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "AvailableStock",
+     "text": "Stock"
+    },
+    {
+     "tag": "input",
+     "name": "AvailableStock",
+     "type": "number",
+     "value": "100"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "RestockThreshold",
+     "text": "Restock"
+    },
+    {
+     "tag": "input",
+     "name": "RestockThreshold",
+     "type": "number",
+     "value": "0"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "MaxStockThreshold",
+     "text": "Max stock"
+    },
+    {
+     "tag": "input",
+     "name": "MaxStockThreshold",
+     "type": "number",
+     "value": "0"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": "[ Cancel ]"
+    },
+    {
+     "tag": "button",
+     "type": "submit",
+     "text": "[ Save ]"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/jquery.validate.js",
+    "/Scripts/jquery.validate.unobtrusive.js",
+    "/Scripts/modernizr-2.6.2.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "mvc-cold-reads",
+ "description": "Edit form before any list render",
+ "quirk": "Q4"
+}

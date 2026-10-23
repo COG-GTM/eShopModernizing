@@ -1,0 +1,159 @@
+name: eshopnet8-ci
+
+# .NET 8 eShop migration (eShopNet8/): build + test, Linux container images, parity replay against the
+# mock-profile containers, and a SQL-profile seeding smoke test once the EF Core data layer (T1) is present.
+on:
+  pull_request:
+    branches: [devin/hcl-net8-eshop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eshopnet8-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_NOLOGO: "true"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+  COMPOSE_FILE: eShopNet8/docker-compose.yml
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: eShopNet8/global.json
+      - name: Restore
+        run: dotnet restore eShopNet8/eShopNet8.sln
+      - name: Build
+        run: dotnet build eShopNet8/eShopNet8.sln -c Release --no-restore
+      - name: Test
+        run: dotnet test eShopNet8/eShopNet8.sln -c Release --no-build --logger trx --results-directory eShopNet8/TestResults
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eshopnet8-test-results
+          path: eShopNet8/TestResults
+          if-no-files-found: ignore
+
+  containers-parity:
+    runs-on: ubuntu-latest
+    needs: build-test
+    timeout-minutes: 45
+    env:
+      # Replay differences are reported but only fail the job when this repo/org variable is "true"
+      # (stage 4 parity gate). A harness crash (no report written) always fails.
+      PARITY_GATE: ${{ vars.ESHOPNET8_PARITY_GATE == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build images
+        run: docker compose --profile mock build
+      - name: Start mock profile (5200/5201)
+        run: docker compose --profile mock up -d --wait --wait-timeout 180
+      - name: Probe health endpoints
+        run: |
+          for port in 5200 5201; do
+            curl -fsS "http://127.0.0.1:$port/health"; echo " ($port /health)"
+            curl -sS "http://127.0.0.1:$port/health/ready"; echo " ($port /health/ready)"
+          done
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install parity harness
+        run: pip install -r modernization/parity/requirements.txt
+      - name: Parity replay (mock containers)
+        run: |
+          set +e
+          python3 modernization/parity/replay.py \
+            --mvc-url http://127.0.0.1:5200 --webforms-url http://127.0.0.1:5201 \
+            --restart-cmd-mvc 'modernization/parity/net8/start-net8.sh mvc --docker' \
+            --restart-cmd-webforms 'modernization/parity/net8/start-net8.sh webforms --docker' \
+            --accept-quirks --known-divergences eShopNet8/tests/eShopNet8.IntegrationTests/Parity/known-divergences.json \
+            --report-dir parity-report > parity-report.log 2>&1
+          rc=$?
+          set -e
+          tail -n 40 parity-report.log
+          if [ ! -f parity-report/replay-report.json ]; then
+            echo "::error::parity replay did not complete (exit $rc); see parity-report.log"
+            exit 1
+          fi
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          s = json.load(open("parity-report/replay-report.json"))["summary"]
+          print("### eShop .NET 8 parity replay (mock containers)\n")
+          print("| flows | verdicts | failing | accepted quirks | known divergences |\n|---|---|---|---|---|")
+          print("| %d/%d | %s | %d | %d | %d |" % (s["flows"], s["baseline_flows"], json.dumps(s["verdicts"]), s["failing"], s["accepted_quirks"], s.get("known_divergences", 0)))
+          PY
+          if [ "$rc" != 0 ]; then
+            if [ "$PARITY_GATE" = true ]; then
+              echo "::error::parity replay reported failing flows (ESHOPNET8_PARITY_GATE=true)"; exit 1
+            fi
+            echo "::warning::parity replay reported failing flows; not gating until ESHOPNET8_PARITY_GATE=true"
+          fi
+      - name: Container logs
+        if: always()
+        run: docker compose --profile mock logs --no-color > compose-mock.log 2>&1 || true
+      - name: Upload parity report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eshopnet8-parity-report
+          path: |
+            parity-report/
+            parity-report.log
+            compose-mock.log
+          if-no-files-found: warn
+      - name: Stop mock profile
+        if: always()
+        run: docker compose --profile mock down -v
+
+  sql-profile:
+    runs-on: ubuntu-latest
+    needs: build-test
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect EF Core data layer (T1)
+        id: detect
+        run: |
+          if grep -rqs "AddDbContext" eShopNet8/src/eShop.Catalog.Infrastructure/Data; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::SQL profile smoke test skipped: the EF Core data layer (T1) is not on this branch yet"
+          fi
+      - name: Generate throwaway SQL password
+        if: steps.detect.outputs.enabled == 'true'
+        run: |
+          pw="Ci$(openssl rand -hex 16)!a1"
+          echo "::add-mask::$pw"
+          echo "SQL_SA_PASSWORD=$pw" >> "$GITHUB_ENV"
+      - name: Start sql profile (5210/5211)
+        if: steps.detect.outputs.enabled == 'true'
+        run: docker compose --profile sql up -d --build --wait --wait-timeout 300
+      - name: Verify readiness and seed data
+        if: steps.detect.outputs.enabled == 'true'
+        run: |
+          for port in 5210 5211; do curl -fsS "http://127.0.0.1:$port/health/ready"; echo " ($port)"; done
+          docker compose --profile sql exec -T sqldata bash -c '/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -b -h -1 -W -d Microsoft.eShopOnContainers.Services.CatalogDb -Q "SET NOCOUNT ON; SELECT (SELECT COUNT(*) FROM Catalog), (SELECT COUNT(*) FROM CatalogBrand), (SELECT COUNT(*) FROM CatalogType)"' | tee counts.txt
+          read -r items brands types < <(tr -s ' ' < counts.txt | tail -n 1)
+          [ "$items" = 12 ] && [ "$brands" = 5 ] && [ "$types" = 4 ] || { echo "::error::expected 12 items/5 brands/4 types, got $items/$brands/$types"; exit 1; }
+      - name: Container logs
+        if: always() && steps.detect.outputs.enabled == 'true'
+        run: docker compose --profile sql logs --no-color > compose-sql.log 2>&1 || true
+      - name: Upload logs
+        if: always() && steps.detect.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eshopnet8-sql-logs
+          path: compose-sql.log
+          if-no-files-found: ignore
+      - name: Stop sql profile
+        if: always() && steps.detect.outputs.enabled == 'true'
+        run: docker compose --profile sql down -v
