@@ -2,6 +2,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
 using System.Xml;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
 
@@ -45,6 +46,18 @@ public static class WebApiResults
                      $"for method 'System.Web.Http.IHttpActionResult {action}(Int32)' in '{LegacyControllerType}'. " +
                      "An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.";
         return HttpError(context, StatusCodes.Status400BadRequest, ("Message", "The request is invalid."), ("MessageDetail", detail));
+    }
+
+    // Web API 2 returned NotFound() / unknown-id DELETE as an empty-bodied 404; keep it empty even if the MVC pipeline
+    // (T3) enables status code pages for the HTML site.
+    public static IResult EmptyNotFound(HttpContext context)
+    {
+        var statusCodePages = context.Features.Get<IStatusCodePagesFeature>();
+        if (statusCodePages is not null)
+        {
+            statusCodePages.Enabled = false;
+        }
+        return Results.NotFound();
     }
 
     public static IResult MethodNotAllowed(HttpContext context, params string[] allowed)

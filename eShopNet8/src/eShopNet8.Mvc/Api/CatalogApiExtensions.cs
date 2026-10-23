@@ -62,15 +62,15 @@ public static class CatalogApiExtensions
     private static IResult GetBrand(HttpContext context, int id, ICatalogService service)
     {
         var brand = service.GetCatalogBrands().FirstOrDefault(x => x.Id == id);
-        return brand is null ? Results.NotFound() : WebApiResults.Negotiated(context, BrandDto.From(brand));
+        return brand is null ? WebApiResults.EmptyNotFound(context) : WebApiResults.Negotiated(context, BrandDto.From(brand));
     }
 
     // DELETE api/brands/{id}: 404 for an unknown id, otherwise 200 with an empty body and nothing deleted
     // ("demo only - don't actually delete", INVENTORY Q3, reproduced on purpose).
-    private static IResult DeleteBrand(int id, [FromServices] ICatalogService service)
+    private static IResult DeleteBrand(HttpContext context, int id, [FromServices] ICatalogService service)
     {
         var brandToDelete = service.GetCatalogBrands().FirstOrDefault(x => x.Id == id);
-        return brandToDelete is null ? Results.NotFound() : Results.Ok();
+        return brandToDelete is null ? WebApiResults.EmptyNotFound(context) : Results.Ok();
     }
 
     // GET api/files: the legacy endpoint streamed the brand list as an NRBF (binary formatter) payload, an insecure
