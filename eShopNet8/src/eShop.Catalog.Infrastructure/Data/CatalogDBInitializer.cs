@@ -21,6 +21,7 @@ public class CatalogDBInitializer
     private const string PicsFolder = "Pics";
     private const int MaxConnectAttempts = 20;
     private static readonly TimeSpan ConnectRetryDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan SeedLockWait = TimeSpan.FromMinutes(2);
 
     private readonly CatalogDBContext context;
     private readonly ILogger<CatalogDBInitializer> logger;
@@ -43,11 +44,15 @@ public class CatalogDBInitializer
         // one transaction: a failed seed rolls back to empty tables (retried on the next start, never dropped), and a
         // concurrent instance waits for the commit instead of reading or reseeding a half-seeded catalog.
         await using var transaction = await context.Database.BeginTransactionAsync(cancellationToken);
+        var commandTimeout = context.Database.GetCommandTimeout();
+        context.Database.SetCommandTimeout(SeedLockWait + TimeSpan.FromSeconds(30));
         await context.Database.ExecuteSqlRawAsync(
             "DECLARE @result int; " +
-            "EXEC @result = sp_getapplock @Resource = N'eShop.Catalog.Seed', @LockMode = N'Exclusive', @LockOwner = N'Transaction', @LockTimeout = 120000; " +
+            "EXEC @result = sp_getapplock @Resource = N'eShop.Catalog.Seed', @LockMode = N'Exclusive', @LockOwner = N'Transaction', @LockTimeout = @lockTimeoutMs; " +
             "IF @result < 0 THROW 50000, 'Timed out waiting for the catalog seed lock', 1;",
+            new object[] { new SqlParameter("@lockTimeoutMs", (int)SeedLockWait.TotalMilliseconds) },
             cancellationToken);
+        context.Database.SetCommandTimeout(commandTimeout);
 
         if (await context.CatalogTypes.AnyAsync(cancellationToken)
             || await context.CatalogBrands.AnyAsync(cancellationToken)
