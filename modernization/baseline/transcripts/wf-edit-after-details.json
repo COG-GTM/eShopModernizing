@@ -1,0 +1,249 @@
+{
+ "id": "wf-edit-after-details",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Details/1"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "1149da13a8446ab81c2fd60e66361e4dd5ad5d466482d7b5072f7d3e0b8439f6",
+  "body": {
+   "kind": "html",
+   "title": "Details - Catalog manager (Web Forms)",
+   "text": [
+    "Catalog manager",
+    "(Web Forms)",
+    "Details",
+    "Name",
+    "Edited Hoodie",
+    "Description",
+    ".NET Bot Black Hoodie",
+    "Brand",
+    ".NET",
+    "Type",
+    "T-Shirt",
+    "Price",
+    "21.50",
+    "Picture name",
+    "1.png",
+    "Stock",
+    "77",
+    "Restock",
+    "0",
+    "Max stock",
+    "0",
+    "Edit",
+    "|",
+    "Back to list",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Details - Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "form",
+     "action": "1",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__VIEWSTATE",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "a",
+     "href": "../../",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "span",
+     "text": "(Web Forms)"
+    },
+    {
+     "tag": "h2",
+     "text": "Details"
+    },
+    {
+     "tag": "img",
+     "src": "/Pics/1.png"
+    },
+    {
+     "tag": "dt",
+     "text": "Name"
+    },
+    {
+     "tag": "dd",
+     "text": "Edited Hoodie"
+    },
+    {
+     "tag": "span",
+     "text": "Edited Hoodie"
+    },
+    {
+     "tag": "dt",
+     "text": "Description"
+    },
+    {
+     "tag": "dd",
+     "text": ".NET Bot Black Hoodie"
+    },
+    {
+     "tag": "span",
+     "text": ".NET Bot Black Hoodie"
+    },
+    {
+     "tag": "dt",
+     "text": "Brand"
+    },
+    {
+     "tag": "dd",
+     "text": ".NET"
+    },
+    {
+     "tag": "span",
+     "text": ".NET"
+    },
+    {
+     "tag": "dt",
+     "text": "Type"
+    },
+    {
+     "tag": "dd",
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "span",
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "dt",
+     "text": "Price"
+    },
+    {
+     "tag": "dd",
+     "text": "21.50"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "esh-price"
+     ],
+     "text": "21.50"
+    },
+    {
+     "tag": "dt",
+     "text": "Picture name"
+    },
+    {
+     "tag": "dd",
+     "text": "1.png"
+    },
+    {
+     "tag": "span",
+     "text": "1.png"
+    },
+    {
+     "tag": "dt",
+     "text": "Stock"
+    },
+    {
+     "tag": "dd",
+     "text": "77"
+    },
+    {
+     "tag": "span",
+     "text": "77"
+    },
+    {
+     "tag": "dt",
+     "text": "Restock"
+    },
+    {
+     "tag": "dd",
+     "text": "0"
+    },
+    {
+     "tag": "span",
+     "text": "0"
+    },
+    {
+     "tag": "dt",
+     "text": "Max stock"
+    },
+    {
+     "tag": "dd",
+     "text": "0"
+    },
+    {
+     "tag": "span",
+     "text": "0"
+    },
+    {
+     "tag": "a",
+     "href": "/Catalog/Edit/1",
+     "text": "Edit"
+    },
+    {
+     "tag": "a",
+     "href": "../../",
+     "text": "Back to list"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    },
+    {
+     "tag": "span",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/WebForms/DetailsView.js",
+    "/Scripts/WebForms/Focus.js",
+    "/Scripts/WebForms/GridView.js",
+    "/Scripts/WebForms/MenuStandards.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js",
+    "/Scripts/WebForms/TreeView.js",
+    "/Scripts/WebForms/WebForms.js",
+    "/Scripts/WebForms/WebParts.js",
+    "/Scripts/WebForms/WebUIValidation.js",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "wf-edit",
+ "description": "Details after edit (navigation re-composed by the snapshot list render)"
+}

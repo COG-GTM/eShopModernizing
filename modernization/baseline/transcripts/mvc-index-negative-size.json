@@ -1,0 +1,166 @@
+{
+ "id": "mvc-index-negative-size",
+ "request": {
+  "method": "GET",
+  "path": "/?pageSize=-1"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "d69f78b2719b9764542f9864b08661a58283a5e970d61ca5d5b1cc9f9114cad7",
+  "body": {
+   "kind": "html",
+   "title": "Index - Catalog manager (MVC)",
+   "text": [
+    "Catalog manager",
+    "(MVC)",
+    "Create New",
+    "Name",
+    "Description",
+    "Brand",
+    "Type",
+    "Price",
+    "Picture name",
+    "Stock",
+    "Restock",
+    "Max stock",
+    "Previous",
+    "Showing -1 of 12 products - Page 1 - -12",
+    "Next",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Index - Catalog manager (MVC)"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (MVC)"
+    },
+    {
+     "tag": "span",
+     "text": "(MVC)"
+    },
+    {
+     "tag": "p",
+     "text": "Create New"
+    },
+    {
+     "tag": "a",
+     "href": "/Catalog/Create",
+     "text": "Create New"
+    },
+    {
+     "tag": "table"
+    },
+    {
+     "tag": "tr"
+    },
+    {
+     "tag": "th",
+     "text": ""
+    },
+    {
+     "tag": "th",
+     "text": "Name"
+    },
+    {
+     "tag": "th",
+     "text": "Description"
+    },
+    {
+     "tag": "th",
+     "text": "Brand"
+    },
+    {
+     "tag": "th",
+     "text": "Type"
+    },
+    {
+     "tag": "th",
+     "text": "Price"
+    },
+    {
+     "tag": "th",
+     "text": "Picture name"
+    },
+    {
+     "tag": "th",
+     "text": "Stock"
+    },
+    {
+     "tag": "th",
+     "text": "Restock"
+    },
+    {
+     "tag": "th",
+     "text": "Max stock"
+    },
+    {
+     "tag": "th",
+     "text": ""
+    },
+    {
+     "tag": "a",
+     "href": "/?pageSize=-1&pageIndex=-1",
+     "class": [
+      "esh-pager-item--hidden",
+      "esh-pager-item--navigable"
+     ],
+     "text": "Previous"
+    },
+    {
+     "tag": "span",
+     "text": "Showing -1 of 12 products - Page 1 - -12"
+    },
+    {
+     "tag": "a",
+     "href": "/?pageSize=-1&pageIndex=1",
+     "class": [
+      "esh-pager-item--hidden",
+      "esh-pager-item--navigable"
+     ],
+     "text": "Next"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.6.2.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Negative page size (Take(-1) = empty, TotalPages -12)"
+}

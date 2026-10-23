@@ -1,0 +1,41 @@
+{
+ "id": "mvc-api-brands-after-delete",
+ "request": {
+  "method": "GET",
+  "path": "/api/brands"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "application/json"
+  },
+  "raw_sha256": "b3e93c601f559f1c3896cd1c6f40d73ef3870a2337db029b434ae0c4ffb63bf7",
+  "body": {
+   "kind": "json",
+   "json": [
+    {
+     "Id": 1,
+     "Brand": "Azure"
+    },
+    {
+     "Id": 2,
+     "Brand": ".NET"
+    },
+    {
+     "Id": 3,
+     "Brand": "Visual Studio"
+    },
+    {
+     "Id": 4,
+     "Brand": "SQL Server"
+    },
+    {
+     "Id": 5,
+     "Brand": "Other"
+    }
+   ]
+  }
+ },
+ "sequence": "mvc-api-mutations",
+ "description": "Brand 1 still present"
+}

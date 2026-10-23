@@ -1,0 +1,21 @@
+{
+ "id": "mvc-bundle-jqueryval",
+ "request": {
+  "method": "GET",
+  "path": "/bundles/jqueryval"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/javascript"
+  },
+  "raw_sha256": "2dd80e00f6559e4e0cf921736596e1350d7da7e0f323018f5c6642274d225e1d",
+  "body": {
+   "kind": "opaque",
+   "length": 28742
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "bundle",
+ "compare": "status"
+}

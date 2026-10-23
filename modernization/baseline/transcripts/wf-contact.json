@@ -1,0 +1,126 @@
+{
+ "id": "wf-contact",
+ "request": {
+  "method": "GET",
+  "path": "/Contact.aspx"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "d3ba015e5435cd16ab5061afcfb121d0c7bd4e7063ebc4c273843bc476ec7ce9",
+  "body": {
+   "kind": "html",
+   "title": "Contact - Catalog manager (Web Forms)",
+   "text": [
+    "Catalog manager",
+    "(Web Forms)",
+    "Contact.",
+    "Your contact page.",
+    "One Microsoft Way",
+    "Redmond, WA 98052-6399",
+    "P:",
+    "425.555.0100",
+    "Support:",
+    "Support@example.com",
+    "Marketing:",
+    "Marketing@example.com",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Contact - Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "form",
+     "action": "Contact.aspx",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__VIEWSTATE",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "a",
+     "href": "./",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "span",
+     "text": "(Web Forms)"
+    },
+    {
+     "tag": "h2",
+     "text": "Contact."
+    },
+    {
+     "tag": "h3",
+     "text": "Your contact page."
+    },
+    {
+     "tag": "a",
+     "href": "mailto:Support@example.com",
+     "text": "Support@example.com"
+    },
+    {
+     "tag": "a",
+     "href": "mailto:Marketing@example.com",
+     "text": "Marketing@example.com"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    },
+    {
+     "tag": "span",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/WebForms/DetailsView.js",
+    "/Scripts/WebForms/Focus.js",
+    "/Scripts/WebForms/GridView.js",
+    "/Scripts/WebForms/MenuStandards.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js",
+    "/Scripts/WebForms/TreeView.js",
+    "/Scripts/WebForms/WebForms.js",
+    "/Scripts/WebForms/WebParts.js",
+    "/Scripts/WebForms/WebUIValidation.js",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "Template page"
+}

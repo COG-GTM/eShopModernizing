@@ -1,0 +1,22 @@
+{
+ "id": "mvc-delete-post-missing-antiforgery",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Delete/4",
+  "form": []
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e",
+  "body": {
+   "kind": "opaque",
+   "length": 17744
+  }
+ },
+ "sequence": "mvc-delete",
+ "description": "Delete without antiforgery -> 500",
+ "data_state": "data-state/mvc-delete-post-missing-antiforgery.json"
+}

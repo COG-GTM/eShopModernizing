@@ -1,0 +1,21 @@
+{
+ "id": "wf-details-missing",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Details/999"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "dc389d1bdf72789a241f348b24b683d1c1e8d3fd99b433e6d2cb8c8e89ee58b5",
+  "body": {
+   "kind": "opaque",
+   "length": 9511
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "Unknown id -> NRE 500 (quirk Q7)",
+ "quirk": "Q7"
+}

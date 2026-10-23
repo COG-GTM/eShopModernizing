@@ -1,0 +1,21 @@
+{
+ "id": "mvc-index-size0",
+ "request": {
+  "method": "GET",
+  "path": "/?pageSize=0"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "8e5176c8eeab39998c45f223b602064e2a6e08580476f6490e8c582b2f56138c",
+  "body": {
+   "kind": "opaque",
+   "length": 20775
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "pageSize=0 -> divide by zero -> 500 (quirk Q5)",
+ "quirk": "Q5"
+}

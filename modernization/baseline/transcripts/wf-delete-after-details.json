@@ -1,0 +1,21 @@
+{
+ "id": "wf-delete-after-details",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Details/3"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "a6e75bc7ba3a1f8bc90d7577ce8779b9e2468de033b2eff3e9a05c821d7f19b7",
+  "body": {
+   "kind": "opaque",
+   "length": 9511
+  }
+ },
+ "sequence": "wf-delete",
+ "description": "Deleted item -> NRE 500 (quirk Q7)",
+ "quirk": "Q7"
+}

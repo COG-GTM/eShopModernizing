@@ -1,0 +1,84 @@
+{
+ "id": "mvc-create-post-valid",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Create",
+  "form": [
+   [
+    "__RequestVerificationToken",
+    "<masked>"
+   ],
+   [
+    "Name",
+    "Parity Test Hoodie"
+   ],
+   [
+    "Description",
+    "Created by the parity harness"
+   ],
+   [
+    "CatalogBrandId",
+    "3"
+   ],
+   [
+    "CatalogTypeId",
+    "2"
+   ],
+   [
+    "Price",
+    "24.99"
+   ],
+   [
+    "AvailableStock",
+    "42"
+   ],
+   [
+    "RestockThreshold",
+    "5"
+   ],
+   [
+    "MaxStockThreshold",
+    "200"
+   ],
+   [
+    "PictureFileName",
+    "dummy.png"
+   ]
+  ]
+ },
+ "response": {
+  "status": 302,
+  "headers": {
+   "content-type": "text/html",
+   "location": "/"
+  },
+  "raw_sha256": "9849b1adf8aca1a2f400e0ef47dd06e737e57a90746b4c51d384dbdc22668e89",
+  "body": {
+   "kind": "html",
+   "title": "Object moved",
+   "text": [
+    "Object moved to",
+    "here"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Object moved"
+    },
+    {
+     "tag": "h2",
+     "text": "Object moved to here"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": "here"
+    }
+   ],
+   "assets": []
+  }
+ },
+ "sequence": "mvc-create",
+ "description": "Valid create -> 302 / ; new id 13",
+ "data_state": "data-state/mvc-create-post-valid.json"
+}

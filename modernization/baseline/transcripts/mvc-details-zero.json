@@ -1,0 +1,19 @@
+{
+ "id": "mvc-details-zero",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Details/0"
+ },
+ "response": {
+  "status": 404,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "body": {
+   "kind": "empty"
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Id 0 -> 404"
+}

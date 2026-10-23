@@ -1,0 +1,366 @@
+{
+ "id": "mvc-create-post-invalid-name-missing",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Create",
+  "form": [
+   [
+    "__RequestVerificationToken",
+    "<masked>"
+   ],
+   [
+    "Name",
+    ""
+   ],
+   [
+    "Description",
+    "Created by the parity harness"
+   ],
+   [
+    "CatalogBrandId",
+    "3"
+   ],
+   [
+    "CatalogTypeId",
+    "2"
+   ],
+   [
+    "Price",
+    "24.99"
+   ],
+   [
+    "AvailableStock",
+    "42"
+   ],
+   [
+    "RestockThreshold",
+    "5"
+   ],
+   [
+    "MaxStockThreshold",
+    "200"
+   ],
+   [
+    "PictureFileName",
+    "dummy.png"
+   ]
+  ]
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "fa70e017b7623f04c0cce586621448d00de4c6529833d11cf096315ee8ba7755",
+  "body": {
+   "kind": "html",
+   "title": "Create - Catalog manager (MVC)",
+   "text": [
+    "Catalog manager",
+    "(MVC)",
+    "Create",
+    "Name",
+    "The Name field is required.",
+    "Description",
+    "Brand",
+    "Azure",
+    ".NET",
+    "Visual Studio",
+    "SQL Server",
+    "Other",
+    "Type",
+    "Mug",
+    "T-Shirt",
+    "Sheet",
+    "USB Memory Stick",
+    "Price",
+    "Picture name",
+    "Uploading images not allowed for this version.",
+    "Stock",
+    "Restock",
+    "Max stock",
+    "[ Cancel ]",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Create - Catalog manager (MVC)"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (MVC)"
+    },
+    {
+     "tag": "span",
+     "text": "(MVC)"
+    },
+    {
+     "tag": "h2",
+     "text": "Create"
+    },
+    {
+     "tag": "form",
+     "action": "/Catalog/Create",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__RequestVerificationToken",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "ul"
+    },
+    {
+     "tag": "li",
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "Name",
+     "text": "Name"
+    },
+    {
+     "tag": "input",
+     "name": "Name",
+     "type": "text",
+     "value": "",
+     "class": [
+      "input-validation-error"
+     ]
+    },
+    {
+     "tag": "span",
+     "class": [
+      "field-validation-error",
+      "text-danger"
+     ],
+     "text": "The Name field is required."
+    },
+    {
+     "tag": "label",
+     "for": "Description",
+     "text": "Description"
+    },
+    {
+     "tag": "input",
+     "name": "Description",
+     "type": "text",
+     "value": "Created by the parity harness"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "CatalogBrandId",
+     "text": "Brand"
+    },
+    {
+     "tag": "select",
+     "name": "CatalogBrandId"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "text": "Azure"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "text": ".NET"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "selected": true,
+     "text": "Visual Studio"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "SQL Server"
+    },
+    {
+     "tag": "option",
+     "value": "5",
+     "text": "Other"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "CatalogTypeId",
+     "text": "Type"
+    },
+    {
+     "tag": "select",
+     "name": "CatalogTypeId"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "text": "Mug"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "selected": true,
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "text": "Sheet"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "USB Memory Stick"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "Price",
+     "text": "Price"
+    },
+    {
+     "tag": "input",
+     "name": "Price",
+     "type": "text",
+     "value": "24.99"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "PictureFileName",
+     "text": "Picture name"
+    },
+    {
+     "tag": "label",
+     "for": "AvailableStock",
+     "text": "Stock"
+    },
+    {
+     "tag": "input",
+     "name": "AvailableStock",
+     "type": "number",
+     "value": "42"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "RestockThreshold",
+     "text": "Restock"
+    },
+    {
+     "tag": "input",
+     "name": "RestockThreshold",
+     "type": "number",
+     "value": "5"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "label",
+     "for": "MaxStockThreshold",
+     "text": "Max stock"
+    },
+    {
+     "tag": "input",
+     "name": "MaxStockThreshold",
+     "type": "number",
+     "value": "200"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "text-danger"
+     ],
+     "text": ""
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": "[ Cancel ]"
+    },
+    {
+     "tag": "input",
+     "type": "submit",
+     "value": "[ Create ]"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/jquery.validate.js",
+    "/Scripts/jquery.validate.unobtrusive.js",
+    "/Scripts/modernizr-2.6.2.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "mvc-create-invalid",
+ "description": "Create validation failure: name-missing -> 200 re-render with message"
+}

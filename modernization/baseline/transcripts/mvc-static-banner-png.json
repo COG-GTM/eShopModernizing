@@ -1,0 +1,21 @@
+{
+ "id": "mvc-static-banner-png",
+ "request": {
+  "method": "GET",
+  "path": "/images/main_banner.png"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "image/png"
+  },
+  "raw_sha256": "98dec12706787f15b8e226021c7ad478a11013665eed8f8828b2cf660d75c1a8",
+  "body": {
+   "kind": "binary",
+   "sha256": "98dec12706787f15b8e226021c7ad478a11013665eed8f8828b2cf660d75c1a8",
+   "length": 871336
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Banner image"
+}

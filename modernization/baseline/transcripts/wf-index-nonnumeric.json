@@ -1,0 +1,21 @@
+{
+ "id": "wf-index-nonnumeric",
+ "request": {
+  "method": "GET",
+  "path": "/Default/index/x/size/5"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "51027e1671c8a57ecc065bfea3c78569d6eebeb655b819fc67337fb8ae84350d",
+  "body": {
+   "kind": "opaque",
+   "length": 7737
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "non-numeric -> 500 (quirk Q5)",
+ "quirk": "Q5"
+}

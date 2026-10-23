@@ -1,0 +1,19 @@
+{
+ "id": "mvc-delete-bad-id",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Delete/abc"
+ },
+ "response": {
+  "status": 400,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "body": {
+   "kind": "empty"
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "400"
+}

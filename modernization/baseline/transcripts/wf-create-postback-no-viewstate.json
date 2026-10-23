@@ -1,0 +1,302 @@
+{
+ "id": "wf-create-postback-no-viewstate",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Create",
+  "form": [
+   [
+    "ctl00$MainContent$Name",
+    "Parity Test Mug"
+   ],
+   [
+    "ctl00$MainContent$Description",
+    "Created by the parity harness"
+   ],
+   [
+    "ctl00$MainContent$Brand",
+    "3"
+   ],
+   [
+    "ctl00$MainContent$Type",
+    "1"
+   ],
+   [
+    "ctl00$MainContent$Price",
+    "9.99"
+   ],
+   [
+    "ctl00$MainContent$Stock",
+    "10"
+   ],
+   [
+    "ctl00$MainContent$Restock",
+    "2"
+   ],
+   [
+    "ctl00$MainContent$Maxstock",
+    "50"
+   ],
+   [
+    "ctl00$MainContent$ctl06",
+    "[ Create ]"
+   ]
+  ]
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "14eb555555866f4b86d3c51d06b89f8626c2de05ef50a5d5ac935004e3dda4b5",
+  "body": {
+   "kind": "html",
+   "title": "Create - Catalog manager (Web Forms)",
+   "text": [
+    "Catalog manager",
+    "(Web Forms)",
+    "Create",
+    "Name",
+    "Description",
+    "Brand",
+    "Azure",
+    ".NET",
+    "Visual Studio",
+    "SQL Server",
+    "Other",
+    "Type",
+    "Mug",
+    "T-Shirt",
+    "Sheet",
+    "USB Memory Stick",
+    "Price",
+    "Picture name",
+    "Uploading images not allowed for this version.",
+    "Stock",
+    "Restock",
+    "Max stock",
+    "[ Cancel ]",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Create - Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "form",
+     "action": "Create",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__VIEWSTATE",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "a",
+     "href": "../",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "span",
+     "text": "(Web Forms)"
+    },
+    {
+     "tag": "h2",
+     "text": "Create"
+    },
+    {
+     "tag": "label",
+     "text": "Name"
+    },
+    {
+     "tag": "input",
+     "name": "Name",
+     "type": "text"
+    },
+    {
+     "tag": "label",
+     "text": "Description"
+    },
+    {
+     "tag": "input",
+     "name": "Description",
+     "type": "text"
+    },
+    {
+     "tag": "label",
+     "text": "Brand"
+    },
+    {
+     "tag": "select",
+     "name": "Brand"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "text": "Azure"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "text": ".NET"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "text": "Visual Studio"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "SQL Server"
+    },
+    {
+     "tag": "option",
+     "value": "5",
+     "text": "Other"
+    },
+    {
+     "tag": "label",
+     "text": "Type"
+    },
+    {
+     "tag": "select",
+     "name": "Type"
+    },
+    {
+     "tag": "option",
+     "value": "1",
+     "text": "Mug"
+    },
+    {
+     "tag": "option",
+     "value": "2",
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "option",
+     "value": "3",
+     "text": "Sheet"
+    },
+    {
+     "tag": "option",
+     "value": "4",
+     "text": "USB Memory Stick"
+    },
+    {
+     "tag": "label",
+     "text": "Price"
+    },
+    {
+     "tag": "input",
+     "name": "Price",
+     "type": "text",
+     "value": "0.00"
+    },
+    {
+     "tag": "label",
+     "text": "Picture name"
+    },
+    {
+     "tag": "label",
+     "text": "Stock"
+    },
+    {
+     "tag": "input",
+     "name": "Stock",
+     "type": "text",
+     "value": "0"
+    },
+    {
+     "tag": "label",
+     "text": "Restock"
+    },
+    {
+     "tag": "input",
+     "name": "Restock",
+     "type": "text",
+     "value": "0"
+    },
+    {
+     "tag": "label",
+     "text": "Max stock"
+    },
+    {
+     "tag": "input",
+     "name": "Maxstock",
+     "type": "text",
+     "value": "0"
+    },
+    {
+     "tag": "a",
+     "href": "../",
+     "text": "[ Cancel ]"
+    },
+    {
+     "tag": "input",
+     "name": "ctl06",
+     "type": "submit",
+     "value": "[ Create ]"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    },
+    {
+     "tag": "span",
+     "text": "<masked>"
+    },
+    {
+     "tag": "input",
+     "name": "__EVENTVALIDATION",
+     "type": "hidden",
+     "value": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/WebForms/DetailsView.js",
+    "/Scripts/WebForms/Focus.js",
+    "/Scripts/WebForms/GridView.js",
+    "/Scripts/WebForms/MenuStandards.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js",
+    "/Scripts/WebForms/TreeView.js",
+    "/Scripts/WebForms/WebForms.js",
+    "/Scripts/WebForms/WebParts.js",
+    "/Scripts/WebForms/WebUIValidation.js",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "wf-create-unvalidated",
+ "description": "Postback without __VIEWSTATE/__EVENTVALIDATION",
+ "data_state": "data-state/wf-create-postback-no-viewstate.json"
+}

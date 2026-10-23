@@ -1,0 +1,100 @@
+{
+ "id": "wf-edit-postback-valid",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Edit/1",
+  "form": [
+   [
+    "__VIEWSTATE",
+    "<masked>"
+   ],
+   [
+    "ctl00$MainContent$Name",
+    "Edited Hoodie"
+   ],
+   [
+    "ctl00$MainContent$Description",
+    ".NET Bot Black Hoodie"
+   ],
+   [
+    "ctl00$MainContent$BrandDropDownList",
+    "2"
+   ],
+   [
+    "ctl00$MainContent$TypeDropDownList",
+    "2"
+   ],
+   [
+    "ctl00$MainContent$Price",
+    "21.50"
+   ],
+   [
+    "ctl00$MainContent$PictureFileName",
+    "1.png"
+   ],
+   [
+    "ctl00$MainContent$Stock",
+    "77"
+   ],
+   [
+    "ctl00$MainContent$Restock",
+    "0"
+   ],
+   [
+    "ctl00$MainContent$Maxstock",
+    "0"
+   ],
+   [
+    "__EVENTVALIDATION",
+    "<masked>"
+   ],
+   [
+    "Brand",
+    "1"
+   ],
+   [
+    "Type",
+    "3"
+   ],
+   [
+    "ctl00$MainContent$ctl07",
+    "[ Save ]"
+   ]
+  ]
+ },
+ "response": {
+  "status": 302,
+  "headers": {
+   "content-type": "text/html",
+   "location": "/"
+  },
+  "raw_sha256": "9849b1adf8aca1a2f400e0ef47dd06e737e57a90746b4c51d384dbdc22668e89",
+  "body": {
+   "kind": "html",
+   "title": "Object moved",
+   "text": [
+    "Object moved to",
+    "here"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Object moved"
+    },
+    {
+     "tag": "h2",
+     "text": "Object moved to here"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": "here"
+    }
+   ],
+   "assets": []
+  }
+ },
+ "sequence": "wf-edit",
+ "description": "Postback save -> 302 /",
+ "data_state": "data-state/wf-edit-postback-valid.json"
+}

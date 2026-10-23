@@ -1,0 +1,21 @@
+{
+ "id": "mvc-static-bootstrap-js",
+ "request": {
+  "method": "GET",
+  "path": "/Scripts/bootstrap.js"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "application/javascript"
+  },
+  "raw_sha256": "a65d5b4abb65aad37f302c96f1751362e2422a8869f7f889112556d77e384813",
+  "body": {
+   "kind": "text",
+   "sha256": "a65d5b4abb65aad37f302c96f1751362e2422a8869f7f889112556d77e384813",
+   "length": 131637
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Script"
+}

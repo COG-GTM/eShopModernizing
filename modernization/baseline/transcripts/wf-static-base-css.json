@@ -1,0 +1,21 @@
+{
+ "id": "wf-static-base-css",
+ "request": {
+  "method": "GET",
+  "path": "/Content/base.css"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/css"
+  },
+  "raw_sha256": "92b142d83796253b1317a6f8551946810f20fcaa90cd6d3b17e50796fd90af15",
+  "body": {
+   "kind": "text",
+   "sha256": "c97da9da2e7aa28cbaccf698877a51d2288da2a61dff0c1c149b88fe7f531728",
+   "length": 909
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "CSS"
+}

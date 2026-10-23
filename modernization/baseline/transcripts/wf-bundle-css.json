@@ -1,0 +1,21 @@
+{
+ "id": "wf-bundle-css",
+ "request": {
+  "method": "GET",
+  "path": "/Content/css"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/css"
+  },
+  "raw_sha256": "983709374abac03ed8b27f5d2dc69d73f583686bb689a11adf3981e369f8baf5",
+  "body": {
+   "kind": "opaque",
+   "length": 200063
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "bundle: status + type only",
+ "compare": "status"
+}

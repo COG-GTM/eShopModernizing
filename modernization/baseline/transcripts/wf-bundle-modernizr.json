@@ -1,0 +1,21 @@
+{
+ "id": "wf-bundle-modernizr",
+ "request": {
+  "method": "GET",
+  "path": "/bundles/modernizr"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/javascript"
+  },
+  "raw_sha256": "9e83216908224ffbc39992a5e60f93ca21b8e2240ba28025ba679c4b70f7112d",
+  "body": {
+   "kind": "opaque",
+   "length": 11095
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "bundle",
+ "compare": "status"
+}
