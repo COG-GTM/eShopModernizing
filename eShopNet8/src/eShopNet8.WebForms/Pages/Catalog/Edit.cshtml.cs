@@ -52,15 +52,18 @@ public class EditModel : PageModel
 
         // ModelState.IsValid instead of Page.IsValid in the legacy handler: validators are not enforced (quirk Q8).
         var form = Request.Form;
+        var productId = PostBack.RouteId(RouteData.Values);
         var catalogItem = new CatalogItem
         {
-            Id = PostBack.RouteId(RouteData.Values),
+            Id = productId,
             Name = form["Name"].ToString(),
             Description = form["Description"].ToString(),
             CatalogBrandId = int.Parse(form["BrandDropDownList"].ToString(), CultureInfo.InvariantCulture),
             CatalogTypeId = int.Parse(form["TypeDropDownList"].ToString(), CultureInfo.InvariantCulture),
             Price = decimal.Parse(form["Price"].ToString(), CultureInfo.InvariantCulture),
-            PictureFileName = form["PictureFileName"].ToString(),
+            // A ReadOnly WebForms TextBox ignores posted data and keeps its ViewState value, so the stored file name wins
+            // over whatever the client posts.
+            PictureFileName = _catalogService.FindCatalogItem(productId)?.PictureFileName ?? string.Empty,
             AvailableStock = int.Parse(form["Stock"].ToString(), CultureInfo.InvariantCulture),
             RestockThreshold = int.Parse(form["Restock"].ToString(), CultureInfo.InvariantCulture),
             MaxStockThreshold = int.Parse(form["Maxstock"].ToString(), CultureInfo.InvariantCulture),

@@ -57,6 +57,9 @@ public static class CatalogPagesExtensions
             options.Cookie.Name = SessionCookieName;
             options.Cookie.HttpOnly = true;
             options.Cookie.IsEssential = true;
+            // Secure whenever the request is HTTPS; the apps also serve plain HTTP (ports 5200/5201, containers).
+            options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+            options.Cookie.SameSite = SameSiteMode.Lax;
         });
 
         return services;
