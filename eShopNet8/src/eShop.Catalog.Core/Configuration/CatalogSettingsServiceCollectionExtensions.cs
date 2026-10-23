@@ -6,8 +6,9 @@ namespace eShop.Catalog.Core.Configuration;
 
 public static class CatalogSettingsServiceCollectionExtensions
 {
-    // Root-level keys (UseMockData, UseCustomizationData) win over the "Catalog" section so that
-    // `--UseMockData=false` and `UseMockData=false` env vars work like the legacy appSettings keys.
+    // Defaults live in the "Catalog" section (appsettings.json: Catalog:UseMockData), overridable with
+    // `Catalog__UseMockData=false` / `--Catalog:UseMockData=false`. The legacy-style root keys
+    // (`UseMockData=false` env var, `--UseMockData=false`) are not set by any shipped file and win when present.
     public static IServiceCollection AddCatalogSettings(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddOptions<CatalogSettings>()

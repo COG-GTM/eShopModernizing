@@ -144,7 +144,7 @@ def run_flow(session, base, flow):
     data = None
     if "form" in flow:
         url, data = build_post(session, base, flow)
-        req["path"] = N.norm_url(url)
+        req["path"] = N.norm_url(url, base)
         req["form"] = [[k, N.MASK if N.logical_name(k) in N.TOKEN_FIELDS or k in N.TOKEN_FIELDS else v] for k, v in data]
     else:
         url = base + flow["path"]
@@ -156,7 +156,7 @@ def run_flow(session, base, flow):
         "status": r.status_code,
         "headers": N.key_headers(r.headers, base),
         "raw_sha256": N.raw_sha(r.content),
-        "body": N.normalise_body(r.content, r.headers.get("content-type"), r.status_code, flow.get("compare", "full")),
+        "body": N.normalise_body(r.content, r.headers.get("content-type"), r.status_code, flow.get("compare", "full"), base=base),
     }
     return {"id": flow["id"], "request": req, "response": resp, "elapsed_s": round(time.time() - t, 3)}
 

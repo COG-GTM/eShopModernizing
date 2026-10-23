@@ -40,14 +40,17 @@ def norm_ws(s):
 
 
 def norm_url(u, base=None):
-    """Absolute same-host URLs -> path?query; relative stays relative; lower-cases nothing (paths are case-sensitive)."""
+    """Absolute URLs on the target's own origin (scheme+host+port of `base`) -> path?query.
+    Other absolute URLs (e.g. a link to the legacy port) stay absolute so they are detected as differences;
+    relative URLs stay as written; nothing is lower-cased (paths are case-sensitive)."""
     if u is None:
         return None
     u = u.strip()
     parts = urlsplit(u)
-    if parts.scheme in ("http", "https") and parts.hostname in ("127.0.0.1", "localhost", None) or \
-            (base and parts.netloc and parts.netloc == urlsplit(base).netloc):
-        u = parts.path + (("?" + parts.query) if parts.query else "")
+    if base and parts.scheme in ("http", "https") and parts.netloc:
+        b = urlsplit(base)
+        if parts.scheme == b.scheme and parts.netloc.lower() == b.netloc.lower():
+            u = parts.path + (("?" + parts.query) if parts.query else "")
     return u
 
 
@@ -63,7 +66,7 @@ def _keep_classes(el):
     return sorted(c for c in (el.get("class") or []) if KEEP_CLASS_RE.match(c))
 
 
-def normalise_html(text, mask_patterns=()):
+def normalise_html(text, mask_patterns=(), base=None):
     soup = BeautifulSoup(text, "lxml")
     for el in soup(["script", "style", "noscript", "template"]):
         if el.name == "script" and el.get("src"):
@@ -74,9 +77,9 @@ def normalise_html(text, mask_patterns=()):
     for c in soup.find_all(string=lambda s: isinstance(s, Comment)):
         c.extract()
 
-    assets = sorted({norm_url(e.get("href")) for e in soup.find_all("link", href=True)
+    assets = sorted({norm_url(e.get("href"), base) for e in soup.find_all("link", href=True)
                      if "stylesheet" in (e.get("rel") or [])} |
-                    {norm_url(e.get("src")) for e in soup.find_all("script", src=True)})
+                    {norm_url(e.get("src"), base) for e in soup.find_all("script", src=True)})
     for e in soup.find_all(["link", "script", "meta"]):
         e.decompose()
 
@@ -101,7 +104,7 @@ def normalise_html(text, mask_patterns=()):
                 if a == "name" or (el.name == "label" and a == "for"):
                     v = logical_name(v.replace("_", "$")) if a == "for" else logical_name(v)
                 if a in ("href", "src", "action"):
-                    v = norm_url(v)
+                    v = norm_url(v, base)
                 if el.name == "input" and a == "value" and el.get("name") in TOKEN_FIELDS:
                     v = MASK
                 if a in ("readonly", "checked", "disabled", "selected"):
@@ -170,7 +173,7 @@ def semantic_brand_list(resp_bytes, content_type):
     return [s for s in strings if not s.startswith("eShopLegacy")]
 
 
-def normalise_body(resp_bytes, content_type, status, compare="full", mask_patterns=()):
+def normalise_body(resp_bytes, content_type, status, compare="full", mask_patterns=(), base=None):
     """Return the normalised body dict for a response."""
     mime = mime_of(content_type)
     if not resp_bytes:
@@ -181,7 +184,7 @@ def normalise_body(resp_bytes, content_type, status, compare="full", mask_patter
         # Error pages differ by host (IIS YSOD / Mono / ASP.NET Core); only status + content type family are contract.
         return {"kind": "opaque", "length": len(resp_bytes)}
     if "html" in mime:
-        return normalise_html(resp_bytes.decode("utf-8", "replace"), mask_patterns)
+        return normalise_html(resp_bytes.decode("utf-8", "replace"), mask_patterns, base)
     if "json" in mime:
         try:
             return {"kind": "json", "json": json.loads(resp_bytes.decode("utf-8-sig"))}

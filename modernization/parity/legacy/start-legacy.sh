@@ -22,12 +22,17 @@ esac
 fuser -k -TERM -n tcp "$PORT" >/dev/null 2>&1 || true
 for _ in $(seq 1 50); do fuser -n tcp "$PORT" >/dev/null 2>&1 || break; sleep 0.2; done
 fuser -k -KILL -n tcp "$PORT" >/dev/null 2>&1 || true
+if [ "$APP" = mvc-sql ] && [ -f "$DIR/Web.config" ]; then
+  # Scrub the injected password whenever the SQL copy is (re)started or stopped; it is re-injected below on start.
+  sed -i -E 's#Password=[^;"]*;#Password=__SET_BY_START_LEGACY__;#' "$DIR/Web.config"
+fi
 [ "$ACTION" = stop ] && { echo "$APP stopped"; exit 0; }
 
 if [ "$APP" = mvc-sql ]; then
   : "${LEGACY_SQL_PASSWORD:?set LEGACY_SQL_PASSWORD to the local SQL Server sa password}"
   # The throwaway Web.config is written without a password by setup-legacy.sh; inject it here (never committed).
   PW_ESC=$(printf '%s' "$LEGACY_SQL_PASSWORD" | sed 's/[&#\\]/\\&/g')
+  chmod 600 "$DIR/Web.config"
   sed -i -E "s#Password=[^;\"]*;#Password=$PW_ESC;#" "$DIR/Web.config"
 fi
 if [ "$APP" = mvc-sql ] && [ "${LEGACY_SQL_RESET:-0}" = 1 ]; then

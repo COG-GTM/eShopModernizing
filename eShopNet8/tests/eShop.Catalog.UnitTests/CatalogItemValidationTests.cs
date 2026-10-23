@@ -38,6 +38,18 @@ public class CatalogItemValidationTests
     public void Pagination_matches_legacy_rounding() => Assert.Equal(3, new PaginatedItemsViewModel<CatalogItem>(0, 5, 12, []).TotalPages);
 
     [Fact]
+    public void Catalog_section_override_is_not_masked_by_root_defaults()
+    {
+        var cfg = new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string?> { ["Catalog:UseMockData"] = "true" })
+            .AddInMemoryCollection(new Dictionary<string, string?> { ["Catalog:UseMockData"] = "false", ["Catalog:UseCustomizationData"] = "true" })
+            .Build();
+        var s = cfg.GetCatalogSettings();
+        Assert.False(s.UseMockData);
+        Assert.True(s.UseCustomizationData);
+    }
+
+    [Fact]
     public void UseMockData_defaults_true_and_is_overridable()
     {
         Assert.True(new ConfigurationBuilder().Build().GetCatalogSettings().UseMockData);

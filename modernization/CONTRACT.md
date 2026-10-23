@@ -30,7 +30,7 @@ Replay: `python3 modernization/parity/replay.py --mvc-url URL --webforms-url URL
 |---|---|
 | R1 status | compared exactly |
 | R2 content type | MIME type only (charset dropped), compared by family: html, json, javascript, `image/*` exact, others exact. Not compared for empty bodies or `brands-semantic` flows |
-| R3 Location | absolute URLs on the target host reduced to path+query, then compared exactly |
+| R3 Location | absolute URLs on the replayed app's own origin (scheme+host+port of `--mvc-url`/`--webforms-url`) reduced to path+query; any other absolute URL (e.g. a link back to the legacy port) stays absolute and therefore differs |
 | R4 empty body | `{"kind":"empty"}` |
 | R5 error pages | status >= 500 -> `{"kind":"opaque"}`: only status (+R2/R3) is contract; IIS YSOD, Mono and ASP.NET Core error pages differ by host |
 | R6 `compare: "status"` | body ignored (used for optimisation-bundle URLs that debug pages never reference) |
@@ -56,7 +56,7 @@ Parsed with lxml via BeautifulSoup, then:
 - H6 masking: values of `__RequestVerificationToken __VIEWSTATE __VIEWSTATEGENERATOR __EVENTVALIDATION __EVENTTARGET
   __EVENTARGUMENT __PREVIOUSPAGE __LASTFOCUS` -> `<masked>`; a text node matching `{MachineName}, {M/d/yyyy h:mm:ss AM|PM}`
   (session footer, INVENTORY Q14) -> `<masked>`.
-- H7 URLs in `href`/`src`/`action` reduced like R3 (relative URLs stay as written, e.g. WebForms `action="3"`).
+- H7 URLs in `href`/`src`/`action` (and `assets`) reduced like R3 (relative URLs stay as written, e.g. WebForms `action="3"`).
 
 Consequences targets must respect: same visible text and order (labels, headings, button captions such as `[ Save ]`,
 pager text `Showing 10 of 12 products - Page 1 - 2`, price formatting such as `$19.50`), same link targets, same form
