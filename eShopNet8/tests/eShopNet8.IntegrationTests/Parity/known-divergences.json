@@ -24,6 +24,15 @@
         "content-type 'text/html' != ''",
         "body kind html != empty"
       ]
+    },
+    "wf-unknown-path": {
+      "quirk": null,
+      "reason": "Unmapped URL: status 404 and content type match; the legacy body is the host-generated Mono/xsp4 HttpException error page (Mono version + stack trace), which the Razor Pages port does not reproduce verbatim.",
+      "accept": [
+        "html title differs",
+        "html text differs",
+        "html structure differs"
+      ]
     }
   }
 }
