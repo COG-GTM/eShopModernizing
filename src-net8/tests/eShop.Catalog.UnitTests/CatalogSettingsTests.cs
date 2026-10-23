@@ -84,9 +84,15 @@ namespace eShop.Catalog.UnitTests
         [Fact]
         public void Sql_mode_registers_no_mock_service()
         {
-            var services = new ServiceCollection().AddCatalogServices(Config(("UseMockData", "false")));
+            // Stands in for the scoped EF service AddCatalogData registers in SQL mode.
+            var services = new ServiceCollection();
+            services.AddScoped<ICatalogService>(_ => throw new NotSupportedException());
+
+            services.AddCatalogServices(Config(("UseMockData", "false")));
 
             Assert.DoesNotContain(services, d => d.ImplementationType == typeof(CatalogServiceMock));
+            var registration = Assert.Single(services, d => d.ServiceType == typeof(ICatalogService));
+            Assert.Equal(ServiceLifetime.Scoped, registration.Lifetime);
         }
     }
 }
