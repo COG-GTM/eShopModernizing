@@ -21,13 +21,17 @@ namespace eShop.Catalog.Infrastructure.Data
         {
             var totalItems = db.CatalogItems.LongCount();
 
-            var itemsOnPage = db.CatalogItems
-                .Include(c => c.CatalogBrand)
-                .Include(c => c.CatalogType)
-                .OrderBy(c => c.Id)
-                .Skip(pageSize * pageIndex)
-                .Take(pageSize)
-                .ToList();
+            // SQL Server rejects a negative OFFSET and a non-positive FETCH; the contract wants an empty page there
+            // (pageSize == 0 still throws DivideByZeroException in PaginatedItemsViewModel, as in legacy).
+            var itemsOnPage = pageIndex < 0 || pageSize <= 0
+                ? new List<CatalogItem>()
+                : db.CatalogItems
+                    .Include(c => c.CatalogBrand)
+                    .Include(c => c.CatalogType)
+                    .OrderBy(c => c.Id)
+                    .Skip(pageSize * pageIndex)
+                    .Take(pageSize)
+                    .ToList();
 
             return new PaginatedItemsViewModel<CatalogItem>(
                 pageIndex, pageSize, totalItems, itemsOnPage);

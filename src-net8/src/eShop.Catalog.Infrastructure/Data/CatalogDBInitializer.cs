@@ -61,7 +61,17 @@ namespace eShop.Catalog.Infrastructure.Data
 
                 logger.LogInformation("Created catalog database, schema and HiLo sequences; seeding ({Source}).",
                     useCustomizationData ? "Setup/*.csv" : "PreconfiguredData");
-                Seed();
+                try
+                {
+                    Seed();
+                }
+                catch
+                {
+                    // Seeding only runs on a freshly created database; drop it so the next start retries from scratch.
+                    logger.LogError("Seeding the catalog database failed; dropping it so the next start can retry.");
+                    await context.Database.EnsureDeletedAsync(CancellationToken.None);
+                    throw;
+                }
             }
             finally
             {
