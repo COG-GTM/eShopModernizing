@@ -9,7 +9,7 @@
 #   global.json changed since the last publish, or NET8_REBUILD=1), then run it on 127.0.0.1.
 #   Ports: NET8_MVC_PORT=5200 NET8_WEBFORMS_PORT=5201. Probe: /health (mock) or /health/ready (--sql).
 #   --sql: UseMockData=false against NET8_SQL_SERVER (default 127.0.0.1,1433) with sa / NET8_SQL_PASSWORD;
-#   the catalog DB is dropped first (NET8_SQL_RESET=0 keeps it) so the app re-creates and re-seeds it.
+#   NET8_SQL_DB overrides the catalog DB name (e.g. to sit next to the legacy DB in one server); it is dropped first (NET8_SQL_RESET=0 keeps it) so the app re-creates and re-seeds it.
 #   Both apps share that DB, so a SQL-mode peer app that is running is stopped before the drop and restarted
 #   (without another reset) once this app has re-seeded; otherwise its cached HiLo block would collide.
 # --docker: restart the eShopNet8/docker-compose.yml service instead (profile mock: mvc/webforms on 5200/5201;
@@ -20,7 +20,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO="$(cd "$HERE/../../.." && pwd)"
 SOL="$REPO/eShopNet8"
 COMPOSE="$SOL/docker-compose.yml"
-DB=Microsoft.eShopOnContainers.Services.CatalogDb
+DB="${NET8_SQL_DB:-Microsoft.eShopOnContainers.Services.CatalogDb}"
 DROP_DB="IF DB_ID('$DB') IS NOT NULL BEGIN ALTER DATABASE [$DB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [$DB]; END"
 
 ACTION=start

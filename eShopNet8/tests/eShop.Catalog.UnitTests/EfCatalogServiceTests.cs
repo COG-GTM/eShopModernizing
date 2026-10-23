@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using eShop.Catalog.Core.Models;
 using eShop.Catalog.Core.Seed;
 using eShop.Catalog.Core.Services;
@@ -144,6 +145,45 @@ public class EfCatalogServiceTests
             Assert.Equal("Edited", svc.FindCatalogItem(id)!.Name);
             svc.RemoveCatalogItem(svc.FindCatalogItem(id)!);
             Assert.Null(svc.FindCatalogItem(id));
+        }
+    }
+
+    [SkippableFact]
+    public void Update_after_find_in_the_same_scope_replaces_the_tracked_copy()
+    {
+        using var sp = InMemoryProvider();
+        // Like the WebForms Edit postback: the stored picture name is read with FindCatalogItem, then the posted item is saved.
+        using (var scope = sp.CreateScope())
+        {
+            var svc = scope.ServiceProvider.GetRequiredService<ICatalogService>();
+            var picture = svc.FindCatalogItem(1)!.PictureFileName;
+            svc.UpdateCatalogItem(new CatalogItem { Id = 1, Name = "Edited Hoodie", Price = 21.50m, CatalogBrandId = 2, CatalogTypeId = 2, PictureFileName = picture, AvailableStock = 77 });
+        }
+        using (var scope = sp.CreateScope())
+        {
+            var item = scope.ServiceProvider.GetRequiredService<ICatalogService>().FindCatalogItem(1)!;
+            Assert.Equal("Edited Hoodie", item.Name);
+            Assert.Equal(77, item.AvailableStock);
+            Assert.Equal("1.png", item.PictureFileName);
+        }
+    }
+
+    [SkippableFact]
+    public void Save_validates_the_legacy_annotations_like_EF6_and_stores_nothing()
+    {
+        using var sp = InMemoryProvider();
+        using (var scope = sp.CreateScope())
+        {
+            var svc = scope.ServiceProvider.GetRequiredService<ICatalogService>();
+            Assert.Throws<ValidationException>(() => svc.CreateCatalogItem(new CatalogItem { Name = "Too many", Price = 1m, CatalogBrandId = 1, CatalogTypeId = 1, AvailableStock = 10000001 }));
+            Assert.Throws<ValidationException>(() => svc.CreateCatalogItem(new CatalogItem { Name = "", Price = 1m, CatalogBrandId = 1, CatalogTypeId = 1 }));
+            Assert.Throws<ValidationException>(() => svc.UpdateCatalogItem(new CatalogItem { Id = 2, Name = "Negative", Price = 1m, CatalogBrandId = 1, CatalogTypeId = 1, RestockThreshold = -1 }));
+        }
+        using (var scope = sp.CreateScope())
+        {
+            var svc = scope.ServiceProvider.GetRequiredService<ICatalogService>();
+            Assert.Equal(12, svc.GetCatalogItemsPaginated(100, 0).TotalItems);
+            Assert.Equal(0, svc.FindCatalogItem(2)!.RestockThreshold);
         }
     }
 

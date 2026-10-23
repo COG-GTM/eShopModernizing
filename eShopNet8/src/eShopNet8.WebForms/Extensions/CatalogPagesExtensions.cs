@@ -1,5 +1,7 @@
 using System.Globalization;
 using System.Text;
+using eShop.Catalog.Infrastructure.Data;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.FileProviders;
 
 namespace eShopNet8.WebForms.Extensions;
@@ -61,6 +63,9 @@ public static class CatalogPagesExtensions
             options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
             options.Cookie.SameSite = SameSiteMode.Lax;
         });
+
+        // SQL mode: save-time validation of the legacy WebForms CatalogItem, not the MVC model's (used by AddCatalogData).
+        services.Replace(ServiceDescriptor.Singleton<ICatalogItemSaveValidator, WebFormsCatalogItemSaveValidator>());
 
         return services;
     }

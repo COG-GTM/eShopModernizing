@@ -3,6 +3,7 @@ using eShop.Catalog.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace eShop.Catalog.Infrastructure.Data;
 
@@ -28,6 +29,7 @@ public static class CatalogDataExtensions
 
         services.AddDbContext<CatalogDBContext>(options => options.UseSqlServer(connectionString));
         services.AddScoped<ICatalogService, CatalogService>();
+        services.TryAddSingleton<ICatalogItemSaveValidator, CatalogItemAnnotationsSaveValidator>();
         services.AddScoped<CatalogDBInitializer>();
         return services;
     }

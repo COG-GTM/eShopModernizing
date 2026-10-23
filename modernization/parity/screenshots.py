@@ -6,6 +6,8 @@
 
 Writes <out>/<prefix>-<app>-<page>.png (default out: modernization/baseline/screenshots). Pages are visited in
 list-first order so that mock-mode navigation properties are populated (INVENTORY quirk Q4).
+`create-invalid` submits the MVC create form with an empty Name and Price "abc" from a JavaScript-disabled page, so the
+screenshot shows the server-rendered validation errors (the contract compared by the replay), not jQuery validation.
 """
 import argparse
 import os
@@ -17,7 +19,8 @@ from playwright.sync_api import sync_playwright
 
 PAGES = {
     "mvc": [("index", "/"), ("index-page2", "/?pageSize=10&pageIndex=1"), ("details", "/Catalog/Details/1"),
-            ("create", "/Catalog/Create"), ("edit", "/Catalog/Edit/1"), ("delete", "/Catalog/Delete/1")],
+            ("create", "/Catalog/Create"), ("create-invalid", "/Catalog/Create"), ("edit", "/Catalog/Edit/1"),
+            ("delete", "/Catalog/Delete/1"), ("api-brands", "/api/brands")],
     "webforms": [("index", "/"), ("index-page2", "/Default/index/1/size/10"), ("details", "/Catalog/Details/1"),
                  ("create", "/Catalog/Create"), ("edit", "/Catalog/Edit/1"), ("delete", "/Catalog/Delete/1"),
                  ("about", "/About.aspx"), ("contact", "/Contact.aspx")],
@@ -46,7 +49,20 @@ def main():
             browser = p.chromium.launch(executable_path=exe) if exe else p.chromium.launch(channel="chrome")
         for app, base in targets.items():
             page = browser.new_page(viewport={"width": a.width, "height": 900})
+            nojs = browser.new_page(viewport={"width": a.width, "height": 900}, java_script_enabled=False)
             for name, path in PAGES[app]:
+                if name == "create-invalid":
+                    nojs.goto(base.rstrip("/") + path, wait_until="networkidle", timeout=180000)
+                    nojs.fill("input[name$='Name']", "")
+                    nojs.fill("input[name$='Price']", "abc")
+                    with nojs.expect_navigation(wait_until="networkidle", timeout=180000) as nav:
+                        nojs.click("input[type=submit][value='[ Create ]']")
+                    status = nav.value.status if nav.value else None
+                    file = out / ("%s-%s-%s.png" % (a.prefix, app, name))
+                    nojs.screenshot(path=str(file), full_page=True)
+                    failures += status != 200
+                    print("%s POST %s (invalid) -> %s %s" % (app, path, status, file.name))
+                    continue
                 resp = page.goto(base.rstrip("/") + path, wait_until="networkidle", timeout=180000)
                 status = resp.status if resp else None
                 file = out / ("%s-%s-%s.png" % (a.prefix, app, name))
@@ -54,6 +70,7 @@ def main():
                 failures += status != 200
                 print("%s %s -> %s %s" % (app, path, status, file.name))
             page.close()
+            nojs.close()
         browser.close()
     return 1 if failures else 0
 
