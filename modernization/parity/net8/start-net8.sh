@@ -59,14 +59,15 @@ if [ "$DOCKER" = 1 ]; then
     if [ "$APP" = mvc ]; then PORT="${NET8_MVC_PORT:-5200}"; else PORT="${NET8_WEBFORMS_PORT:-5201}"; fi
   fi
   dc() { docker compose -f "$COMPOSE" "${ENV_FILE[@]}" --profile "$PROFILE" "$@"; }
-  if [ "$ACTION" = stop ]; then dc stop "$SERVICE" >/dev/null; echo "$SERVICE stopped"; exit 0; fi
+  quiet() { local out; out=$("$@" 2>&1) || { printf '%s\n' "$out" >&2; return 1; }; }
+  if [ "$ACTION" = stop ]; then quiet dc stop "$SERVICE"; echo "$SERVICE stopped"; exit 0; fi
   if [ "$SQL" = 1 ] && [ "${NET8_SQL_RESET:-1}" = 1 ]; then
     # the password is read inside the container from its own environment, never passed on a host command line
-    dc stop "$SERVICE" >/dev/null
+    quiet dc stop "$SERVICE"
     dc exec -T sqldata bash -c '/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -b -Q "$0" >/dev/null' "$DROP_DB"
-    dc start "$SERVICE" >/dev/null
+    quiet dc start "$SERVICE"
   else
-    dc restart "$SERVICE" >/dev/null
+    quiet dc restart "$SERVICE"
   fi
   wait_healthy "$PORT" "docker compose -f $COMPOSE --profile $PROFILE logs $SERVICE"
   exit $?

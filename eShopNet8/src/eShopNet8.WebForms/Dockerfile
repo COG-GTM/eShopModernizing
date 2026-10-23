@@ -14,9 +14,11 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 COPY docker/healthcheck.sh /usr/local/bin/healthcheck
-# appsettings.json sets Urls=http://localhost:520x for local runs; the unprefixed Urls env var outranks it, ASPNETCORE_URLS alone does not.
+# appsettings.json sets Urls=http://localhost:520x for local runs; the unprefixed Urls env var outranks it, ASPNETCORE_URLS alone
+# does not. The base image's ASPNETCORE_HTTP_PORTS is cleared so Kestrel does not warn about the override.
 ENV ASPNETCORE_URLS=http://+:8080 \
     Urls=http://+:8080 \
+    ASPNETCORE_HTTP_PORTS= \
     DOTNET_RUNNING_IN_CONTAINER=true
 EXPOSE 8080
 USER $APP_UID
