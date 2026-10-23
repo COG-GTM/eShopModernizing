@@ -22,4 +22,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.1" />
   </ItemGroup>
 
+  <!-- T1: seed data for UseCustomizationData=true (legacy Setup/ folder), copied to the output of referencing apps. -->
+  <ItemGroup>
+    <None Update="Setup\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
