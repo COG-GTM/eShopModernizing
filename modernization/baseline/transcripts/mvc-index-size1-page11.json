@@ -1,0 +1,245 @@
+{
+ "id": "mvc-index-size1-page11",
+ "request": {
+  "method": "GET",
+  "path": "/?pageSize=1&pageIndex=11"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "7d83042589c2c187773dbea8cf3204343303e2fef8c647efb7d4305ad19dcbec",
+  "body": {
+   "kind": "html",
+   "title": "Index - Catalog manager (MVC)",
+   "text": [
+    "Catalog manager",
+    "(MVC)",
+    "Create New",
+    "Name",
+    "Description",
+    "Brand",
+    "Type",
+    "Price",
+    "Picture name",
+    "Stock",
+    "Restock",
+    "Max stock",
+    "Prism White TShirt",
+    "Prism White TShirt",
+    "Other",
+    "T-Shirt",
+    "$12.00",
+    "12.png",
+    "100",
+    "0",
+    "0",
+    "Edit",
+    "|",
+    "Details",
+    "|",
+    "Delete",
+    "Previous",
+    "Showing 1 of 12 products - Page 12 - 12",
+    "Next",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Index - Catalog manager (MVC)"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (MVC)"
+    },
+    {
+     "tag": "span",
+     "text": "(MVC)"
+    },
+    {
+     "tag": "p",
+     "text": "Create New"
+    },
+    {
+     "tag": "a",
+     "href": "/Catalog/Create",
+     "text": "Create New"
+    },
+    {
+     "tag": "table"
+    },
+    {
+     "tag": "tr"
+    },
+    {
+     "tag": "th",
+     "text": ""
+    },
+    {
+     "tag": "th",
+     "text": "Name"
+    },
+    {
+     "tag": "th",
+     "text": "Description"
+    },
+    {
+     "tag": "th",
+     "text": "Brand"
+    },
+    {
+     "tag": "th",
+     "text": "Type"
+    },
+    {
+     "tag": "th",
+     "text": "Price"
+    },
+    {
+     "tag": "th",
+     "text": "Picture name"
+    },
+    {
+     "tag": "th",
+     "text": "Stock"
+    },
+    {
+     "tag": "th",
+     "text": "Restock"
+    },
+    {
+     "tag": "th",
+     "text": "Max stock"
+    },
+    {
+     "tag": "th",
+     "text": ""
+    },
+    {
+     "tag": "tr"
+    },
+    {
+     "tag": "td",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/items/12/pic"
+    },
+    {
+     "tag": "td",
+     "text": "Prism White TShirt"
+    },
+    {
+     "tag": "td",
+     "text": "Prism White TShirt"
+    },
+    {
+     "tag": "td",
+     "text": "Other"
+    },
+    {
+     "tag": "td",
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "td",
+     "text": "$12.00"
+    },
+    {
+     "tag": "td",
+     "text": "12.png"
+    },
+    {
+     "tag": "td",
+     "text": "100"
+    },
+    {
+     "tag": "td",
+     "text": "0"
+    },
+    {
+     "tag": "td",
+     "text": "0"
+    },
+    {
+     "tag": "td",
+     "text": "Edit | Details | Delete"
+    },
+    {
+     "tag": "a",
+     "href": "/Catalog/Edit/12",
+     "text": "Edit"
+    },
+    {
+     "tag": "a",
+     "href": "/Catalog/Details/12",
+     "text": "Details"
+    },
+    {
+     "tag": "a",
+     "href": "/Catalog/Delete/12",
+     "text": "Delete"
+    },
+    {
+     "tag": "a",
+     "href": "/?pageSize=1&pageIndex=10",
+     "class": [
+      "esh-pager-item--navigable"
+     ],
+     "text": "Previous"
+    },
+    {
+     "tag": "span",
+     "text": "Showing 1 of 12 products - Page 12 - 12"
+    },
+    {
+     "tag": "a",
+     "href": "/?pageSize=1&pageIndex=12",
+     "class": [
+      "esh-pager-item--hidden",
+      "esh-pager-item--navigable"
+     ],
+     "text": "Next"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.6.2.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Last single-item page"
+}

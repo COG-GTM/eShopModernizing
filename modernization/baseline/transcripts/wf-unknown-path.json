@@ -1,0 +1,65 @@
+{
+ "id": "wf-unknown-path",
+ "request": {
+  "method": "GET",
+  "path": "/does-not-exist"
+ },
+ "response": {
+  "status": 404,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "259be7c6c9912d8aa02c8d2b4c9bdabf7b430e7742404645974cd69f35ca7b77",
+  "body": {
+   "kind": "html",
+   "title": "Error 404",
+   "text": [
+    "Application Exception",
+    "System.Web.HttpException",
+    "The resource cannot be found.",
+    "Description:",
+    "HTTP 404.The resource you are looking for (or one of its dependencies) could have been removed, had its name changed, or is temporarily unavailable. Please review the following URL and make sure that it is spelled correctly.",
+    "Details:",
+    "Requested URL: /does-not-exist",
+    "Exception stack trace:",
+    "at System.Web.StaticFileHandler.ProcessRequest (System.Web.HttpContext context) [0x000b9] in <e2b26a007ab7439ab0e922614212bb68>:0 at System.Web.DefaultHttpHandler.BeginProcessRequest (System.Web.HttpContext context, System.AsyncCallback callback, System.Object state) [0x0007f] in <e2b26a007ab7439ab0e922614212bb68>:0 at System.Web.HttpApplication+<Pipeline>d__225.MoveNext () [0x008d4] in <e2b26a007ab7439ab0e922614212bb68>:0 at System.Web.HttpApplication.Tick () [0x00000] in <e2b26a007ab7439ab0e922614212bb68>:0",
+    "Version Information:",
+    "6.12.0.200 (tarball Tue Jul 11 21:37:50 UTC 2023)",
+    "; ASP.NET Version:",
+    "4.0.30319.42000",
+    "Powered by",
+    "Mono"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Error 404"
+    },
+    {
+     "tag": "h1",
+     "text": "System.Web.HttpException"
+    },
+    {
+     "tag": "h2",
+     "text": "The resource cannot be found."
+    },
+    {
+     "tag": "p",
+     "text": "Description: HTTP 404.The resource you are looking for (or one of its dependencies) could have been removed, had its name changed, or is temporarily unavailable. Please review the following URL and make sure that it is spelled correctly."
+    },
+    {
+     "tag": "p",
+     "text": "Details: Requested URL: /does-not-exist"
+    },
+    {
+     "tag": "a",
+     "href": "http://mono-project.com/",
+     "text": "Mono"
+    }
+   ],
+   "assets": []
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "404"
+}

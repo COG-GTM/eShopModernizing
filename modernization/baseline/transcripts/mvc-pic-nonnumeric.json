@@ -1,0 +1,65 @@
+{
+ "id": "mvc-pic-nonnumeric",
+ "request": {
+  "method": "GET",
+  "path": "/items/abc/pic"
+ },
+ "response": {
+  "status": 404,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "743c638c9e10086575a1ac28e108ece82911490454999fee53e50d0bc221fe52",
+  "body": {
+   "kind": "html",
+   "title": "Error 404",
+   "text": [
+    "Application Exception",
+    "System.Web.HttpException",
+    "The resource cannot be found.",
+    "Description:",
+    "HTTP 404.The resource you are looking for (or one of its dependencies) could have been removed, had its name changed, or is temporarily unavailable. Please review the following URL and make sure that it is spelled correctly.",
+    "Details:",
+    "No virtual path information available.",
+    "Exception stack trace:",
+    "at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance (System.Web.Routing.RequestContext requestContext, System.Type controllerType) [0x00049] in <03c98cfc8623445a8db7b66c6ffa5def>:0 at System.Web.Mvc.DefaultControllerFactory.CreateController (System.Web.Routing.RequestContext requestContext, System.String controllerName) [0x00044] in <03c98cfc8623445a8db7b66c6ffa5def>:0 at System.Web.Mvc.MvcHandler.ProcessRequestInit (System.Web.HttpContextBase httpContext, System.Web.Mvc.IController& controller, System.Web.Mvc.IControllerFactory& factory) [0x00065] in <03c98cfc8623445a8db7b66c6ffa5def>:0 at System.Web.Mvc.MvcHandler.BeginProcessRequest (System.Web.HttpContextBase httpContext, System.AsyncCallback callback, System.Object state) [0x0000d] in <03c98cfc8623445a8db7b66c6ffa5def>:0 at System.Web.Mvc.MvcHandler.BeginProcessRequest (System.Web.HttpContext httpContext, System.AsyncCallback callback, System.Object state) [0x00007] in <03c98cfc8623445a8db7b66c6ffa5def>:0 at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest (System.Web.HttpContext context, System.AsyncCallback cb, System.Object extraData) [0x00000] in <03c98cfc8623445a8db7b66c6ffa5def>:0 at System.Web.HttpApplication+<Pipeline>d__225.MoveNext () [0x008d4] in <e2b26a007ab7439ab0e922614212bb68>:0 at System.Web.HttpApplication.Tick () [0x00000] in <e2b26a007ab7439ab0e922614212bb68>:0",
+    "Version Information:",
+    "6.12.0.200 (tarball Tue Jul 11 21:37:50 UTC 2023)",
+    "; ASP.NET Version:",
+    "4.0.30319.42000",
+    "Powered by",
+    "Mono"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Error 404"
+    },
+    {
+     "tag": "h1",
+     "text": "System.Web.HttpException"
+    },
+    {
+     "tag": "h2",
+     "text": "The resource cannot be found."
+    },
+    {
+     "tag": "p",
+     "text": "Description: HTTP 404.The resource you are looking for (or one of its dependencies) could have been removed, had its name changed, or is temporarily unavailable. Please review the following URL and make sure that it is spelled correctly."
+    },
+    {
+     "tag": "p",
+     "text": "Details: No virtual path information available."
+    },
+    {
+     "tag": "a",
+     "href": "http://mono-project.com/",
+     "text": "Mono"
+    }
+   ],
+   "assets": []
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "route constraint fails -> 404"
+}

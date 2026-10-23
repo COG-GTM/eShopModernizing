@@ -1,0 +1,21 @@
+{
+ "id": "mvc-bundle-jquery",
+ "request": {
+  "method": "GET",
+  "path": "/bundles/jquery"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/javascript"
+  },
+  "raw_sha256": "83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa",
+  "body": {
+   "kind": "opaque",
+   "length": 87460
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "bundle: status + type only",
+ "compare": "status"
+}

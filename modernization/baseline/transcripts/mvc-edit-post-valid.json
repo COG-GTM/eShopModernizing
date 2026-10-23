@@ -1,0 +1,88 @@
+{
+ "id": "mvc-edit-post-valid",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Edit/1",
+  "form": [
+   [
+    "__RequestVerificationToken",
+    "<masked>"
+   ],
+   [
+    "Id",
+    "1"
+   ],
+   [
+    "Name",
+    "Edited Hoodie"
+   ],
+   [
+    "Description",
+    ".NET Bot Black Hoodie"
+   ],
+   [
+    "CatalogBrandId",
+    "2"
+   ],
+   [
+    "CatalogTypeId",
+    "2"
+   ],
+   [
+    "Price",
+    "21.50"
+   ],
+   [
+    "PictureFileName",
+    "1.png"
+   ],
+   [
+    "AvailableStock",
+    "77"
+   ],
+   [
+    "RestockThreshold",
+    "0"
+   ],
+   [
+    "MaxStockThreshold",
+    "0"
+   ]
+  ]
+ },
+ "response": {
+  "status": 302,
+  "headers": {
+   "content-type": "text/html",
+   "location": "/"
+  },
+  "raw_sha256": "9849b1adf8aca1a2f400e0ef47dd06e737e57a90746b4c51d384dbdc22668e89",
+  "body": {
+   "kind": "html",
+   "title": "Object moved",
+   "text": [
+    "Object moved to",
+    "here"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Object moved"
+    },
+    {
+     "tag": "h2",
+     "text": "Object moved to here"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": "here"
+    }
+   ],
+   "assets": []
+  }
+ },
+ "sequence": "mvc-edit",
+ "description": "Valid edit -> 302 /",
+ "data_state": "data-state/mvc-edit-post-valid.json"
+}

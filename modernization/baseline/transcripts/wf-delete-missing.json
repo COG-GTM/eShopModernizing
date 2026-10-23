@@ -1,0 +1,21 @@
+{
+ "id": "wf-delete-missing",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Delete/999"
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "a11ed7a2cf839de81dd2092c59f30085a4fba81a82224f63dbed67479c024213",
+  "body": {
+   "kind": "opaque",
+   "length": 9507
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "500 (quirk Q7)",
+ "quirk": "Q7"
+}

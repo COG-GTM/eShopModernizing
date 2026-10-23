@@ -1,0 +1,72 @@
+{
+ "id": "wf-edit-postback-price-nonnumeric",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Edit/2",
+  "form": [
+   [
+    "__VIEWSTATE",
+    "<masked>"
+   ],
+   [
+    "ctl00$MainContent$Name",
+    ".NET Black & White Mug"
+   ],
+   [
+    "ctl00$MainContent$Description",
+    ".NET Black & White Mug"
+   ],
+   [
+    "ctl00$MainContent$BrandDropDownList",
+    "2"
+   ],
+   [
+    "ctl00$MainContent$TypeDropDownList",
+    "1"
+   ],
+   [
+    "ctl00$MainContent$Price",
+    "x"
+   ],
+   [
+    "ctl00$MainContent$PictureFileName",
+    "2.png"
+   ],
+   [
+    "ctl00$MainContent$Stock",
+    "100"
+   ],
+   [
+    "ctl00$MainContent$Restock",
+    "0"
+   ],
+   [
+    "ctl00$MainContent$Maxstock",
+    "0"
+   ],
+   [
+    "__EVENTVALIDATION",
+    "<masked>"
+   ],
+   [
+    "ctl00$MainContent$ctl07",
+    "[ Save ]"
+   ]
+  ]
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "bbc1cb6de874ad8f648a496aea894bde3fd081ed92d9593af580ca6c1b9cac5e",
+  "body": {
+   "kind": "opaque",
+   "length": 8245
+  }
+ },
+ "sequence": "wf-edit",
+ "description": "decimal.Parse -> 500 (quirk Q8)",
+ "quirk": "Q8",
+ "data_state": "data-state/wf-edit-postback-price-nonnumeric.json"
+}

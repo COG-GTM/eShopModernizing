@@ -1,0 +1,21 @@
+{
+ "id": "mvc-static-jquery-validate-unobtrusive",
+ "request": {
+  "method": "GET",
+  "path": "/Scripts/jquery.validate.unobtrusive.js"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "application/javascript"
+  },
+  "raw_sha256": "5cd342f044b0dbd8a8a512ee91545ace53f8e13c678c698441a9c72799079ad9",
+  "body": {
+   "kind": "text",
+   "sha256": "5cd342f044b0dbd8a8a512ee91545ace53f8e13c678c698441a9c72799079ad9",
+   "length": 19366
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Validation script"
+}

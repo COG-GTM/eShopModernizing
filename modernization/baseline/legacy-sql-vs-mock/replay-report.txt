@@ -1,0 +1,118 @@
+eShop parity replay
+targets: {'mvc': 'http://127.0.0.1:5110'}
+summary: {"different": 6, "equivalent-after-normalisation": 36, "identical": 57}
+failing: 6  accepted quirks: 0  flows: 99/99
+
+mvc-cold-reads                     mvc-details-cold-12                                  different [quirk Q4]
+      - html text differs: [8] "Type" != "Other"
+      - html structure differs: [12] {"tag": "dd", "text": ""} != {"tag": "dd", "text": "Other"}
+mvc-cold-reads                     mvc-edit-cold-11                                     equivalent-after-normalisation [quirk Q4]
+mvc-cold-reads                     mvc-delete-cold-10                                   different [quirk Q4]
+      - html text differs: [9] "Type" != ".NET"
+      - html structure differs: [13] {"tag": "dd", "text": ""} != {"tag": "dd", "text": ".NET"}
+mvc-reads                          mvc-index-root                                       equivalent-after-normalisation
+mvc-reads                          mvc-index-catalog                                    equivalent-after-normalisation
+mvc-reads                          mvc-index-catalog-index                              equivalent-after-normalisation
+mvc-reads                          mvc-index-size5                                      equivalent-after-normalisation
+mvc-reads                          mvc-index-size5-page1                                equivalent-after-normalisation
+mvc-reads                          mvc-index-size5-page2                                equivalent-after-normalisation
+mvc-reads                          mvc-index-size10-page1                               equivalent-after-normalisation
+mvc-reads                          mvc-index-beyond                                     equivalent-after-normalisation
+mvc-reads                          mvc-index-size100                                    equivalent-after-normalisation
+mvc-reads                          mvc-index-size1-page11                               equivalent-after-normalisation
+mvc-reads                          mvc-index-size0                                      equivalent-after-normalisation [quirk Q5]
+mvc-reads                          mvc-index-negative-page                              different
+      - status 200 != 500
+      - body kind html != opaque
+mvc-reads                          mvc-index-negative-size                              different
+      - status 200 != 500
+      - body kind html != opaque
+mvc-reads                          mvc-index-size-nonnumeric                            equivalent-after-normalisation
+mvc-reads                          mvc-index-page-nonnumeric                            equivalent-after-normalisation
+mvc-reads                          mvc-details-found                                    equivalent-after-normalisation
+mvc-reads                          mvc-details-found-12                                 equivalent-after-normalisation
+mvc-reads                          mvc-details-missing                                  identical
+mvc-reads                          mvc-details-no-id                                    identical
+mvc-reads                          mvc-details-bad-id                                   identical
+mvc-reads                          mvc-details-query-id                                 equivalent-after-normalisation
+mvc-reads                          mvc-details-zero                                     identical
+mvc-reads                          mvc-edit-found                                       equivalent-after-normalisation
+mvc-reads                          mvc-edit-missing                                     identical
+mvc-reads                          mvc-edit-no-id                                       identical
+mvc-reads                          mvc-edit-bad-id                                      identical
+mvc-reads                          mvc-delete-found                                     equivalent-after-normalisation
+mvc-reads                          mvc-delete-missing                                   identical
+mvc-reads                          mvc-delete-no-id                                     identical
+mvc-reads                          mvc-delete-bad-id                                    identical
+mvc-reads                          mvc-create-get                                       equivalent-after-normalisation
+mvc-reads                          mvc-pic-1                                            identical
+mvc-reads                          mvc-pic-12                                           identical
+mvc-reads                          mvc-pic-zero                                         identical
+mvc-reads                          mvc-pic-negative                                     identical
+mvc-reads                          mvc-pic-missing                                      identical
+mvc-reads                          mvc-pic-nonnumeric                                   identical
+mvc-reads                          mvc-api-brands                                       identical
+mvc-reads                          mvc-api-brands-xml                                   identical [quirk Q16]
+mvc-reads                          mvc-api-brand-1                                      identical
+mvc-reads                          mvc-api-brand-5                                      identical
+mvc-reads                          mvc-api-brand-missing                                identical
+mvc-reads                          mvc-api-brand-nonnumeric                             identical
+mvc-reads                          mvc-api-files                                        equivalent-after-normalisation [quirk Q2]
+mvc-reads                          mvc-api-root-undiscovered                            identical
+mvc-reads                          mvc-unknown-path                                     identical
+mvc-reads                          mvc-static-site-css                                  identical
+mvc-reads                          mvc-static-site-css-lower                            identical
+mvc-reads                          mvc-static-bootstrap-css                             identical
+mvc-reads                          mvc-static-custom-css                                identical
+mvc-reads                          mvc-static-base-css                                  identical
+mvc-reads                          mvc-static-brand-png                                 identical
+mvc-reads                          mvc-static-brand-dark-png                            identical
+mvc-reads                          mvc-static-footer-text-png                           identical
+mvc-reads                          mvc-static-banner-png                                identical
+mvc-reads                          mvc-static-pics-1                                    identical
+mvc-reads                          mvc-static-favicon                                   identical
+mvc-reads                          mvc-static-font                                      identical
+mvc-reads                          mvc-static-jquery                                    identical
+mvc-reads                          mvc-static-jquery-validate                           identical
+mvc-reads                          mvc-static-jquery-validate-unobtrusive               identical
+mvc-reads                          mvc-static-modernizr                                 identical
+mvc-reads                          mvc-static-bootstrap-js                              identical
+mvc-reads                          mvc-static-respond-js                                identical
+mvc-reads                          mvc-bundle-css                                       identical
+mvc-reads                          mvc-bundle-jquery                                    identical
+mvc-reads                          mvc-bundle-jqueryval                                 identical
+mvc-reads                          mvc-bundle-modernizr                                 identical
+mvc-reads                          mvc-bundle-bootstrap                                 identical
+mvc-create                         mvc-create-post-valid                                identical
+mvc-create                         mvc-create-after-list                                equivalent-after-normalisation
+mvc-create                         mvc-create-after-details                             equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-name-missing                 equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-price-regex                  equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-price-range                  equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-price-nonnumeric             equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-stock-range                  equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-restock-range                equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-maxstock-range               equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-stock-nonnumeric             equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-invalid-all-invalid                  equivalent-after-normalisation
+mvc-create-invalid                 mvc-create-post-missing-antiforgery                  identical
+mvc-edit                           mvc-edit-post-valid                                  identical
+mvc-edit                           mvc-edit-after-details                               equivalent-after-normalisation
+mvc-edit                           mvc-edit-post-invalid-name                           equivalent-after-normalisation
+mvc-edit                           mvc-edit-post-invalid-price                          equivalent-after-normalisation
+mvc-edit                           mvc-edit-post-invalid-stock                          equivalent-after-normalisation
+mvc-edit                           mvc-edit-post-missing-antiforgery                    identical
+mvc-edit                           mvc-edit-post-unknown-id                             different
+      - status 302 != 500
+      - location '/' != None
+      - body kind html != opaque
+mvc-delete                         mvc-delete-post-valid                                identical
+mvc-delete                         mvc-delete-after-details                             identical
+mvc-delete                         mvc-delete-post-missing-antiforgery                  identical
+mvc-delete                         mvc-delete-post-unknown-id                           different [quirk Q6]
+      - status 302 != 500
+      - location '/' != None
+      - body kind html != opaque
+mvc-api-mutations                  mvc-api-brand-delete-1                               identical
+mvc-api-mutations                  mvc-api-brand-delete-missing                         identical
+mvc-api-mutations                  mvc-api-brands-after-delete                          identical

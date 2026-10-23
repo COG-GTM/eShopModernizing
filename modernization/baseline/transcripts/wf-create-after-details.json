@@ -1,0 +1,249 @@
+{
+ "id": "wf-create-after-details",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Details/13"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "b3b9960c13e24f61f6f8ba6159ac64123a167260ac5ae5737cd97cbdcfe70404",
+  "body": {
+   "kind": "html",
+   "title": "Details - Catalog manager (Web Forms)",
+   "text": [
+    "Catalog manager",
+    "(Web Forms)",
+    "Details",
+    "Name",
+    "Parity Test Mug",
+    "Description",
+    "Created by the parity harness",
+    "Brand",
+    "Visual Studio",
+    "Type",
+    "Mug",
+    "Price",
+    "9.99",
+    "Picture name",
+    "dummy.png",
+    "Stock",
+    "10",
+    "Restock",
+    "2",
+    "Max stock",
+    "50",
+    "Edit",
+    "|",
+    "Back to list",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Details - Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "form",
+     "action": "13",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__VIEWSTATE",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "a",
+     "href": "../../",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (Web Forms)"
+    },
+    {
+     "tag": "span",
+     "text": "(Web Forms)"
+    },
+    {
+     "tag": "h2",
+     "text": "Details"
+    },
+    {
+     "tag": "img",
+     "src": "/Pics/dummy.png"
+    },
+    {
+     "tag": "dt",
+     "text": "Name"
+    },
+    {
+     "tag": "dd",
+     "text": "Parity Test Mug"
+    },
+    {
+     "tag": "span",
+     "text": "Parity Test Mug"
+    },
+    {
+     "tag": "dt",
+     "text": "Description"
+    },
+    {
+     "tag": "dd",
+     "text": "Created by the parity harness"
+    },
+    {
+     "tag": "span",
+     "text": "Created by the parity harness"
+    },
+    {
+     "tag": "dt",
+     "text": "Brand"
+    },
+    {
+     "tag": "dd",
+     "text": "Visual Studio"
+    },
+    {
+     "tag": "span",
+     "text": "Visual Studio"
+    },
+    {
+     "tag": "dt",
+     "text": "Type"
+    },
+    {
+     "tag": "dd",
+     "text": "Mug"
+    },
+    {
+     "tag": "span",
+     "text": "Mug"
+    },
+    {
+     "tag": "dt",
+     "text": "Price"
+    },
+    {
+     "tag": "dd",
+     "text": "9.99"
+    },
+    {
+     "tag": "span",
+     "class": [
+      "esh-price"
+     ],
+     "text": "9.99"
+    },
+    {
+     "tag": "dt",
+     "text": "Picture name"
+    },
+    {
+     "tag": "dd",
+     "text": "dummy.png"
+    },
+    {
+     "tag": "span",
+     "text": "dummy.png"
+    },
+    {
+     "tag": "dt",
+     "text": "Stock"
+    },
+    {
+     "tag": "dd",
+     "text": "10"
+    },
+    {
+     "tag": "span",
+     "text": "10"
+    },
+    {
+     "tag": "dt",
+     "text": "Restock"
+    },
+    {
+     "tag": "dd",
+     "text": "2"
+    },
+    {
+     "tag": "span",
+     "text": "2"
+    },
+    {
+     "tag": "dt",
+     "text": "Max stock"
+    },
+    {
+     "tag": "dd",
+     "text": "50"
+    },
+    {
+     "tag": "span",
+     "text": "50"
+    },
+    {
+     "tag": "a",
+     "href": "/Catalog/Edit/13",
+     "text": "Edit"
+    },
+    {
+     "tag": "a",
+     "href": "../../",
+     "text": "Back to list"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    },
+    {
+     "tag": "span",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/WebForms/DetailsView.js",
+    "/Scripts/WebForms/Focus.js",
+    "/Scripts/WebForms/GridView.js",
+    "/Scripts/WebForms/MenuStandards.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
+    "/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js",
+    "/Scripts/WebForms/TreeView.js",
+    "/Scripts/WebForms/WebForms.js",
+    "/Scripts/WebForms/WebParts.js",
+    "/Scripts/WebForms/WebUIValidation.js",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "wf-create",
+ "description": "Details of new item"
+}

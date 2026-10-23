@@ -1,0 +1,215 @@
+{
+ "status": 200,
+ "items": [
+  {
+   "Name": ".NET Bot Black Hoodie",
+   "Description": ".NET Bot Black Hoodie",
+   "Brand": ".NET",
+   "Type": "T-Shirt",
+   "Price": "19.5",
+   "Picture name": "1.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 1
+  },
+  {
+   "Name": ".NET Black & White Mug",
+   "Description": ".NET Black & White Mug",
+   "Brand": ".NET",
+   "Type": "Mug",
+   "Price": "8.50",
+   "Picture name": "2.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 2
+  },
+  {
+   "Name": "Prism White T-Shirt",
+   "Description": "Prism White T-Shirt",
+   "Brand": "Other",
+   "Type": "T-Shirt",
+   "Price": "12",
+   "Picture name": "3.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 3
+  },
+  {
+   "Name": ".NET Foundation T-shirt",
+   "Description": ".NET Foundation T-shirt",
+   "Brand": ".NET",
+   "Type": "T-Shirt",
+   "Price": "12",
+   "Picture name": "4.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 4
+  },
+  {
+   "Name": "Roslyn Red Sheet",
+   "Description": "Roslyn Red Sheet",
+   "Brand": "Other",
+   "Type": "Sheet",
+   "Price": "8.5",
+   "Picture name": "5.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 5
+  },
+  {
+   "Name": ".NET Blue Hoodie",
+   "Description": ".NET Blue Hoodie",
+   "Brand": ".NET",
+   "Type": "T-Shirt",
+   "Price": "12",
+   "Picture name": "6.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 6
+  },
+  {
+   "Name": "Roslyn Red T-Shirt",
+   "Description": "Roslyn Red T-Shirt",
+   "Brand": "Other",
+   "Type": "T-Shirt",
+   "Price": "12",
+   "Picture name": "7.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 7
+  },
+  {
+   "Name": "Kudu Purple Hoodie",
+   "Description": "Kudu Purple Hoodie",
+   "Brand": "Other",
+   "Type": "T-Shirt",
+   "Price": "8.5",
+   "Picture name": "8.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 8
+  },
+  {
+   "Name": "Cup<T> White Mug",
+   "Description": "Cup<T> White Mug",
+   "Brand": "Other",
+   "Type": "Mug",
+   "Price": "12",
+   "Picture name": "9.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 9
+  },
+  {
+   "Name": ".NET Foundation Sheet",
+   "Description": ".NET Foundation Sheet",
+   "Brand": ".NET",
+   "Type": "Sheet",
+   "Price": "12",
+   "Picture name": "10.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 10
+  },
+  {
+   "Name": "Cup<T> Sheet",
+   "Description": "Cup<T> Sheet",
+   "Brand": ".NET",
+   "Type": "Sheet",
+   "Price": "8.5",
+   "Picture name": "11.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 11
+  },
+  {
+   "Name": "Prism White TShirt",
+   "Description": "Prism White TShirt",
+   "Brand": "Other",
+   "Type": "T-Shirt",
+   "Price": "12",
+   "Picture name": "12.png",
+   "Stock": "100",
+   "Restock": "0",
+   "Max stock": "0",
+   "Id": 12
+  },
+  {
+   "Name": "",
+   "Description": "Created by the parity harness",
+   "Brand": "Visual Studio",
+   "Type": "Mug",
+   "Price": "9.99",
+   "Picture name": "dummy.png",
+   "Stock": "10",
+   "Restock": "2",
+   "Max stock": "50",
+   "Id": 13
+  },
+  {
+   "Name": "Parity Test Mug",
+   "Description": "Created by the parity harness",
+   "Brand": "Visual Studio",
+   "Type": "Mug",
+   "Price": "9.99",
+   "Picture name": "dummy.png",
+   "Stock": "-5",
+   "Restock": "2",
+   "Max stock": "50",
+   "Id": 14
+  }
+ ],
+ "lookups": {
+  "Brand": [
+   [
+    "1",
+    "Azure"
+   ],
+   [
+    "2",
+    ".NET"
+   ],
+   [
+    "3",
+    "Visual Studio"
+   ],
+   [
+    "4",
+    "SQL Server"
+   ],
+   [
+    "5",
+    "Other"
+   ]
+  ],
+  "Type": [
+   [
+    "1",
+    "Mug"
+   ],
+   [
+    "2",
+    "T-Shirt"
+   ],
+   [
+    "3",
+    "Sheet"
+   ],
+   [
+    "4",
+    "USB Memory Stick"
+   ]
+  ]
+ }
+}

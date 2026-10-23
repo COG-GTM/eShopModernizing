@@ -1,0 +1,207 @@
+{
+ "id": "mvc-delete-found",
+ "request": {
+  "method": "GET",
+  "path": "/Catalog/Delete/1"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "2a0645cf39474116647277853390b93566bddf1d2e0ff05b9b209001d2231a20",
+  "body": {
+   "kind": "html",
+   "title": "Delete - Catalog manager (MVC)",
+   "text": [
+    "Catalog manager",
+    "(MVC)",
+    "Delete",
+    "Are you sure you want to delete this?",
+    "Name",
+    ".NET Bot Black Hoodie",
+    "Description",
+    ".NET Bot Black Hoodie",
+    "Brand",
+    ".NET",
+    "Type",
+    "T-Shirt",
+    "Price",
+    "$19.50",
+    "Picture name",
+    "1.png",
+    "Stock",
+    "100",
+    "Restock",
+    "0",
+    "Max stock",
+    "0",
+    "[ Cancel ]",
+    "[ Delete ]",
+    "<masked>"
+   ],
+   "structure": [
+    {
+     "tag": "title",
+     "text": "Delete - Catalog manager (MVC)"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": ""
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand.png"
+    },
+    {
+     "tag": "h1",
+     "text": "Catalog manager (MVC)"
+    },
+    {
+     "tag": "span",
+     "text": "(MVC)"
+    },
+    {
+     "tag": "h2",
+     "text": "Delete"
+    },
+    {
+     "tag": "h3",
+     "text": "Are you sure you want to delete this?"
+    },
+    {
+     "tag": "img",
+     "src": "/items/1/pic"
+    },
+    {
+     "tag": "dt",
+     "text": "Name"
+    },
+    {
+     "tag": "dd",
+     "text": ".NET Bot Black Hoodie"
+    },
+    {
+     "tag": "dt",
+     "text": "Description"
+    },
+    {
+     "tag": "dd",
+     "text": ".NET Bot Black Hoodie"
+    },
+    {
+     "tag": "dt",
+     "text": "Brand"
+    },
+    {
+     "tag": "dd",
+     "text": ".NET"
+    },
+    {
+     "tag": "dt",
+     "text": "Type"
+    },
+    {
+     "tag": "dd",
+     "text": "T-Shirt"
+    },
+    {
+     "tag": "dt",
+     "text": "Price"
+    },
+    {
+     "tag": "dd",
+     "text": "$19.50"
+    },
+    {
+     "tag": "dt",
+     "text": "Picture name"
+    },
+    {
+     "tag": "dd",
+     "text": "1.png"
+    },
+    {
+     "tag": "dt",
+     "text": "Stock"
+    },
+    {
+     "tag": "dd",
+     "text": "100"
+    },
+    {
+     "tag": "dt",
+     "text": "Restock"
+    },
+    {
+     "tag": "dd",
+     "text": "0"
+    },
+    {
+     "tag": "dt",
+     "text": "Max stock"
+    },
+    {
+     "tag": "dd",
+     "text": "0"
+    },
+    {
+     "tag": "dt",
+     "text": ""
+    },
+    {
+     "tag": "dd",
+     "text": "[ Cancel ] [ Delete ]"
+    },
+    {
+     "tag": "form",
+     "action": "/Catalog/Delete/1",
+     "method": "post"
+    },
+    {
+     "tag": "input",
+     "name": "__RequestVerificationToken",
+     "type": "hidden",
+     "value": "<masked>"
+    },
+    {
+     "tag": "a",
+     "href": "/",
+     "text": "[ Cancel ]"
+    },
+    {
+     "tag": "button",
+     "type": "submit",
+     "text": "[ Delete ]"
+    },
+    {
+     "tag": "img",
+     "src": "/images/brand_dark.png"
+    },
+    {
+     "tag": "img",
+     "src": "/images/main_footer_text.png",
+     "alt": "footer text image"
+    },
+    {
+     "tag": "small",
+     "text": "<masked>"
+    }
+   ],
+   "assets": [
+    "/Content/base.css",
+    "/Content/bootstrap.css",
+    "/Content/custom.css",
+    "/Content/site.css",
+    "/Scripts/bootstrap.js",
+    "/Scripts/jquery-3.3.1.js",
+    "/Scripts/modernizr-2.6.2.js",
+    "/Scripts/modernizr-2.8.3.js",
+    "/Scripts/respond.js"
+   ]
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Delete confirmation"
+}

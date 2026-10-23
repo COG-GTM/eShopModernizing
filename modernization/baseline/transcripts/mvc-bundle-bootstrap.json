@@ -1,0 +1,21 @@
+{
+ "id": "mvc-bundle-bootstrap",
+ "request": {
+  "method": "GET",
+  "path": "/bundles/bootstrap"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/javascript"
+  },
+  "raw_sha256": "152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a",
+  "body": {
+   "kind": "opaque",
+   "length": 65044
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "bundle",
+ "compare": "status"
+}

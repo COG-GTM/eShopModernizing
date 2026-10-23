@@ -1,0 +1,21 @@
+{
+ "id": "wf-static-bootstrap-css",
+ "request": {
+  "method": "GET",
+  "path": "/Content/bootstrap.css"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/css"
+  },
+  "raw_sha256": "35fbb6dc3891aacaf1ffa07abec2344fdbc454aab533a2a03bcf93577eb7837b",
+  "body": {
+   "kind": "text",
+   "sha256": "35fbb6dc3891aacaf1ffa07abec2344fdbc454aab533a2a03bcf93577eb7837b",
+   "length": 192348
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "CSS"
+}

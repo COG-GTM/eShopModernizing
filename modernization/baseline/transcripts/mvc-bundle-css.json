@@ -1,0 +1,21 @@
+{
+ "id": "mvc-bundle-css",
+ "request": {
+  "method": "GET",
+  "path": "/Content/css"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/css"
+  },
+  "raw_sha256": "3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538",
+  "body": {
+   "kind": "opaque",
+   "length": 199898
+  }
+ },
+ "sequence": "mvc-reads",
+ "description": "Optimisation bundle URL (not referenced in debug pages): status + type only",
+ "compare": "status"
+}

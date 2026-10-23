@@ -1,0 +1,59 @@
+{
+ "id": "mvc-create-post-missing-antiforgery",
+ "request": {
+  "method": "POST",
+  "path": "/Catalog/Create",
+  "form": [
+   [
+    "Name",
+    "Parity Test Hoodie"
+   ],
+   [
+    "Description",
+    "Created by the parity harness"
+   ],
+   [
+    "CatalogBrandId",
+    "3"
+   ],
+   [
+    "CatalogTypeId",
+    "2"
+   ],
+   [
+    "Price",
+    "24.99"
+   ],
+   [
+    "AvailableStock",
+    "42"
+   ],
+   [
+    "RestockThreshold",
+    "5"
+   ],
+   [
+    "MaxStockThreshold",
+    "200"
+   ],
+   [
+    "PictureFileName",
+    "dummy.png"
+   ]
+  ]
+ },
+ "response": {
+  "status": 500,
+  "headers": {
+   "content-type": "text/html"
+  },
+  "raw_sha256": "15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e",
+  "body": {
+   "kind": "opaque",
+   "length": 17744
+  }
+ },
+ "sequence": "mvc-create-invalid",
+ "description": "No __RequestVerificationToken -> HttpAntiForgeryException -> 500 error page",
+ "data_state": "data-state/mvc-create-post-missing-antiforgery.json"
+}

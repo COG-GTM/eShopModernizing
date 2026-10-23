@@ -1,0 +1,21 @@
+{
+ "id": "wf-static-custom-css",
+ "request": {
+  "method": "GET",
+  "path": "/Content/custom.css"
+ },
+ "response": {
+  "status": 200,
+  "headers": {
+   "content-type": "text/css"
+  },
+  "raw_sha256": "f2f100948a89711b999f9ada9cc5325bd134b08d82dc38934b7f3597cb62975e",
+  "body": {
+   "kind": "text",
+   "sha256": "c9bf8efa4e33cf72d20ccd3d04a3e477b6cc8436fc465506326d3f8684244bd5",
+   "length": 489
+  }
+ },
+ "sequence": "wf-reads",
+ "description": "CSS"
+}
