@@ -1,4 +1,6 @@
 using System.Globalization;
+using eShop.Catalog.Infrastructure.Data;
+using eShopNet8.WebForms.Validation;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.StaticFiles;
 
@@ -22,6 +24,9 @@ namespace eShopNet8.WebForms.Hosting
                 options.Conventions.AddPageRoute("/Default", "Default.aspx");
                 options.Conventions.AddPageRoute("/Default", "Default/index/{index}/size/{size}");
             });
+
+            // EF6 ValidateOnSaveEnabled with the legacy WebForms CatalogItem rules (SQL mode only; the mock ignores it).
+            services.AddSingleton<ICatalogSaveValidator, LegacyWebFormsSaveValidator>();
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>

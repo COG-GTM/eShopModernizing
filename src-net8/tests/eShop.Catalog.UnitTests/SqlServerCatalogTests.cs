@@ -40,7 +40,7 @@ namespace eShop.Catalog.UnitTests
             this.sql = sql;
         }
 
-        private async Task<IHost> StartAsync(string connectionString = null)
+        private async Task<IHost> StartAsync(string connectionString = null, ICatalogSaveValidator saveValidator = null)
         {
             var builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings { EnvironmentName = "Production" });
             builder.Configuration.AddInMemoryCollection(new Dictionary<string, string>
@@ -50,6 +50,10 @@ namespace eShop.Catalog.UnitTests
             });
             builder.Services.AddCatalogData(builder.Configuration);
             builder.Services.AddCatalogServices(builder.Configuration);
+            if (saveValidator != null)
+            {
+                builder.Services.AddSingleton(saveValidator);
+            }
             var host = builder.Build();
             await host.InitializeCatalogDataAsync();
             return host;
@@ -165,6 +169,49 @@ namespace eShop.Catalog.UnitTests
             });
             Assert.Null(InScope(host, s => s.FindCatalogItem(id)));
             Assert.Equal(12, InScope(host, s => s.GetCatalogItemsPaginated(10, 0).TotalItems));
+        }
+
+        private sealed class RejectNegativeStock : ICatalogSaveValidator
+        {
+            public void Validate(CatalogItem catalogItem)
+            {
+                if (catalogItem.AvailableStock < 0)
+                {
+                    throw new CatalogItemValidationException(new[] { "negative stock" });
+                }
+            }
+        }
+
+        [Fact]
+        public async Task Save_validator_rejects_create_and_update_without_writing()
+        {
+            using var host = await StartAsync(saveValidator: new RejectNegativeStock());
+            var bad = NewItem("Bad Mug");
+            bad.AvailableStock = -1;
+
+            Assert.Throws<CatalogItemValidationException>(() => InScope(host, s => { s.CreateCatalogItem(bad); return 0; }));
+            Assert.Equal(12, InScope(host, s => s.GetCatalogItemsPaginated(10, 0).TotalItems));
+
+            Assert.Throws<CatalogItemValidationException>(() => InScope(host, s =>
+            {
+                var item = s.FindCatalogItem(1);
+                item.AvailableStock = -1;
+                s.UpdateCatalogItem(item);
+                return 0;
+            }));
+            Assert.NotEqual(-1, InScope(host, s => s.FindCatalogItem(1).AvailableStock));
+        }
+
+        [Fact]
+        public async Task Without_a_save_validator_ef_core_saves_out_of_range_values()
+        {
+            using var host = await StartAsync();
+            var item = NewItem("Negative Mug");
+            item.AvailableStock = -1;
+
+            InScope(host, s => { s.CreateCatalogItem(item); return 0; });
+
+            Assert.Equal(-1, InScope(host, s => s.FindCatalogItem(item.Id).AvailableStock));
         }
 
         [Fact]

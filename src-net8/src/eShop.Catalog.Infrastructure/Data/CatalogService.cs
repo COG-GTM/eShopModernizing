@@ -10,11 +10,13 @@ namespace eShop.Catalog.Infrastructure.Data
     {
         private readonly CatalogDBContext db;
         private readonly CatalogItemHiLoGenerator indexGenerator;
+        private readonly ICatalogSaveValidator saveValidator;
 
-        public CatalogService(CatalogDBContext db, CatalogItemHiLoGenerator indexGenerator)
+        public CatalogService(CatalogDBContext db, CatalogItemHiLoGenerator indexGenerator, ICatalogSaveValidator saveValidator = null)
         {
             this.db = db;
             this.indexGenerator = indexGenerator;
+            this.saveValidator = saveValidator;
         }
 
         public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
@@ -55,12 +57,15 @@ namespace eShop.Catalog.Infrastructure.Data
         public void CreateCatalogItem(CatalogItem catalogItem)
         {
             catalogItem.Id = indexGenerator.GetNextSequenceValue(db);
+            saveValidator?.Validate(catalogItem);
             db.CatalogItems.Add(catalogItem);
             db.SaveChanges();
         }
 
         public void UpdateCatalogItem(CatalogItem catalogItem)
         {
+            saveValidator?.Validate(catalogItem);
+
             // EF Core refuses to attach a second instance with a key it already tracks (EF6 did too); a page
             // that loaded the item earlier in the same scope would otherwise fail, so drop the stale copy first.
             var tracked = db.ChangeTracker.Entries<CatalogItem>()
