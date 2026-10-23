@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generated_at": "2026-10-23T05:19:54+00:00",
+    "generated_at": "2026-10-23T05:57:14+00:00",
     "targets": {
       "mvc": "http://localhost:5100",
       "webforms": "http://localhost:5101"

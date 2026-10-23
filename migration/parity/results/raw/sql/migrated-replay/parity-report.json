@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generated_at": "2026-10-23T05:19:15+00:00",
+    "generated_at": "2026-10-23T05:57:28+00:00",
     "targets": {
       "mvc": "http://localhost:5200",
       "webforms": "http://localhost:5201"
@@ -1502,6 +1502,12 @@
       "app": "webforms",
       "title": "WebForms Create postback (negative stock; server-side checks only)",
       "diffs": [
+        "$.response.status: 500 != expected 302",
+        "$.response.mime: missing (expected \"text/html\")",
+        "$.response.location: missing (expected \"{base}/\")",
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
         "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
         "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
         "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
@@ -1516,7 +1522,7 @@
       ],
       "status": {
         "expected": 302,
-        "actual": 302
+        "actual": 500
       },
       "passed": false
     },
@@ -1525,6 +1531,9 @@
       "app": "webforms",
       "title": "WebForms Edit postback valid (item 3) -> redirect /",
       "diffs": [
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
         "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
         "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
         "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -1558,6 +1567,9 @@
       "app": "webforms",
       "title": "WebForms Edit postback (non-numeric price, item 4)",
       "diffs": [
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
         "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
         "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
         "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -1580,6 +1592,9 @@
       "app": "webforms",
       "title": "WebForms Edit postback (missing name, item 4)",
       "diffs": [
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
         "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
         "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
         "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -1613,6 +1628,9 @@
       "app": "webforms",
       "title": "WebForms Delete postback item 13 -> redirect /",
       "diffs": [
+        "$.data_state.pager: \"Showing 1000 of 13 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
+        "$.data_state.row_count: 13 != expected 14",
+        "$.data_state.rows: length 13 != expected 14",
         "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
         "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
         "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -1636,6 +1654,19 @@
       "title": "WebForms list after all postbacks",
       "diffs": [
         "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.links: length 43 != expected 46",
+        "$.response.body.html.links[41].text: \"Previous\" != expected \"Edit\"",
+        "$.response.body.html.links[41].href: \"{base}/Default/index/-1/size/100\" != expected \"{base}/Catalog/Edit/15\"",
+        "$.response.body.html.links[41].class: length 3 != expected 1",
+        "$.response.body.html.links[41].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.links[42].text: \"Next\" != expected \"Details\"",
+        "$.response.body.html.links[42].href: \"{base}/Default/index/1/size/100\" != expected \"{base}/Catalog/Details/15\"",
+        "$.response.body.html.links[42].class: length 3 != expected 1",
+        "$.response.body.html.links[42].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.images: length 16 != expected 17",
+        "$.response.body.html.images[14]: \"{base}/images/brand_dark.png\" != expected \"{base}/Pics/dummy.png\"",
+        "$.response.body.html.images[15]: \"{base}/images/main_footer_text.png\" != expected \"{base}/images/brand_dark.png\"",
+        "$.response.body.html.tables[0].rows: length 14 != expected 15",
         "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
         "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
         "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",

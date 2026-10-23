@@ -5,6 +5,7 @@ an unmatched diff is reported as UNCLASSIFIED and makes the script exit non-zero
 from __future__ import annotations
 
 import json
+import re
 import sys
 from collections import Counter, OrderedDict
 from pathlib import Path
@@ -34,13 +35,23 @@ RULES = [
      "System.Web's yellow-screen / host error pages do not exist in ASP.NET Core; the migrated app returns its own "
      "error page (or an empty 404 for unmatched routes). Status codes are identical; CONTRACT.md excludes "
      "framework error HTML from parity.",
-     lambda m, f, k, d: k == "strict" and ("$.response.body" in d) and f in ERROR_FLOWS),
-    ("D5-bundles", OPEN, "Script/style bundles are served unminified (bytes/length differ)",
-     "The legacy /bundles/* and /Content/css endpoints always apply System.Web.Optimization JsMinify/CssMinify "
-     "(even with compilation debug=true, which only changes how Scripts.Render emits tags); the migrated bundle endpoints "
-     "concatenate the unminified sources (e.g. /bundles/jquery 271,752 vs 87,460 bytes). "
-     "Same scripts and behaviour; larger payload. Needs a minifier (e.g. WebOptimizer) - not small, left open.",
-     lambda m, f, k, d: f.startswith("mvc-bundle-") and k == "strict" and "$.response.body" in d),
+     lambda m, f, k, d: k == "strict" and ("$.response.body" in d)
+                        and (f in ERROR_FLOWS or (m == "sql" and f in SQL_ERROR_FLOWS))),
+    ("D5-bundles", FIXED, "Script bundles are now minified; /bundles/jquery and /bundles/bootstrap differ from WebGrease "
+     "by a few bytes of minifier output (/bundles/jqueryval and /bundles/modernizr are byte-identical)",
+     "Legacy /bundles/* always apply System.Web.Optimization JsMinify (even with compilation debug=true, which only "
+     "changes how Scripts.Render emits tags). The migrated bundle endpoints now minify once at startup with NUglify "
+     "(the maintained fork of the Microsoft Ajax Minifier that WebGrease wraps), joining files with ';' like "
+     "ScriptBundle. Before this fix /bundles/jquery was 271,752 vs 87,460 bytes; now 87,464 vs 87,460. Not a "
+     "contract (CONTRACT.md excludes bundle bytes); the residual diffs are minifier output only.",
+     lambda m, f, k, d: f in JS_BUNDLE_FLOWS and k == "strict" and bundle_body_match(d, 1.01)),
+    ("D5b-css-minify-failure", LEGACY, "/Content/css: legacy serves the stylesheet unminified behind a "
+     "`/* Minification failed. Returning unminified contents. */` header; migrated serves it minified",
+     "WebGrease CssMinify cannot parse Bootstrap 4 CSS custom properties (`--blue: #007bff;` -> run-time error "
+     "CSS1062), so System.Web.Optimization falls back to the raw concatenation prefixed with the error list "
+     "(199,898 bytes). NUglify parses it and the migrated bundle is minified (159,208 bytes; 197,431 before this fix). "
+     "Same rules, smaller payload; bundle bytes are not a contract.",
+     lambda m, f, k, d: f == "mvc-bundle-content-css" and k == "strict" and bundle_body_match(d, 1.0)),
     ("D6-wf-validator-script", FORCED, "Migrated WebForms edit/create pages load one extra script (/js/webforms-validators.js)",
      "WebForms' WebResource.axd client validators (WebUIValidation.js) do not exist in ASP.NET Core; the Razor "
      "Pages port ships an equivalent validator script.",
@@ -69,14 +80,26 @@ RULES = [
 ERROR_FLOWS = {"mvc-index-size0", "mvc-delete-post-missing", "mvc-create-post-no-antiforgery", "mvc-pic-nonint", "mvc-api-hello",
                "wf-list-size0", "wf-details-get-missing", "wf-edit-get-missing", "wf-delete-get-missing",
                "wf-details-get-nonint", "wf-create-post-invalid-bad-price", "wf-edit-post-invalid-bad-price"}
+# SQL mode only: the WebForms save validator rejects the item, so both sides answer 500 (mock mode saves it: 302).
+SQL_ERROR_FLOWS = {"wf-create-post-invalid-negative-stock"}
 S2_FLOWS = {"wf-create-post-invalid-negative-stock", "wf-edit-post-valid", "wf-edit-post-invalid-bad-price",
             "wf-edit-post-invalid-missing-name", "wf-delete-post", "wf-list-after-mutations"}
 
+JS_BUNDLE_FLOWS = {"mvc-bundle-bundles-jquery", "mvc-bundle-bundles-jqueryval", "mvc-bundle-bundles-modernizr",
+                   "mvc-bundle-bundles-bootstrap"}
 RESPONSE_PATHS = ("$.response.status", "$.response.mime", "$.response.location", "$.response.body",
                   "$.response.headers.content-type", "$.response.headers.mime")
 EXTRA_ROW_HTML = ("$.response.body.html.text", "$.response.body.html.links", "$.response.body.html.tables",
                   "$.response.body.html.images")
 EXTRA_ROW_PATHS = ("$.data_state.pager", "$.data_state.row_count", "$.data_state.rows")
+
+
+def bundle_body_match(diff: str, max_ratio: float) -> bool:
+    """Bundle body hash diffs, and length diffs only while the migrated body stays minified (<= max_ratio x legacy)."""
+    if diff.startswith("$.response.body.sha256"):
+        return True
+    m = re.match(r"\$\.response\.body\.length: (\d+) != expected (\d+)$", diff)
+    return bool(m) and int(m.group(1)) <= int(m.group(2)) * max_ratio
 
 
 def s2_match(flow_id: str, kind: str, diff: str) -> bool:
@@ -104,6 +127,13 @@ FIXED_IN_PR = [
      "ToList() grows 4->8 so legacy SQL emits an 8-slot array with 3 null slots. BrandDtoNrbfWriter now takes the "
      "capacity (sized = count in mock mode, grown in SQL mode); SQL /api/files went from a byte mismatch "
      "(721 vs 719 bytes) to identical."),
+    ("S2-ef-validate-on-save", "SQL mode WebForms create/edit now enforces what EF6 ValidateOnSaveEnabled enforced: the "
+     "SQL CatalogService runs an optional ICatalogSaveValidator before SaveChanges, and only eShopNet8.WebForms registers "
+     "one (LegacyWebFormsSaveValidator: the legacy WebForms CatalogItem attributes - Price regex + Range(0, "
+     "9999999999999999.99), Range(0, 10000000) on the three stock fields, no [Required] on Name - plus the EF6 "
+     "IsRequired/HasMaxLength(50) facets). MVC and mock mode register none. wf-create-post-invalid-negative-stock went "
+     "from legacy 500 / migrated 302 (row inserted) to 500 / 500 with no row, and SQL data-state went from 19/24 to "
+     "24/24 (wf-*-missing-name stays 302 on both sides)."),
 ]
 
 

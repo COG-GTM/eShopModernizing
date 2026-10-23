@@ -1,4 +1,4 @@
-Side-by-side replay 2026-10-23T05:25:35+00:00
+Side-by-side replay 2026-10-23T05:52:42+00:00
 {"mvc": {"legacy": "http://localhost:5100", "migrated": "http://localhost:5200"}, "webforms": {"legacy": "http://localhost:5101", "migrated": "http://localhost:5201"}}
 
   checks                       128
@@ -43,7 +43,7 @@ CONTR mvc-index-negative-page  legacy=200 migrated=200
         header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
 CONTR mvc-index-size0  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "98039c9d7d75edcf3c39bc625671fa80dd575174e6e56b2290031e2516f45b04" != expected "d953d19a0a697c2608ce1952e8ff6a2ec08071d62c714854459555a0265746a3"
+        strict:   $.response.body.sha256: "e5f1987c41bc1a1f32abdcf5104fe6794d268c337572db1dc9360f8ecd0fffa6" != expected "1dfd1e9605fd98f482041ef6b982715d12880cf179077944e09cf2bf8e4c7634"
         strict:   $.response.body.length: 2026 != expected 20775
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN
         header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
@@ -119,28 +119,23 @@ SAME  mvc-static-favicon-ico  legacy=200 migrated=200
 SAME  mvc-static-pics-1-png  legacy=200 migrated=200
 CONTR mvc-bundle-content-css  legacy=200 migrated=200
         strict:   $.response.headers.content-type: "text/css; charset=utf-8" != expected "text/css"
-        strict:   $.response.body.sha256: "962394d64ffa216c9de710d419e90f55202d4b43e553dfc0920f2dc90eaeed9b" != expected "3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538"
-        strict:   $.response.body.length: 197431 != expected 199898
+        strict:   $.response.body.sha256: "cffb79ad18b644b7c9f54cffae99fea1a14ec71a75ca037ae668dd28f9d2d06f" != expected "3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538"
+        strict:   $.response.body.length: 159208 != expected 199898
         header:   $.headers.content-type: "text/css; charset=utf-8" != expected "text/css"
 CONTR mvc-bundle-bundles-jquery  legacy=200 migrated=200
         strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
-        strict:   $.response.body.sha256: "0fba1eccfd552e3474f36cb0a271b4e6c103303d7e83bdc2ab4553fcd9361946" != expected "83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa"
-        strict:   $.response.body.length: 271752 != expected 87460
+        strict:   $.response.body.sha256: "22e7ff9bf490546f8344db4c90b1b5648937778971aca1af69d601e52d019ab4" != expected "83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa"
+        strict:   $.response.body.length: 87464 != expected 87460
         header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
 CONTR mvc-bundle-bundles-jqueryval  legacy=200 migrated=200
         strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
-        strict:   $.response.body.sha256: "50fafe4f648f71b88a56ee20571c153d529aba8d7fba48f10b35124147a4b22d" != expected "2dd80e00f6559e4e0cf921736596e1350d7da7e0f323018f5c6642274d225e1d"
-        strict:   $.response.body.length: 68044 != expected 28742
         header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
 CONTR mvc-bundle-bundles-modernizr  legacy=200 migrated=200
         strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
-        strict:   $.response.body.sha256: "5c783a11b6eaf37c99bf7569081281391610f929894e3c988eadd2052bfdaad2" != expected "4a87e4d5a949776e0197b33dbb1806748cacda1aa2afb4c2bbd7da8e6aa71fe8"
-        strict:   $.response.body.length: 102811 != expected 22095
         header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
 CONTR mvc-bundle-bundles-bootstrap  legacy=200 migrated=200
         strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
-        strict:   $.response.body.sha256: "8211ea80536accdd1dd9b0c9ecf19f9388d82ce62c13dc31ae07180bebc1f15c" != expected "152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a"
-        strict:   $.response.body.length: 140175 != expected 65044
+        strict:   $.response.body.sha256: "f68f5dff5374869cc91cd7e0c64f63b5c3805dee17d823c5335883a5ba20fe4e" != expected "152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a"
         header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
 CONTR mvc-create-post-valid  legacy=302 migrated=302
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
@@ -183,7 +178,7 @@ CONTR mvc-create-post-invalid-restock-negative  legacy=200 migrated=200
         header:   $.headers.pragma: unexpected "no-cache"
 CONTR mvc-create-post-no-antiforgery  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "98039c9d7d75edcf3c39bc625671fa80dd575174e6e56b2290031e2516f45b04" != expected "15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e"
+        strict:   $.response.body.sha256: "e5f1987c41bc1a1f32abdcf5104fe6794d268c337572db1dc9360f8ecd0fffa6" != expected "15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e"
         strict:   $.response.body.length: 2026 != expected 17744
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN
         header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
@@ -282,7 +277,7 @@ CONTR wf-list-negative-page  legacy=200 migrated=200
         header:   $.headers.pragma: unexpected "no-cache"
 CONTR wf-list-size0  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "6ea63650816d7b77443e20d03e31fa796a85fa99b7b1fc857ac8cca2611c62ec"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "08d7522c1e5984e90760f8d9be09e2809597070e0fda7d0317bcee3b8a6a9513"
         strict:   $.response.body.length: 152 != expected 7307
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
         header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
@@ -296,7 +291,7 @@ CONTR wf-details-get-1  legacy=200 migrated=200
         header:   $.headers.pragma: unexpected "no-cache"
 CONTR wf-details-get-missing  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "506c651e9078a787e129ae31fc8df9f8ef551ae75b975b27b358255155ccceee"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "0c8cb4fab7848ecb5e15faab620a5e6e3d58718fdb370f785901fa3a648a8f90"
         strict:   $.response.body.length: 152 != expected 9511
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
         header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
@@ -311,7 +306,7 @@ CONTR wf-edit-get-1  legacy=200 migrated=200
         header:   $.headers.pragma: unexpected "no-cache"
 CONTR wf-edit-get-missing  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "30ee66bc78ac6eccee3a34d4ce75f2262325f0ea876a83aa3c267a67f3d63e61"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "7b0a78bcd8e142505aa437d6577fa1b0d71c045acd7873ff7455f72e77e6b4a1"
         strict:   $.response.body.length: 152 != expected 5964
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
         header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
@@ -325,7 +320,7 @@ CONTR wf-delete-get-1  legacy=200 migrated=200
         header:   $.headers.pragma: unexpected "no-cache"
 CONTR wf-delete-get-missing  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "0c0617fb2d985bbf80810c1af283fcab6ddc8138b39516086d86bf478aedc043"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "e745edf5693317b48ce406d36b59f5c944bbeb4cd8e6f0458a78156d6acbd32b"
         strict:   $.response.body.length: 152 != expected 9507
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
         header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
@@ -339,7 +334,7 @@ CONTR wf-details-get-12  legacy=200 migrated=200
         header:   $.headers.pragma: unexpected "no-cache"
 CONTR wf-details-get-nonint  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "ac8e62112aff93f5df533e8006d498e1a5adfee2f88d16e642f1693b91766cc5"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "0becd1d7314fdb8597e650360df452eb0dbd2f8b55816c99e6f1ee57961f34cb"
         strict:   $.response.body.length: 152 != expected 7751
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
         header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
@@ -384,7 +379,7 @@ CONTR wf-create-post-invalid-missing-name  legacy=302 migrated=302
         header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
 CONTR wf-create-post-invalid-bad-price  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "5c8cc146f217e77773034e938db67afd682f18d0d2211565ac4bbb01d5bf6c1d"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "c9506ed8a1578de43bfa6758a3702bc0e222ac38404cf3bca9fcd989053e7b5d"
         strict:   $.response.body.length: 152 != expected 8253
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
         header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
@@ -408,7 +403,7 @@ CONTR wf-details-edited  legacy=200 migrated=200
         header:   $.headers.pragma: unexpected "no-cache"
 CONTR wf-edit-post-invalid-bad-price  legacy=500 migrated=500
         strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
-        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "d0db8c2eee6e1d489ae61195a0ab3e04af64d3c9ee2aeb0024682fe0792c15b9"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "2514c28732b3879a6e02b31e3546b5bce163873f95f7bbf656e31fd36223263a"
         strict:   $.response.body.length: 152 != expected 8245
         strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
         header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
