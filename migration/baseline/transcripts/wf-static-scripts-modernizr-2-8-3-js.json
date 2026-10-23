@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-static-scripts-modernizr-2-8-3-js",
+  "app": "webforms",
+  "title": "WebForms static asset /Scripts/modernizr-2.8.3.js",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Scripts/modernizr-2.8.3.js"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/javascript",
+      "mime": "application/javascript"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "7dfc3ef73c1284c7aff3c5cdac3812d212c8b899037d7860c8ba20a1defb9a7f",
+      "length": 51351
+    }
+  }
+}

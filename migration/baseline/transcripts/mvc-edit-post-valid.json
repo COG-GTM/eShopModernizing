@@ -1,0 +1,66 @@
+{
+  "flow_id": "mvc-edit-post-valid",
+  "app": "mvc",
+  "title": "Edit POST valid (item 1) -> 302 /",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Edit/1",
+    "form_from": "/Catalog/Edit/1",
+    "form_fields": {
+      "Id": "1",
+      "Name": ".NET Bot Black Hoodie v2",
+      "Description": ".NET Bot Black Hoodie",
+      "CatalogBrandId": "5",
+      "CatalogTypeId": "2",
+      "Price": "21.75",
+      "PictureFileName": "1.png",
+      "AvailableStock": "75",
+      "RestockThreshold": "0",
+      "MaxStockThreshold": "0"
+    },
+    "tokens_submitted": [
+      "__RequestVerificationToken"
+    ]
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html",
+      "location": "{base}/"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Object moved",
+        "headings": [
+          [
+            "h2",
+            "Object moved to here"
+          ]
+        ],
+        "text": "Object moved to here",
+        "links": [
+          {
+            "text": "here",
+            "href": "{base}/",
+            "class": []
+          }
+        ],
+        "images": [],
+        "tables": [],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [],
+          "scripts": []
+        }
+      }
+    }
+  },
+  "data_state": "data-state/mvc-edit-post-valid.json"
+}

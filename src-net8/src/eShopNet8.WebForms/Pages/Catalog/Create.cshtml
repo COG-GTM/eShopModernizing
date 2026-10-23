@@ -1,0 +1,103 @@
+@page
+@model eShopNet8.WebForms.Pages.Catalog.CreateModel
+@{
+    ViewData["Title"] = "Create";
+    var item = Model.Item;
+    const string p = LegacyPageModel.ControlPrefix;
+}
+
+<h2 class="esh-body-title">Create</h2>
+
+<div>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2">Name</label>
+            <div class="col-md-3">
+                <input name="@(p)Name" type="text" value="@item.Name" id="ctl00_MainContent_Name" class="form-control" />
+                <span data-validator="required" data-controltovalidate="ctl00_MainContent_Name" class="field-validation-valid text-danger" style="display:none;">The Name field is required.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Description</label>
+            <div class="col-md-3">
+                <input name="@(p)Description" type="text" value="@item.Description" id="ctl00_MainContent_Description" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Brand</label>
+            <div class="col-md-3">
+                <select name="@(p)Brand" id="ctl00_MainContent_Brand" class="form-control">
+                    @foreach (var brand in Model.Brands)
+                    {
+                        <option selected="@(brand.Id.ToString() == item.BrandId)" value="@brand.Id">@brand.Brand</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Type</label>
+            <div class="col-md-3">
+                <select name="@(p)Type" id="ctl00_MainContent_Type" class="form-control">
+                    @foreach (var type in Model.Types)
+                    {
+                        <option selected="@(type.Id.ToString() == item.TypeId)" value="@type.Id">@type.Type</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Price</label>
+            <div class="col-md-3">
+                <input name="@(p)Price" type="text" value="@item.Price" id="ctl00_MainContent_Price" class="form-control" />
+                <span data-validator="range" data-type="Currency" data-min="0" data-max="1000000" data-controltovalidate="ctl00_MainContent_Price" class="text-danger" style="display:none;">The Price must be a positive number with maximum two decimals between 0 and 1 million.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Picture name</label>
+            <div class="col-md-4 esh-form-information">
+                Uploading images not allowed for this version.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Stock</label>
+            <div class="col-md-3">
+                <input name="@(p)Stock" type="text" value="@item.Stock" id="ctl00_MainContent_Stock" class="form-control" />
+                <span data-validator="range" data-type="Integer" data-min="0" data-max="10000000" data-controltovalidate="ctl00_MainContent_Stock" class="text-danger" style="display:none;">The field Stock must be between 0 and 10 million.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Restock</label>
+            <div class="col-md-3">
+                <input name="@(p)Restock" type="text" value="@item.Restock" id="ctl00_MainContent_Restock" class="form-control" />
+                <span data-validator="range" data-type="Integer" data-min="0" data-max="10000000" data-controltovalidate="ctl00_MainContent_Restock" class="text-danger" style="display:none;">The field Restock must be between 0 and 10 million.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Max stock</label>
+            <div class="col-md-3">
+                <input name="@(p)Maxstock" type="text" value="@item.Maxstock" id="ctl00_MainContent_Maxstock" class="form-control" />
+                <span data-validator="range" data-type="Integer" data-min="0" data-max="10000000" data-controltovalidate="ctl00_MainContent_Maxstock" class="text-danger" style="display:none;">The field Max stock must be between 0 and 10 million.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
+                <a href="/" class="btn esh-button esh-button-secondary">[ Cancel ]
+                </a>
+                <input type="submit" name="@(p + eShopNet8.WebForms.Pages.Catalog.CreateModel.CreateButton)" value="[ Create ]" class="btn esh-button esh-button-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/webforms-validators.js"></script>
+}

@@ -1,0 +1,55 @@
+{
+  "flow_id": "mvc-delete-post",
+  "app": "mvc",
+  "title": "Delete POST item 13 -> 302 /",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Delete/13",
+    "form_from": "/Catalog/Delete/13",
+    "form_fields": {},
+    "tokens_submitted": [
+      "__RequestVerificationToken"
+    ]
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html",
+      "location": "{base}/"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Object moved",
+        "headings": [
+          [
+            "h2",
+            "Object moved to here"
+          ]
+        ],
+        "text": "Object moved to here",
+        "links": [
+          {
+            "text": "here",
+            "href": "{base}/",
+            "class": []
+          }
+        ],
+        "images": [],
+        "tables": [],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [],
+          "scripts": []
+        }
+      }
+    }
+  },
+  "data_state": "data-state/mvc-delete-post.json"
+}

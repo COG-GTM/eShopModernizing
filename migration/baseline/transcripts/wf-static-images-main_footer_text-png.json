@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-static-images-main_footer_text-png",
+  "app": "webforms",
+  "title": "WebForms static asset /images/main_footer_text.png",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/images/main_footer_text.png"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "image/png",
+      "mime": "image/png"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "438d27c8113e4f33faef6d21735b233324c07b6078b66a3241fc56bac02e5c3e",
+      "length": 4669
+    }
+  }
+}

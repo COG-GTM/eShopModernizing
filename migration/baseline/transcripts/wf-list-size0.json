@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-list-size0",
+  "app": "webforms",
+  "title": "WebForms catalog list, size 0 (divide by zero)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Default/index/0/size/0"
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "3e1fba05beeccb75ee2f7d0a589092e73e76f6be9ccc903fd4927b8e65fa049a",
+      "length": 7307
+    }
+  }
+}

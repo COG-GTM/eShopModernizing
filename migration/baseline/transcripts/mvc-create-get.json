@@ -1,0 +1,222 @@
+{
+  "flow_id": "mvc-create-get",
+  "app": "mvc",
+  "title": "Create GET (form + antiforgery token)",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Create"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Create - Catalog manager (MVC)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (MVC)"
+          ],
+          [
+            "h2",
+            "Create"
+          ]
+        ],
+        "text": "Catalog manager (MVC) Create Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Uploading images not allowed for this version. Stock Restock Max stock [ Cancel ] <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "[ Cancel ]",
+            "href": "{base}/",
+            "class": [
+              "btn",
+              "esh-button",
+              "esh-button-secondary"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [],
+        "definitions": [],
+        "forms": [
+          {
+            "method": "POST",
+            "action": "{base}/Catalog/Create",
+            "fields": [
+              {
+                "tag": "input",
+                "name": "Name",
+                "type": "text",
+                "value": "",
+                "data-val": {
+                  "data-val": "true",
+                  "data-val-required": "The Name field is required."
+                }
+              },
+              {
+                "tag": "input",
+                "name": "Description",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "tag": "select",
+                "name": "CatalogBrandId",
+                "options": [
+                  [
+                    "1",
+                    "Azure",
+                    false
+                  ],
+                  [
+                    "2",
+                    ".NET",
+                    false
+                  ],
+                  [
+                    "3",
+                    "Visual Studio",
+                    false
+                  ],
+                  [
+                    "4",
+                    "SQL Server",
+                    false
+                  ],
+                  [
+                    "5",
+                    "Other",
+                    false
+                  ]
+                ]
+              },
+              {
+                "tag": "select",
+                "name": "CatalogTypeId",
+                "options": [
+                  [
+                    "1",
+                    "Mug",
+                    false
+                  ],
+                  [
+                    "2",
+                    "T-Shirt",
+                    false
+                  ],
+                  [
+                    "3",
+                    "Sheet",
+                    false
+                  ],
+                  [
+                    "4",
+                    "USB Memory Stick",
+                    false
+                  ]
+                ]
+              },
+              {
+                "tag": "input",
+                "name": "Price",
+                "type": "text",
+                "value": "0.00",
+                "data-val": {
+                  "data-val": "true",
+                  "data-val-number": "The field Price must be a number.",
+                  "data-val-range": "The field Price must be between 0 and 1000000.",
+                  "data-val-range-max": "1000000",
+                  "data-val-range-min": "0",
+                  "data-val-regex": "The field Price must be a positive number with maximum two decimals.",
+                  "data-val-regex-pattern": "^\\d+(\\.\\d{0,2})*$",
+                  "data-val-required": "The Price field is required."
+                }
+              },
+              {
+                "tag": "input",
+                "name": "AvailableStock",
+                "type": "number",
+                "value": "0",
+                "data-val": {
+                  "data-val": "true",
+                  "data-val-number": "The field Stock must be a number.",
+                  "data-val-range": "The field Stock must be between 0 and 10 million.",
+                  "data-val-range-max": "10000000",
+                  "data-val-range-min": "0",
+                  "data-val-required": "The Stock field is required."
+                }
+              },
+              {
+                "tag": "input",
+                "name": "RestockThreshold",
+                "type": "number",
+                "value": "0",
+                "data-val": {
+                  "data-val": "true",
+                  "data-val-number": "The field Restock must be a number.",
+                  "data-val-range": "The field Restock must be between 0 and 10 million.",
+                  "data-val-range-max": "10000000",
+                  "data-val-range-min": "0",
+                  "data-val-required": "The Restock field is required."
+                }
+              },
+              {
+                "tag": "input",
+                "name": "MaxStockThreshold",
+                "type": "number",
+                "value": "0",
+                "data-val": {
+                  "data-val": "true",
+                  "data-val-number": "The field Max stock must be a number.",
+                  "data-val-range": "The field Max stock must be between 0 and 10 million.",
+                  "data-val-range-max": "10000000",
+                  "data-val-range-min": "0",
+                  "data-val-required": "The Max stock field is required."
+                }
+              },
+              {
+                "tag": "input",
+                "name": null,
+                "type": "submit",
+                "value": "[ Create ]"
+              }
+            ]
+          }
+        ],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.6.2.js",
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js",
+            "{base}/Scripts/jquery.validate.js",
+            "{base}/Scripts/jquery.validate.unobtrusive.js"
+          ]
+        }
+      }
+    }
+  }
+}

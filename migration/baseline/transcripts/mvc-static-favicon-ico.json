@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-static-favicon-ico",
+  "app": "mvc",
+  "title": "Static asset /favicon.ico",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/favicon.ico"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "image/x-icon",
+      "mime": "image/x-icon"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "a94f8a8553caea8430dd4ca3cc01d4e318d19828f74cb65453ffb7f5d9e2f44d",
+      "length": 32038
+    }
+  }
+}

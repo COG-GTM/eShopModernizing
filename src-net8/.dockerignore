@@ -1,0 +1,14 @@
+# Build context is src-net8/: only global.json, Directory.Build.props, src/ and docker/healthcheck.sh are needed.
+**/bin/
+**/obj/
+**/out/
+**/.vs/
+**/.vscode/
+**/*.user
+**/*.swp
+**/TestResults/
+tests/
+docker-compose*.yml
+docker/Dockerfile.*
+docker/*.env
+.env

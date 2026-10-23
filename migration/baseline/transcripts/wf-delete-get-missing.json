@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-delete-get-missing",
+  "app": "webforms",
+  "title": "WebForms Delete page, missing id (legacy NullReferenceException -> 500)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Delete/999"
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "bd043e48830349b8bfdf74b5e76a499d40d1f77662e0bb8cec9f80b5db3b69b1",
+      "length": 9507
+    }
+  }
+}

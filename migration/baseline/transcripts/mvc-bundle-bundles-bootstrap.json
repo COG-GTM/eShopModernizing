@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-bundle-bundles-bootstrap",
+  "app": "mvc",
+  "title": "Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract)",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/bundles/bootstrap"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/javascript",
+      "mime": "text/javascript"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a",
+      "length": 65044
+    }
+  }
+}

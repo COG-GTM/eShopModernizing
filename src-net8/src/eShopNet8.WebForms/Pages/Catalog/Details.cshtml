@@ -1,0 +1,50 @@
+@page "{id}"
+@model eShopNet8.WebForms.Pages.Catalog.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    var product = Model.Product;
+}
+
+<h2 class="esh-body-title">Details</h2>
+
+<div class="container">
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="/Pics/@product.PictureFileName" />
+        <dl class="col-md-6 dl-horizontal">
+            <dt>Name</dt>
+            <dd><span>@product.Name</span></dd>
+
+            <dt>Description</dt>
+            <dd><span>@product.Description</span></dd>
+
+            <dt>Brand</dt>
+            <dd><span>@product.CatalogBrand.Brand</span></dd>
+
+            <dt>Type</dt>
+            <dd><span>@product.CatalogType.Type</span></dd>
+
+            <dt>Price</dt>
+            <dd><span class="esh-price">@product.Price</span></dd>
+
+            <dt>Picture name</dt>
+            <dd><span>@product.PictureFileName</span></dd>
+
+            <dt>Stock</dt>
+            <dd><span>@product.AvailableStock</span></dd>
+
+            <dt>Restock</dt>
+            <dd><span>@product.RestockThreshold</span></dd>
+
+            <dt>Max stock</dt>
+            <dd><span>@product.MaxStockThreshold</span></dd>
+        </dl>
+    </div>
+
+    <div class="form-actions no-color esh-link-list">
+        <a href="/Catalog/Edit/@product.Id" class="esh-link-item">Edit
+        </a>
+        |
+        <a href="/" class="esh-link-item">Back to list
+        </a>
+    </div>
+</div>

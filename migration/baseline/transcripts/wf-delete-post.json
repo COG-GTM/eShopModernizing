@@ -1,0 +1,58 @@
+{
+  "flow_id": "wf-delete-post",
+  "app": "webforms",
+  "title": "WebForms Delete postback item 13 -> redirect /",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Delete/13",
+    "form_from": "/Catalog/Delete/13",
+    "form_fields": {
+      "ctl00$MainContent$ctl11": "[ Delete ]"
+    },
+    "tokens_submitted": [
+      "__EVENTVALIDATION",
+      "__VIEWSTATE"
+    ]
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html",
+      "location": "{base}/"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Object moved",
+        "headings": [
+          [
+            "h2",
+            "Object moved to here"
+          ]
+        ],
+        "text": "Object moved to here",
+        "links": [
+          {
+            "text": "here",
+            "href": "{base}/",
+            "class": []
+          }
+        ],
+        "images": [],
+        "tables": [],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [],
+          "scripts": []
+        }
+      }
+    }
+  },
+  "data_state": "data-state/wf-delete-post.json"
+}

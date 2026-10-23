@@ -1,0 +1,181 @@
+{
+  "flow_id": "wf-list-size10-page1",
+  "app": "webforms",
+  "title": "WebForms catalog list, index 1 size 10",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Default/index/1/size/10"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Home Page - Catalog manager (Web Forms)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (Web Forms)"
+          ]
+        ],
+        "text": "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 2 - 2 Next <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "Create New",
+            "href": "{base}/Catalog/Create",
+            "class": [
+              "btn",
+              "esh-button",
+              "esh-button-primary"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/11",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/11",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/11",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/12",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/12",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/12",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Previous",
+            "href": "{base}/Default/index/0/size/10",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--navigable"
+            ]
+          },
+          {
+            "text": "Next",
+            "href": "{base}/Default/index/2/size/10",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--hidden",
+              "esh-pager-item--navigable"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/Pics/11.png",
+          "{base}/Pics/12.png",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [
+          {
+            "rows": [
+              [
+                "",
+                "Name",
+                "Description",
+                "Brand",
+                "Type",
+                "Price",
+                "Picture name",
+                "Stock",
+                "Restock",
+                "Max stock"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        ],
+        "definitions": [],
+        "forms": [
+          {
+            "method": "POST",
+            "action": "{base}/Default/index/1/size/10",
+            "fields": []
+          }
+        ],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

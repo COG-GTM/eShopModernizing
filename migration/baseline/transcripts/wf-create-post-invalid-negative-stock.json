@@ -1,0 +1,66 @@
+{
+  "flow_id": "wf-create-post-invalid-negative-stock",
+  "app": "webforms",
+  "title": "WebForms Create postback (negative stock; server-side checks only)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Create",
+    "form_from": "/Catalog/Create",
+    "form_fields": {
+      "ctl00$MainContent$Name": "Parity Mug",
+      "ctl00$MainContent$Description": "Created by the parity harness",
+      "ctl00$MainContent$Brand": "2",
+      "ctl00$MainContent$Type": "1",
+      "ctl00$MainContent$Price": "9.99",
+      "ctl00$MainContent$Stock": "-1",
+      "ctl00$MainContent$Restock": "5",
+      "ctl00$MainContent$Maxstock": "40",
+      "ctl00$MainContent$ctl06": "[ Create ]"
+    },
+    "tokens_submitted": [
+      "__EVENTVALIDATION",
+      "__VIEWSTATE"
+    ]
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html",
+      "location": "{base}/"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Object moved",
+        "headings": [
+          [
+            "h2",
+            "Object moved to here"
+          ]
+        ],
+        "text": "Object moved to here",
+        "links": [
+          {
+            "text": "here",
+            "href": "{base}/",
+            "class": []
+          }
+        ],
+        "images": [],
+        "tables": [],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [],
+          "scripts": []
+        }
+      }
+    }
+  },
+  "data_state": "data-state/wf-create-post-invalid-negative-stock.json"
+}
