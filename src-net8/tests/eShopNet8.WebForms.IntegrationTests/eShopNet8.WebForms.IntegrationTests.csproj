@@ -9,6 +9,10 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="$(AspNetCoreVersion)" />
+    <PackageReference Include="AngleSharp" Version="1.1.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../Shared/**/*.cs" Link="Shared/%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/eShopNet8.WebForms/eShopNet8.WebForms.csproj" />
