@@ -6,7 +6,7 @@
 
 <div class="esh-table">
     <p class="esh-link-wrapper">
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn esh-button esh-button-primary" })
+        @Html.ActionLink("Create New", "Create", routeValues: null, htmlAttributes: new { @class = "btn esh-button esh-button-primary" })
     </p>
 
     @await Html.PartialAsync("_CatalogTable", Model.Data)

@@ -7,9 +7,9 @@
 <h2 class="esh-body-title">Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post, antiforgery: false, htmlAttributes: null))
 {
-    @Html.AntiForgeryToken()
+    <input name="__RequestVerificationToken" type="hidden" value="@Antiforgery.GetAndStoreTokens(Context).RequestToken" />
     <div class="container">
         <div class="row">
             <img class="col-md-6 esh-picture" src="@Model.PictureUri" />
@@ -91,7 +91,7 @@
 
                 <div class="form-group">
                     <div class="col-md-12 text-right esh-button-actions">
-                        @Html.ActionLink("[ Cancel ]", "Index", null, new { @class = "btn esh-button esh-button-secondary" })
+                        @Html.ActionLink("[ Cancel ]", "Index", routeValues: null, htmlAttributes: new { @class = "btn esh-button esh-button-secondary" })
                         <button type="submit" class="btn esh-button esh-button-primary">[ Save ]</button>
                     </div>
                 </div>

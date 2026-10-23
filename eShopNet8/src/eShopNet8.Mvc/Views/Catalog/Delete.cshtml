@@ -86,10 +86,10 @@
             </dt>
 
             <dd class="text-right esh-button-actions">
-                @using (Html.BeginForm())
+                @using (Html.BeginForm(FormMethod.Post, antiforgery: false, htmlAttributes: null))
                 {
-                    @Html.AntiForgeryToken()
-                    @Html.ActionLink("[ Cancel ]", "Index", null, new { @class = "btn esh-button esh-button-secondary" })
+                    <input name="__RequestVerificationToken" type="hidden" value="@Antiforgery.GetAndStoreTokens(Context).RequestToken" />
+                    @Html.ActionLink("[ Cancel ]", "Index", routeValues: null, htmlAttributes: new { @class = "btn esh-button esh-button-secondary" })
                     <button type="submit" class="btn esh-button esh-button-primary">[ Delete ]</button>
                 }
             </dd>

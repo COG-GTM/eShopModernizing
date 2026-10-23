@@ -7,9 +7,9 @@
 <h2 class="esh-body-title">Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post, antiforgery: false, htmlAttributes: null))
 {
-    @Html.AntiForgeryToken()
+    <input name="__RequestVerificationToken" type="hidden" value="@Antiforgery.GetAndStoreTokens(Context).RequestToken" />
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -88,7 +88,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
-                @Html.ActionLink("[ Cancel ]", "Index", null, new { @class = "btn esh-button esh-button-secondary" })
+                @Html.ActionLink("[ Cancel ]", "Index", routeValues: null, htmlAttributes: new { @class = "btn esh-button esh-button-secondary" })
                 <input type="submit" value="[ Create ]" class="btn esh-button esh-button-primary" />
             </div>
         </div>
