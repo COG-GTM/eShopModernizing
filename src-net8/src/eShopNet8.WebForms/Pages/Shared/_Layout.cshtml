@@ -1,0 +1,69 @@
+@using Microsoft.AspNetCore.Http
+@using eShopNet8.WebForms.Hosting
+@{
+    var path = (Context.Request.PathBase + Context.Request.Path).Value;
+    // WebForms posts back to the physical page: "/" renders action="Default.aspx".
+    var formAction = (path == "/" || path == "" ? "/Default.aspx" : path) + Context.Request.QueryString;
+    var sessionInfo = $"{Context.Session.GetString(CatalogPagesExtensions.MachineNameKey)}, {Context.Session.GetString(CatalogPagesExtensions.SessionStartTimeKey)}";
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Catalog manager (Web Forms)</title>
+
+    <script src="/Scripts/modernizr-2.8.3.js"></script>
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/custom.css" rel="stylesheet" />
+    <link href="/Content/base.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <form method="post" action="@formAction" id="ctl01">
+        @Html.AntiForgeryToken()
+
+        <script src="/Scripts/jquery-3.3.1.js"></script>
+        <script src="/Scripts/bootstrap.js"></script>
+        <script src="/Scripts/respond.js"></script>
+
+        <header class="navbar navbar-light navbar-static-top">
+            <div class="esh-header-brand">
+                <a href="/">
+                    <img src="/images/brand.png" />
+                </a>
+            </div>
+        </header>
+
+        <section class="esh-app-hero">
+            <div class="container esh-header">
+                <h1 class="esh-header-title">Catalog manager <span>(Web Forms)</span></h1>
+            </div>
+        </section>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <footer class="esh-app-footer">
+            <div class="container">
+                <article class="row">
+                    <section class="col-sm-6">
+                        <img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+                    </section>
+                    <section class="col-sm-6">
+                        <img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+                        <br />
+                        <small style="color:white"><span id="SessionInfoLabel">@sessionInfo</span></small>
+                    </section>
+                </article>
+            </div>
+        </footer>
+
+    </form>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

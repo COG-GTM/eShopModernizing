@@ -1,0 +1,543 @@
+{
+  "summary": {
+    "generated_at": "2026-10-23T04:27:02+00:00",
+    "targets": {
+      "webforms": "http://localhost:5201"
+    },
+    "apps": {
+      "webforms": {
+        "total": 48,
+        "passed": 48,
+        "failed": 0
+      }
+    },
+    "total": 48,
+    "passed": 48,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "webforms-initial-state",
+      "app": "webforms",
+      "passed": true,
+      "diffs": []
+    },
+    {
+      "id": "wf-list-root",
+      "app": "webforms",
+      "title": "WebForms catalog list, GET /",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-default",
+      "app": "webforms",
+      "title": "WebForms catalog list, /Default",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size10-page0",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 0 size 10",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size10-page1",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 1 size 10",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size5-page0",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 0 size 5",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size5-page1",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 1 size 5",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size5-page2",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 2 size 5 (partial)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size100",
+      "app": "webforms",
+      "title": "WebForms catalog list, size 100 (all rows)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-out-of-range",
+      "app": "webforms",
+      "title": "WebForms catalog list, index beyond last page",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-negative-page",
+      "app": "webforms",
+      "title": "WebForms catalog list, negative index",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size0",
+      "app": "webforms",
+      "title": "WebForms catalog list, size 0 (divide by zero)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-1",
+      "app": "webforms",
+      "title": "WebForms Details page, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-missing",
+      "app": "webforms",
+      "title": "WebForms Details page, missing id (legacy NullReferenceException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-get-1",
+      "app": "webforms",
+      "title": "WebForms Edit page, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-get-missing",
+      "app": "webforms",
+      "title": "WebForms Edit page, missing id (legacy NullReferenceException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-get-1",
+      "app": "webforms",
+      "title": "WebForms Delete page, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-get-missing",
+      "app": "webforms",
+      "title": "WebForms Delete page, missing id (legacy NullReferenceException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-12",
+      "app": "webforms",
+      "title": "WebForms Details page, last seeded id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-nonint",
+      "app": "webforms",
+      "title": "WebForms Details page, non-int id (legacy FormatException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-get",
+      "app": "webforms",
+      "title": "WebForms Create page",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-pics-1-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/1.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-pics-12-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/12.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-pics-dummy-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/dummy.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-images-brand-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/brand.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-images-brand_dark-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/brand_dark.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-images-main_footer_text-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/main_footer_text.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-favicon-ico",
+      "app": "webforms",
+      "title": "WebForms static asset /favicon.ico",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-bootstrap-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/bootstrap.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-custom-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/custom.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-base-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/base.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-site-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/site.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-jquery-3-3-1-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/jquery-3.3.1.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-bootstrap-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/bootstrap.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-respond-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/respond.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-modernizr-2-8-3-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/modernizr-2.8.3.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-valid",
+      "app": "webforms",
+      "title": "WebForms Create postback valid -> redirect /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-created",
+      "app": "webforms",
+      "title": "WebForms Details of created item 13",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-invalid-missing-name",
+      "app": "webforms",
+      "title": "WebForms Create postback (missing name; server-side checks only)",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-invalid-bad-price",
+      "app": "webforms",
+      "title": "WebForms Create postback (non-numeric price; server-side checks only)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-invalid-negative-stock",
+      "app": "webforms",
+      "title": "WebForms Create postback (negative stock; server-side checks only)",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-post-valid",
+      "app": "webforms",
+      "title": "WebForms Edit postback valid (item 3) -> redirect /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-edited",
+      "app": "webforms",
+      "title": "WebForms Details of edited item 3",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-post-invalid-bad-price",
+      "app": "webforms",
+      "title": "WebForms Edit postback (non-numeric price, item 4)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-post-invalid-missing-name",
+      "app": "webforms",
+      "title": "WebForms Edit postback (missing name, item 4)",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-get-created",
+      "app": "webforms",
+      "title": "WebForms Delete page of created item 13",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-post",
+      "app": "webforms",
+      "title": "WebForms Delete postback item 13 -> redirect /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-after-mutations",
+      "app": "webforms",
+      "title": "WebForms list after all postbacks",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    }
+  ]
+}

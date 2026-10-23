@@ -1,0 +1,50 @@
+@page "{id}"
+@model eShopNet8.WebForms.Pages.Catalog.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    var product = Model.Product;
+}
+
+<h2 class="esh-body-title">Delete</h2>
+
+<div class="container">
+    <h3>Are you sure you want to delete this?</h3>
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="/Pics/@product.PictureFileName" />
+        <dl class="col-md-6 dl-horizontal">
+            <dt>Name</dt>
+            <dd><span>@product.Name</span></dd>
+
+            <dt>Description</dt>
+            <dd><span>@product.Description</span></dd>
+
+            <dt>Brand</dt>
+            <dd><span>@product.CatalogBrand.Brand</span></dd>
+
+            <dt>Type</dt>
+            <dd><span>@product.CatalogType.Type</span></dd>
+
+            <dt>Price</dt>
+            <dd><span class="esh-price">@product.Price</span></dd>
+
+            <dt>Picture name</dt>
+            <dd><span>@product.PictureFileName</span></dd>
+
+            <dt>Stock</dt>
+            <dd><span>@product.AvailableStock</span></dd>
+
+            <dt>Restock</dt>
+            <dd><span>@product.RestockThreshold</span></dd>
+
+            <dt>Max stock</dt>
+            <dd><span>@product.MaxStockThreshold</span></dd>
+
+            <dt></dt>
+            <dd class="text-right esh-button-actions">
+                <a href="/" class="btn esh-button esh-button-secondary">[ Cancel ]
+                </a>
+                <input type="submit" name="@(LegacyPageModel.ControlPrefix + DeleteModel.DeleteButton)" value="[ Delete ]" class="btn esh-button esh-button-primary" />
+            </dd>
+        </dl>
+    </div>
+</div>
