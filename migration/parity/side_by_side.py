@@ -103,9 +103,7 @@ def compare(app: str, legacy: dict[str, Any], migrated: dict[str, Any], flows: l
         if "error" in L or "error" in M:
             row.update(legacy_status=None, migrated_status=None,
                        contract_diffs=[f"legacy error: {L.get('error')}", f"migrated error: {M.get('error')}"],
-                       strict_diffs=[], header_diffs=[], data_state_diffs=[], data_state_checked=False,
-                       legacy_vs_baseline=[f"error: {L['error']}"] if "error" in L else [],
-                       migrated_vs_baseline=[f"error: {M['error']}"] if "error" in M else [])
+                       strict_diffs=[], header_diffs=[], data_state_diffs=[], data_state_checked=False)
         else:
             lr, mr = L["response"], M["response"]
             row["legacy_status"], row["migrated_status"] = lr["status"], mr["status"]
@@ -115,17 +113,19 @@ def compare(app: str, legacy: dict[str, Any], migrated: dict[str, Any], flows: l
             row["data_state_checked"] = bool(flow.get("snapshot"))
             row["data_state_diffs"] = (pc.diff(L.get("data_state"), M.get("data_state"), "$.data_state")
                                        if flow.get("snapshot") else [])
-            tpath = baseline / "transcripts" / f"{fid}.json"
-            t = json.loads(tpath.read_text())["response"]
-            exp_state = None
-            if flow.get("snapshot"):
-                exp_state = json.loads((baseline / "data-state" / f"{fid}.json").read_text())
-                exp_state.pop("app", None)
-            for side, e in (("legacy", L), ("migrated", M)):
-                dd = pc.diff(pc.projection(flow, t), pc.projection(flow, e["response"]), "$.response")
-                if exp_state is not None:
-                    dd += pc.diff(exp_state, e.get("data_state"), "$.data_state")
-                row[f"{side}_vs_baseline"] = dd
+        t = json.loads((baseline / "transcripts" / f"{fid}.json").read_text())["response"]
+        exp_state = None
+        if flow.get("snapshot"):
+            exp_state = json.loads((baseline / "data-state" / f"{fid}.json").read_text())
+            exp_state.pop("app", None)
+        for side, e in (("legacy", L), ("migrated", M)):
+            if "error" in e:
+                row[f"{side}_vs_baseline"] = [f"error: {e['error']}"]
+                continue
+            dd = pc.diff(pc.projection(flow, t), pc.projection(flow, e["response"]), "$.response")
+            if exp_state is not None:
+                dd += pc.diff(exp_state, e.get("data_state"), "$.data_state")
+            row[f"{side}_vs_baseline"] = dd
         rows.append(row)
     for r in rows:
         r["contract_match"] = not r["contract_diffs"] and not r["data_state_diffs"]
