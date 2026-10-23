@@ -31,7 +31,8 @@ public static class ParityRun
 
     public static IReadOnlyDictionary<string, KnownDivergence> KnownDivergences { get; } = LoadKnownDivergences();
 
-    public sealed record KnownDivergence(string? Quirk, string Reason);
+    // `Accept` lists the reason prefixes the divergence covers; any other difference (status, location, data state...) still fails.
+    public sealed record KnownDivergence(string? Quirk, string Reason, IReadOnlyList<string> Accept);
 
     public static IEnumerable<FlowSpec> FlowSpecs(string app) =>
         Flows["sequences"]!.AsArray().Select(s => s!.AsObject()).Where(s => (string)s["app"]! == app)
@@ -43,7 +44,9 @@ public static class ParityRun
     private static IReadOnlyDictionary<string, KnownDivergence> LoadKnownDivergences()
     {
         var doc = JsonNode.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Parity", "known-divergences.json")))!;
-        return doc["flows"]!.AsObject().ToDictionary(kv => kv.Key, kv => new KnownDivergence((string?)kv.Value!["quirk"], (string)kv.Value!["reason"]!));
+        return doc["flows"]!.AsObject().ToDictionary(kv => kv.Key, kv => new KnownDivergence(
+            (string?)kv.Value!["quirk"], (string)kv.Value!["reason"]!,
+            kv.Value!["accept"]!.AsArray().Select(a => (string)a!).ToList()));
     }
 
     private static IParityTarget CreateTarget(string app)
@@ -158,7 +161,7 @@ public static class ParityRun
         string? note = null;
         if (verdict == "different")
         {
-            if (KnownDivergences.TryGetValue(flow.Id, out var kd))
+            if (KnownDivergences.TryGetValue(flow.Id, out var kd) && reasons.All(r => kd.Accept.Any(a => r.StartsWith(a, StringComparison.Ordinal))))
             {
                 outcome = "known-divergence";
                 note = kd.Reason;

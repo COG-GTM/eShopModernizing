@@ -32,6 +32,51 @@ public class CatalogItemValidationTests
     }
 
     [Fact]
+    public void Name_required_message_matches_legacy()
+    {
+        var item = Valid();
+        item.Name = "";
+        Assert.Equal(new[] { "The Name field is required." }, Validate(item));
+    }
+
+    [Theory]
+    [InlineData("12.345")]
+    [InlineData("1.234")]
+    public void Price_with_more_than_two_decimals_uses_the_legacy_regex_message(string price)
+    {
+        var item = Valid();
+        item.Price = decimal.Parse(price, System.Globalization.CultureInfo.InvariantCulture);
+        Assert.Equal(new[] { "The field Price must be a positive number with maximum two decimals." }, Validate(item));
+    }
+
+    [Fact]
+    public void Price_above_range_uses_the_default_range_message()
+    {
+        var item = Valid();
+        item.Price = 1000001m;
+        Assert.Equal(new[] { "The field Price must be between 0 and 1000000." }, Validate(item));
+    }
+
+    [Theory]
+    [InlineData(10, 12, 2)]
+    [InlineData(5, 12, 3)]
+    [InlineData(1, 12, 12)]
+    [InlineData(10, 0, 0)]
+    [InlineData(-1, 12, -12)]
+    public void TotalPages_is_ceiling_of_count_over_size(int size, long count, int pages)
+    {
+        var vm = new PaginatedItemsViewModel<CatalogItem>(1, size, count, []);
+        Assert.Equal(pages, vm.TotalPages);
+        Assert.Equal(1, vm.ActualPage);
+        Assert.Equal(size, vm.ItemsPerPage);
+        Assert.Equal(count, vm.TotalItems);
+    }
+
+    [Fact]
+    public void Page_size_zero_throws_like_legacy_Q5() =>
+        Assert.Throws<DivideByZeroException>(() => new PaginatedItemsViewModel<CatalogItem>(0, 0, 12, []));
+
+    [Fact]
     public void Default_picture_is_dummy_png() => Assert.Equal("dummy.png", new CatalogItem().PictureFileName);
 
     [Fact]

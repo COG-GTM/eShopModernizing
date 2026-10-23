@@ -34,6 +34,8 @@ public class TranscriptParityTests(ITestOutputHelper output)
     {
         var ids = ParityRun.FlowSpecs("mvc").Concat(ParityRun.FlowSpecs("webforms")).Select(f => f.Id).ToHashSet();
         Assert.All(ParityRun.KnownDivergences, kd => Assert.Contains(kd.Key, ids));
+        Assert.All(ParityRun.KnownDivergences.Values, kd => Assert.NotEmpty(kd.Accept));
+        Assert.All(ParityRun.KnownDivergences.Values, kd => Assert.DoesNotContain(kd.Accept, a => a.StartsWith("status", StringComparison.Ordinal)));
     }
 
     private async Task Check(string app, string flow)
