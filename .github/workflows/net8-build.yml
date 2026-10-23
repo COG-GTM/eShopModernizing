@@ -133,6 +133,17 @@ jobs:
       - name: Build images
         run: docker compose build
 
+      - name: Start SQL Server
+        run: docker compose up -d --wait --wait-timeout 300 sqldata
+
+      # Idempotent: an existing database is left alone, and EF Core's initializer (T1) still creates
+      # the schema and seed data inside an empty one, so this only stands in until T1 lands.
+      - name: Ensure the catalog database exists
+        run: |
+          docker compose exec -T sqldata /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa \
+            -P "${MSSQL_SA_PASSWORD}" -b \
+            -Q "IF DB_ID(N'Microsoft.eShopOnContainers.Services.CatalogDb') IS NULL CREATE DATABASE [Microsoft.eShopOnContainers.Services.CatalogDb]"
+
       - name: Start sql profile
         run: docker compose up -d --wait --wait-timeout 300
 
