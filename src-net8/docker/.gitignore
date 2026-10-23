@@ -1,0 +1,3 @@
+# Real env files carry the SQL Server sa password: never commit them.
+*.env
+!sql.env.example
