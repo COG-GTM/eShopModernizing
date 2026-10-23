@@ -44,7 +44,18 @@ public class CatalogDBInitializer
         }
 
         logger.LogInformation("Catalog database created; seeding (UseCustomizationData={UseCustomizationData})", useCustomizationData);
-        Seed();
+        try
+        {
+            Seed();
+        }
+        catch (Exception ex)
+        {
+            // Seeding only runs right after creation, so a partially seeded database would never be repaired.
+            // Drop the database this call just created so the next startup recreates and reseeds it.
+            logger.LogError(ex, "Catalog seed failed; dropping the newly created database so the next start reseeds it");
+            await context.Database.EnsureDeletedAsync(CancellationToken.None);
+            throw;
+        }
     }
 
     public void Seed()
