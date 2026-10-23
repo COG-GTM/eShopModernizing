@@ -70,6 +70,10 @@ wait_healthy() { # port logfile [name]
 }
 
 if [ "$DOCKER" = 1 ]; then
+  if [ -n "${NET8_SQL_DB:-}" ] && [ "$NET8_SQL_DB" != Microsoft.eShopOnContainers.Services.CatalogDb ]; then
+    # the compose connection strings name the default DB; resetting another one would leave the app on stale data
+    echo "NET8_SQL_DB is not supported with --docker (compose uses Microsoft.eShopOnContainers.Services.CatalogDb)" >&2; exit 2
+  fi
   ENV_FILE=(); [ -f "$SOL/docker/.env" ] && ENV_FILE=(--env-file "$SOL/docker/.env")
   if [ "$SQL" = 1 ]; then
     PROFILE=sql; SERVICE="$APP-sql"

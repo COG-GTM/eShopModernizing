@@ -38,6 +38,13 @@ if [ "$SQL_APP" = 1 ]; then
   sed -i -E "s#Password=[^;\"]*;#Password=$PW_ESC;#" "$DIR/Web.config"
 fi
 if [ "$SQL_APP" = 1 ] && [ "${LEGACY_SQL_RESET:-0}" = 1 ]; then
+  # mvc-sql and wf-sql share the catalog DB and cache HiLo blocks in memory: stop the peer before the drop so it
+  # cannot hand out ids that collide with the re-seeded sequence (restart it afterwards if it is needed)
+  if [ "$APP" = mvc-sql ]; then PEER=wf-sql; PEER_PORT="${WF_SQL_PORT:-5111}"; else PEER=mvc-sql; PEER_PORT="${MVC_SQL_PORT:-5110}"; fi
+  if fuser -n tcp "$PEER_PORT" >/dev/null 2>&1; then
+    "${BASH_SOURCE[0]}" stop "$PEER" >/dev/null
+    echo "$PEER stopped (shared catalog DB is being reset)"
+  fi
   /opt/mssql-tools18/bin/sqlcmd -S "${LEGACY_SQL_SERVER:-127.0.0.1,1433}" -U sa -P "$LEGACY_SQL_PASSWORD" -C -b -Q \
     "IF DB_ID('Microsoft.eShopOnContainers.Services.CatalogDb') IS NOT NULL BEGIN ALTER DATABASE [Microsoft.eShopOnContainers.Services.CatalogDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [Microsoft.eShopOnContainers.Services.CatalogDb]; END" >/dev/null
 fi

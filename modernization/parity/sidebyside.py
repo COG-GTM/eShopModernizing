@@ -9,7 +9,8 @@ via sqlcmd, and compared.
       --legacy-mvc http://127.0.0.1:5100 --legacy-webforms http://127.0.0.1:5101 \
       --net8-mvc http://127.0.0.1:5200 --net8-webforms http://127.0.0.1:5201 \
       --restart-legacy-mvc "legacy/start-legacy.sh mvc" ... --restart-net8-mvc "net8/start-net8.sh mvc" ... \
-      [--sql-db-legacy NAME --sql-db-net8 NAME]   (sa password from SQLCMDPASSWORD; server SQL_SERVER, default 127.0.0.1,1433)
+      [--sql-db-legacy NAME --sql-db-net8 NAME] [--sql-server-legacy S --sql-server-net8 S]
+      (sa password from SQLCMDPASSWORD; server default SQL_SERVER or 127.0.0.1,1433)
       [--known-divergences JSON] --report-dir DIR
 
 Writes DIR/sidebyside-report.json (+ .txt) and DIR/transcripts/{legacy,net8}/<flow>.json. Exit 1 when any flow is
@@ -43,8 +44,8 @@ FOR JSON PATH, WITHOUT_ARRAY_WRAPPER);
 SELECT @j;"""
 
 
-def sql_dump(db):
-    server = os.environ.get("SQL_SERVER", "127.0.0.1,1433")
+def sql_dump(db, server=None):
+    server = server or os.environ.get("SQL_SERVER", "127.0.0.1,1433")
     r = subprocess.run([SQLCMD, "-S", server, "-U", "sa", "-C", "-b", "-d", db, "-y", "0", "-Q", DUMP_SQL],
                        capture_output=True, text=True, env=os.environ)
     if r.returncode != 0:
@@ -54,6 +55,13 @@ def sql_dump(db):
     start = next(i for i, l in enumerate(lines) if l.startswith("{"))
     doc = json.loads("".join(lines[start:]).strip())
     return {k: json.loads(doc[k]) if isinstance(doc.get(k), str) else doc.get(k, []) for k in ("items", "brands", "types")}
+
+
+def safe_snapshot(base, app_cfg):
+    try:
+        return runner.snapshot(requests.Session(), base, app_cfg)
+    except requests.RequestException as e:
+        return {"error": "%s: %s" % (type(e).__name__, e), "items": []}
 
 
 def compare_snap(a, b):
@@ -91,6 +99,7 @@ def main():
             ap.add_argument("--%s-%s" % (side, app))
             ap.add_argument("--restart-%s-%s" % (side, app))
         ap.add_argument("--sql-db-%s" % side)
+        ap.add_argument("--sql-server-%s" % side, help="default SQL_SERVER or 127.0.0.1,1433")
     ap.add_argument("--baseline", default=str(runner.BASELINE))
     ap.add_argument("--known-divergences")
     ap.add_argument("--only", nargs="*")
@@ -132,8 +141,7 @@ def main():
             # page snapshots render the list, which warms mock navigation properties (Q4), so they are taken only where
             # the baseline took them; other mutating flows are covered by the SQL dump and the end-of-sequence snapshot
             if flow.get("snapshot"):
-                lsnap = runner.snapshot(requests.Session(), lb, doc["apps"][app])
-                nsnap = runner.snapshot(requests.Session(), nb, doc["apps"][app])
+                lsnap, nsnap = safe_snapshot(lb, doc["apps"][app]), safe_snapshot(nb, doc["apps"][app])
                 bsnap = json.loads((base / exp["data_state"]).read_text()) if exp.get("data_state") else None
                 res["data_state"].update({"net8_vs_legacy": compare_snap(lsnap, nsnap),
                                           "legacy_vs_baseline": compare_snap(bsnap, lsnap) if bsnap else None,
@@ -141,7 +149,7 @@ def main():
                                           "items_legacy": len(lsnap["items"]), "items_net8": len(nsnap["items"])})
             if mutating:
                 if sql:
-                    ld, nd = sql_dump(a["sql_db_legacy"]), sql_dump(a["sql_db_net8"])
+                    ld, nd = sql_dump(a["sql_db_legacy"], a["sql_server_legacy"]), sql_dump(a["sql_db_net8"], a["sql_server_net8"])
                     res["data_state"]["sql_net8_vs_legacy"] = compare_sql(ld, nd)
                     res["data_state"]["sql_items_legacy"] = len(ld.get("items", []))
                     res["data_state"]["sql_items_net8"] = len(nd.get("items", []))
@@ -161,8 +169,7 @@ def main():
             if res["failing"]:
                 print("    " + "; ".join(res["net8_vs_legacy"]["reasons"] + ds.get("net8_vs_legacy", []) + ds.get("sql_net8_vs_legacy", []))[:600])
         if any(f.get("snapshot") or f.get("method", "GET").upper() != "GET" for f in seq["flows"]):
-            lsnap = runner.snapshot(requests.Session(), lb, doc["apps"][app])
-            nsnap = runner.snapshot(requests.Session(), nb, doc["apps"][app])
+            lsnap, nsnap = safe_snapshot(lb, doc["apps"][app]), safe_snapshot(nb, doc["apps"][app])
             seq_end.append({"sequence": seq["id"], "app": app, "net8_vs_legacy": compare_snap(lsnap, nsnap),
                             "items_legacy": len(lsnap["items"]), "items_net8": len(nsnap["items"])})
             print("  end-of-sequence data state: %s" % (seq_end[-1]["net8_vs_legacy"] or "equal"), flush=True)
@@ -170,7 +177,9 @@ def main():
                "baseline_flows": sum(len(s["flows"]) for s in doc["sequences"] if s["app"] in apps and (not a["only"] or s["id"] in a["only"])),
                "failing": sum(r["failing"] for r in results), "known_divergences": sum(r["known_divergence"] for r in results),
                "mutating_flows": sum("data_state" in r for r in results),
-               "data_state_equal": sum(r["data_state_equal"] for r in results if "data_state" in r),
+               # flows with no per-flow check (mock mode, no baseline snapshot) are covered by the sequence-end snapshot only
+               "data_state_checked": sum(bool(r.get("data_state")) for r in results),
+               "data_state_equal": sum(r["data_state_equal"] for r in results if r.get("data_state")),
                "sql_dumps": sql, "sequence_end_snapshots": len(seq_end),
                "sequence_end_equal": sum(not e["net8_vs_legacy"] for e in seq_end)}
     for key in ("legacy_vs_baseline", "net8_vs_baseline", "net8_vs_legacy"):
