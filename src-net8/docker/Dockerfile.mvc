@@ -19,6 +19,8 @@ ENV ASPNETCORE_HTTP_PORTS=8080 \
 WORKDIR /app
 COPY --chmod=0755 docker/healthcheck.sh /usr/local/bin/healthcheck
 COPY --from=build /app/publish .
+# UseCustomizationData=true replaces wwwroot/Pics at startup, so the non-root app user must own it.
+RUN chown -R $APP_UID wwwroot/Pics
 USER $APP_UID
 EXPOSE 8080
 HEALTHCHECK --interval=10s --timeout=12s --start-period=60s --start-interval=2s --retries=3 CMD ["/usr/local/bin/healthcheck"]
