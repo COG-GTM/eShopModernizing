@@ -2,7 +2,7 @@
   "flow_id": "mvc-static-content-site-css",
   "app": "mvc",
   "title": "Static asset /Content/site.css",
-  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_at": "2026-10-23T04:54:03+00:00",
   "captured_against": "http://localhost:5100",
   "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
   "request": {
@@ -17,8 +17,8 @@
     },
     "body": {
       "kind": "binary",
-      "sha256": "ccade8da5d8ebbd71ba357163441ff89ab9aa5672164ab731a528d99cb342295",
-      "length": 8
+      "sha256": "5c97beade784fda94ab785361df3a1db14754e7f1182c358362aa6772d7e06ec",
+      "length": 3683
     }
   }
 }
