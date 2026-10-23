@@ -1,0 +1,82 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create";
+    ViewData["PostBackForm"] = true;
+}
+    <h2 class="esh-body-title">Create</h2>
+    <div>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">Name</label>
+                <div class="col-md-3">
+                    <input type="text" name="Name" id="ctl00_MainContent_Name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Description</label>
+                <div class="col-md-3">
+                    <input type="text" name="Description" id="ctl00_MainContent_Description" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Brand</label>
+                <div class="col-md-3">
+                    <select name="Brand" id="ctl00_MainContent_Brand" class="form-control">
+@foreach (var brand in Model.Brands)
+{
+	<option value="@brand.Id">@brand.Brand</option>
+}
+</select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Type</label>
+                <div class="col-md-3">
+                    <select name="Type" id="ctl00_MainContent_Type" class="form-control">
+@foreach (var type in Model.Types)
+{
+	<option value="@type.Id">@type.Type</option>
+}
+</select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Price</label>
+                <div class="col-md-3">
+                    <input type="text" value="0.00" name="Price" id="ctl00_MainContent_Price" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Picture name</label>
+                <div class="col-md-4 esh-form-information">
+                    Uploading images not allowed for this version.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Stock</label>
+                <div class="col-md-3">
+                    <input type="text" value="0" name="Stock" id="ctl00_MainContent_Stock" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Restock</label>
+                <div class="col-md-3">
+                    <input type="text" value="0" name="Restock" id="ctl00_MainContent_Restock" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Max stock</label>
+                <div class="col-md-3">
+                    <input type="text" value="0" name="Maxstock" id="ctl00_MainContent_Maxstock" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
+                    <a class="btn esh-button esh-button-secondary" href="@LegacyPage.AppRelativeRoot(HttpContext.Request)">[ Cancel ]
+                    </a>
+                    <input type="submit" name="@CreateModel.SubmitButtonName" value="[ Create ]" class="btn esh-button esh-button-primary" />
+                </div>
+            </div>
+        </div>
+    </div>

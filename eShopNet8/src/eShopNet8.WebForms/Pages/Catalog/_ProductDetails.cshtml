@@ -1,0 +1,49 @@
+@model CatalogItem
+@* Shared by Details and Delete. Brand/Type are dereferenced like the legacy data binding (null -> 500, quirk Q4). *@
+            <img class="col-md-6 esh-picture" src="/Pics/@Model.PictureFileName" />
+            <dl class="col-md-6 dl-horizontal">
+                <dt>Name
+                </dt>
+                <dd>
+                    <span>@Model.Name</span>
+                </dd>
+                <dt>Description
+                </dt>
+                <dd>
+                    <span>@Model.Description</span>
+                </dd>
+                <dt>Brand
+                </dt>
+                <dd>
+                    <span>@Model.CatalogBrand!.Brand</span>
+                </dd>
+                <dt>Type
+                </dt>
+                <dd>
+                    <span>@Model.CatalogType!.Type</span>
+                </dd>
+                <dt>Price
+                </dt>
+                <dd>
+                    <span class="esh-price">@Model.Price.ToString(CultureInfo.InvariantCulture)</span>
+                </dd>
+                <dt>Picture name
+                </dt>
+                <dd>
+                    <span>@Model.PictureFileName</span>
+                </dd>
+                <dt>Stock
+                </dt>
+                <dd>
+                    <span>@Model.AvailableStock</span>
+                </dd>
+                <dt>Restock
+                </dt>
+                <dd>
+                    <span>@Model.RestockThreshold</span>
+                </dd>
+                <dt>Max stock
+                </dt>
+                <dd>
+                    <span>@Model.MaxStockThreshold</span>
+                </dd>

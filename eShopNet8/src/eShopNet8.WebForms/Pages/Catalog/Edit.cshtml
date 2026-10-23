@@ -1,0 +1,102 @@
+@page "{id}"
+@model EditModel
+@{
+    ViewData["Title"] = "Edit";
+    ViewData["PostBackForm"] = true;
+    var product = Model.Product;
+}
+    <h2 class="esh-body-title">Edit</h2>
+    <div class="container">
+        <div class="row">
+            <img class="col-md-6 esh-picture" src="/Pics/@product.PictureFileName" />
+            <div class="col-md-6 form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Name</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@product.Name" name="Name" id="ctl00_MainContent_Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Description</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@product.Description" name="Description" id="ctl00_MainContent_Description" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Brand</label>
+                    <div class="col-md-8">
+                        <select name="BrandDropDownList" id="ctl00_MainContent_BrandDropDownList" class="form-control">
+@foreach (var brand in Model.Brands)
+{
+    var id = brand.Id.ToString(CultureInfo.InvariantCulture);
+    if (id == Model.SelectedBrandId)
+    {
+	<option selected="selected" value="@id">@brand.Brand</option>
+    }
+    else
+    {
+	<option value="@id">@brand.Brand</option>
+    }
+}
+</select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Type</label>
+                    <div class="col-md-8">
+                        <select name="TypeDropDownList" id="ctl00_MainContent_TypeDropDownList" class="form-control">
+@foreach (var type in Model.Types)
+{
+    var id = type.Id.ToString(CultureInfo.InvariantCulture);
+    if (id == Model.SelectedTypeId)
+    {
+	<option selected="selected" value="@id">@type.Type</option>
+    }
+    else
+    {
+	<option value="@id">@type.Type</option>
+    }
+}
+</select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Price</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@product.Price.ToString(CultureInfo.InvariantCulture)" name="Price" id="ctl00_MainContent_Price" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Picture name</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@product.PictureFileName" readonly="ReadOnly" name="PictureFileName" id="ctl00_MainContent_PictureFileName" title="Not allowed for edition" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Stock</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@product.AvailableStock" name="Stock" id="ctl00_MainContent_Stock" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Restock</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@product.RestockThreshold" name="Restock" id="ctl00_MainContent_Restock" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Max stock</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@product.MaxStockThreshold" name="Maxstock" id="ctl00_MainContent_Maxstock" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 text-right esh-button-actions">
+                        <a class="btn esh-button esh-button-secondary" href="@LegacyPage.AppRelativeRoot(HttpContext.Request)">[ Cancel ]
+                        </a>
+                        <input type="submit" name="@EditModel.SubmitButtonName" value="[ Save ]" class="btn esh-button esh-button-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
