@@ -1,0 +1,67 @@
+{
+  "flow_id": "wf-edit-post-invalid-missing-name",
+  "app": "webforms",
+  "title": "WebForms Edit postback (missing name, item 4)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Edit/4",
+    "form_from": "/Catalog/Edit/4",
+    "form_fields": {
+      "ctl00$MainContent$Name": "",
+      "ctl00$MainContent$Description": ".NET Foundation T-shirt",
+      "ctl00$MainContent$BrandDropDownList": "2",
+      "ctl00$MainContent$TypeDropDownList": "2",
+      "ctl00$MainContent$Price": "12",
+      "ctl00$MainContent$PictureFileName": "4.png",
+      "ctl00$MainContent$Stock": "100",
+      "ctl00$MainContent$Restock": "0",
+      "ctl00$MainContent$Maxstock": "0",
+      "ctl00$MainContent$ctl07": "[ Save ]"
+    },
+    "tokens_submitted": [
+      "__EVENTVALIDATION",
+      "__VIEWSTATE"
+    ]
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html",
+      "location": "{base}/"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Object moved",
+        "headings": [
+          [
+            "h2",
+            "Object moved to here"
+          ]
+        ],
+        "text": "Object moved to here",
+        "links": [
+          {
+            "text": "here",
+            "href": "{base}/",
+            "class": []
+          }
+        ],
+        "images": [],
+        "tables": [],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [],
+          "scripts": []
+        }
+      }
+    }
+  },
+  "data_state": "data-state/wf-edit-post-invalid-missing-name.json"
+}

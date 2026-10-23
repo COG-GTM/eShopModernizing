@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-static-pics-12-png",
+  "app": "webforms",
+  "title": "WebForms static asset /Pics/12.png",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Pics/12.png"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "image/png",
+      "mime": "image/png"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "f6c852bd458ce80d724b0532750208eb1775bb269fe95fc0e41f905a904759c9",
+      "length": 168886
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "flow_id": "wf-create-post-invalid-bad-price",
+  "app": "webforms",
+  "title": "WebForms Create postback (non-numeric price; server-side checks only)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Create",
+    "form_from": "/Catalog/Create",
+    "form_fields": {
+      "ctl00$MainContent$Name": "Parity Mug",
+      "ctl00$MainContent$Description": "Created by the parity harness",
+      "ctl00$MainContent$Brand": "2",
+      "ctl00$MainContent$Type": "1",
+      "ctl00$MainContent$Price": "abc",
+      "ctl00$MainContent$Stock": "20",
+      "ctl00$MainContent$Restock": "5",
+      "ctl00$MainContent$Maxstock": "40",
+      "ctl00$MainContent$ctl06": "[ Create ]"
+    },
+    "tokens_submitted": [
+      "__EVENTVALIDATION",
+      "__VIEWSTATE"
+    ]
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "f0e4753c9335f827484acabce57f172ab8b3fcb8897e61a5aff9bebc7b83e26c",
+      "length": 8253
+    }
+  },
+  "data_state": "data-state/wf-create-post-invalid-bad-price.json"
+}

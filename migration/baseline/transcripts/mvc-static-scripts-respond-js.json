@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-static-scripts-respond-js",
+  "app": "mvc",
+  "title": "Static asset /Scripts/respond.js",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Scripts/respond.js"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/javascript",
+      "mime": "application/javascript"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "8219937fb5d40ea3720fb56701c5f55b462a0f77b19074190b2d15242c5caeaf",
+      "length": 8536
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "flow_id": "wf-edit-post-invalid-bad-price",
+  "app": "webforms",
+  "title": "WebForms Edit postback (non-numeric price, item 4)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Edit/4",
+    "form_from": "/Catalog/Edit/4",
+    "form_fields": {
+      "ctl00$MainContent$Name": ".NET Foundation T-shirt",
+      "ctl00$MainContent$Description": ".NET Foundation T-shirt",
+      "ctl00$MainContent$BrandDropDownList": "2",
+      "ctl00$MainContent$TypeDropDownList": "2",
+      "ctl00$MainContent$Price": "abc",
+      "ctl00$MainContent$PictureFileName": "4.png",
+      "ctl00$MainContent$Stock": "100",
+      "ctl00$MainContent$Restock": "0",
+      "ctl00$MainContent$Maxstock": "0",
+      "ctl00$MainContent$ctl07": "[ Save ]"
+    },
+    "tokens_submitted": [
+      "__EVENTVALIDATION",
+      "__VIEWSTATE"
+    ]
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "e7ba01106ef239d233a807f50228e01787ca688f769282855e2e8e7b91e9d895",
+      "length": 8245
+    }
+  },
+  "data_state": "data-state/wf-edit-post-invalid-bad-price.json"
+}

@@ -1,0 +1,107 @@
+{
+  "flow_id": "mvc-index-out-of-range",
+  "app": "mvc",
+  "title": "Index pageIndex beyond last page (empty table)",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/?pageSize=10&pageIndex=5"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Index - Catalog manager (MVC)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (MVC)"
+          ]
+        ],
+        "text": "Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Previous Showing 10 of 12 products - Page 6 - 2 Next <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "Create New",
+            "href": "{base}/Catalog/Create",
+            "class": [
+              "btn",
+              "esh-button",
+              "esh-button-primary"
+            ]
+          },
+          {
+            "text": "Previous",
+            "href": "{base}/?pageSize=10&pageIndex=4",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--navigable"
+            ]
+          },
+          {
+            "text": "Next",
+            "href": "{base}/?pageSize=10&pageIndex=6",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--hidden",
+              "esh-pager-item--navigable"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [
+          {
+            "rows": [
+              [
+                "",
+                "Name",
+                "Description",
+                "Brand",
+                "Type",
+                "Price",
+                "Picture name",
+                "Stock",
+                "Restock",
+                "Max stock",
+                ""
+              ]
+            ]
+          }
+        ],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.6.2.js",
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "flow_id": "mvc-create-post-no-antiforgery",
+  "app": "mvc",
+  "title": "Create POST without antiforgery token -> rejected",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Create",
+    "form_from": "/Catalog/Create",
+    "form_fields": {
+      "Name": "Parity Hoodie",
+      "Description": "Created by the parity harness",
+      "CatalogBrandId": "2",
+      "CatalogTypeId": "2",
+      "Price": "25.99",
+      "AvailableStock": "10",
+      "RestockThreshold": "2",
+      "MaxStockThreshold": "50"
+    },
+    "tokens_submitted": []
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e",
+      "length": 17744
+    }
+  },
+  "data_state": "data-state/mvc-create-post-no-antiforgery.json"
+}

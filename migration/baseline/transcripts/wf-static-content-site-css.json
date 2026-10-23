@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-static-content-site-css",
+  "app": "webforms",
+  "title": "WebForms static asset /Content/site.css",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Content/site.css"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/css",
+      "mime": "text/css"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "9c5f4bda02aeee89ef4980f4465aec6acfe0659ed126e73e79fa49a34d0047e2",
+      "length": 3849
+    }
+  }
+}

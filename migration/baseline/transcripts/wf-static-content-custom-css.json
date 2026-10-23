@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-static-content-custom-css",
+  "app": "webforms",
+  "title": "WebForms static asset /Content/custom.css",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Content/custom.css"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/css",
+      "mime": "text/css"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "f2f100948a89711b999f9ada9cc5325bd134b08d82dc38934b7f3597cb62975e",
+      "length": 492
+    }
+  }
+}

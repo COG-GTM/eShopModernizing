@@ -1,0 +1,124 @@
+{
+  "flow_id": "wf-details-get-1",
+  "app": "webforms",
+  "title": "WebForms Details page, valid id",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Details/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Details - Catalog manager (Web Forms)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (Web Forms)"
+          ],
+          [
+            "h2",
+            "Details"
+          ]
+        ],
+        "text": "Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to list <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/1",
+            "class": [
+              "esh-link-item"
+            ]
+          },
+          {
+            "text": "Back to list",
+            "href": "{base}/",
+            "class": [
+              "esh-link-item"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/Pics/1.png",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [],
+        "definitions": [
+          [
+            "Name",
+            ".NET Bot Black Hoodie"
+          ],
+          [
+            "Description",
+            ".NET Bot Black Hoodie"
+          ],
+          [
+            "Brand",
+            ".NET"
+          ],
+          [
+            "Type",
+            "T-Shirt"
+          ],
+          [
+            "Price",
+            "19.5"
+          ],
+          [
+            "Picture name",
+            "1.png"
+          ],
+          [
+            "Stock",
+            "100"
+          ],
+          [
+            "Restock",
+            "0"
+          ],
+          [
+            "Max stock",
+            "0"
+          ]
+        ],
+        "forms": [
+          {
+            "method": "POST",
+            "action": "{base}/Catalog/Details/1",
+            "fields": []
+          }
+        ],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

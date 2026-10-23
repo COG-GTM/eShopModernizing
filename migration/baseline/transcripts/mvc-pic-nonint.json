@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-pic-nonint",
+  "app": "mvc",
+  "title": "Pic route, non-int id fails the route constraint -> 404",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/items/abc/pic"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "743c638c9e10086575a1ac28e108ece82911490454999fee53e50d0bc221fe52",
+      "length": 6920
+    }
+  }
+}

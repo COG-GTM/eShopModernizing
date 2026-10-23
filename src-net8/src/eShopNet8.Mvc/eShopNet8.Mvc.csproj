@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>eShopNet8.Mvc</RootNamespace>
+    <AssemblyName>eShopNet8.Mvc</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eShop.Catalog.Core\eShop.Catalog.Core.csproj" />
+    <ProjectReference Include="..\eShop.Catalog.Infrastructure\eShop.Catalog.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

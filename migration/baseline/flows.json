@@ -1,0 +1,1824 @@
+{
+  "version": 1,
+  "description": "Every user/API flow of the legacy MVC (port 5100) and WebForms (port 5101) apps, replayed in this order per app. Group 'read' flows are state-independent on a fresh app; group 'mutate' flows run afterwards in order against the singleton mock catalog. POST flows GET form.from first (same cookie session), collect every successful control (antiforgery / viewstate tokens obtained dynamically), drop form.drop, overlay form.fields and post to the form's action (or request.path when path_is_explicit). snapshot=true flows are followed by a full-catalog data-state capture (data_state_paths). compare overrides the default projection (status + mime + location + normalised body; body ignored for 3xx redirects and status >= 400).",
+  "apps": {
+    "mvc": {
+      "legacy_url": "http://localhost:5100",
+      "migrated_url": "http://localhost:5200"
+    },
+    "webforms": {
+      "legacy_url": "http://localhost:5101",
+      "migrated_url": "http://localhost:5201"
+    }
+  },
+  "data_state_paths": {
+    "mvc": "/Catalog/Index?pageSize=1000&pageIndex=0",
+    "webforms": "/Default/index/0/size/1000"
+  },
+  "flows": [
+    {
+      "id": "mvc-index-root",
+      "app": "mvc",
+      "order": 1,
+      "group": "read",
+      "title": "Catalog index, default paging (GET /)",
+      "request": {
+        "method": "GET",
+        "path": "/"
+      }
+    },
+    {
+      "id": "mvc-index-controller",
+      "app": "mvc",
+      "order": 2,
+      "group": "read",
+      "title": "Catalog index via /Catalog",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog"
+      }
+    },
+    {
+      "id": "mvc-index-action",
+      "app": "mvc",
+      "order": 3,
+      "group": "read",
+      "title": "Catalog index via /Catalog/Index",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Index"
+      }
+    },
+    {
+      "id": "mvc-index-size5-page0",
+      "app": "mvc",
+      "order": 4,
+      "group": "read",
+      "title": "Index pageSize=5 pageIndex=0",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=0"
+      }
+    },
+    {
+      "id": "mvc-index-size5-page1",
+      "app": "mvc",
+      "order": 5,
+      "group": "read",
+      "title": "Index pageSize=5 pageIndex=1",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=1"
+      }
+    },
+    {
+      "id": "mvc-index-size5-page2",
+      "app": "mvc",
+      "order": 6,
+      "group": "read",
+      "title": "Index pageSize=5 pageIndex=2 (last, partial)",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=2"
+      }
+    },
+    {
+      "id": "mvc-index-size10-page1",
+      "app": "mvc",
+      "order": 7,
+      "group": "read",
+      "title": "Index pageSize=10 pageIndex=1",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Index?pageSize=10&pageIndex=1"
+      }
+    },
+    {
+      "id": "mvc-index-size100",
+      "app": "mvc",
+      "order": 8,
+      "group": "read",
+      "title": "Index pageSize=100 (all rows)",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=100&pageIndex=0"
+      }
+    },
+    {
+      "id": "mvc-index-out-of-range",
+      "app": "mvc",
+      "order": 9,
+      "group": "read",
+      "title": "Index pageIndex beyond last page (empty table)",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=10&pageIndex=5"
+      }
+    },
+    {
+      "id": "mvc-index-negative-page",
+      "app": "mvc",
+      "order": 10,
+      "group": "read",
+      "title": "Index negative pageIndex",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=10&pageIndex=-1"
+      }
+    },
+    {
+      "id": "mvc-index-size0",
+      "app": "mvc",
+      "order": 11,
+      "group": "read",
+      "title": "Index pageSize=0 (legacy divides by zero)",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=0&pageIndex=0"
+      }
+    },
+    {
+      "id": "mvc-index-size-invalid",
+      "app": "mvc",
+      "order": 12,
+      "group": "read",
+      "title": "Index pageSize not an int (binding falls back to default)",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=abc"
+      }
+    },
+    {
+      "id": "mvc-details-1",
+      "app": "mvc",
+      "order": 13,
+      "group": "read",
+      "title": "Details GET, valid id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/1"
+      }
+    },
+    {
+      "id": "mvc-details-12",
+      "app": "mvc",
+      "order": 14,
+      "group": "read",
+      "title": "Details GET, last seeded id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/12"
+      }
+    },
+    {
+      "id": "mvc-details-missing",
+      "app": "mvc",
+      "order": 15,
+      "group": "read",
+      "title": "Details GET, missing id -> 404",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/999"
+      }
+    },
+    {
+      "id": "mvc-details-noid",
+      "app": "mvc",
+      "order": 16,
+      "group": "read",
+      "title": "Details GET, absent id -> 400",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details"
+      }
+    },
+    {
+      "id": "mvc-details-badid",
+      "app": "mvc",
+      "order": 17,
+      "group": "read",
+      "title": "Details GET, non-int id -> 400",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/abc"
+      }
+    },
+    {
+      "id": "mvc-edit-get-1",
+      "app": "mvc",
+      "order": 18,
+      "group": "read",
+      "title": "Edit GET, valid id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/1"
+      }
+    },
+    {
+      "id": "mvc-edit-get-missing",
+      "app": "mvc",
+      "order": 19,
+      "group": "read",
+      "title": "Edit GET, missing id -> 404",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/999"
+      }
+    },
+    {
+      "id": "mvc-edit-get-noid",
+      "app": "mvc",
+      "order": 20,
+      "group": "read",
+      "title": "Edit GET, absent id -> 400",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit"
+      }
+    },
+    {
+      "id": "mvc-delete-get-1",
+      "app": "mvc",
+      "order": 21,
+      "group": "read",
+      "title": "Delete GET, valid id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/1"
+      }
+    },
+    {
+      "id": "mvc-delete-get-missing",
+      "app": "mvc",
+      "order": 22,
+      "group": "read",
+      "title": "Delete GET, missing id -> 404",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/999"
+      }
+    },
+    {
+      "id": "mvc-delete-get-noid",
+      "app": "mvc",
+      "order": 23,
+      "group": "read",
+      "title": "Delete GET, absent id -> 400",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete"
+      }
+    },
+    {
+      "id": "mvc-create-get",
+      "app": "mvc",
+      "order": 24,
+      "group": "read",
+      "title": "Create GET (form + antiforgery token)",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Create"
+      }
+    },
+    {
+      "id": "mvc-pic-1",
+      "app": "mvc",
+      "order": 25,
+      "group": "read",
+      "title": "Pic route, valid id",
+      "request": {
+        "method": "GET",
+        "path": "/items/1/pic"
+      }
+    },
+    {
+      "id": "mvc-pic-12",
+      "app": "mvc",
+      "order": 26,
+      "group": "read",
+      "title": "Pic route, last seeded id",
+      "request": {
+        "method": "GET",
+        "path": "/items/12/pic"
+      }
+    },
+    {
+      "id": "mvc-pic-zero",
+      "app": "mvc",
+      "order": 27,
+      "group": "read",
+      "title": "Pic route, id 0 -> 400",
+      "request": {
+        "method": "GET",
+        "path": "/items/0/pic"
+      }
+    },
+    {
+      "id": "mvc-pic-negative",
+      "app": "mvc",
+      "order": 28,
+      "group": "read",
+      "title": "Pic route, negative id -> 400",
+      "request": {
+        "method": "GET",
+        "path": "/items/-1/pic"
+      }
+    },
+    {
+      "id": "mvc-pic-missing",
+      "app": "mvc",
+      "order": 29,
+      "group": "read",
+      "title": "Pic route, missing item -> 404",
+      "request": {
+        "method": "GET",
+        "path": "/items/999/pic"
+      }
+    },
+    {
+      "id": "mvc-pic-nonint",
+      "app": "mvc",
+      "order": 30,
+      "group": "read",
+      "title": "Pic route, non-int id fails the route constraint -> 404",
+      "request": {
+        "method": "GET",
+        "path": "/items/abc/pic"
+      }
+    },
+    {
+      "id": "mvc-api-brands",
+      "app": "mvc",
+      "order": 31,
+      "group": "read",
+      "title": "GET /api/brands (JSON)",
+      "request": {
+        "method": "GET",
+        "path": "/api/brands"
+      }
+    },
+    {
+      "id": "mvc-api-brand-found",
+      "app": "mvc",
+      "order": 32,
+      "group": "read",
+      "title": "GET /api/brands/2",
+      "request": {
+        "method": "GET",
+        "path": "/api/brands/2"
+      }
+    },
+    {
+      "id": "mvc-api-brand-missing",
+      "app": "mvc",
+      "order": 33,
+      "group": "read",
+      "title": "GET /api/brands/99 -> 404",
+      "request": {
+        "method": "GET",
+        "path": "/api/brands/99"
+      }
+    },
+    {
+      "id": "mvc-api-brand-delete-found",
+      "app": "mvc",
+      "order": 34,
+      "group": "read",
+      "title": "DELETE /api/brands/2 -> 200 (demo: nothing deleted)",
+      "request": {
+        "method": "DELETE",
+        "path": "/api/brands/2"
+      }
+    },
+    {
+      "id": "mvc-api-brand-delete-missing",
+      "app": "mvc",
+      "order": 35,
+      "group": "read",
+      "title": "DELETE /api/brands/99 -> 404",
+      "request": {
+        "method": "DELETE",
+        "path": "/api/brands/99"
+      }
+    },
+    {
+      "id": "mvc-api-brands-after-delete",
+      "app": "mvc",
+      "order": 36,
+      "group": "read",
+      "title": "GET /api/brands after DELETE (still 5 brands)",
+      "request": {
+        "method": "GET",
+        "path": "/api/brands"
+      }
+    },
+    {
+      "id": "mvc-api-files",
+      "app": "mvc",
+      "order": 37,
+      "group": "read",
+      "title": "GET /api/files (BinaryFormatter/NRBF payload, byte-exact)",
+      "request": {
+        "method": "GET",
+        "path": "/api/files"
+      },
+      "compare": {
+        "mime": false,
+        "_why": "the legacy app sets no Content-Type; xsp4 fills in text/html, which is a host artefact"
+      }
+    },
+    {
+      "id": "mvc-api-hello",
+      "app": "mvc",
+      "order": 38,
+      "group": "read",
+      "title": "GET /api (CatalogController2: never discovered by MVC 5 -> 404)",
+      "request": {
+        "method": "GET",
+        "path": "/api"
+      }
+    },
+    {
+      "id": "mvc-static-content-bootstrap-css",
+      "app": "mvc",
+      "order": 39,
+      "group": "read",
+      "title": "Static asset /Content/bootstrap.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/bootstrap.css"
+      }
+    },
+    {
+      "id": "mvc-static-content-custom-css",
+      "app": "mvc",
+      "order": 40,
+      "group": "read",
+      "title": "Static asset /Content/custom.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/custom.css"
+      }
+    },
+    {
+      "id": "mvc-static-content-base-css",
+      "app": "mvc",
+      "order": 41,
+      "group": "read",
+      "title": "Static asset /Content/base.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/base.css"
+      }
+    },
+    {
+      "id": "mvc-static-content-site-css",
+      "app": "mvc",
+      "order": 42,
+      "group": "read",
+      "title": "Static asset /Content/site.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/site.css"
+      }
+    },
+    {
+      "id": "mvc-static-scripts-modernizr-2-6-2-js",
+      "app": "mvc",
+      "order": 43,
+      "group": "read",
+      "title": "Static asset /Scripts/modernizr-2.6.2.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/modernizr-2.6.2.js"
+      }
+    },
+    {
+      "id": "mvc-static-scripts-modernizr-2-8-3-js",
+      "app": "mvc",
+      "order": 44,
+      "group": "read",
+      "title": "Static asset /Scripts/modernizr-2.8.3.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/modernizr-2.8.3.js"
+      }
+    },
+    {
+      "id": "mvc-static-scripts-jquery-3-3-1-js",
+      "app": "mvc",
+      "order": 45,
+      "group": "read",
+      "title": "Static asset /Scripts/jquery-3.3.1.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery-3.3.1.js"
+      }
+    },
+    {
+      "id": "mvc-static-scripts-bootstrap-js",
+      "app": "mvc",
+      "order": 46,
+      "group": "read",
+      "title": "Static asset /Scripts/bootstrap.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/bootstrap.js"
+      }
+    },
+    {
+      "id": "mvc-static-scripts-respond-js",
+      "app": "mvc",
+      "order": 47,
+      "group": "read",
+      "title": "Static asset /Scripts/respond.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/respond.js"
+      }
+    },
+    {
+      "id": "mvc-static-scripts-jquery-validate-js",
+      "app": "mvc",
+      "order": 48,
+      "group": "read",
+      "title": "Static asset /Scripts/jquery.validate.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery.validate.js"
+      }
+    },
+    {
+      "id": "mvc-static-scripts-jquery-validate-unobtrusive-js",
+      "app": "mvc",
+      "order": 49,
+      "group": "read",
+      "title": "Static asset /Scripts/jquery.validate.unobtrusive.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery.validate.unobtrusive.js"
+      }
+    },
+    {
+      "id": "mvc-static-images-brand-png",
+      "app": "mvc",
+      "order": 50,
+      "group": "read",
+      "title": "Static asset /images/brand.png",
+      "request": {
+        "method": "GET",
+        "path": "/images/brand.png"
+      }
+    },
+    {
+      "id": "mvc-static-images-brand_dark-png",
+      "app": "mvc",
+      "order": 51,
+      "group": "read",
+      "title": "Static asset /images/brand_dark.png",
+      "request": {
+        "method": "GET",
+        "path": "/images/brand_dark.png"
+      }
+    },
+    {
+      "id": "mvc-static-images-main_footer_text-png",
+      "app": "mvc",
+      "order": 52,
+      "group": "read",
+      "title": "Static asset /images/main_footer_text.png",
+      "request": {
+        "method": "GET",
+        "path": "/images/main_footer_text.png"
+      }
+    },
+    {
+      "id": "mvc-static-favicon-ico",
+      "app": "mvc",
+      "order": 53,
+      "group": "read",
+      "title": "Static asset /favicon.ico",
+      "request": {
+        "method": "GET",
+        "path": "/favicon.ico"
+      }
+    },
+    {
+      "id": "mvc-static-pics-1-png",
+      "app": "mvc",
+      "order": 54,
+      "group": "read",
+      "title": "Static asset /Pics/1.png",
+      "request": {
+        "method": "GET",
+        "path": "/Pics/1.png"
+      }
+    },
+    {
+      "id": "mvc-bundle-content-css",
+      "app": "mvc",
+      "order": 55,
+      "group": "read",
+      "title": "Bundle endpoint /Content/css (status + type only; WebGrease minified output is not a contract)",
+      "request": {
+        "method": "GET",
+        "path": "/Content/css"
+      },
+      "compare": {
+        "body": "none"
+      }
+    },
+    {
+      "id": "mvc-bundle-bundles-jquery",
+      "app": "mvc",
+      "order": 56,
+      "group": "read",
+      "title": "Bundle endpoint /bundles/jquery (status + type only; WebGrease minified output is not a contract)",
+      "request": {
+        "method": "GET",
+        "path": "/bundles/jquery"
+      },
+      "compare": {
+        "body": "none"
+      }
+    },
+    {
+      "id": "mvc-bundle-bundles-jqueryval",
+      "app": "mvc",
+      "order": 57,
+      "group": "read",
+      "title": "Bundle endpoint /bundles/jqueryval (status + type only; WebGrease minified output is not a contract)",
+      "request": {
+        "method": "GET",
+        "path": "/bundles/jqueryval"
+      },
+      "compare": {
+        "body": "none"
+      }
+    },
+    {
+      "id": "mvc-bundle-bundles-modernizr",
+      "app": "mvc",
+      "order": 58,
+      "group": "read",
+      "title": "Bundle endpoint /bundles/modernizr (status + type only; WebGrease minified output is not a contract)",
+      "request": {
+        "method": "GET",
+        "path": "/bundles/modernizr"
+      },
+      "compare": {
+        "body": "none"
+      }
+    },
+    {
+      "id": "mvc-bundle-bundles-bootstrap",
+      "app": "mvc",
+      "order": 59,
+      "group": "read",
+      "title": "Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract)",
+      "request": {
+        "method": "GET",
+        "path": "/bundles/bootstrap"
+      },
+      "compare": {
+        "body": "none"
+      }
+    },
+    {
+      "id": "mvc-create-post-valid",
+      "app": "mvc",
+      "order": 60,
+      "group": "mutate",
+      "title": "Create POST valid -> 302 / and item 13 added",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-details-created",
+      "app": "mvc",
+      "order": 61,
+      "group": "mutate",
+      "title": "Details of created item 13",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/13"
+      }
+    },
+    {
+      "id": "mvc-pic-created",
+      "app": "mvc",
+      "order": 62,
+      "group": "mutate",
+      "title": "Pic of created item (dummy.png)",
+      "request": {
+        "method": "GET",
+        "path": "/items/13/pic"
+      }
+    },
+    {
+      "id": "mvc-create-post-invalid-missing-name",
+      "app": "mvc",
+      "order": 63,
+      "group": "mutate",
+      "title": "Create POST invalid (missing name) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-create-post-invalid-bad-price",
+      "app": "mvc",
+      "order": 64,
+      "group": "mutate",
+      "title": "Create POST invalid (non-numeric price) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "abc",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-create-post-invalid-price-over-max",
+      "app": "mvc",
+      "order": 65,
+      "group": "mutate",
+      "title": "Create POST invalid (price above 1,000,000) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "1000001",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-create-post-invalid-price-3dp",
+      "app": "mvc",
+      "order": 66,
+      "group": "mutate",
+      "title": "Create POST invalid (price with 3 decimals) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "12.345",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-create-post-invalid-stock-out-of-range",
+      "app": "mvc",
+      "order": 67,
+      "group": "mutate",
+      "title": "Create POST invalid (stock above 10 million) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10000001",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-create-post-invalid-restock-negative",
+      "app": "mvc",
+      "order": 68,
+      "group": "mutate",
+      "title": "Create POST invalid (negative restock) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "-1",
+          "MaxStockThreshold": "50"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-create-post-no-antiforgery",
+      "app": "mvc",
+      "order": 69,
+      "group": "mutate",
+      "title": "Create POST without antiforgery token -> rejected",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "drop": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-edit-post-valid",
+      "app": "mvc",
+      "order": 70,
+      "group": "mutate",
+      "title": "Edit POST valid (item 1) -> 302 /",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/1"
+      },
+      "form": {
+        "from": "/Catalog/Edit/1",
+        "fields": {
+          "Name": ".NET Bot Black Hoodie v2",
+          "Price": "21.75",
+          "AvailableStock": "75",
+          "CatalogBrandId": "5"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-details-edited",
+      "app": "mvc",
+      "order": 71,
+      "group": "mutate",
+      "title": "Details of edited item 1",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/1"
+      }
+    },
+    {
+      "id": "mvc-edit-post-invalid-missing-name",
+      "app": "mvc",
+      "order": 72,
+      "group": "mutate",
+      "title": "Edit POST invalid (missing name, item 2) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/2"
+      },
+      "form": {
+        "from": "/Catalog/Edit/2",
+        "fields": {
+          "Name": ""
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-edit-post-invalid-negative-stock",
+      "app": "mvc",
+      "order": 73,
+      "group": "mutate",
+      "title": "Edit POST invalid (negative stock, item 2) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/2"
+      },
+      "form": {
+        "from": "/Catalog/Edit/2",
+        "fields": {
+          "AvailableStock": "-1"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-edit-post-invalid-bad-price",
+      "app": "mvc",
+      "order": 74,
+      "group": "mutate",
+      "title": "Edit POST invalid (non-numeric price, item 2) -> 200 with validation messages",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/2"
+      },
+      "form": {
+        "from": "/Catalog/Edit/2",
+        "fields": {
+          "Price": "abc"
+        }
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-delete-get-created",
+      "app": "mvc",
+      "order": 75,
+      "group": "mutate",
+      "title": "Delete GET of created item 13",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/13"
+      }
+    },
+    {
+      "id": "mvc-delete-post",
+      "app": "mvc",
+      "order": 76,
+      "group": "mutate",
+      "title": "Delete POST item 13 -> 302 /",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Delete/13"
+      },
+      "form": {
+        "from": "/Catalog/Delete/13"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-delete-post-missing",
+      "app": "mvc",
+      "order": 77,
+      "group": "mutate",
+      "title": "Delete POST missing id 999",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Delete/999",
+        "path_is_explicit": true
+      },
+      "form": {
+        "from": "/Catalog/Delete/1"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "mvc-details-deleted",
+      "app": "mvc",
+      "order": 78,
+      "group": "mutate",
+      "title": "Details of deleted item 13 -> 404",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/13"
+      }
+    },
+    {
+      "id": "mvc-index-after-mutations",
+      "app": "mvc",
+      "order": 79,
+      "group": "mutate",
+      "title": "Index after all mutations",
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=2"
+      }
+    },
+    {
+      "id": "wf-list-root",
+      "app": "webforms",
+      "order": 1,
+      "group": "read",
+      "title": "WebForms catalog list, GET /",
+      "request": {
+        "method": "GET",
+        "path": "/"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-default",
+      "app": "webforms",
+      "order": 2,
+      "group": "read",
+      "title": "WebForms catalog list, /Default",
+      "request": {
+        "method": "GET",
+        "path": "/Default"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-size10-page0",
+      "app": "webforms",
+      "order": 3,
+      "group": "read",
+      "title": "WebForms catalog list, index 0 size 10",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/10"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-size10-page1",
+      "app": "webforms",
+      "order": 4,
+      "group": "read",
+      "title": "WebForms catalog list, index 1 size 10",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/1/size/10"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-size5-page0",
+      "app": "webforms",
+      "order": 5,
+      "group": "read",
+      "title": "WebForms catalog list, index 0 size 5",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/5"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-size5-page1",
+      "app": "webforms",
+      "order": 6,
+      "group": "read",
+      "title": "WebForms catalog list, index 1 size 5",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/1/size/5"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-size5-page2",
+      "app": "webforms",
+      "order": 7,
+      "group": "read",
+      "title": "WebForms catalog list, index 2 size 5 (partial)",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/2/size/5"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-size100",
+      "app": "webforms",
+      "order": 8,
+      "group": "read",
+      "title": "WebForms catalog list, size 100 (all rows)",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/100"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-out-of-range",
+      "app": "webforms",
+      "order": 9,
+      "group": "read",
+      "title": "WebForms catalog list, index beyond last page",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/5/size/10"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-negative-page",
+      "app": "webforms",
+      "order": 10,
+      "group": "read",
+      "title": "WebForms catalog list, negative index",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/-1/size/10"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-list-size0",
+      "app": "webforms",
+      "order": 11,
+      "group": "read",
+      "title": "WebForms catalog list, size 0 (divide by zero)",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/0"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-details-get-1",
+      "app": "webforms",
+      "order": 12,
+      "group": "read",
+      "title": "WebForms Details page, valid id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/1"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-details-get-missing",
+      "app": "webforms",
+      "order": 13,
+      "group": "read",
+      "title": "WebForms Details page, missing id (legacy NullReferenceException -> 500)",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/999"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-edit-get-1",
+      "app": "webforms",
+      "order": 14,
+      "group": "read",
+      "title": "WebForms Edit page, valid id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/1"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-edit-get-missing",
+      "app": "webforms",
+      "order": 15,
+      "group": "read",
+      "title": "WebForms Edit page, missing id (legacy NullReferenceException -> 500)",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/999"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-delete-get-1",
+      "app": "webforms",
+      "order": 16,
+      "group": "read",
+      "title": "WebForms Delete page, valid id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/1"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-delete-get-missing",
+      "app": "webforms",
+      "order": 17,
+      "group": "read",
+      "title": "WebForms Delete page, missing id (legacy NullReferenceException -> 500)",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/999"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-details-get-12",
+      "app": "webforms",
+      "order": 18,
+      "group": "read",
+      "title": "WebForms Details page, last seeded id",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/12"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-details-get-nonint",
+      "app": "webforms",
+      "order": 19,
+      "group": "read",
+      "title": "WebForms Details page, non-int id (legacy FormatException -> 500)",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/abc"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-create-get",
+      "app": "webforms",
+      "order": 20,
+      "group": "read",
+      "title": "WebForms Create page",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Create"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-static-pics-1-png",
+      "app": "webforms",
+      "order": 21,
+      "group": "read",
+      "title": "WebForms static asset /Pics/1.png",
+      "request": {
+        "method": "GET",
+        "path": "/Pics/1.png"
+      }
+    },
+    {
+      "id": "wf-static-pics-12-png",
+      "app": "webforms",
+      "order": 22,
+      "group": "read",
+      "title": "WebForms static asset /Pics/12.png",
+      "request": {
+        "method": "GET",
+        "path": "/Pics/12.png"
+      }
+    },
+    {
+      "id": "wf-static-pics-dummy-png",
+      "app": "webforms",
+      "order": 23,
+      "group": "read",
+      "title": "WebForms static asset /Pics/dummy.png",
+      "request": {
+        "method": "GET",
+        "path": "/Pics/dummy.png"
+      }
+    },
+    {
+      "id": "wf-static-images-brand-png",
+      "app": "webforms",
+      "order": 24,
+      "group": "read",
+      "title": "WebForms static asset /images/brand.png",
+      "request": {
+        "method": "GET",
+        "path": "/images/brand.png"
+      }
+    },
+    {
+      "id": "wf-static-images-brand_dark-png",
+      "app": "webforms",
+      "order": 25,
+      "group": "read",
+      "title": "WebForms static asset /images/brand_dark.png",
+      "request": {
+        "method": "GET",
+        "path": "/images/brand_dark.png"
+      }
+    },
+    {
+      "id": "wf-static-images-main_footer_text-png",
+      "app": "webforms",
+      "order": 26,
+      "group": "read",
+      "title": "WebForms static asset /images/main_footer_text.png",
+      "request": {
+        "method": "GET",
+        "path": "/images/main_footer_text.png"
+      }
+    },
+    {
+      "id": "wf-static-favicon-ico",
+      "app": "webforms",
+      "order": 27,
+      "group": "read",
+      "title": "WebForms static asset /favicon.ico",
+      "request": {
+        "method": "GET",
+        "path": "/favicon.ico"
+      }
+    },
+    {
+      "id": "wf-static-content-bootstrap-css",
+      "app": "webforms",
+      "order": 28,
+      "group": "read",
+      "title": "WebForms static asset /Content/bootstrap.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/bootstrap.css"
+      }
+    },
+    {
+      "id": "wf-static-content-custom-css",
+      "app": "webforms",
+      "order": 29,
+      "group": "read",
+      "title": "WebForms static asset /Content/custom.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/custom.css"
+      }
+    },
+    {
+      "id": "wf-static-content-base-css",
+      "app": "webforms",
+      "order": 30,
+      "group": "read",
+      "title": "WebForms static asset /Content/base.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/base.css"
+      }
+    },
+    {
+      "id": "wf-static-content-site-css",
+      "app": "webforms",
+      "order": 31,
+      "group": "read",
+      "title": "WebForms static asset /Content/site.css",
+      "request": {
+        "method": "GET",
+        "path": "/Content/site.css"
+      }
+    },
+    {
+      "id": "wf-static-scripts-jquery-3-3-1-js",
+      "app": "webforms",
+      "order": 32,
+      "group": "read",
+      "title": "WebForms static asset /Scripts/jquery-3.3.1.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery-3.3.1.js"
+      }
+    },
+    {
+      "id": "wf-static-scripts-bootstrap-js",
+      "app": "webforms",
+      "order": 33,
+      "group": "read",
+      "title": "WebForms static asset /Scripts/bootstrap.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/bootstrap.js"
+      }
+    },
+    {
+      "id": "wf-static-scripts-respond-js",
+      "app": "webforms",
+      "order": 34,
+      "group": "read",
+      "title": "WebForms static asset /Scripts/respond.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/respond.js"
+      }
+    },
+    {
+      "id": "wf-static-scripts-modernizr-2-8-3-js",
+      "app": "webforms",
+      "order": 35,
+      "group": "read",
+      "title": "WebForms static asset /Scripts/modernizr-2.8.3.js",
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/modernizr-2.8.3.js"
+      }
+    },
+    {
+      "id": "wf-create-post-valid",
+      "app": "webforms",
+      "order": 36,
+      "group": "mutate",
+      "title": "WebForms Create postback valid -> redirect /",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "ctl00$MainContent$Name": "Parity Mug",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "9.99",
+          "ctl00$MainContent$Stock": "20",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-details-created",
+      "app": "webforms",
+      "order": 37,
+      "group": "mutate",
+      "title": "WebForms Details of created item 13",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/13"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-create-post-invalid-missing-name",
+      "app": "webforms",
+      "order": 38,
+      "group": "mutate",
+      "title": "WebForms Create postback (missing name; server-side checks only)",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "ctl00$MainContent$Name": "",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "9.99",
+          "ctl00$MainContent$Stock": "20",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-create-post-invalid-bad-price",
+      "app": "webforms",
+      "order": 39,
+      "group": "mutate",
+      "title": "WebForms Create postback (non-numeric price; server-side checks only)",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "ctl00$MainContent$Name": "Parity Mug",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "abc",
+          "ctl00$MainContent$Stock": "20",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-create-post-invalid-negative-stock",
+      "app": "webforms",
+      "order": 40,
+      "group": "mutate",
+      "title": "WebForms Create postback (negative stock; server-side checks only)",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create"
+      },
+      "form": {
+        "from": "/Catalog/Create",
+        "fields": {
+          "ctl00$MainContent$Name": "Parity Mug",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "9.99",
+          "ctl00$MainContent$Stock": "-1",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-edit-post-valid",
+      "app": "webforms",
+      "order": 41,
+      "group": "mutate",
+      "title": "WebForms Edit postback valid (item 3) -> redirect /",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/3"
+      },
+      "form": {
+        "from": "/Catalog/Edit/3",
+        "fields": {
+          "ctl00$MainContent$Name": "Prism White T-Shirt v2",
+          "ctl00$MainContent$Price": "14.25",
+          "ctl00$MainContent$Stock": "60",
+          "ctl00$MainContent$TypeDropDownList": "3",
+          "ctl00$MainContent$ctl07": "[ Save ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-details-edited",
+      "app": "webforms",
+      "order": 42,
+      "group": "mutate",
+      "title": "WebForms Details of edited item 3",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/3"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-edit-post-invalid-bad-price",
+      "app": "webforms",
+      "order": 43,
+      "group": "mutate",
+      "title": "WebForms Edit postback (non-numeric price, item 4)",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/4"
+      },
+      "form": {
+        "from": "/Catalog/Edit/4",
+        "fields": {
+          "ctl00$MainContent$Price": "abc",
+          "ctl00$MainContent$ctl07": "[ Save ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-edit-post-invalid-missing-name",
+      "app": "webforms",
+      "order": 44,
+      "group": "mutate",
+      "title": "WebForms Edit postback (missing name, item 4)",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/4"
+      },
+      "form": {
+        "from": "/Catalog/Edit/4",
+        "fields": {
+          "ctl00$MainContent$Name": "",
+          "ctl00$MainContent$ctl07": "[ Save ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-delete-get-created",
+      "app": "webforms",
+      "order": 45,
+      "group": "mutate",
+      "title": "WebForms Delete page of created item 13",
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/13"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    },
+    {
+      "id": "wf-delete-post",
+      "app": "webforms",
+      "order": 46,
+      "group": "mutate",
+      "title": "WebForms Delete postback item 13 -> redirect /",
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Delete/13"
+      },
+      "form": {
+        "from": "/Catalog/Delete/13",
+        "fields": {
+          "ctl00$MainContent$ctl11": "[ Delete ]"
+        }
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      },
+      "mutates": true,
+      "snapshot": true
+    },
+    {
+      "id": "wf-list-after-mutations",
+      "app": "webforms",
+      "order": 47,
+      "group": "mutate",
+      "title": "WebForms list after all postbacks",
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/100"
+      },
+      "compare": {
+        "assets": false,
+        "_why": "WebForms ScriptManager/WebResource infrastructure has no Razor Pages equivalent"
+      }
+    }
+  ]
+}
