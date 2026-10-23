@@ -76,9 +76,10 @@ public sealed class InProcessTarget<TEntryPoint> : IParityTarget where TEntryPoi
     {
         var f = _features ?? throw new InvalidOperationException("RestartAsync first");
         if (!f.CatalogService) return "T2 not in this build: no ICatalogService registered (scaffold stub)";
-        if (_app == "mvc" && flow.IsApi)
-            return f.ApiMapped ? null : "T4 not in this build: no /api endpoints mapped (scaffold stub)";
-        if (f.UiPending)
+        if (_app == "mvc" && flow.IsApi && !f.ApiMapped)
+            return "T4 not in this build: no /api endpoints mapped (scaffold stub)";
+        // Data-state snapshots read the catalog list and Create pages, so they need the UI ticket even for API flows.
+        if (f.UiPending && (!flow.IsApi || flow.Snapshot))
             return _app == "mvc" ? "T3 not in this build: scaffold placeholder on /" : "T5 not in this build: scaffold placeholder on /";
         return null;
     }

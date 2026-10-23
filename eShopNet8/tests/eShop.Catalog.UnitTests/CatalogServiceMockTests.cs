@@ -79,7 +79,7 @@ public class CatalogServiceMockTests
     public void Each_registration_starts_from_the_seed_data()
     {
         var a = TestServices.MockService();
-        a.CreateCatalogItem(new CatalogItem { Name = "x" });
+        a.CreateCatalogItem(new CatalogItem { Name = "x", CatalogBrandId = 1, CatalogTypeId = 1 });
         var b = TestServices.MockService();
         Assert.Equal(13, a.GetCatalogItemsPaginated(100, 0).TotalItems);
         Assert.Equal(12, b.GetCatalogItemsPaginated(100, 0).TotalItems);
@@ -94,7 +94,7 @@ public class CatalogServiceMockTests
         svc.CreateCatalogItem(item);
         Assert.Equal(13, item.Id);
         Assert.Same(item, svc.FindCatalogItem(13));
-        var next = new CatalogItem { Name = "Second" };
+        var next = new CatalogItem { Name = "Second", CatalogBrandId = 1, CatalogTypeId = 1 };
         svc.CreateCatalogItem(next);
         Assert.Equal(14, next.Id);
     }
@@ -129,7 +129,7 @@ public class CatalogServiceMockTests
     public async Task Concurrent_creates_get_distinct_ids()
     {
         var svc = TestServices.MockService();
-        await Task.WhenAll(Enumerable.Range(0, 50).Select(i => Task.Run(() => svc.CreateCatalogItem(new CatalogItem { Name = "c" + i }))));
+        await Task.WhenAll(Enumerable.Range(0, 50).Select(i => Task.Run(() => svc.CreateCatalogItem(new CatalogItem { Name = "c" + i, CatalogBrandId = 2, CatalogTypeId = 2 }))));
         var ids = svc.GetCatalogItemsPaginated(1000, 0).Data.Select(i => i.Id).ToList();
         Assert.Equal(62, ids.Count);
         Assert.Equal(Enumerable.Range(1, 62), ids);

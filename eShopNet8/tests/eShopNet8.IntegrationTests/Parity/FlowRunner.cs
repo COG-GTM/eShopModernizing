@@ -14,7 +14,8 @@ public sealed record FlowSpec(JsonObject Raw, string SequenceId, string App)
     public string Compare => (string?)Raw["compare"] ?? "full";
     public bool Snapshot => Raw["snapshot"] is JsonValue v && v.GetValue<bool>();
     public JsonObject? Form => Raw["form"] as JsonObject;
-    public bool IsApi => Path is not null && (Path == "/api" || Path.StartsWith("/api/", StringComparison.Ordinal));
+    // Web API surface (T4). "/api" itself is an unmapped URL whose 404 page belongs to the MVC site (Q1).
+    public bool IsApi => Path is not null && Path.StartsWith("/api/", StringComparison.Ordinal);
 }
 
 // C# port of modernization/parity/runner.py: executes one flow on a cookie session and normalises the response.

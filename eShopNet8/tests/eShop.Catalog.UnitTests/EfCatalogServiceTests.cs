@@ -131,9 +131,12 @@ public class EfCatalogServiceTests
         }
         using (var scope = sp.CreateScope())
         {
-            var svc = scope.ServiceProvider.GetRequiredService<ICatalogService>();
-            Assert.Equal(13, svc.GetCatalogItemsPaginated(100, 0).TotalItems);
-            svc.UpdateCatalogItem(new CatalogItem { Id = id, Name = "Edited", Price = 21.50m, CatalogBrandId = 3, CatalogTypeId = 2, PictureFileName = "dummy.png" });
+            Assert.Equal(13, scope.ServiceProvider.GetRequiredService<ICatalogService>().GetCatalogItemsPaginated(100, 0).TotalItems);
+        }
+        // Like the MVC Edit POST: a fresh request scope attaches the posted (untracked) item as Modified.
+        using (var scope = sp.CreateScope())
+        {
+            scope.ServiceProvider.GetRequiredService<ICatalogService>().UpdateCatalogItem(new CatalogItem { Id = id, Name = "Edited", Price = 21.50m, CatalogBrandId = 3, CatalogTypeId = 2, PictureFileName = "dummy.png" });
         }
         using (var scope = sp.CreateScope())
         {
