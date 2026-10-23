@@ -1,0 +1,110 @@
+# eShop .NET 8 catalog apps on Linux containers (mcr.microsoft.com/dotnet/aspnet:8.0).
+#
+#   docker compose -f eShopNet8/docker-compose.yml --profile mock up -d --build --wait
+#       MVC http://127.0.0.1:5200, Razor Pages (WebForms port) http://127.0.0.1:5201, in-memory mock catalog.
+#   docker compose -f eShopNet8/docker-compose.yml --env-file eShopNet8/docker/.env --profile sql up -d --build --wait
+#       SQL Server 2022 + both apps with UseMockData=false on 5210/5211; the MVC app creates and seeds the DB,
+#       the WebForms app starts after it is ready (both share the catalog DB, like the legacy apps).
+#       SQL_SA_PASSWORD comes from the shell or the git-ignored env file (template: docker/sql.env.example).
+#
+# Host ports bind to 127.0.0.1 only; override with NET8_MVC_PORT, NET8_WEBFORMS_PORT, NET8_SQL_MVC_PORT,
+# NET8_SQL_WEBFORMS_PORT, NET8_SQL_PORT.
+name: eshopnet8
+
+x-mvc-build: &mvc-build
+  context: .
+  dockerfile: src/eShopNet8.Mvc/Dockerfile
+x-webforms-build: &webforms-build
+  context: .
+  dockerfile: src/eShopNet8.WebForms/Dockerfile
+x-app: &app
+  restart: unless-stopped
+  read_only: true
+  tmpfs:
+    - /tmp
+  security_opt:
+    - no-new-privileges:true
+x-sql-env: &sql-env
+  ASPNETCORE_ENVIRONMENT: Production
+  Catalog__UseMockData: "false"
+  ConnectionStrings__CatalogDBContext: "Server=sqldata,1433;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=${SQL_SA_PASSWORD:-};TrustServerCertificate=True;MultipleActiveResultSets=True"
+
+services:
+  mvc:
+    <<: *app
+    profiles: [mock]
+    image: eshopnet8-mvc:local
+    build: *mvc-build
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Catalog__UseMockData: "true"
+    ports:
+      - "127.0.0.1:${NET8_MVC_PORT:-5200}:8080"
+
+  webforms:
+    <<: *app
+    profiles: [mock]
+    image: eshopnet8-webforms:local
+    build: *webforms-build
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Catalog__UseMockData: "true"
+    ports:
+      - "127.0.0.1:${NET8_WEBFORMS_PORT:-5201}:8080"
+
+  sqldata:
+    profiles: [sql]
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      # Empty when unset: SQL Server then refuses to start (password policy). Interpolation runs for every profile, so no :? here.
+      MSSQL_SA_PASSWORD: "${SQL_SA_PASSWORD:-}"
+    ports:
+      - "127.0.0.1:${NET8_SQL_PORT:-1434}:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -b -Q 'SELECT 1' >/dev/null"]
+      interval: 5s
+      timeout: 5s
+      start_period: 20s
+      retries: 30
+
+  mvc-sql:
+    <<: *app
+    profiles: [sql]
+    image: eshopnet8-mvc:local
+    build: *mvc-build
+    environment: *sql-env
+    ports:
+      - "127.0.0.1:${NET8_SQL_MVC_PORT:-5210}:8080"
+    depends_on:
+      sqldata:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "healthcheck", "/health/ready"]
+      interval: 5s
+      timeout: 5s
+      start_period: 90s
+      retries: 12
+
+  webforms-sql:
+    <<: *app
+    profiles: [sql]
+    image: eshopnet8-webforms:local
+    build: *webforms-build
+    environment: *sql-env
+    ports:
+      - "127.0.0.1:${NET8_SQL_WEBFORMS_PORT:-5211}:8080"
+    depends_on:
+      mvc-sql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "healthcheck", "/health/ready"]
+      interval: 5s
+      timeout: 5s
+      start_period: 90s
+      retries: 12
+
+volumes:
+  sqldata:
