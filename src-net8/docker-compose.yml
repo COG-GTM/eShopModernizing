@@ -30,7 +30,8 @@ x-webforms-image: &webforms-image
     dockerfile: docker/Dockerfile.webforms
 
 x-sql-connection: &sql-connection
-  ConnectionStrings__CatalogDBContext: "Server=sqldata,1433;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=${MSSQL_SA_PASSWORD:-};TrustServerCertificate=True;MultipleActiveResultSets=True"
+  # Password is single-quoted so ";" etc. survive ADO.NET parsing; it must not contain a single quote.
+  ConnectionStrings__CatalogDBContext: "Server=sqldata,1433;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password='${MSSQL_SA_PASSWORD:-}';TrustServerCertificate=True;MultipleActiveResultSets=True"
 
 services:
   sqldata:
@@ -42,7 +43,7 @@ services:
       MSSQL_PID: Developer
       MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-}
     ports:
-      - "${SQL_HOST_PORT:-1433}:1433"
+      - "${SQL_HOST_BIND:-127.0.0.1}:${SQL_HOST_PORT:-1433}:1433"
     volumes:
       - sqldata:/var/opt/mssql
     healthcheck:
