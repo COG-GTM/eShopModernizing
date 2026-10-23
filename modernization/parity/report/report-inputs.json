@@ -1,0 +1,315 @@
+{
+ "branch": "devin/hcl-net8-eshop",
+ "tested_sha": "b93a0b1 (devin/hcl-net8-eshop 8686730 + parity fixes of PR #91)",
+ "run_labels": {
+  "mock": "local processes, UseMockData=true (legacy 5100/5101, .NET 8 5200/5201)",
+  "sql": "local processes, EF6 vs EF Core against two fresh DBs in one SQL Server 2022 container (legacy 5110/5111, .NET 8 5200/5201)",
+  "mock-container": ".NET 8 Linux images (compose profile mock, 5200/5201) vs legacy mock",
+  "sql-container": ".NET 8 Linux images (compose profile sql, own sqldata, one app at a time) vs legacy SQL"
+ },
+ "headline": {
+  "cards": [
+   {
+    "value": "620 / 620",
+    "label": "flow replays at parity across 4 runs (155 flows x mock, SQL, mock-container, SQL-container)",
+    "cls": "ok"
+   },
+   {
+    "value": "0",
+    "label": "failing flows in the final runs",
+    "cls": "ok"
+   },
+   {
+    "value": "94 / 94",
+    "label": "per-flow data-state checks equal after mutating flows (pages and/or sqlcmd dumps; 30 mutating flows per run, unchecked ones covered by the end-of-sequence snapshots, all equal)",
+    "cls": "ok"
+   },
+   {
+    "value": "2 found, 2 fixed",
+    "label": "regressions (SQL-mode WebForms edit + save-time validation), PR #91",
+    "cls": "ok"
+   },
+   {
+    "value": "4",
+    "label": "known divergences per run, all host 404 error-page bodies (status equal)",
+    "cls": "warn"
+   },
+   {
+    "value": "170 / 170",
+    "label": ".NET 8 tests passed (2 skips = SQL-only tests without a server; 51/51 with SQL)",
+    "cls": "ok"
+   }
+  ],
+  "paragraphs": [
+   "The legacy apps (.NET Framework 4.7.2 code built and hosted on Mono 6.12 + xsp4, because the VM has no Windows/IIS) and the migrated ASP.NET Core 8 apps were run side by side and every one of the 155 recorded transcripts was replayed live against both, in lockstep, with both sides restarted before every mutation sequence.",
+   "<b>Mock mode:</b> 29 identical + 122 equivalent + 4 known; 17/17 per-flow data-state checks (page snapshots where the baseline took them; the other 13 mutating flows are not re-rendered to keep mock navigation properties cold, Q4) and 9/9 end-of-sequence snapshots equal. Same result against the .NET 8 Linux container images: 29 identical + 122 equivalent + 4 known.",
+   "<b>SQL mode:</b> legacy MVC and WebForms (EF6 on Mono) and .NET 8 (EF Core 8) each seeded a fresh database in the same SQL Server 2022 container from their own initializer. The first round found <b>6 failing flows</b> from 2 root causes, both in the migrated WebForms SQL path; after the fix: 29 identical + 122 equivalent + 4 known, 30/30 per-flow data-state checks equal including sqlcmd dumps of both databases after every mutating flow. Container SQL profile (compose images and their own sqldata container, sqlcmd dumps of both databases): 29 identical + 122 equivalent + 4 known, 30/30 per-flow data-state checks equal.",
+   "Every remaining difference is classified in section 10. Open regressions: <b>0</b>. Not verified here: Windows/IIS hosting of the legacy apps, and a recorded manual UI walkthrough (see section 11)."
+  ]
+ },
+ "scope": {
+  "Migrated (in scope)": [
+   "Legacy MVC catalog (<code>eShopLegacyMVCSolution/src/eShopLegacyMVC</code>): list with paging, details, create, edit, delete, picture route <code>items/{id}/pic</code>, Web API <code>/api/brands</code> (GET/DELETE) and <code>/api/files</code>, session footer -> <code>eShopNet8/src/eShopNet8.Mvc</code>.",
+   "Legacy WebForms catalog (<code>eShopLegacyWebFormsSolution/src/eShopLegacyWebForms</code>): Default.aspx list/paging, Catalog/Create|Edit|Details|Delete.aspx, About, Contact -> Razor Pages in <code>eShopNet8/src/eShopNet8.WebForms</code>.",
+   "Data: EF6 + HiLo id generator + CatalogDBInitializer -> EF Core 8 with HiLo sequences and the same PreconfiguredData seed (<code>eShopNet8/src/eShop.Catalog.Infrastructure</code>); <code>UseMockData</code> toggle preserved (CatalogServiceMock vs EF CatalogService).",
+   "Autofac -> built-in DI; log4net -> ILogger; Linux containers on <code>mcr.microsoft.com/dotnet/aspnet:8.0</code>, compose mock and SQL profiles, health endpoints, GitHub Actions CI."
+  ],
+  "Not migrated / out of scope": [
+   "<code>eShopPorted</code>, <code>eShopModernized*</code> and the N-tier folders (not the migration source).",
+   "The never-discovered <code>CatalogController2</code> (Q1): <code>/api</code> stays 404 as in legacy.",
+   "Windows/IIS-specific hosting (Web.config transforms, IIS modules): replaced by Kestrel + containers.",
+   "Picture upload (legacy UI says \"Uploading images not allowed for this version\")."
+  ]
+ },
+ "environment": {
+  "VM": "Ubuntu 22.04.5 LTS, kernel 6.8.0-1061-aws, x86_64, Docker 29.7.2 / Compose v5.4.0",
+  "Legacy runtime": "Mono 6.12.0.200, xsp4 4.7.1 (Mono.WebServer2 0.4.0.0), Mono MSBuild 16.10.1, NuGet 6.6.1. Built and run from throwaway copies outside the repo by <code>modernization/parity/legacy/setup-legacy.sh</code> / <code>start-legacy.sh</code> (documented harness-only shims, see BASELINE.md).",
+  "Why not IIS": "The VM is Linux only: no Windows, IIS, IIS Express or .NET Framework CLR. Mono+xsp4 is the only way to execute the unmodified legacy code here; host-generated error pages are therefore Mono's (see D-01..D-04).",
+  "Migrated runtime": ".NET SDK 8.0.426 (eShopNet8/global.json pins 8.0.400 rollForward latestFeature), ASP.NET Core runtime 8.0.32; images built from <code>mcr.microsoft.com/dotnet/sdk:8.0</code> / <code>aspnet:8.0</code>: mvc <code>sha256:10a07ef7626c</code>, webforms <code>sha256:3e5bc93189f9</code>",
+  "SQL Server": "<code>mcr.microsoft.com/mssql/server:2022-latest</code> (16.0.4305.5, digest sha256:cf8f0ab2ebe6...1718); legacy DB <code>Microsoft.eShopOnContainers.Services.CatalogDb</code>, migrated DB <code>eShopNet8_Parity_CatalogDb</code> in the same container; container SQL run uses the compose <code>sqldata</code> service. sqlcmd from mssql-tools18.",
+  "Browser": "Google Chrome for Testing 137.0.7118.2 driven by Playwright 1.64.0 (Python)",
+  "Harness": "Python 3.12; <code>modernization/parity/sidebyside.py</code> (lockstep replay), <code>normalize.py</code> (CONTRACT.md rules), <code>screenshots.py</code>, <code>report/gen_report.py</code>"
+ },
+ "environment_plain": {
+  "os": "Ubuntu 22.04.5 LTS",
+  "mono": "6.12.0.200",
+  "xsp4": "4.7.1 (Mono.WebServer2 0.4.0.0)",
+  "dotnet_sdk": "8.0.426",
+  "aspnetcore_runtime": "8.0.32",
+  "sql_server": "mcr.microsoft.com/mssql/server:2022-latest 16.0.4305.5",
+  "browser": "Chrome for Testing 137.0.7118.2",
+  "playwright": "1.64.0",
+  "python": "3.12"
+ },
+ "method": [
+  "Seed data: both sides use the same PreconfiguredData (12 items, 5 brands, 4 types). Mock mode uses each side's in-memory mock; SQL mode drops and re-creates each database so each initializer seeds it (EF6 CatalogDBInitializer on legacy, EF Core seeding on .NET 8).",
+  "Replay: <code>sidebyside.py</code> walks the 155 baseline flows in their 13 sequences. Before each sequence that mutates data both sides are restarted (SQL: database dropped and re-seeded). Each flow is sent to legacy and migrated with per-side cookie jars; WebForms postbacks re-harvest that side's own form fields (antiforgery/ViewState) so the same user input is posted to both.",
+  "Diffs: each response is normalised per <code>modernization/CONTRACT.md</code> (status, Location, content type family, HTML text/structure/title, JSON, binary hash; masked session footer; >=500 bodies opaque) and compared three ways: legacy-live vs recorded baseline, migrated-live vs baseline, migrated-live vs legacy-live (the verdict). A <code>different</code> pair fails unless it is a documented divergence in <code>known-divergences.json</code> whose reasons all match (status changes are never accepted).",
+  "Data state: after every mutating flow the catalog is dumped from both sides; in SQL mode both databases are additionally dumped with sqlcmd (items incl. brand/type names, brands, types; ordered by id) and compared field by field. End-of-sequence snapshots compare the rendered catalog list pages.",
+  "Containers: the same replay was run against the .NET 8 images from <code>eShopNet8/docker-compose.yml</code> (profile mock, and profile sql with its own sqldata service; data state from the app pages).",
+  "Tests: <code>dotnet test eShopNet8/eShopNet8.sln</code> (Release) with and without <code>ESHOP_TEST_SQL_CONNECTION</code>; the legacy side has no test project, so the transcript suite replayed against live legacy is its test suite.",
+  "Screenshots: <code>screenshots.py</code> against legacy mock (5100/5101) and .NET 8 mock (5200/5201)."
+ ],
+ "tests": [
+  {
+   "side": "Migrated (.NET 8)",
+   "suite": "eShop.Catalog.UnitTests (no SQL server)",
+   "passed": 49,
+   "failed": 0,
+   "skipped": 2,
+   "notes": "2 skipped = SQL Server-backed EF tests, enabled by ESHOP_TEST_SQL_CONNECTION"
+  },
+  {
+   "side": "Migrated (.NET 8)",
+   "suite": "eShopNet8.IntegrationTests",
+   "passed": 170,
+   "failed": 0,
+   "skipped": 0,
+   "notes": "WebApplicationFactory: transcript parity tests for both apps, BinaryFormatter, WebForms save validation, smoke"
+  },
+  {
+   "side": "Migrated (.NET 8)",
+   "suite": "eShop.Catalog.UnitTests with ESHOP_TEST_SQL_CONNECTION (SQL Server 2022)",
+   "passed": 51,
+   "failed": 0,
+   "skipped": 0,
+   "notes": "same project, SQL-backed tests enabled"
+  },
+  {
+   "side": "Legacy (.NET 4.7.2 on Mono)",
+   "suite": "No native test project exists (INVENTORY.md)",
+   "passed": "-",
+   "failed": "-",
+   "skipped": "-",
+   "notes": "Transcript suite is the legacy test suite: 155 flows replayed live against legacy in each run; legacy-live vs recorded baseline: mock 155/155 identical or equivalent; SQL 130 identical/equivalent + 25 documented SQL-mode differences (L-01, L-02)"
+  },
+  {
+   "side": "Both (side by side)",
+   "suite": "Lockstep transcript replay, 4 runs x 155 flows",
+   "passed": "see section 5",
+   "failed": 0,
+   "skipped": 0,
+   "notes": "mock, SQL, mock-container, SQL-container"
+  }
+ ],
+ "differences": [
+  {
+   "id": "R-01",
+   "flow_ids": [
+    "wf-edit-postback-valid"
+   ],
+   "flows": "wf-edit-postback-valid (+ cascaded data-state diffs in wf-edit-after-details, wf-edit-postback-price-nonnumeric) - SQL mode only",
+   "category": "regression",
+   "root_cause": "Round 1: legacy 302, .NET 8 500. The Razor Pages Edit handler loads the item with <code>FindCatalogItem</code> (EF Core tracks it) and then passes a separately bound <code>CatalogItem</code> with the same key to <code>UpdateCatalogItem</code>, which did <code>db.Entry(item).State = Modified</code> -> EF Core <code>InvalidOperationException</code> (another instance with the same key is already tracked). EF6 on legacy tolerated the pattern. File: <code>eShopNet8/src/eShop.Catalog.Infrastructure/Data/CatalogService.cs</code> (UpdateCatalogItem), caller <code>eShopNet8/src/eShopNet8.WebForms/Pages/Catalog/Edit.cshtml.cs</code>.",
+   "status": "Fixed in https://github.com/COG-GTM/eShopModernizing/pull/91: the already-tracked copy is detached before the posted entity is attached. Unit test Update_after_find_in_the_same_scope_replaces_the_tracked_copy. SQL replay after fix: parity, data state equal."
+  },
+  {
+   "id": "R-02",
+   "flow_ids": [
+    "wf-create-postback-stock-out-of-range"
+   ],
+   "flows": "wf-create-postback-stock-out-of-range (+ cascaded data-state diffs in wf-create-postback-price-nonnumeric, wf-create-postback-no-viewstate) - SQL mode only",
+   "category": "regression",
+   "root_cause": "Round 1: legacy 500, .NET 8 302 and the row was saved. Q8 means the WebForms validators do not block the postback, but in SQL mode legacy EF6 <code>DbContext.SaveChanges</code> validates DataAnnotations (<code>DbEntityValidationException</code> for Stock 20000000 > 10 million) so nothing is stored; EF Core performs no save-time validation. The WebForms model has its own annotations (<code>eShopLegacyWebFormsSolution/src/eShopLegacyWebForms/Models/CatalogItem.cs</code>, Q9: Name not required, wide Price range) that differ from MVC's. Files: <code>eShopNet8/src/eShop.Catalog.Infrastructure/Data/CatalogService.cs</code>.",
+   "status": "Fixed in https://github.com/COG-GTM/eShopModernizing/pull/91: <code>ICatalogItemSaveValidator</code> runs before Add/Update in the EF service (MVC annotations by default, <code>WebFormsCatalogItemSaveValidator</code> with the legacy WebForms annotations registered by the Razor Pages app). Tests Save_validates_the_legacy_annotations_like_EF6_and_stores_nothing and WebFormsSaveValidationTests. SQL replay after fix: parity, data state equal."
+  },
+  {
+   "id": "D-01",
+   "flow_ids": [
+    "mvc-unknown-path"
+   ],
+   "flows": "mvc-unknown-path (all 4 runs)",
+   "category": "harness/runtime artifact",
+   "root_cause": "Status 404 equal; legacy body is the Mono/xsp4 host HttpException error page (Mono version + stack trace), ASP.NET Core returns an empty 404. Host-generated, not app code. <code>eShopNet8/tests/eShopNet8.IntegrationTests/Parity/known-divergences.json</code>.",
+   "status": "Accepted (documented known divergence)"
+  },
+  {
+   "id": "D-02",
+   "flow_ids": [
+    "mvc-api-root-undiscovered"
+   ],
+   "flows": "mvc-api-root-undiscovered (all 4 runs)",
+   "category": "harness/runtime artifact",
+   "root_cause": "<code>/api</code> stays 404 on both (Q1, legacy <code>CatalogController2</code> never discovered); only the Mono host 404 page body differs.",
+   "status": "Accepted (documented known divergence)"
+  },
+  {
+   "id": "D-03",
+   "flow_ids": [
+    "mvc-pic-nonnumeric"
+   ],
+   "flows": "mvc-pic-nonnumeric (all 4 runs)",
+   "category": "harness/runtime artifact",
+   "root_cause": "<code>/items/abc/pic</code> does not match <code>items/{catalogItemId:int}/pic</code>: 404 on both; Mono host error page body differs.",
+   "status": "Accepted (documented known divergence)"
+  },
+  {
+   "id": "D-04",
+   "flow_ids": [
+    "wf-unknown-path"
+   ],
+   "flows": "wf-unknown-path (all 4 runs)",
+   "category": "harness/runtime artifact",
+   "root_cause": "Unmapped WebForms URL: 404 and content type equal; Mono/xsp4 host error page text differs from the Razor Pages 404.",
+   "status": "Accepted (documented known divergence)"
+  },
+  {
+   "id": "H-01",
+   "flow_ids": [],
+   "flows": "wf-create-* (SQL container run with both compose services up): wf-create-postback-valid, wf-create-after-list, wf-create-after-details, wf-create-postback-name-missing, wf-create-postback-stock-out-of-range, wf-create-postback-price-nonnumeric, wf-create-postback-no-viewstate",
+   "category": "harness/runtime artifact",
+   "root_cause": "In the compose SQL profile <code>webforms-sql</code> <code>depends_on</code> <code>mvc-sql</code>, so both .NET 8 apps share one DB and mvc-sql seeds it first; the WebForms process then takes a fresh HiLo block and the created item gets id 21 instead of legacy's 13 (legacy is replayed one app per DB). The id shift cascades into the data-state diff and into wf-create-after-details (it requests the legacy id 13 -> Q7 500). Same rows otherwise. Observed in two container runs (7 and 7 failing).",
+   "status": "Not a product difference (HiLo blocks are per process by design, legacy EF6 HiLo behaves the same). Final container SQL run uses <code>NET8_DOCKER_SOLO=1</code> (start-net8.sh: <code>up --no-deps</code>, one app at a time) and is reported in section 5."
+  },
+  {
+   "id": "L-01",
+   "flow_ids": [],
+   "flows": "SQL mode, legacy-live vs recorded (mock) baseline: mvc-details-cold-12, mvc-delete-cold-10, mvc-index-negative-page, mvc-index-negative-size, mvc-edit-post-unknown-id, mvc-delete-post-unknown-id",
+   "category": "pre-existing legacy defect",
+   "root_cause": "Legacy itself behaves differently in SQL mode (Q18, BASELINE.md section 5): EF lazy loading fills cold navigation properties; negative paging and POST unknown id throw (500) in EF but not in the mock. The .NET 8 app reproduces each identically (pair verdict equivalent).",
+   "status": "Reproduced identically (deliberately preserved)"
+  },
+  {
+   "id": "L-02",
+   "flow_ids": [],
+   "flows": "SQL mode, WebForms legacy-live vs mock baseline: wf-index-* / wf-details-found* / wf-edit-found / wf-delete-found / *-warm-list (prices rendered 19.50 instead of 19.5), wf-details-cold-1 and wf-delete-cold-3 (200 instead of 500), wf-index-negative-page (500), wf-create-postback-stock-out-of-range (500)",
+   "category": "pre-existing legacy defect",
+   "root_cause": "First observation of legacy WebForms in SQL mode (new in this stage): SQL <code>decimal(18,2)</code> keeps scale 2 so <code>Price.ToString()</code> renders 19.50; lazy loading avoids the cold-mock NRE (Q4); EF Skip with a negative count throws; EF6 save-time validation (see R-02). Legacy mode differences, extension of Q18 to WebForms. .NET 8 reproduces each identically.",
+   "status": "Reproduced identically (deliberately preserved)"
+  },
+  {
+   "id": "S-01",
+   "flow_ids": [
+    "mvc-api-files"
+   ],
+   "flows": "mvc-api-files (Q2)",
+   "category": "intentional/security divergence",
+   "root_cause": "Legacy <code>/api/files</code> serialises with BinaryFormatter (CWE-502 deserialisation risk, removed from .NET 8). The .NET 8 app keeps the endpoint shape with a safe replacement; the replay compares it equivalent after normalisation and <code>BinaryFormatterTests</code> assert BinaryFormatter is not used.",
+   "status": "Intentional, documented in INVENTORY.md Q2 (no observable pair difference)"
+  },
+  {
+   "id": "Q-PRE",
+   "flow_ids": [],
+   "flows": "Q3 mvc-api-brand-delete-*; Q4 *-cold-*; Q5 mvc-index-size0, wf-index-size0, wf-index-nonnumeric; Q6 mvc-delete-post-unknown-id; Q7 wf-details-missing, wf-details-aspx-no-route, wf-edit-missing, wf-delete-missing, wf-delete-after-details; Q8 wf-create-postback-*; Q9/Q11/Q13/Q15/Q16 markup and XML negotiation",
+   "category": "pre-existing legacy defect",
+   "root_cause": "Legacy defects catalogued in <code>modernization/INVENTORY.md</code> (DELETE /api/brands no-op 200, cold mock navigation properties, pageSize=0 divide-by-zero, unknown ids 500, WebForms ModelState vs Page.IsValid, annotation drift, pager count, stray &lt;/a&gt;, XML content negotiation). Kept on purpose so the migration is behaviour-preserving; every one replays at parity.",
+   "status": "Reproduced identically (deliberately preserved); candidates for post-migration fixes"
+  },
+  {
+   "id": "K-01",
+   "flow_ids": [],
+   "flows": "all",
+   "category": "known limitation",
+   "root_cause": "Legacy reference runs on Mono/xsp4, not IIS/.NET Framework on Windows, with documented shims in throwaway copies (case-sensitive asset copies, MVC 5.2.7 Razor refs, WebForms ScriptManager/ModelState/binding/SelectMethod shims, HiLo script paths, connection strings). Windows-only behaviour (IIS error pages, Windows auth, registry/LocalDB) is not observed.",
+   "status": "Open limitation (environment)"
+  },
+  {
+   "id": "K-02",
+   "flow_ids": [],
+   "flows": "sql-container run",
+   "category": "known limitation",
+   "root_cause": "The container SQL run compares data state through the app pages only (the .NET 8 DB lives in the compose sqldata container); sqlcmd dumps of both DBs were done in the local SQL run.",
+   "status": "Open limitation (harness scope)"
+  }
+ ],
+ "verified": [
+  "All 155 flows (99 MVC, 56 WebForms) at parity in mock mode, local processes and Linux container images: status, redirects, content types, normalised HTML/JSON/binary bodies.",
+  "All 155 flows at parity in SQL mode against independent databases seeded by each side's own initializer, with sqlcmd dumps of both databases equal after all 30 mutating flows.",
+  "HiLo id assignment, create/edit/delete persistence, paging, details/edit/delete pages, MVC server-side validation messages, /api/brands JSON and XML, DELETE /api/brands, picture route, WebForms list/paging/CRUD including its legacy validation quirks.",
+  "Container images (aspnet:8.0) start healthy in mock and SQL profiles and replay with 0 failing flows.",
+  ".NET 8 test suites green (unit and integration, incl. SQL-backed unit tests against SQL Server 2022)."
+ ],
+ "limitations": [
+  "D-01..D-04: host 404 error-page bodies differ (Mono/xsp4 vs ASP.NET Core); status codes equal.",
+  "Legacy defects Q1-Q18 preserved on purpose (see Q-PRE, L-01, L-02), e.g. unknown WebForms ids and pageSize=0 return 500, WebForms validators not enforced in mock mode.",
+  "K-01: legacy measured on Mono/xsp4, not IIS. K-02: container SQL data state compared via pages.",
+  "No recorded manual UI walkthrough (testing agent) in this automated run; UI evidence = Playwright screenshots in section 9 and the replayed transcripts.",
+  "CI parity gate: repo variable ESHOPNET8_PARITY_GATE is still unset (needs a maintainer)."
+ ],
+ "links": [
+  {
+   "label": "Umbrella PR (draft, into main)",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/80"
+  },
+  {
+   "label": "Plan / baseline PR",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/81"
+  },
+  {
+   "label": "T1 EF Core data layer",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/84"
+  },
+  {
+   "label": "T2 service layer / DI",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/82"
+  },
+  {
+   "label": "T3 MVC UI",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/85"
+  },
+  {
+   "label": "T4 Web API",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/83"
+  },
+  {
+   "label": "T5 WebForms -> Razor Pages",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/88"
+  },
+  {
+   "label": "T6 containers / CI",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/86"
+  },
+  {
+   "label": "T7 tests",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/87"
+  },
+  {
+   "label": "Integration fix PR",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/90"
+  },
+  {
+   "label": "Parity fix PR (this stage)",
+   "url": "https://github.com/COG-GTM/eShopModernizing/pull/91"
+  }
+ ]
+}
