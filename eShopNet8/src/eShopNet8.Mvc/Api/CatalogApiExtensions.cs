@@ -36,7 +36,9 @@ public static class CatalogApiExtensions
 
         // Web API 2 answered any other verb on a matched controller with 405, an Allow header and an HttpError body.
         // These method-agnostic endpoints run only when no verb-specific endpoint above matches.
-        brands.Map("", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET")).WithOrder(1);
+        brands.Map("", (HttpContext context) => context.Request.Query.ContainsKey("id")
+            ? WebApiResults.MethodNotAllowed(context, "GET", "DELETE")
+            : WebApiResults.MethodNotAllowed(context, "GET")).WithOrder(1);
         brands.Map("/{id}", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET", "DELETE")).WithOrder(1);
         files.Map("", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET")).WithOrder(1);
         files.Map("/{id}", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET")).WithOrder(1);
