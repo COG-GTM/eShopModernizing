@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- T2: request log scope middleware (Logging/) needs ASP.NET Core abstractions. -->
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\eShop.Catalog.Core\eShop.Catalog.Core.csproj" />
   </ItemGroup>
 

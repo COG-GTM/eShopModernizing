@@ -1,10 +1,10 @@
 using eShop.Catalog.Core.Configuration;
 using eShop.Catalog.Core.Services;
 using eShop.Catalog.Infrastructure.Logging;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace eShop.Catalog.Infrastructure.Services;
@@ -24,24 +24,20 @@ public static class CatalogServicesExtensions
         }
         else
         {
-            services.TryAddEnumerable(ServiceDescriptor.Singleton<Microsoft.Extensions.Hosting.IHostedService, CatalogServiceRegistrationCheck>());
+            services.TryAddEnumerable(ServiceDescriptor.Singleton<IHostedService, CatalogServiceRegistrationCheck>());
         }
 
         return services;
     }
 
-    // ILogger replacement for log4net: console provider, levels from the "Logging" section, and a per-request scope
-    // carrying the legacy Application_BeginRequest properties (activityid, requestinfo).
+    // ILogger replacement for log4net: console provider with per-request scopes (see CatalogLoggingDefaults);
+    // levels and formatter options come from the "Logging" section, which overrides the code defaults.
     public static ILoggingBuilder AddCatalogLogging(this ILoggingBuilder logging, IConfiguration configuration)
     {
-        logging.ClearProviders();
+        logging.AddConfiguration(new ConfigurationBuilder().AddInMemoryCollection(CatalogLoggingDefaults.Values).Build());
         logging.AddConfiguration(configuration.GetSection("Logging"));
-        logging.AddSimpleConsole(options =>
-        {
-            options.IncludeScopes = true;
-            options.TimestampFormat = "yyyy-MM-dd HH:mm:ss,fff ";
-        });
-        logging.Services.TryAddEnumerable(ServiceDescriptor.Transient<IStartupFilter, RequestLogScopeStartupFilter>());
+        logging.Configure(options => options.ActivityTrackingOptions =
+            ActivityTrackingOptions.TraceId | ActivityTrackingOptions.SpanId | ActivityTrackingOptions.ParentId);
         return logging;
     }
 }
