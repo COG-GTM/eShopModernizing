@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Primitives;
+using NUglify;
+using NUglify.Css;
+using NUglify.JavaScript;
 
 namespace eShopNet8.Mvc.Hosting
 {
@@ -20,7 +24,8 @@ namespace eShopNet8.Mvc.Hosting
 
         private static readonly CultureInfo LegacyCulture = CultureInfo.GetCultureInfo("en-US");
 
-        // System.Web.Optimization bundles from App_Start/BundleConfig.cs (served unminified, as in debug mode).
+        // System.Web.Optimization bundles from App_Start/BundleConfig.cs. The bundle endpoints always minify (JsMinify /
+        // CssMinify), even with compilation debug=true, which only makes Scripts.Render/Styles.Render emit per-file tags.
         private static readonly (string Path, string ContentType, string[] Files)[] Bundles =
         {
             ("/bundles/jquery", "text/javascript", new[] { "Scripts/jquery-3.3.1.js" }),
@@ -107,12 +112,13 @@ namespace eShopNet8.Mvc.Hosting
         {
             foreach (var (path, contentType, files) in Bundles)
             {
-                app.MapGet(path, (HttpContext context, IWebHostEnvironment env) =>
+                var bundle = new CachedBundle(app.Environment.WebRootFileProvider, files, contentType);
+                app.MapGet(path, (HttpContext context) =>
                 {
                     // System.Web.Optimization's BundleHandler: publicly cacheable for a year.
                     context.Response.Headers.CacheControl = "public";
                     context.Response.Headers.Expires = DateTimeOffset.UtcNow.AddYears(1).ToString("R");
-                    return Results.Text(Concatenate(env.WebRootFileProvider, files), contentType, Encoding.UTF8);
+                    return Results.Text(bundle.Content, contentType, Encoding.UTF8);
                 });
             }
 
@@ -121,13 +127,84 @@ namespace eShopNet8.Mvc.Hosting
             return app;
         }
 
-        private static string Concatenate(IFileProvider files, IEnumerable<string> paths)
+        /// <summary>
+        /// Minified bundle built at startup and rebuilt when a source file changes, like the BundleResponse that
+        /// System.Web.Optimization caches with a CacheDependency on its files.
+        /// </summary>
+        internal sealed class CachedBundle
+        {
+            private readonly IFileProvider files;
+            private readonly string[] paths;
+            private readonly string contentType;
+            private readonly object rebuildLock = new();
+            private volatile Snapshot current;
+
+            public CachedBundle(IFileProvider files, string[] paths, string contentType)
+            {
+                this.files = files;
+                this.paths = paths;
+                this.contentType = contentType;
+                current = Build();
+            }
+
+            public string Content
+            {
+                get
+                {
+                    var snapshot = current;
+                    if (!snapshot.Changed.HasChanged)
+                    {
+                        return snapshot.Content;
+                    }
+
+                    // One rebuild at a time, so an older rebuild can never replace a newer one.
+                    lock (rebuildLock)
+                    {
+                        snapshot = current;
+                        if (snapshot.Changed.HasChanged)
+                        {
+                            current = snapshot = Build();
+                        }
+                        return snapshot.Content;
+                    }
+                }
+            }
+
+            private Snapshot Build()
+            {
+                // Watch before reading so an edit made while minifying still invalidates this snapshot.
+                var changed = new CompositeChangeToken(paths.Select(files.Watch).ToList());
+                return new Snapshot(BuildBundle(files, paths, contentType), changed);
+            }
+
+            private sealed record Snapshot(string Content, IChangeToken Changed);
+        }
+
+        internal static string BuildBundle(IFileProvider files, IEnumerable<string> paths, string contentType)
+        {
+            var isScript = contentType == "text/javascript";
+            // ScriptBundle joins files with ";" so a file lacking a trailing semicolon cannot merge with the next one.
+            var source = Concatenate(files, paths, isScript ? ";\n" : "\n");
+            var result = isScript
+                ? Uglify.Js(source, new CodeSettings { EvalTreatment = EvalTreatment.MakeImmediateSafe, PreserveImportantComments = false })
+                : Uglify.Css(source, new CssSettings { CommentMode = CssComment.None });
+            if (!result.HasErrors)
+            {
+                return result.Code;
+            }
+
+            // JsMinify/CssMinify fall back to the unminified bundle, prefixed with the minifier errors.
+            var errors = string.Join("\r\n", result.Errors.Where(e => e.IsError).Select(e => e.ToString()));
+            return "/* Minification failed. Returning unminified contents.\r\n" + errors + "\r\n */\r\n" + source;
+        }
+
+        private static string Concatenate(IFileProvider files, IEnumerable<string> paths, string separator)
         {
             var sb = new StringBuilder();
             foreach (var path in paths)
             {
                 using var reader = new StreamReader(files.GetFileInfo(path).CreateReadStream());
-                sb.Append(reader.ReadToEnd()).Append('\n');
+                sb.Append(reader.ReadToEnd()).Append(separator);
             }
             return sb.ToString();
         }

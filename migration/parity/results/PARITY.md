@@ -4,12 +4,13 @@ LEGACY (.NET Framework 4.7.2 on Mono 6.12 + xsp4) and MIGRATED (.NET 8 Linux con
 
 ## Headline
 
-- MOCK mode (UseMockData=true, PreconfiguredData seed): 128/128 checks contract-identical, 24/24 full data-state snapshots identical in row order; replay.py vs baseline 128/128 on legacy and 128/128 on migrated.
-- MOCK mode strict (whole normalised response incl. error bodies + full Content-Type) 53/128 identical; headers 55/128 identical. Every remaining strict/header diff is classified below (D1-D7); none changes status, Location, page content, form fields, validation messages, JSON or /api/files bytes.
-- Before the src-net8 header fixes in this PR the same mock run gave strict 40/128 and headers 2/128 (F1-F4).
-- SQL mode (SQL Server 2022, UseMockData=false, both apps on the same database, reset before each sequence): 120/128 contract-identical, 19/24 data-state identical. Differences: S1 negative page (legacy defect), S2 EF6 validate-on-save (OPEN regression, WebForms SQL only; causes 5 of the data-state diffs and 1 contract diff downstream). /api/files byte mismatch in SQL mode was found and fixed (F5).
-- OPEN regressions: D5 (bundles unminified, non-functional) and S2 (WebForms SQL negative-stock create accepted).
-- Migrated tests: 176 passed / 0 failed / 0 skipped. Legacy: no unit/integration test project exists; the 128-check transcript suite is the legacy baseline suite and passed 128/128 on legacy in mock mode.
+- MOCK mode (UseMockData=true, PreconfiguredData seed): 128/128 checks contract-identical, 24/24 full data-state snapshots identical in row order; legacy vs baseline 128/128, migrated vs baseline 128/128. Verdicts: 53 identical, 75 equivalent, 0 different (unchanged by the S2/D5 fixes, as expected: S2 is SQL-only and bundle bytes are a strict-level check).
+- MOCK mode strict (whole normalised response incl. error bodies + full Content-Type) 53/128 identical; headers 55/128 identical. Every remaining strict/header diff is classified below; none changes status, Location, page content, form fields, validation messages, JSON or /api/files bytes.
+- Before the src-net8 header fixes in PR #78 the same mock run gave strict 40/128 and headers 2/128 (F1-F4).
+- SQL mode (SQL Server 2022, UseMockData=false, both apps on the same database, reset before each sequence): 126/128 contract-identical (was 120/128 before the S2 fix), 24/24 data-state identical (was 19/24). Verdicts: 53 identical, 73 equivalent, 2 different (was 53/67/8). The 2 remaining contract diffs are S1 negative page (pre-existing legacy defect: EF6 negative OFFSET -> 500).
+- S2 (EF6 validate-on-save) FIXED and observed: wf-create-post-invalid-negative-stock is now 500 on both sides with no row written, and no downstream WebForms data-state drift. D5 (bundles) FIXED and observed: all four script bundles are minified (/bundles/jqueryval and /bundles/modernizr byte-identical to WebGrease, /bundles/jquery 87,464 vs 87,460 bytes, /bundles/bootstrap same length, different bytes); /Content/css is minified on the migrated side while legacy WebGrease fails on Bootstrap 4 custom properties and serves it unminified (D5b, legacy defect).
+- OPEN regressions: none.
+- Migrated tests: 205 passed / 0 failed / 0 skipped. Legacy: no unit/integration test project exists; the 128-check transcript suite is the legacy baseline suite and passed 128/128 on legacy in mock mode.
 
 ## Environment
 
@@ -33,7 +34,7 @@ LEGACY (.NET Framework 4.7.2 on Mono 6.12 + xsp4) and MIGRATED (.NET 8 Linux con
 
 | metric | value |
 |---|---|
-| generated_at | 2026-10-23T05:25:35+00:00 |
+| generated_at | 2026-10-23T05:52:42+00:00 |
 | checks | 128 |
 | contract_match | 128 |
 | strict_match | 53 |
@@ -102,11 +103,11 @@ Verdicts: identical 53, equivalent 75
 | `mvc-static-images-main_footer_text-png` | Static asset /images/main_footer_text.png | 200 | 200 | identical | none |
 | `mvc-static-favicon-ico` | Static asset /favicon.ico | 200 | 200 | identical | none |
 | `mvc-static-pics-1-png` | Static asset /Pics/1.png | 200 | 200 | identical | none |
-| `mvc-bundle-content-css` | Bundle endpoint /Content/css (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
+| `mvc-bundle-content-css` | Bundle endpoint /Content/css (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5b-css-minify-failure: 2 diff(s) |
 | `mvc-bundle-bundles-jquery` | Bundle endpoint /bundles/jquery (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
-| `mvc-bundle-bundles-jqueryval` | Bundle endpoint /bundles/jqueryval (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
-| `mvc-bundle-bundles-modernizr` | Bundle endpoint /bundles/modernizr (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
-| `mvc-bundle-bundles-bootstrap` | Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
+| `mvc-bundle-bundles-jqueryval` | Bundle endpoint /bundles/jqueryval (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s) |
+| `mvc-bundle-bundles-modernizr` | Bundle endpoint /bundles/modernizr (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s) |
+| `mvc-bundle-bundles-bootstrap` | Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 1 diff(s) |
 | `mvc-create-post-valid` | Create POST valid -> 302 / and item 13 added | 302 | 302 | equivalent | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s) |
 | `mvc-details-created` | Details of created item 13 | 200 | 200 | equivalent | D1-charset: 2 diff(s) |
 | `mvc-pic-created` | Pic of created item (dummy.png) | 200 | 200 | identical | none |
@@ -180,17 +181,17 @@ Verdicts: identical 53, equivalent 75
 
 | metric | value |
 |---|---|
-| generated_at | 2026-10-23T05:18:57+00:00 |
+| generated_at | 2026-10-23T05:54:20+00:00 |
 | checks | 128 |
-| contract_match | 120 |
+| contract_match | 126 |
 | strict_match | 53 |
 | headers_match | 55 |
 | data_state_checks | 24 |
-| data_state_match | 19 |
+| data_state_match | 24 |
 | legacy_vs_baseline_pass | 102 |
 | migrated_vs_baseline_pass | 102 |
 
-Verdicts: identical 53, equivalent 67, different 8
+Verdicts: identical 53, equivalent 73, different 2
 
 SQL-mode limitations:
 
@@ -256,11 +257,11 @@ SQL-mode limitations:
 | `mvc-static-images-main_footer_text-png` | Static asset /images/main_footer_text.png | 200 | 200 | identical | none |
 | `mvc-static-favicon-ico` | Static asset /favicon.ico | 200 | 200 | identical | none |
 | `mvc-static-pics-1-png` | Static asset /Pics/1.png | 200 | 200 | identical | none |
-| `mvc-bundle-content-css` | Bundle endpoint /Content/css (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
+| `mvc-bundle-content-css` | Bundle endpoint /Content/css (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5b-css-minify-failure: 2 diff(s) |
 | `mvc-bundle-bundles-jquery` | Bundle endpoint /bundles/jquery (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
-| `mvc-bundle-bundles-jqueryval` | Bundle endpoint /bundles/jqueryval (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
-| `mvc-bundle-bundles-modernizr` | Bundle endpoint /bundles/modernizr (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
-| `mvc-bundle-bundles-bootstrap` | Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 2 diff(s) |
+| `mvc-bundle-bundles-jqueryval` | Bundle endpoint /bundles/jqueryval (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s) |
+| `mvc-bundle-bundles-modernizr` | Bundle endpoint /bundles/modernizr (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s) |
+| `mvc-bundle-bundles-bootstrap` | Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract) | 200 | 200 | equivalent | D1-charset: 2 diff(s); D5-bundles: 1 diff(s) |
 | `mvc-create-post-valid` | Create POST valid -> 302 / and item 13 added | 302 | 302 | equivalent | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s) |
 | `mvc-details-created` | Details of created item 13 | 200 | 200 | equivalent | D1-charset: 2 diff(s) |
 | `mvc-pic-created` | Pic of created item (dummy.png) | 200 | 200 | identical | none |
@@ -321,14 +322,14 @@ SQL-mode limitations:
 | `wf-details-created` | WebForms Details of created item 13 | 200 | 200 | equivalent | D1-charset: 2 diff(s); D2-nocache: 2 diff(s) |
 | `wf-create-post-invalid-missing-name` | WebForms Create postback (missing name; server-side checks only) | 302 | 302 | equivalent | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s) |
 | `wf-create-post-invalid-bad-price` | WebForms Create postback (non-numeric price; server-side checks only) | 500 | 500 | equivalent | D1-charset: 2 diff(s); D4-error-body: 3 diff(s); D2-nocache: 3 diff(s) |
-| `wf-create-post-invalid-negative-stock` | WebForms Create postback (negative stock; server-side checks only) | 500 | 302 | different | S2-ef-validate-on-save: 12 diff(s); D1-charset: 2 diff(s); D3-redirect-text: 1 diff(s) |
-| `wf-edit-post-valid` | WebForms Edit postback valid (item 3) -> redirect / | 302 | 302 | different | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s); S2-ef-validate-on-save: 3 diff(s) |
+| `wf-create-post-invalid-negative-stock` | WebForms Create postback (negative stock; server-side checks only) | 500 | 500 | equivalent | D1-charset: 2 diff(s); D4-error-body: 3 diff(s); D2-nocache: 3 diff(s) |
+| `wf-edit-post-valid` | WebForms Edit postback valid (item 3) -> redirect / | 302 | 302 | equivalent | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s) |
 | `wf-details-edited` | WebForms Details of edited item 3 | 200 | 200 | equivalent | D1-charset: 2 diff(s); D2-nocache: 2 diff(s) |
-| `wf-edit-post-invalid-bad-price` | WebForms Edit postback (non-numeric price, item 4) | 500 | 500 | different | D1-charset: 2 diff(s); D4-error-body: 3 diff(s); D2-nocache: 3 diff(s); S2-ef-validate-on-save: 3 diff(s) |
-| `wf-edit-post-invalid-missing-name` | WebForms Edit postback (missing name, item 4) | 302 | 302 | different | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s); S2-ef-validate-on-save: 3 diff(s) |
+| `wf-edit-post-invalid-bad-price` | WebForms Edit postback (non-numeric price, item 4) | 500 | 500 | equivalent | D1-charset: 2 diff(s); D4-error-body: 3 diff(s); D2-nocache: 3 diff(s) |
+| `wf-edit-post-invalid-missing-name` | WebForms Edit postback (missing name, item 4) | 302 | 302 | equivalent | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s) |
 | `wf-delete-get-created` | WebForms Delete page of created item 13 | 200 | 200 | equivalent | D1-charset: 2 diff(s); D2-nocache: 2 diff(s) |
-| `wf-delete-post` | WebForms Delete postback item 13 -> redirect / | 302 | 302 | different | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s); S2-ef-validate-on-save: 3 diff(s) |
-| `wf-list-after-mutations` | WebForms list after all postbacks | 200 | 200 | different | S2-ef-validate-on-save: 28 diff(s); D1-charset: 2 diff(s); D2-nocache: 2 diff(s) |
+| `wf-delete-post` | WebForms Delete postback item 13 -> redirect / | 302 | 302 | equivalent | D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s) |
+| `wf-list-after-mutations` | WebForms list after all postbacks | 200 | 200 | equivalent | D1-charset: 2 diff(s); D2-nocache: 2 diff(s) |
 
 ## Differences and classification
 
@@ -346,7 +347,7 @@ Cache-Control `no-cache,no-store` + `Pragma: no-cache` / `Expires: -1` instead o
 
 Root cause: ASP.NET Core's SessionMiddleware (when it issues the ASP.NET_SessionId cookie), DefaultAntiforgery (when it renders a token) and ExceptionHandlerMiddleware (500 pages) force no-cache headers; System.Web left HttpCachePolicy at Private. Stricter caching only; no functional effect.
 
-Affected: mock: 39 flow(s); sql: 39 flow(s) (per-flow list in parity-results.json)
+Affected: mock: 39 flow(s); sql: 40 flow(s) (per-flow list in parity-results.json)
 
 ### D3-redirect-text - pre-existing legacy defect
 
@@ -354,7 +355,7 @@ Affected: mock: 39 flow(s); sql: 39 flow(s) (per-flow list in parity-results.jso
 
 Root cause: Legacy-harness artifact: Mono's System.Web redirect template omits the period that .NET Framework's HttpResponse.Redirect writes; src-net8 ObjectMovedResult/LegacyRedirectResult reproduce the .NET Framework text. Status and Location are identical.
 
-Affected: mock: 10 flow(s); sql: 9 flow(s) (per-flow list in parity-results.json)
+Affected: mock: 10 flow(s); sql: 8 flow(s) (per-flow list in parity-results.json)
 
 ### D4-error-body - intentional (.NET 8 forced)
 
@@ -362,15 +363,23 @@ Error (404/500) response bodies differ
 
 Root cause: System.Web's yellow-screen / host error pages do not exist in ASP.NET Core; the migrated app returns its own error page (or an empty 404 for unmatched routes). Status codes are identical; CONTRACT.md excludes framework error HTML from parity.
 
-Affected: mock: 11 flow(s); sql: 12 flow(s) (per-flow list in parity-results.json)
+Affected: mock: 11 flow(s); sql: 13 flow(s) (per-flow list in parity-results.json)
 
-### D5-bundles - open regression
+### D5-bundles - fixed-in-parity-pr
 
-Script/style bundles are served unminified (bytes/length differ)
+Script bundles are now minified; /bundles/jquery and /bundles/bootstrap differ from WebGrease by a few bytes of minifier output (/bundles/jqueryval and /bundles/modernizr are byte-identical)
 
-Root cause: The legacy /bundles/* and /Content/css endpoints always apply System.Web.Optimization JsMinify/CssMinify (even with compilation debug=true, which only changes how Scripts.Render emits tags); the migrated bundle endpoints concatenate the unminified sources (e.g. /bundles/jquery 271,752 vs 87,460 bytes). Same scripts and behaviour; larger payload. Needs a minifier (e.g. WebOptimizer) - not small, left open.
+Root cause: Legacy /bundles/* always apply System.Web.Optimization JsMinify (even with compilation debug=true, which only changes how Scripts.Render emits tags). The migrated bundle endpoints now minify once at startup with NUglify (the maintained fork of the Microsoft Ajax Minifier that WebGrease wraps), joining files with ';' like ScriptBundle. Before this fix /bundles/jquery was 271,752 vs 87,460 bytes; now 87,464 vs 87,460. Not a contract (CONTRACT.md excludes bundle bytes); the residual diffs are minifier output only.
 
-Affected: mock: 5 flow(s); sql: 5 flow(s) (per-flow list in parity-results.json)
+Affected: mock: 2 flow(s); sql: 2 flow(s) (per-flow list in parity-results.json)
+
+### D5b-css-minify-failure - pre-existing legacy defect
+
+/Content/css: legacy serves the stylesheet unminified behind a `/* Minification failed. Returning unminified contents. */` header; migrated serves it minified
+
+Root cause: WebGrease CssMinify cannot parse Bootstrap 4 CSS custom properties (`--blue: #007bff;` -> run-time error CSS1062), so System.Web.Optimization falls back to the raw concatenation prefixed with the error list (199,898 bytes). NUglify parses it and the migrated bundle is minified (159,208 bytes; 197,431 before this fix). Same rules, smaller payload; bundle bytes are not a contract.
+
+Affected: mock: 1 flow(s); sql: 1 flow(s) (per-flow list in parity-results.json)
 
 ### D6-wf-validator-script - intentional (.NET 8 forced)
 
@@ -396,14 +405,6 @@ Root cause: Legacy CatalogService.GetCatalogItemsPaginated does Skip(pageSize * 
 
 Affected: sql: 2 flow(s) (per-flow list in parity-results.json)
 
-### S2-ef-validate-on-save - open regression
-
-SQL mode: WebForms create with negative Stock -> legacy 500 (row rejected), migrated 302 (row inserted); the extra row then shifts every later WebForms data-state snapshot
-
-Root cause: EF6 DbContext validates DataAnnotations on SaveChanges (ValidateOnSaveEnabled), so the legacy WebForms CatalogItem [Range(0, 10000000)] on Stock throws DbEntityValidationException; EF Core does not validate on save and the Razor Pages handler does not check ranges server-side. Not small: a generic SaveChanges validator over the shared eShop.Catalog.Core model also applies the MVC [Required] Name attribute, which the legacy WebForms model lacks (tried in this run: it turned wf-create/edit-post-invalid-missing-name into 500s), so the fix needs a WebForms-specific rule set. Mock mode is unaffected (legacy mock also accepts the row).
-
-Affected: sql: 6 flow(s) (per-flow list in parity-results.json)
-
 ### F1-webapi-nocache - fixed-in-parity-pr
 
 Web API 2 default headers on /api/brands and /api/files: `Cache-Control: no-cache`, `Pragma: no-cache`, `Expires: -1` (src-net8 Api/LegacyApiCacheHeaders.cs).
@@ -424,14 +425,18 @@ System.Web default `Cache-Control: private` when nothing else sets caching, and 
 
 SQL mode /api/files bytes: List<T>._items is serialised at capacity; over an EF6 query ToList() grows 4->8 so legacy SQL emits an 8-slot array with 3 null slots. BrandDtoNrbfWriter now takes the capacity (sized = count in mock mode, grown in SQL mode); SQL /api/files went from a byte mismatch (721 vs 719 bytes) to identical.
 
+### S2-ef-validate-on-save - fixed-in-parity-pr
+
+SQL mode WebForms create/edit now enforces what EF6 ValidateOnSaveEnabled enforced: the SQL CatalogService runs an optional ICatalogSaveValidator before SaveChanges, and only eShopNet8.WebForms registers one (LegacyWebFormsSaveValidator: the legacy WebForms CatalogItem attributes - Price regex + Range(0, 9999999999999999.99), Range(0, 10000000) on the three stock fields, no [Required] on Name - plus the EF6 IsRequired/HasMaxLength(50) facets). MVC and mock mode register none. wf-create-post-invalid-negative-stock went from legacy 500 / migrated 302 (row inserted) to 500 / 500 with no row, and SQL data-state went from 19/24 to 24/24 (wf-*-missing-name stays 302 on both sides).
+
 ## Test suites
 
-- Migrated: `dotnet test src-net8/eShopNet8.sln -c Release` -> eShop.Catalog.UnitTests 68/68 (incl. Testcontainers SQL), eShopNet8.Mvc.IntegrationTests 68/68, eShopNet8.WebForms.IntegrationTests 40/40; total 176 passed, 0 failed, 0 skipped. Build: 0 errors, 4 NU1902 warnings (AngleSharp 1.1.2 advisory in integration-test projects, pre-existing).
+- Migrated: `dotnet test src-net8/eShopNet8.sln` -> eShop.Catalog.UnitTests 70/70 (incl. Testcontainers SQL; +2 save-validator hook tests), eShopNet8.Mvc.IntegrationTests 75/75 (+7 bundle minification/rebuild tests), eShopNet8.WebForms.IntegrationTests 60/60 (+20 LegacyWebFormsSaveValidator rule tests); total 205 passed, 0 failed, 0 skipped. Build: 0 errors, 4 NU1902 warnings (AngleSharp 1.1.2 advisory in integration-test projects, pre-existing).
 - Legacy: no test projects exist in eShopLegacyMVCSolution / eShopLegacyWebFormsSolution. The transcript suite is the legacy baseline suite: legacy 128/128 (mock), migrated 128/128 (mock).
 
 ## Screenshots
 
-results/screenshots/<flow>-legacy.png and <flow>-migrated.png for index, details, create, create-validation (client-side validation errors), edit, delete-confirm, webforms-list; captured in mock mode by migration/parity/screenshots_side_by_side.py with headless Chrome at 1280px.
+results/screenshots/<flow>-legacy.png and <flow>-migrated.png for index, details, create, create-validation (client-side validation errors), edit, delete-confirm, webforms-list; captured in mock mode by migration/parity/screenshots_side_by_side.py with headless Chrome at 1280px. Not re-captured for the S2/D5 fixes: no captured page changes (the migrated MVC layout references the individual /Scripts and /Content files, as legacy Scripts.Render/Styles.Render do with compilation debug=true, so the minified bundle endpoints are not loaded by these pages; S2 is SQL-only).
 
 ## Raw reports
 
@@ -448,6 +453,13 @@ M='docker compose -f src-net8/docker-compose.yml --profile mock'
 python3 migration/parity/side_by_side.py --legacy-mvc http://localhost:5100 --legacy-webforms http://localhost:5101 --migrated-mvc http://localhost:5200 --migrated-webforms http://localhost:5201 \
   --restart-legacy-mvc 'migration/parity/legacy/start-legacy.sh mvc' --restart-legacy-webforms 'migration/parity/legacy/start-legacy.sh webforms' \
   --restart-migrated-mvc "$M restart mvc-mock && sleep 3" --restart-migrated-webforms "$M restart webforms-mock && sleep 3" --report-dir migration/parity/results/raw/mock
-# SQL: see migration/parity/sql/setup-legacy-sql.sh and reset-sql.sh headers
+# SQL (src-net8/docker/sql.env from sql.env.example with a generated MSSQL_SA_PASSWORD; stop the mock profile and legacy mock copies first)
+set -a; . src-net8/docker/sql.env; set +a; migration/parity/sql/setup-legacy-sql.sh all
+docker compose -f src-net8/docker-compose.yml --env-file src-net8/docker/sql.env --profile sql up -d --build --wait
+E=src-net8/docker/sql.env R=migration/parity/sql/reset-sql.sh
+python3 migration/parity/side_by_side.py --legacy-mvc http://localhost:5100 --legacy-webforms http://localhost:5101 --migrated-mvc http://localhost:5200 --migrated-webforms http://localhost:5201 \
+  --restart-legacy-mvc "$R $E && LEGACY_ROOT=/tmp/sql migration/parity/legacy/start-legacy.sh mvc" --restart-legacy-webforms "$R $E && LEGACY_ROOT=/tmp/sql migration/parity/legacy/start-legacy.sh webforms" \
+  --restart-migrated-mvc "$R $E mvc" --restart-migrated-webforms "$R $E webforms" --report-dir migration/parity/results/raw/sql
+# replay.py vs baseline per side: --mvc-url/--webforms-url + the same --restart-cmd-<app> commands, --report-dir raw/<mode>/<side>-replay
 python3 migration/parity/build_report.py
 ```

@@ -4,15 +4,16 @@
     "raw/sql/side-by-side.json"
   ],
   "run_date": "2026-10-23",
-  "integration_base": "devin/net8-eshop-migration @ ef7d36432580f41ea53be542f71e95745e92003b",
+  "integration_base": "devin/net8-parity-fixes (stacked on devin/net8-parity-run @ 5e58107, PR #78) on devin/net8-eshop-migration @ ef7d36432580f41ea53be542f71e95745e92003b",
   "intro": "LEGACY (.NET Framework 4.7.2 on Mono 6.12 + xsp4) and MIGRATED (.NET 8 Linux containers built from src-net8) were run side by side on identical seed data and every transcript in migration/baseline/transcripts/ (126 flows + 2 initial-state checks = 128 checks) was replayed against BOTH sides with migration/parity/side_by_side.py (direct legacy-vs-migrated diff) and migration/parity/replay.py (each side vs the recorded legacy baseline). Both apps were restarted before each app's mutating sequence. Nothing below is claimed beyond what these runs observed.",
   "headline": [
-    "MOCK mode (UseMockData=true, PreconfiguredData seed): 128/128 checks contract-identical, 24/24 full data-state snapshots identical in row order; replay.py vs baseline 128/128 on legacy and 128/128 on migrated.",
-    "MOCK mode strict (whole normalised response incl. error bodies + full Content-Type) 53/128 identical; headers 55/128 identical. Every remaining strict/header diff is classified below (D1-D7); none changes status, Location, page content, form fields, validation messages, JSON or /api/files bytes.",
-    "Before the src-net8 header fixes in this PR the same mock run gave strict 40/128 and headers 2/128 (F1-F4).",
-    "SQL mode (SQL Server 2022, UseMockData=false, both apps on the same database, reset before each sequence): 120/128 contract-identical, 19/24 data-state identical. Differences: S1 negative page (legacy defect), S2 EF6 validate-on-save (OPEN regression, WebForms SQL only; causes 5 of the data-state diffs and 1 contract diff downstream). /api/files byte mismatch in SQL mode was found and fixed (F5).",
-    "OPEN regressions: D5 (bundles unminified, non-functional) and S2 (WebForms SQL negative-stock create accepted).",
-    "Migrated tests: 176 passed / 0 failed / 0 skipped. Legacy: no unit/integration test project exists; the 128-check transcript suite is the legacy baseline suite and passed 128/128 on legacy in mock mode."
+    "MOCK mode (UseMockData=true, PreconfiguredData seed): 128/128 checks contract-identical, 24/24 full data-state snapshots identical in row order; legacy vs baseline 128/128, migrated vs baseline 128/128. Verdicts: 53 identical, 75 equivalent, 0 different (unchanged by the S2/D5 fixes, as expected: S2 is SQL-only and bundle bytes are a strict-level check).",
+    "MOCK mode strict (whole normalised response incl. error bodies + full Content-Type) 53/128 identical; headers 55/128 identical. Every remaining strict/header diff is classified below; none changes status, Location, page content, form fields, validation messages, JSON or /api/files bytes.",
+    "Before the src-net8 header fixes in PR #78 the same mock run gave strict 40/128 and headers 2/128 (F1-F4).",
+    "SQL mode (SQL Server 2022, UseMockData=false, both apps on the same database, reset before each sequence): 126/128 contract-identical (was 120/128 before the S2 fix), 24/24 data-state identical (was 19/24). Verdicts: 53 identical, 73 equivalent, 2 different (was 53/67/8). The 2 remaining contract diffs are S1 negative page (pre-existing legacy defect: EF6 negative OFFSET -> 500).",
+    "S2 (EF6 validate-on-save) FIXED and observed: wf-create-post-invalid-negative-stock is now 500 on both sides with no row written, and no downstream WebForms data-state drift. D5 (bundles) FIXED and observed: all four script bundles are minified (/bundles/jqueryval and /bundles/modernizr byte-identical to WebGrease, /bundles/jquery 87,464 vs 87,460 bytes, /bundles/bootstrap same length, different bytes); /Content/css is minified on the migrated side while legacy WebGrease fails on Bootstrap 4 custom properties and serves it unminified (D5b, legacy defect).",
+    "OPEN regressions: none.",
+    "Migrated tests: 205 passed / 0 failed / 0 skipped. Legacy: no unit/integration test project exists; the 128-check transcript suite is the legacy baseline suite and passed 128/128 on legacy in mock mode."
   ],
   "environment": [
     "Legacy MVC: throwaway copy /tmp/legacy-mvc via migration/parity/legacy/setup-legacy.sh, xsp4 :5100. Harness-only edits (never committed): UseMockData=true, Views/Web.config System.Web.Mvc 5.2.3.0->5.2.7.0, Content/Site.css copied to site.css, Pics symlink for case-sensitive paths. msbuild warns it cannot resolve System.Web.Entity (unused; app runs).",
@@ -37,10 +38,10 @@
     "SA password generated per run into an untracked env file (src-net8/docker/sql.env.example documents the variable); not committed."
   ],
   "tests": [
-    "Migrated: `dotnet test src-net8/eShopNet8.sln -c Release` -> eShop.Catalog.UnitTests 68/68 (incl. Testcontainers SQL), eShopNet8.Mvc.IntegrationTests 68/68, eShopNet8.WebForms.IntegrationTests 40/40; total 176 passed, 0 failed, 0 skipped. Build: 0 errors, 4 NU1902 warnings (AngleSharp 1.1.2 advisory in integration-test projects, pre-existing).",
+    "Migrated: `dotnet test src-net8/eShopNet8.sln` -> eShop.Catalog.UnitTests 70/70 (incl. Testcontainers SQL; +2 save-validator hook tests), eShopNet8.Mvc.IntegrationTests 75/75 (+7 bundle minification/rebuild tests), eShopNet8.WebForms.IntegrationTests 60/60 (+20 LegacyWebFormsSaveValidator rule tests); total 205 passed, 0 failed, 0 skipped. Build: 0 errors, 4 NU1902 warnings (AngleSharp 1.1.2 advisory in integration-test projects, pre-existing).",
     "Legacy: no test projects exist in eShopLegacyMVCSolution / eShopLegacyWebFormsSolution. The transcript suite is the legacy baseline suite: legacy 128/128 (mock), migrated 128/128 (mock)."
   ],
-  "screenshots": "results/screenshots/<flow>-legacy.png and <flow>-migrated.png for index, details, create, create-validation (client-side validation errors), edit, delete-confirm, webforms-list; captured in mock mode by migration/parity/screenshots_side_by_side.py with headless Chrome at 1280px.",
+  "screenshots": "results/screenshots/<flow>-legacy.png and <flow>-migrated.png for index, details, create, create-validation (client-side validation errors), edit, delete-confirm, webforms-list; captured in mock mode by migration/parity/screenshots_side_by_side.py with headless Chrome at 1280px. Not re-captured for the S2/D5 fixes: no captured page changes (the migrated MVC layout references the individual /Scripts and /Content files, as legacy Scripts.Render/Styles.Render do with compilation debug=true, so the minified bundle endpoints are not loaded by these pages; S2 is SQL-only).",
   "raw_reports": [
     "raw/mock/side-by-side.json|.txt (summary + per-flow diffs), raw/mock/side-by-side-raw.json (both sides' full normalised responses)",
     "raw/mock/legacy-replay/parity-report.json|.txt, raw/mock/migrated-replay/parity-report.json|.txt (replay.py vs baseline)",
@@ -53,13 +54,20 @@
     "python3 migration/parity/side_by_side.py --legacy-mvc http://localhost:5100 --legacy-webforms http://localhost:5101 --migrated-mvc http://localhost:5200 --migrated-webforms http://localhost:5201 \\",
     "  --restart-legacy-mvc 'migration/parity/legacy/start-legacy.sh mvc' --restart-legacy-webforms 'migration/parity/legacy/start-legacy.sh webforms' \\",
     "  --restart-migrated-mvc \"$M restart mvc-mock && sleep 3\" --restart-migrated-webforms \"$M restart webforms-mock && sleep 3\" --report-dir migration/parity/results/raw/mock",
-    "# SQL: see migration/parity/sql/setup-legacy-sql.sh and reset-sql.sh headers",
+    "# SQL (src-net8/docker/sql.env from sql.env.example with a generated MSSQL_SA_PASSWORD; stop the mock profile and legacy mock copies first)",
+    "set -a; . src-net8/docker/sql.env; set +a; migration/parity/sql/setup-legacy-sql.sh all",
+    "docker compose -f src-net8/docker-compose.yml --env-file src-net8/docker/sql.env --profile sql up -d --build --wait",
+    "E=src-net8/docker/sql.env R=migration/parity/sql/reset-sql.sh",
+    "python3 migration/parity/side_by_side.py --legacy-mvc http://localhost:5100 --legacy-webforms http://localhost:5101 --migrated-mvc http://localhost:5200 --migrated-webforms http://localhost:5201 \\",
+    "  --restart-legacy-mvc \"$R $E && LEGACY_ROOT=/tmp/sql migration/parity/legacy/start-legacy.sh mvc\" --restart-legacy-webforms \"$R $E && LEGACY_ROOT=/tmp/sql migration/parity/legacy/start-legacy.sh webforms\" \\",
+    "  --restart-migrated-mvc \"$R $E mvc\" --restart-migrated-webforms \"$R $E webforms\" --report-dir migration/parity/results/raw/sql",
+    "# replay.py vs baseline per side: --mvc-url/--webforms-url + the same --restart-cmd-<app> commands, --report-dir raw/<mode>/<side>-replay",
     "python3 migration/parity/build_report.py"
   ],
   "modes": {
     "mock": {
       "summary": {
-        "generated_at": "2026-10-23T05:25:35+00:00",
+        "generated_at": "2026-10-23T05:52:42+00:00",
         "targets": {
           "mvc": {
             "legacy": "http://localhost:5100",
@@ -353,7 +361,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"98039c9d7d75edcf3c39bc625671fa80dd575174e6e56b2290031e2516f45b04\" != expected \"d953d19a0a697c2608ce1952e8ff6a2ec08071d62c714854459555a0265746a3\"",
+              "[strict] $.response.body.sha256: \"e5f1987c41bc1a1f32abdcf5104fe6794d268c337572db1dc9360f8ecd0fffa6\" != expected \"1dfd1e9605fd98f482041ef6b982715d12880cf179077944e09cf2bf8e4c7634\"",
               "[strict] $.response.body.length: 2026 != expected 20775",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
             ]
@@ -1164,15 +1172,15 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D5b-css-minify-failure: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/css; charset=utf-8\" != expected \"text/css\"",
               "[header] $.headers.content-type: \"text/css; charset=utf-8\" != expected \"text/css\""
             ],
-            "D5-bundles": [
-              "[strict] $.response.body.sha256: \"962394d64ffa216c9de710d419e90f55202d4b43e553dfc0920f2dc90eaeed9b\" != expected \"3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538\"",
-              "[strict] $.response.body.length: 197431 != expected 199898"
+            "D5b-css-minify-failure": [
+              "[strict] $.response.body.sha256: \"cffb79ad18b644b7c9f54cffae99fea1a14ec71a75ca037ae668dd28f9d2d06f\" != expected \"3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538\"",
+              "[strict] $.response.body.length: 159208 != expected 199898"
             ]
           }
         },
@@ -1197,8 +1205,8 @@
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
             ],
             "D5-bundles": [
-              "[strict] $.response.body.sha256: \"0fba1eccfd552e3474f36cb0a271b4e6c103303d7e83bdc2ab4553fcd9361946\" != expected \"83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa\"",
-              "[strict] $.response.body.length: 271752 != expected 87460"
+              "[strict] $.response.body.sha256: \"22e7ff9bf490546f8344db4c90b1b5648937778971aca1af69d601e52d019ab4\" != expected \"83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa\"",
+              "[strict] $.response.body.length: 87464 != expected 87460"
             ]
           }
         },
@@ -1216,15 +1224,11 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
-            ],
-            "D5-bundles": [
-              "[strict] $.response.body.sha256: \"50fafe4f648f71b88a56ee20571c153d529aba8d7fba48f10b35124147a4b22d\" != expected \"2dd80e00f6559e4e0cf921736596e1350d7da7e0f323018f5c6642274d225e1d\"",
-              "[strict] $.response.body.length: 68044 != expected 28742"
             ]
           }
         },
@@ -1242,15 +1246,11 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
-            ],
-            "D5-bundles": [
-              "[strict] $.response.body.sha256: \"5c783a11b6eaf37c99bf7569081281391610f929894e3c988eadd2052bfdaad2\" != expected \"4a87e4d5a949776e0197b33dbb1806748cacda1aa2afb4c2bbd7da8e6aa71fe8\"",
-              "[strict] $.response.body.length: 102811 != expected 22095"
             ]
           }
         },
@@ -1268,15 +1268,14 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 1 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
             ],
             "D5-bundles": [
-              "[strict] $.response.body.sha256: \"8211ea80536accdd1dd9b0c9ecf19f9388d82ce62c13dc31ae07180bebc1f15c\" != expected \"152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a\"",
-              "[strict] $.response.body.length: 140175 != expected 65044"
+              "[strict] $.response.body.sha256: \"f68f5dff5374869cc91cd7e0c64f63b5c3805dee17d823c5335883a5ba20fe4e\" != expected \"152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a\""
             ]
           }
         },
@@ -1522,7 +1521,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"98039c9d7d75edcf3c39bc625671fa80dd575174e6e56b2290031e2516f45b04\" != expected \"15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e\"",
+              "[strict] $.response.body.sha256: \"e5f1987c41bc1a1f32abdcf5104fe6794d268c337572db1dc9360f8ecd0fffa6\" != expected \"15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e\"",
               "[strict] $.response.body.length: 2026 != expected 17744",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
             ]
@@ -2069,7 +2068,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"6ea63650816d7b77443e20d03e31fa796a85fa99b7b1fc857ac8cca2611c62ec\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"08d7522c1e5984e90760f8d9be09e2809597070e0fda7d0317bcee3b8a6a9513\"",
               "[strict] $.response.body.length: 152 != expected 7307",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -2127,7 +2126,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"506c651e9078a787e129ae31fc8df9f8ef551ae75b975b27b358255155ccceee\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"0c8cb4fab7848ecb5e15faab620a5e6e3d58718fdb370f785901fa3a648a8f90\"",
               "[strict] $.response.body.length: 152 != expected 9511",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -2188,7 +2187,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"30ee66bc78ac6eccee3a34d4ce75f2262325f0ea876a83aa3c267a67f3d63e61\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"7b0a78bcd8e142505aa437d6577fa1b0d71c045acd7873ff7455f72e77e6b4a1\"",
               "[strict] $.response.body.length: 152 != expected 5964",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -2246,7 +2245,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"0c0617fb2d985bbf80810c1af283fcab6ddc8138b39516086d86bf478aedc043\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"e745edf5693317b48ce406d36b59f5c944bbeb4cd8e6f0458a78156d6acbd32b\"",
               "[strict] $.response.body.length: 152 != expected 9507",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -2304,7 +2303,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"ac8e62112aff93f5df533e8006d498e1a5adfee2f88d16e642f1693b91766cc5\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"0becd1d7314fdb8597e650360df452eb0dbd2f8b55816c99e6f1ee57961f34cb\"",
               "[strict] $.response.body.length: 152 != expected 7751",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -2698,7 +2697,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"5c8cc146f217e77773034e938db67afd682f18d0d2211565ac4bbb01d5bf6c1d\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"c9506ed8a1578de43bfa6758a3702bc0e222ac38404cf3bca9fcd989053e7b5d\"",
               "[strict] $.response.body.length: 152 != expected 8253",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -2808,7 +2807,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"d0db8c2eee6e1d489ae61195a0ab3e04af64d3c9ee2aeb0024682fe0792c15b9\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"2514c28732b3879a6e02b31e3546b5bce163873f95f7bbf656e31fd36223263a\"",
               "[strict] $.response.body.length: 152 != expected 8245",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -2931,7 +2930,7 @@
     },
     "sql": {
       "summary": {
-        "generated_at": "2026-10-23T05:18:57+00:00",
+        "generated_at": "2026-10-23T05:54:20+00:00",
         "targets": {
           "mvc": {
             "legacy": "http://localhost:5100",
@@ -2958,11 +2957,11 @@
           "x-sourcefiles"
         ],
         "checks": 128,
-        "contract_match": 120,
+        "contract_match": 126,
         "strict_match": 53,
         "headers_match": 55,
         "data_state_checks": 24,
-        "data_state_match": 19,
+        "data_state_match": 24,
         "legacy_vs_baseline_pass": 102,
         "migrated_vs_baseline_pass": 102
       },
@@ -3223,7 +3222,7 @@
               "[contract] $.response.body: unexpected {\"kind\": \"html\", \"html\": {\"title\": \"Index - Catalog manager (MVC)\", \"headings\": [[\"h1\", \"Catalog manager (MVC)\"]], \"text\": \"Catalog manager (MVC) Create New Name Description Brand Type Price Picture n",
               "[strict] $.response.status: 200 != expected 500",
               "[strict] $.response.body.kind: \"html\" != expected \"binary\"",
-              "[strict] $.response.body.sha256: missing (expected \"9829c707f30f7d58a98532073cd58980f1ad8b8d8ee1cbbb158c93e1dbc5a588\")",
+              "[strict] $.response.body.sha256: missing (expected \"4839c43d30cbb0e4957ea0e212dd4ecdaedabc7bb10e729642b4b556069df286\")",
               "[strict] $.response.body.length: missing (expected 33976)",
               "[strict] $.response.body.html: unexpected {\"title\": \"Index - Catalog manager (MVC)\", \"headings\": [[\"h1\", \"Catalog manager (MVC)\"]], \"text\": \"Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max sto"
             ],
@@ -3254,7 +3253,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"2ecb56d43e1237a33a07e9e6970b49ce20c010b205afc1057b07d5533a0a4709\" != expected \"f5439d5ae2946d8c8f2997a8757e3efa910faa78e77a16b5a6255446de2f26f8\"",
+              "[strict] $.response.body.sha256: \"2390adc61cf19604d95fd7f949f4c013950801a0a826a024df86744a919e97ca\" != expected \"2449e88cec1df09c9c34bb7cda427564851fa27247d066550de497d49c0d43c2\"",
               "[strict] $.response.body.length: 2026 != expected 20767",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
             ]
@@ -4071,15 +4070,15 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D5b-css-minify-failure: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/css; charset=utf-8\" != expected \"text/css\"",
               "[header] $.headers.content-type: \"text/css; charset=utf-8\" != expected \"text/css\""
             ],
-            "D5-bundles": [
-              "[strict] $.response.body.sha256: \"962394d64ffa216c9de710d419e90f55202d4b43e553dfc0920f2dc90eaeed9b\" != expected \"3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538\"",
-              "[strict] $.response.body.length: 197431 != expected 199898"
+            "D5b-css-minify-failure": [
+              "[strict] $.response.body.sha256: \"cffb79ad18b644b7c9f54cffae99fea1a14ec71a75ca037ae668dd28f9d2d06f\" != expected \"3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538\"",
+              "[strict] $.response.body.length: 159208 != expected 199898"
             ]
           }
         },
@@ -4104,8 +4103,8 @@
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
             ],
             "D5-bundles": [
-              "[strict] $.response.body.sha256: \"0fba1eccfd552e3474f36cb0a271b4e6c103303d7e83bdc2ab4553fcd9361946\" != expected \"83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa\"",
-              "[strict] $.response.body.length: 271752 != expected 87460"
+              "[strict] $.response.body.sha256: \"22e7ff9bf490546f8344db4c90b1b5648937778971aca1af69d601e52d019ab4\" != expected \"83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa\"",
+              "[strict] $.response.body.length: 87464 != expected 87460"
             ]
           }
         },
@@ -4123,15 +4122,11 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
-            ],
-            "D5-bundles": [
-              "[strict] $.response.body.sha256: \"50fafe4f648f71b88a56ee20571c153d529aba8d7fba48f10b35124147a4b22d\" != expected \"2dd80e00f6559e4e0cf921736596e1350d7da7e0f323018f5c6642274d225e1d\"",
-              "[strict] $.response.body.length: 68044 != expected 28742"
             ]
           }
         },
@@ -4149,15 +4144,11 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
-            ],
-            "D5-bundles": [
-              "[strict] $.response.body.sha256: \"5c783a11b6eaf37c99bf7569081281391610f929894e3c988eadd2052bfdaad2\" != expected \"4a87e4d5a949776e0197b33dbb1806748cacda1aa2afb4c2bbd7da8e6aa71fe8\"",
-              "[strict] $.response.body.length: 102811 != expected 22095"
             ]
           }
         },
@@ -4175,15 +4166,14 @@
           "data_state": "n/a",
           "legacy_vs_baseline": [],
           "migrated_vs_baseline": [],
-          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D5-bundles: 1 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
               "[header] $.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
             ],
             "D5-bundles": [
-              "[strict] $.response.body.sha256: \"8211ea80536accdd1dd9b0c9ecf19f9388d82ce62c13dc31ae07180bebc1f15c\" != expected \"152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a\"",
-              "[strict] $.response.body.length: 140175 != expected 65044"
+              "[strict] $.response.body.sha256: \"f68f5dff5374869cc91cd7e0c64f63b5c3805dee17d823c5335883a5ba20fe4e\" != expected \"152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a\""
             ]
           }
         },
@@ -4429,7 +4419,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"2ecb56d43e1237a33a07e9e6970b49ce20c010b205afc1057b07d5533a0a4709\" != expected \"15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e\"",
+              "[strict] $.response.body.sha256: \"2390adc61cf19604d95fd7f949f4c013950801a0a826a024df86744a919e97ca\" != expected \"15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e\"",
               "[strict] $.response.body.length: 2026 != expected 17744",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
             ]
@@ -4642,7 +4632,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"2ecb56d43e1237a33a07e9e6970b49ce20c010b205afc1057b07d5533a0a4709\" != expected \"d877b270aaecf1c63f8f21d88674c98a35c177845bb09213d16e5099b9cbe59d\"",
+              "[strict] $.response.body.sha256: \"2390adc61cf19604d95fd7f949f4c013950801a0a826a024df86744a919e97ca\" != expected \"25b252877fb8f52295f670ca15aeb27b6d12f2a88c637c0fa974b14f5eeb5394\"",
               "[strict] $.response.body.length: 2026 != expected 19948",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
             ]
@@ -5139,7 +5129,7 @@
               "[contract] $.response.body: unexpected {\"kind\": \"html\", \"html\": {\"title\": \"Home Page - Catalog manager (Web Forms)\", \"headings\": [[\"h1\", \"Catalog manager (Web Forms)\"]], \"text\": \"Catalog manager (Web Forms) Create New No data was returned.",
               "[strict] $.response.status: 200 != expected 500",
               "[strict] $.response.body.kind: \"html\" != expected \"binary\"",
-              "[strict] $.response.body.sha256: missing (expected \"cdc4124c448c6d0af4d25f8ee0e172d9b9eef7b7472be1b54da04ffd47c8167d\")",
+              "[strict] $.response.body.sha256: missing (expected \"3f6be96e4b7d2ad76ad21adbcd075112e6bb86d7a6ea0618e1b86cd53b8ca7c2\")",
               "[strict] $.response.body.length: missing (expected 20498)",
               "[strict] $.response.body.html: unexpected {\"title\": \"Home Page - Catalog manager (Web Forms)\", \"headings\": [[\"h1\", \"Catalog manager (Web Forms)\"]], \"text\": \"Catalog manager (Web Forms) Create New No data was returned. Previous Showing 10 of 1"
             ],
@@ -5174,7 +5164,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"4e1c2d87c836fd6e3fcbf84fbc7c8c7f08c60d758a3f67d404d71b377387ec02\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"c774c94253e9ef04db6a622f03f4d3c0860332c469a9ec1e6d847ab16c020ef3\"",
               "[strict] $.response.body.length: 152 != expected 7299",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -5238,7 +5228,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"13f9728757d642b5a37346fc728d7ac91a10842a0fa2c5c67fe44ba3c4807b9a\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"3e78b098775ecbafffd7569951e7473d37b0b8266dc0b339827674e53db527c7\"",
               "[strict] $.response.body.length: 152 != expected 9511",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -5303,7 +5293,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"c449c4b87c5d2ec6bfe1aad7334fc903a8a3a85045c538c500514c9fa89d8dfc\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"f086d86d7f6abf963eddbf3503abd6f5b76d27fe953a4bb875a6d020fe0dcfde\"",
               "[strict] $.response.body.length: 152 != expected 5964",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -5367,7 +5357,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"d56981a6068813f72aa501f26d782cae0e4d76b20e0dbaa156d163fa64b03e7c\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"d81c2cd52702a51074239cd3e1a1380da010964fb3691d24ab2dcc7456ebe7b0\"",
               "[strict] $.response.body.length: 152 != expected 9507",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -5431,7 +5421,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"138223a7b193554f131452fed0899d869016dbb7cd7d3ac3c63e7d94605f96ce\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"35e28e66f0f03bd0777067412d8c58cf9d46fd2ea63274a5c1102ca696a1a11a\"",
               "[strict] $.response.body.length: 152 != expected 7751",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -5897,7 +5887,7 @@
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"65cd74dd8ab8d1ac294807002cf9046c09c75ed86ee15ddca2d26cbafce55e6a\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"3f0001b27074d068a83903cfc3bd2af627baa59f3896718e3ce0e30b7a0799ca\"",
               "[strict] $.response.body.length: 152 != expected 8253",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -5914,12 +5904,12 @@
           "description": "WebForms Create postback (negative stock; server-side checks only)",
           "mutates": true,
           "legacy_status": 500,
-          "migrated_status": 302,
-          "verdict": "different",
-          "contract_match": false,
+          "migrated_status": 500,
+          "verdict": "equivalent (contract + data-state match; strict/header diffs classified)",
+          "contract_match": true,
           "strict_match": false,
           "headers_match": false,
-          "data_state": "diff",
+          "data_state": "match",
           "legacy_vs_baseline": [
             "$.response.status: 500 != expected 302",
             "$.response.mime: missing (expected \"text/html\")",
@@ -5940,6 +5930,12 @@
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
           "migrated_vs_baseline": [
+            "$.response.status: 500 != expected 302",
+            "$.response.mime: missing (expected \"text/html\")",
+            "$.response.location: missing (expected \"{base}/\")",
+            "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+            "$.data_state.row_count: 14 != expected 15",
+            "$.data_state.rows: length 14 != expected 15",
             "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
             "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
             "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
@@ -5952,28 +5948,21 @@
             "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
-          "diff_summary": "S2-ef-validate-on-save: 12 diff(s); D1-charset: 2 diff(s); D3-redirect-text: 1 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D4-error-body: 3 diff(s); D2-nocache: 3 diff(s)",
           "diffs": {
-            "S2-ef-validate-on-save": [
-              "[contract] $.response.status: 302 != expected 500",
-              "[contract] $.response.mime: unexpected \"text/html\"",
-              "[contract] $.response.location: unexpected \"{base}/\"",
-              "[strict] $.response.status: 302 != expected 500",
-              "[strict] $.response.headers.location: unexpected \"{base}/\"",
-              "[strict] $.response.body.kind: \"html\" != expected \"binary\"",
-              "[strict] $.response.body.sha256: missing (expected \"f114b2702b346c26a45ffabbb78483707ce16a84d74f31d3bd51b1224bbab347\")",
-              "[strict] $.response.body.length: missing (expected 8012)",
-              "[header] $.headers.location: unexpected \"/\"",
-              "[data] $.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
-              "[data] $.data_state.row_count: 15 != expected 14",
-              "[data] $.data_state.rows: length 15 != expected 14"
-            ],
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
-            "D3-redirect-text": [
-              "[strict] $.response.body.html: unexpected {\"title\": \"Object moved\", \"headings\": [[\"h2\", \"Object moved to here .\"]], \"text\": \"Object moved to here .\", \"links\": [{\"text\": \"here\", \"href\": \"{base}/\", \"class\": []}], \"images\": [], \"tables\": [], \"de"
+            "D4-error-body": [
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"fd2ed1b15721420bed998d5c337652e1187ccb0f210e5de1063e81b70f565a23\"",
+              "[strict] $.response.body.length: 152 != expected 8012",
+              "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+            ],
+            "D2-nocache": [
+              "[header] $.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+              "[header] $.headers.expires: unexpected \"-1\"",
+              "[header] $.headers.pragma: unexpected \"no-cache\""
             ]
           }
         },
@@ -5984,11 +5973,11 @@
           "mutates": true,
           "legacy_status": 302,
           "migrated_status": 302,
-          "verdict": "different",
-          "contract_match": false,
+          "verdict": "equivalent (contract + data-state match; strict/header diffs classified)",
+          "contract_match": true,
           "strict_match": false,
           "headers_match": false,
-          "data_state": "diff",
+          "data_state": "match",
           "legacy_vs_baseline": [
             "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
             "$.data_state.row_count: 14 != expected 15",
@@ -6005,6 +5994,9 @@
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
           "migrated_vs_baseline": [
+            "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+            "$.data_state.row_count: 14 != expected 15",
+            "$.data_state.rows: length 14 != expected 15",
             "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
             "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
             "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -6016,7 +6008,7 @@
             "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
-          "diff_summary": "D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s); S2-ef-validate-on-save: 3 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
@@ -6025,11 +6017,6 @@
             "D3-redirect-text": [
               "[strict] $.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
               "[strict] $.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
-            ],
-            "S2-ef-validate-on-save": [
-              "[data] $.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
-              "[data] $.data_state.row_count: 15 != expected 14",
-              "[data] $.data_state.rows: length 15 != expected 14"
             ]
           }
         },
@@ -6066,11 +6053,11 @@
           "mutates": true,
           "legacy_status": 500,
           "migrated_status": 500,
-          "verdict": "different",
-          "contract_match": false,
+          "verdict": "equivalent (contract + data-state match; strict/header diffs classified)",
+          "contract_match": true,
           "strict_match": false,
           "headers_match": false,
-          "data_state": "diff",
+          "data_state": "match",
           "legacy_vs_baseline": [
             "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
             "$.data_state.row_count: 14 != expected 15",
@@ -6087,6 +6074,9 @@
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
           "migrated_vs_baseline": [
+            "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+            "$.data_state.row_count: 14 != expected 15",
+            "$.data_state.rows: length 14 != expected 15",
             "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
             "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
             "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -6098,14 +6088,14 @@
             "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
-          "diff_summary": "D1-charset: 2 diff(s); D4-error-body: 3 diff(s); D2-nocache: 3 diff(s); S2-ef-validate-on-save: 3 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D4-error-body: 3 diff(s); D2-nocache: 3 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
             ],
             "D4-error-body": [
-              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"4addd674608ea87cc0391612f44b1d129257f53fd8fe0ed29607c1d938f80880\"",
+              "[strict] $.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"e36c99056e0966d36375c2925e00a4a28ab5c12613cd35a8b1d99cbcb0a09516\"",
               "[strict] $.response.body.length: 152 != expected 8245",
               "[strict] $.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
             ],
@@ -6113,11 +6103,6 @@
               "[header] $.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
               "[header] $.headers.expires: unexpected \"-1\"",
               "[header] $.headers.pragma: unexpected \"no-cache\""
-            ],
-            "S2-ef-validate-on-save": [
-              "[data] $.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
-              "[data] $.data_state.row_count: 15 != expected 14",
-              "[data] $.data_state.rows: length 15 != expected 14"
             ]
           }
         },
@@ -6128,11 +6113,11 @@
           "mutates": true,
           "legacy_status": 302,
           "migrated_status": 302,
-          "verdict": "different",
-          "contract_match": false,
+          "verdict": "equivalent (contract + data-state match; strict/header diffs classified)",
+          "contract_match": true,
           "strict_match": false,
           "headers_match": false,
-          "data_state": "diff",
+          "data_state": "match",
           "legacy_vs_baseline": [
             "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
             "$.data_state.row_count: 14 != expected 15",
@@ -6149,6 +6134,9 @@
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
           "migrated_vs_baseline": [
+            "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+            "$.data_state.row_count: 14 != expected 15",
+            "$.data_state.rows: length 14 != expected 15",
             "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
             "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
             "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -6160,7 +6148,7 @@
             "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
-          "diff_summary": "D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s); S2-ef-validate-on-save: 3 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
@@ -6169,11 +6157,6 @@
             "D3-redirect-text": [
               "[strict] $.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
               "[strict] $.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
-            ],
-            "S2-ef-validate-on-save": [
-              "[data] $.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
-              "[data] $.data_state.row_count: 15 != expected 14",
-              "[data] $.data_state.rows: length 15 != expected 14"
             ]
           }
         },
@@ -6210,11 +6193,11 @@
           "mutates": true,
           "legacy_status": 302,
           "migrated_status": 302,
-          "verdict": "different",
-          "contract_match": false,
+          "verdict": "equivalent (contract + data-state match; strict/header diffs classified)",
+          "contract_match": true,
           "strict_match": false,
           "headers_match": false,
-          "data_state": "diff",
+          "data_state": "match",
           "legacy_vs_baseline": [
             "$.data_state.pager: \"Showing 1000 of 13 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
             "$.data_state.row_count: 13 != expected 14",
@@ -6231,6 +6214,9 @@
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
           "migrated_vs_baseline": [
+            "$.data_state.pager: \"Showing 1000 of 13 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
+            "$.data_state.row_count: 13 != expected 14",
+            "$.data_state.rows: length 13 != expected 14",
             "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
             "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
             "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
@@ -6242,7 +6228,7 @@
             "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
             "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
           ],
-          "diff_summary": "D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s); S2-ef-validate-on-save: 3 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D3-redirect-text: 2 diff(s)",
           "diffs": {
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
@@ -6251,11 +6237,6 @@
             "D3-redirect-text": [
               "[strict] $.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
               "[strict] $.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
-            ],
-            "S2-ef-validate-on-save": [
-              "[data] $.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 13 products - Page 1 - 1\"",
-              "[data] $.data_state.row_count: 14 != expected 13",
-              "[data] $.data_state.rows: length 14 != expected 13"
             ]
           }
         },
@@ -6266,8 +6247,8 @@
           "mutates": false,
           "legacy_status": 200,
           "migrated_status": 200,
-          "verdict": "different",
-          "contract_match": false,
+          "verdict": "equivalent (contract + data-state match; strict/header diffs classified)",
+          "contract_match": true,
           "strict_match": false,
           "headers_match": false,
           "data_state": "n/a",
@@ -6299,6 +6280,19 @@
           ],
           "migrated_vs_baseline": [
             "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+            "$.response.body.html.links: length 43 != expected 46",
+            "$.response.body.html.links[41].text: \"Previous\" != expected \"Edit\"",
+            "$.response.body.html.links[41].href: \"{base}/Default/index/-1/size/100\" != expected \"{base}/Catalog/Edit/15\"",
+            "$.response.body.html.links[41].class: length 3 != expected 1",
+            "$.response.body.html.links[41].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+            "$.response.body.html.links[42].text: \"Next\" != expected \"Details\"",
+            "$.response.body.html.links[42].href: \"{base}/Default/index/1/size/100\" != expected \"{base}/Catalog/Details/15\"",
+            "$.response.body.html.links[42].class: length 3 != expected 1",
+            "$.response.body.html.links[42].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+            "$.response.body.html.images: length 16 != expected 17",
+            "$.response.body.html.images[14]: \"{base}/images/brand_dark.png\" != expected \"{base}/Pics/dummy.png\"",
+            "$.response.body.html.images[15]: \"{base}/images/main_footer_text.png\" != expected \"{base}/images/brand_dark.png\"",
+            "$.response.body.html.tables[0].rows: length 14 != expected 15",
             "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
             "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
             "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
@@ -6310,38 +6304,8 @@
             "$.response.body.html.tables[0].rows[11][5]: \"8.50\" != expected \"8.5\"",
             "$.response.body.html.tables[0].rows[12][5]: \"12.00\" != expected \"12\""
           ],
-          "diff_summary": "S2-ef-validate-on-save: 28 diff(s); D1-charset: 2 diff(s); D2-nocache: 2 diff(s)",
+          "diff_summary": "D1-charset: 2 diff(s); D2-nocache: 2 diff(s)",
           "diffs": {
-            "S2-ef-validate-on-save": [
-              "[contract] $.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Bra",
-              "[contract] $.response.body.html.links: length 46 != expected 43",
-              "[contract] $.response.body.html.links[41].text: \"Edit\" != expected \"Previous\"",
-              "[contract] $.response.body.html.links[41].href: \"{base}/Catalog/Edit/15\" != expected \"{base}/Default/index/-1/size/100\"",
-              "[contract] $.response.body.html.links[41].class: length 1 != expected 3",
-              "[contract] $.response.body.html.links[41].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
-              "[contract] $.response.body.html.links[42].text: \"Details\" != expected \"Next\"",
-              "[contract] $.response.body.html.links[42].href: \"{base}/Catalog/Details/15\" != expected \"{base}/Default/index/1/size/100\"",
-              "[contract] $.response.body.html.links[42].class: length 1 != expected 3",
-              "[contract] $.response.body.html.links[42].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
-              "[contract] $.response.body.html.images: length 17 != expected 16",
-              "[contract] $.response.body.html.images[14]: \"{base}/Pics/dummy.png\" != expected \"{base}/images/brand_dark.png\"",
-              "[contract] $.response.body.html.images[15]: \"{base}/images/brand_dark.png\" != expected \"{base}/images/main_footer_text.png\"",
-              "[contract] $.response.body.html.tables[0].rows: length 15 != expected 14",
-              "[strict] $.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Bra",
-              "[strict] $.response.body.html.links: length 46 != expected 43",
-              "[strict] $.response.body.html.links[41].text: \"Edit\" != expected \"Previous\"",
-              "[strict] $.response.body.html.links[41].href: \"{base}/Catalog/Edit/15\" != expected \"{base}/Default/index/-1/size/100\"",
-              "[strict] $.response.body.html.links[41].class: length 1 != expected 3",
-              "[strict] $.response.body.html.links[41].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
-              "[strict] $.response.body.html.links[42].text: \"Details\" != expected \"Next\"",
-              "[strict] $.response.body.html.links[42].href: \"{base}/Catalog/Details/15\" != expected \"{base}/Default/index/1/size/100\"",
-              "[strict] $.response.body.html.links[42].class: length 1 != expected 3",
-              "[strict] $.response.body.html.links[42].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
-              "[strict] $.response.body.html.images: length 17 != expected 16",
-              "[strict] $.response.body.html.images[14]: \"{base}/Pics/dummy.png\" != expected \"{base}/images/brand_dark.png\"",
-              "[strict] $.response.body.html.images[15]: \"{base}/images/brand_dark.png\" != expected \"{base}/images/main_footer_text.png\"",
-              "[strict] $.response.body.html.tables[0].rows: length 15 != expected 14"
-            ],
             "D1-charset": [
               "[strict] $.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
               "[header] $.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
@@ -6355,8 +6319,8 @@
       ],
       "verdicts": {
         "identical": 53,
-        "equivalent": 67,
-        "different": 8
+        "equivalent": 73,
+        "different": 2
       }
     }
   },
@@ -6600,6 +6564,7 @@
           "wf-create-get",
           "wf-details-created",
           "wf-create-post-invalid-bad-price",
+          "wf-create-post-invalid-negative-stock",
           "wf-details-edited",
           "wf-edit-post-invalid-bad-price",
           "wf-delete-get-created",
@@ -6631,7 +6596,6 @@
           "mvc-delete-post",
           "wf-create-post-valid",
           "wf-create-post-invalid-missing-name",
-          "wf-create-post-invalid-negative-stock",
           "wf-edit-post-valid",
           "wf-edit-post-invalid-missing-name",
           "wf-delete-post"
@@ -6669,29 +6633,38 @@
           "wf-delete-get-missing",
           "wf-details-get-nonint",
           "wf-create-post-invalid-bad-price",
+          "wf-create-post-invalid-negative-stock",
           "wf-edit-post-invalid-bad-price"
         ]
       }
     },
     {
       "id": "D5-bundles",
-      "classification": "open regression",
-      "difference": "Script/style bundles are served unminified (bytes/length differ)",
-      "root_cause": "The legacy /bundles/* and /Content/css endpoints always apply System.Web.Optimization JsMinify/CssMinify (even with compilation debug=true, which only changes how Scripts.Render emits tags); the migrated bundle endpoints concatenate the unminified sources (e.g. /bundles/jquery 271,752 vs 87,460 bytes). Same scripts and behaviour; larger payload. Needs a minifier (e.g. WebOptimizer) - not small, left open.",
+      "classification": "fixed-in-parity-pr",
+      "difference": "Script bundles are now minified; /bundles/jquery and /bundles/bootstrap differ from WebGrease by a few bytes of minifier output (/bundles/jqueryval and /bundles/modernizr are byte-identical)",
+      "root_cause": "Legacy /bundles/* always apply System.Web.Optimization JsMinify (even with compilation debug=true, which only changes how Scripts.Render emits tags). The migrated bundle endpoints now minify once at startup with NUglify (the maintained fork of the Microsoft Ajax Minifier that WebGrease wraps), joining files with ';' like ScriptBundle. Before this fix /bundles/jquery was 271,752 vs 87,460 bytes; now 87,464 vs 87,460. Not a contract (CONTRACT.md excludes bundle bytes); the residual diffs are minifier output only.",
       "flows": {
         "mock": [
-          "mvc-bundle-content-css",
           "mvc-bundle-bundles-jquery",
-          "mvc-bundle-bundles-jqueryval",
-          "mvc-bundle-bundles-modernizr",
           "mvc-bundle-bundles-bootstrap"
         ],
         "sql": [
-          "mvc-bundle-content-css",
           "mvc-bundle-bundles-jquery",
-          "mvc-bundle-bundles-jqueryval",
-          "mvc-bundle-bundles-modernizr",
           "mvc-bundle-bundles-bootstrap"
+        ]
+      }
+    },
+    {
+      "id": "D5b-css-minify-failure",
+      "classification": "pre-existing legacy defect",
+      "difference": "/Content/css: legacy serves the stylesheet unminified behind a `/* Minification failed. Returning unminified contents. */` header; migrated serves it minified",
+      "root_cause": "WebGrease CssMinify cannot parse Bootstrap 4 CSS custom properties (`--blue: #007bff;` -> run-time error CSS1062), so System.Web.Optimization falls back to the raw concatenation prefixed with the error list (199,898 bytes). NUglify parses it and the migrated bundle is minified (159,208 bytes; 197,431 before this fix). Same rules, smaller payload; bundle bytes are not a contract.",
+      "flows": {
+        "mock": [
+          "mvc-bundle-content-css"
+        ],
+        "sql": [
+          "mvc-bundle-content-css"
         ]
       }
     },
@@ -6739,23 +6712,6 @@
       }
     },
     {
-      "id": "S2-ef-validate-on-save",
-      "classification": "open regression",
-      "difference": "SQL mode: WebForms create with negative Stock -> legacy 500 (row rejected), migrated 302 (row inserted); the extra row then shifts every later WebForms data-state snapshot",
-      "root_cause": "EF6 DbContext validates DataAnnotations on SaveChanges (ValidateOnSaveEnabled), so the legacy WebForms CatalogItem [Range(0, 10000000)] on Stock throws DbEntityValidationException; EF Core does not validate on save and the Razor Pages handler does not check ranges server-side. Not small: a generic SaveChanges validator over the shared eShop.Catalog.Core model also applies the MVC [Required] Name attribute, which the legacy WebForms model lacks (tried in this run: it turned wf-create/edit-post-invalid-missing-name into 500s), so the fix needs a WebForms-specific rule set. Mock mode is unaffected (legacy mock also accepts the row).",
-      "flows": {
-        "mock": [],
-        "sql": [
-          "wf-create-post-invalid-negative-stock",
-          "wf-edit-post-valid",
-          "wf-edit-post-invalid-bad-price",
-          "wf-edit-post-invalid-missing-name",
-          "wf-delete-post",
-          "wf-list-after-mutations"
-        ]
-      }
-    },
-    {
       "id": "F1-webapi-nocache",
       "classification": "fixed-in-parity-pr",
       "difference": "Web API 2 default headers on /api/brands and /api/files: `Cache-Control: no-cache`, `Pragma: no-cache`, `Expires: -1` (src-net8 Api/LegacyApiCacheHeaders.cs).",
@@ -6787,6 +6743,13 @@
       "id": "F5-api-files-sql",
       "classification": "fixed-in-parity-pr",
       "difference": "SQL mode /api/files bytes: List<T>._items is serialised at capacity; over an EF6 query ToList() grows 4->8 so legacy SQL emits an 8-slot array with 3 null slots. BrandDtoNrbfWriter now takes the capacity (sized = count in mock mode, grown in SQL mode); SQL /api/files went from a byte mismatch (721 vs 719 bytes) to identical.",
+      "root_cause": "see difference",
+      "flows": {}
+    },
+    {
+      "id": "S2-ef-validate-on-save",
+      "classification": "fixed-in-parity-pr",
+      "difference": "SQL mode WebForms create/edit now enforces what EF6 ValidateOnSaveEnabled enforced: the SQL CatalogService runs an optional ICatalogSaveValidator before SaveChanges, and only eShopNet8.WebForms registers one (LegacyWebFormsSaveValidator: the legacy WebForms CatalogItem attributes - Price regex + Range(0, 9999999999999999.99), Range(0, 10000000) on the three stock fields, no [Required] on Name - plus the EF6 IsRequired/HasMaxLength(50) facets). MVC and mock mode register none. wf-create-post-invalid-negative-stock went from legacy 500 / migrated 302 (row inserted) to 500 / 500 with no row, and SQL data-state went from 19/24 to 24/24 (wf-*-missing-name stays 302 on both sides).",
       "root_cause": "see difference",
       "flows": {}
     }
