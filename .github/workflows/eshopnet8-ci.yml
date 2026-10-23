@@ -74,7 +74,8 @@ jobs:
             --mvc-url http://127.0.0.1:5200 --webforms-url http://127.0.0.1:5201 \
             --restart-cmd-mvc 'modernization/parity/net8/start-net8.sh mvc --docker' \
             --restart-cmd-webforms 'modernization/parity/net8/start-net8.sh webforms --docker' \
-            --accept-quirks --report-dir parity-report > parity-report.log 2>&1
+            --accept-quirks --known-divergences eShopNet8/tests/eShopNet8.IntegrationTests/Parity/known-divergences.json \
+            --report-dir parity-report > parity-report.log 2>&1
           rc=$?
           set -e
           tail -n 40 parity-report.log
@@ -86,8 +87,8 @@ jobs:
           import json
           s = json.load(open("parity-report/replay-report.json"))["summary"]
           print("### eShop .NET 8 parity replay (mock containers)\n")
-          print("| flows | verdicts | failing | accepted quirks |\n|---|---|---|---|")
-          print("| %d/%d | %s | %d | %d |" % (s["flows"], s["baseline_flows"], json.dumps(s["verdicts"]), s["failing"], s["accepted_quirks"]))
+          print("| flows | verdicts | failing | accepted quirks | known divergences |\n|---|---|---|---|---|")
+          print("| %d/%d | %s | %d | %d | %d |" % (s["flows"], s["baseline_flows"], json.dumps(s["verdicts"]), s["failing"], s["accepted_quirks"], s.get("known_divergences", 0)))
           PY
           if [ "$rc" != 0 ]; then
             if [ "$PARITY_GATE" = true ]; then

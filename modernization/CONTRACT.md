@@ -11,8 +11,11 @@ The rules are implemented in `parity/normalize.py`; this document and that file 
 - `baseline/data-state/<flow>.json`: full catalog state after each flow with `"snapshot": true`.
 
 Replay: `python3 modernization/parity/replay.py --mvc-url URL --webforms-url URL [--restart-cmd-mvc CMD]
-[--restart-cmd-webforms CMD] --report-dir DIR [--accept-quirks] [--only SEQ...]`. It writes
+[--restart-cmd-webforms CMD] --report-dir DIR [--accept-quirks] [--known-divergences JSON] [--only SEQ...]`. It writes
 `DIR/replay-report.json` + `DIR/replay-report.txt` and exits 1 if any flow is `different` (or a flow is missing/errored).
+`--known-divergences eShopNet8/tests/eShopNet8.IntegrationTests/Parity/known-divergences.json` applies the same rule as
+the xUnit parity tests: a listed flow is reported as a known divergence (not failing) only when its status matches and
+every difference reason starts with one of the entry's `accept` prefixes (e.g. legacy Mono/xsp4 host 404 pages).
 
 ## 2. Requests
 - Paths, methods and headers are taken verbatim from `flows.json`.
