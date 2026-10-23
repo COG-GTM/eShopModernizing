@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Picked up by every test project via tests/Directory.Build.props: plain `dotnet test src-net8/eShopNet8.sln` writes
+     TestResults/<guid>/coverage.cobertura.xml per project (line coverage of Core, Infrastructure and both web apps). -->
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <Include>[eShop.Catalog.Core]*,[eShop.Catalog.Infrastructure]*,[eShopNet8.Mvc]*,[eShopNet8.WebForms]*</Include>
+          <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute,ExcludeFromCodeCoverageAttribute</ExcludeByAttribute>
+          <ExcludeByFile>**/obj/**,**/Migrations/*.Designer.cs,**/Migrations/*ModelSnapshot.cs</ExcludeByFile>
+          <SingleHit>false</SingleHit>
+          <UseSourceLink>false</UseSourceLink>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>
