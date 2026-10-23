@@ -16,7 +16,7 @@ Reproduce: `migration/parity/legacy/setup-legacy.sh all` (throwaway copies in `/
 MVC:
 1. `Web.config` `UseMockData` false -> true (no LocalDB on Linux).
 2. `Views/Web.config` Razor host factory `System.Web.Mvc 5.2.3.0` -> `5.2.7.0` (Mono ignores the binding redirect there).
-3. Symlinks `images -> Images` and `Content/site.css -> Site.css`: IIS is case-insensitive, Linux is not; the layout links `/images/*` and the css bundle includes `site.css`.
+3. Symlink `images -> Images` and a copy `Content/site.css` of `Content/Site.css`: IIS is case-insensitive, Linux is not; the layout links `/images/*` and the css bundle includes `site.css`. `site.css` must be a real copy: xsp4 serves a symlink truncated to its lstat size (8 bytes).
 
 WebForms (`UseMockData` is already true):
 1. `BundleConfig.cs`: drop the `ScriptManager.ScriptResourceMapping.AddDefinition("respond", ...)` call and delete the `AspNet.ScriptManager.*` / `Microsoft.ScriptManager.*` DLLs from `bin`: Mono's `System.Web.Extensions` has no `ScriptResourceDefinition` (TypeLoadException on every page).
