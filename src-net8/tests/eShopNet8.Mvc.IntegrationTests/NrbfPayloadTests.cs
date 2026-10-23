@@ -63,7 +63,7 @@ namespace eShopNet8.Mvc.IntegrationTests
             using var response = await client.GetAsync("api/files");
 
             Assert.Equal(200, (int)response.StatusCode);
-            Assert.Equal("text/html", response.Content.Headers.ContentType?.MediaType);
+            // No MIME assertion: legacy sets no Content-Type (xsp4 fills in text/html), flows.json waives it via compare.mime=false.
             var served = await response.Content.ReadAsByteArrayAsync();
             Assert.Equal(Convert.ToBase64String(RecordedPayload()), Convert.ToBase64String(served));
             Assert.Equal(Brands, Decode(served));
