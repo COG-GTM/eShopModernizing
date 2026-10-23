@@ -4,7 +4,7 @@
 # Nothing in the repository checkout is modified.
 #
 #   LEGACY_RUN_DIR (default ~/legacy-run)  where the copies are built
-#   LEGACY_SQL_PASSWORD (required for mvc-sql at start time)  sa password of the local SQL Server container
+#   LEGACY_SQL_PASSWORD (required for mvc-sql / wf-sql at start time)  sa password of the local SQL Server container
 #   LEGACY_SQL_SERVER (default 127.0.0.1,1433)
 set -euo pipefail
 
@@ -69,5 +69,15 @@ rm -f "$WF"/bin/AspNet.ScriptManager.*.dll "$WF"/bin/Microsoft.ScriptManager.*.d
 # W7: WebForms Bundle.config references Site.css but the file is site.css; log4net.xml vs log4Net.xml.
 cp "$WF/Content/site.css" "$WF/Content/Site.css"; cp "$WF/log4Net.xml" "$WF/log4net.xml"
 
+echo "== WebForms SQL-mode copy ($RUN/wf-sql)"
+# S3: same EF6 SQL mode for WebForms (its repo default is UseMockData=true + LocalDB). Copied after the Mono shims and
+#     W6/W7 so it runs the same build as the mock copy; shares the legacy catalog DB with mvc-sql (same hard-coded name, Q12).
+rm -rf "$RUN/wf-sql"; cp -r "$WF" "$RUN/wf-sql"
+sed -i 's/key="UseMockData" value="true"/key="UseMockData" value="false"/' "$RUN/wf-sql/Web.config"
+sed -i "s#connectionString=\"Data Source=(localdb)[^\"]*\"#connectionString=\"Data Source=$SQL_SERVER; Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb; User ID=sa; Password=$SQL_PW; MultipleActiveResultSets=True;\"#" "$RUN/wf-sql/Web.config"
+for f in catalog_hilo catalog_brand_hilo catalog_type_hilo; do
+  cp "$RUN/wf-sql/Models/Infrastructure/dbo.$f.Sequence.sql" "$RUN/wf-sql/Models\\Infrastructure\\dbo.$f.Sequence.sql"
+done
+
 ln -sfn "$MVC" "$RUN/mvc"; ln -sfn "$WF" "$RUN/webforms"
-echo "== done. Start with: $HERE/start-legacy.sh mvc|webforms|mvc-sql"
+echo "== done. Start with: $HERE/start-legacy.sh mvc|webforms|mvc-sql|wf-sql"

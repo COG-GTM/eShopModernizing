@@ -9,7 +9,7 @@
 #   global.json changed since the last publish, or NET8_REBUILD=1), then run it on 127.0.0.1.
 #   Ports: NET8_MVC_PORT=5200 NET8_WEBFORMS_PORT=5201. Probe: /health (mock) or /health/ready (--sql).
 #   --sql: UseMockData=false against NET8_SQL_SERVER (default 127.0.0.1,1433) with sa / NET8_SQL_PASSWORD;
-#   the catalog DB is dropped first (NET8_SQL_RESET=0 keeps it) so the app re-creates and re-seeds it.
+#   NET8_SQL_DB overrides the catalog DB name (e.g. to sit next to the legacy DB in one server); it is dropped first (NET8_SQL_RESET=0 keeps it) so the app re-creates and re-seeds it.
 #   Both apps share that DB, so a SQL-mode peer app that is running is stopped before the drop and restarted
 #   (without another reset) once this app has re-seeded; otherwise its cached HiLo block would collide.
 # --docker: restart the eShopNet8/docker-compose.yml service instead (profile mock: mvc/webforms on 5200/5201;
@@ -20,7 +20,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO="$(cd "$HERE/../../.." && pwd)"
 SOL="$REPO/eShopNet8"
 COMPOSE="$SOL/docker-compose.yml"
-DB=Microsoft.eShopOnContainers.Services.CatalogDb
+DB="${NET8_SQL_DB:-Microsoft.eShopOnContainers.Services.CatalogDb}"
 DROP_DB="IF DB_ID('$DB') IS NOT NULL BEGIN ALTER DATABASE [$DB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [$DB]; END"
 
 ACTION=start
@@ -70,6 +70,10 @@ wait_healthy() { # port logfile [name]
 }
 
 if [ "$DOCKER" = 1 ]; then
+  if [ -n "${NET8_SQL_DB:-}" ] && [ "$NET8_SQL_DB" != Microsoft.eShopOnContainers.Services.CatalogDb ]; then
+    # the compose connection strings name the default DB; resetting another one would leave the app on stale data
+    echo "NET8_SQL_DB is not supported with --docker (compose uses Microsoft.eShopOnContainers.Services.CatalogDb)" >&2; exit 2
+  fi
   ENV_FILE=(); [ -f "$SOL/docker/.env" ] && ENV_FILE=(--env-file "$SOL/docker/.env")
   if [ "$SQL" = 1 ]; then
     PROFILE=sql; SERVICE="$APP-sql"
@@ -85,6 +89,8 @@ if [ "$DOCKER" = 1 ]; then
     PEER_SERVICE="$PEER-sql"
     if [ "$PEER" = mvc ]; then PEER_PORT="${NET8_SQL_MVC_PORT:-5210}"; else PEER_PORT="${NET8_SQL_WEBFORMS_PORT:-5211}"; fi
     PEER_UP=0; dc ps --status running --services 2>/dev/null | grep -qx "$PEER_SERVICE" && PEER_UP=1
+    # NET8_DOCKER_SOLO=1: run only this service (no compose depends_on, peer left stopped), like one legacy app per DB
+    [ "${NET8_DOCKER_SOLO:-0}" = 1 ] && PEER_UP=0
     quiet dc stop "$SERVICE" "$PEER_SERVICE"
     [ "$PEER_UP" = 1 ] && RESTORE_PEER='quiet dc start "$PEER_SERVICE"'
     # the password is read inside the container from its own environment, never passed on a host command line
@@ -93,7 +99,7 @@ if [ "$DOCKER" = 1 ]; then
     if [ "$PEER_UP" = 1 ] && [ "$PEER" = mvc ]; then
       quiet dc start "$PEER_SERVICE"; wait_healthy "$PEER_PORT" "docker compose -f $COMPOSE --profile $PROFILE logs $PEER_SERVICE" "$PEER_SERVICE"
     fi
-    quiet dc start "$SERVICE"
+    if [ "${NET8_DOCKER_SOLO:-0}" = 1 ]; then quiet dc up -d --no-deps "$SERVICE"; else quiet dc start "$SERVICE"; fi
     wait_healthy "$PORT" "docker compose -f $COMPOSE --profile $PROFILE logs $SERVICE"
     RESTORE_PEER=""
     if [ "$PEER_UP" = 1 ] && [ "$PEER" = webforms ]; then

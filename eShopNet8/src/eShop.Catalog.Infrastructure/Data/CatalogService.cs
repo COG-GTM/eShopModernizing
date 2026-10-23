@@ -10,10 +10,12 @@ namespace eShop.Catalog.Infrastructure.Data;
 public class CatalogService : ICatalogService
 {
     private readonly CatalogDBContext db;
+    private readonly ICatalogItemSaveValidator validator;
 
-    public CatalogService(CatalogDBContext db)
+    public CatalogService(CatalogDBContext db, ICatalogItemSaveValidator validator)
     {
         this.db = db;
+        this.validator = validator;
     }
 
     public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
@@ -51,12 +53,22 @@ public class CatalogService : ICatalogService
     {
         // Legacy always overwrote the id with the next catalog_hilo value; 0 makes EF Core's HiLo generator assign it.
         catalogItem.Id = 0;
+        validator.Validate(catalogItem);
         db.CatalogItems.Add(catalogItem);
         db.SaveChanges();
     }
 
     public void UpdateCatalogItem(CatalogItem catalogItem)
     {
+        validator.Validate(catalogItem);
+        // The WebForms Edit port reads the stored picture name via FindCatalogItem in the same request scope; drop that
+        // tracked copy so the posted item can be attached (legacy read it from ViewState and never loaded the row).
+        var tracked = db.CatalogItems.Local.FirstOrDefault(i => i.Id == catalogItem.Id);
+        if (tracked is not null && !ReferenceEquals(tracked, catalogItem))
+        {
+            db.Entry(tracked).State = EntityState.Detached;
+        }
+
         db.Entry(catalogItem).State = EntityState.Modified;
         db.SaveChanges();
     }
