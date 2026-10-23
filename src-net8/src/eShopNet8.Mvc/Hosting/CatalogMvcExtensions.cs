@@ -51,11 +51,13 @@ namespace eShopNet8.Mvc.Hosting
                 options.FormFieldName = AntiforgeryFieldName;
                 options.Cookie.Name = AntiforgeryFieldName;
             });
+            LegacyXFrameOptionsAntiforgery.Register(services);
             return services;
         }
 
         public static WebApplication UseCatalogMvc(this WebApplication app)
         {
+            app.UseLegacySystemWebDefaults();
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -105,7 +107,13 @@ namespace eShopNet8.Mvc.Hosting
         {
             foreach (var (path, contentType, files) in Bundles)
             {
-                app.MapGet(path, (IWebHostEnvironment env) => Results.Text(Concatenate(env.WebRootFileProvider, files), contentType, Encoding.UTF8));
+                app.MapGet(path, (HttpContext context, IWebHostEnvironment env) =>
+                {
+                    // System.Web.Optimization's BundleHandler: publicly cacheable for a year.
+                    context.Response.Headers.CacheControl = "public";
+                    context.Response.Headers.Expires = DateTimeOffset.UtcNow.AddYears(1).ToString("R");
+                    return Results.Text(Concatenate(env.WebRootFileProvider, files), contentType, Encoding.UTF8);
+                });
             }
 
             app.MapControllers();

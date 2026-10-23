@@ -32,6 +32,8 @@ namespace eShopNet8.Mvc.Api
         private const byte BinaryArray = 7;
         private const byte MemberReference = 9;
         private const byte ObjectNull = 10;
+        private const byte ObjectNullMultiple = 14;
+        private const byte ObjectNullMultiple256 = 13;
         private const byte MessageEnd = 11;
         private const byte BinaryLibrary = 12;
 
@@ -46,22 +48,31 @@ namespace eShopNet8.Mvc.Api
         private const int ArrayObjectId = 3;
         private const int FirstElementObjectId = 4;
 
-        public static byte[] Serialize(IReadOnlyList<BrandDto> brands)
+        public static byte[] Serialize(IReadOnlyList<BrandDto> brands, int? capacity = null)
         {
             ArgumentNullException.ThrowIfNull(brands);
             using var stream = new MemoryStream();
-            Write(stream, brands);
+            Write(stream, brands, capacity);
             return stream.ToArray();
         }
 
-        public static void Write(Stream output, IReadOnlyList<BrandDto> brands)
+        /// <summary>
+        /// List&lt;T&gt;._items is serialized at its capacity, padded with nulls. Default capacity == count:
+        /// the legacy mock catalog's Enumerable.ToList() ran over a sized source (baseline payload).
+        /// Over an EF6 query the source is unsized, so List grew 4, 8, 16... (<see cref="GrownCapacity"/>).
+        /// _version == count either way (one Add per element).
+        /// </summary>
+        public static void Write(Stream output, IReadOnlyList<BrandDto> brands, int? capacity = null)
         {
             ArgumentNullException.ThrowIfNull(output);
             ArgumentNullException.ThrowIfNull(brands);
 
-            // The legacy list came from Enumerable.ToList() over a sized source, so capacity == count and
-            // _version == count (one Add per element), as recorded in the baseline payload.
             int count = brands.Count;
+            int length = capacity ?? count;
+            if (length < count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(capacity), "Capacity cannot be less than the brand count.");
+            }
             using var w = new BinaryWriter(output, new UTF8Encoding(false), leaveOpen: true);
 
             w.Write(SerializedStreamHeader);
@@ -97,7 +108,7 @@ namespace eShopNet8.Mvc.Api
             w.Write(ArrayObjectId);
             w.Write(BinaryArrayTypeSingle);
             w.Write(1);
-            w.Write(count);
+            w.Write(length);
             w.Write(BinaryTypeClass);
             w.Write(LegacyBrandDtoTypeName);
             w.Write(LibraryId);
@@ -111,6 +122,7 @@ namespace eShopNet8.Mvc.Api
                 w.Write(MemberReference);
                 w.Write(FirstElementObjectId + i);
             }
+            WriteNullPadding(w, length - count);
 
             int nextObjectId = FirstElementObjectId + count;
             int? classMetadataId = null;
@@ -167,5 +179,38 @@ namespace eShopNet8.Mvc.Api
 
             w.Write(MessageEnd);
         }
-    }
+    
+        /// <summary>Capacity of a List&lt;T&gt; filled by Add() from an unsized source: 0, 4, 8, 16, ...</summary>
+        public static int GrownCapacity(int count)
+        {
+            if (count == 0)
+            {
+                return 0;
+            }
+            int capacity = 4;
+            while (capacity < count)
+            {
+                capacity *= 2;
+            }
+            return capacity;
+        }
+
+        private static void WriteNullPadding(BinaryWriter w, int nulls)
+        {
+            if (nulls == 1)
+            {
+                w.Write(ObjectNull);
+            }
+            else if (nulls > 1 && nulls < 256)
+            {
+                w.Write(ObjectNullMultiple256);
+                w.Write((byte)nulls);
+            }
+            else if (nulls >= 256)
+            {
+                w.Write(ObjectNullMultiple);
+                w.Write(nulls);
+            }
+        }
+}
 }

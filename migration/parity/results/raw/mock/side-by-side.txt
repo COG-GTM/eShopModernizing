@@ -1,0 +1,437 @@
+Side-by-side replay 2026-10-23T05:25:35+00:00
+{"mvc": {"legacy": "http://localhost:5100", "migrated": "http://localhost:5200"}, "webforms": {"legacy": "http://localhost:5101", "migrated": "http://localhost:5201"}}
+
+  checks                       128
+  contract_match               128
+  strict_match                 53
+  headers_match                55
+  data_state_checks            24
+  data_state_match             24
+  legacy_vs_baseline_pass      128
+  migrated_vs_baseline_pass    128
+
+SAME  mvc-initial-state  legacy=200 migrated=200
+CONTR mvc-index-root  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-controller  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-action  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-size5-page0  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-size5-page1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-size5-page2  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-size10-page1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-size100  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-out-of-range  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-negative-page  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-size0  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "98039c9d7d75edcf3c39bc625671fa80dd575174e6e56b2290031e2516f45b04" != expected "d953d19a0a697c2608ce1952e8ff6a2ec08071d62c714854459555a0265746a3"
+        strict:   $.response.body.length: 2026 != expected 20775
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-index-size-invalid  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-details-1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-details-12  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+SAME  mvc-details-missing  legacy=404 migrated=404
+SAME  mvc-details-noid  legacy=400 migrated=400
+SAME  mvc-details-badid  legacy=400 migrated=400
+CONTR mvc-edit-get-1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+SAME  mvc-edit-get-missing  legacy=404 migrated=404
+SAME  mvc-edit-get-noid  legacy=400 migrated=400
+CONTR mvc-delete-get-1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+SAME  mvc-delete-get-missing  legacy=404 migrated=404
+SAME  mvc-delete-get-noid  legacy=400 migrated=400
+CONTR mvc-create-get  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+SAME  mvc-pic-1  legacy=200 migrated=200
+SAME  mvc-pic-12  legacy=200 migrated=200
+SAME  mvc-pic-zero  legacy=400 migrated=400
+SAME  mvc-pic-negative  legacy=400 migrated=400
+SAME  mvc-pic-missing  legacy=404 migrated=404
+CONTR mvc-pic-nonint  legacy=404 migrated=404
+        strict:   $.response.body.kind: "empty" != expected "binary"
+        strict:   $.response.body.sha256: missing (expected "743c638c9e10086575a1ac28e108ece82911490454999fee53e50d0bc221fe52")
+        strict:   $.response.body.length: missing (expected 6920)
+SAME  mvc-api-brands  legacy=200 migrated=200
+SAME  mvc-api-brand-found  legacy=200 migrated=200
+SAME  mvc-api-brand-missing  legacy=404 migrated=404
+SAME  mvc-api-brand-delete-found  legacy=200 migrated=200
+SAME  mvc-api-brand-delete-missing  legacy=404 migrated=404
+SAME  mvc-api-brands-after-delete  legacy=200 migrated=200
+CONTR mvc-api-files  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "application/octet-stream" != expected "text/html"
+        strict:   $.response.headers.mime: "application/octet-stream" != expected "text/html"
+        header:   $.headers.content-type: "application/octet-stream" != expected "text/html"
+CONTR mvc-api-hello  legacy=404 migrated=404
+        strict:   $.response.body.kind: "empty" != expected "binary"
+        strict:   $.response.body.sha256: missing (expected "139224e6063027017a23b2052fea4d9112887b8279ee10e78df943344697db3a")
+        strict:   $.response.body.length: missing (expected 6910)
+SAME  mvc-static-content-bootstrap-css  legacy=200 migrated=200
+SAME  mvc-static-content-custom-css  legacy=200 migrated=200
+SAME  mvc-static-content-base-css  legacy=200 migrated=200
+SAME  mvc-static-content-site-css  legacy=200 migrated=200
+SAME  mvc-static-scripts-modernizr-2-6-2-js  legacy=200 migrated=200
+SAME  mvc-static-scripts-modernizr-2-8-3-js  legacy=200 migrated=200
+SAME  mvc-static-scripts-jquery-3-3-1-js  legacy=200 migrated=200
+SAME  mvc-static-scripts-bootstrap-js  legacy=200 migrated=200
+SAME  mvc-static-scripts-respond-js  legacy=200 migrated=200
+SAME  mvc-static-scripts-jquery-validate-js  legacy=200 migrated=200
+SAME  mvc-static-scripts-jquery-validate-unobtrusive-js  legacy=200 migrated=200
+SAME  mvc-static-images-brand-png  legacy=200 migrated=200
+SAME  mvc-static-images-brand_dark-png  legacy=200 migrated=200
+SAME  mvc-static-images-main_footer_text-png  legacy=200 migrated=200
+SAME  mvc-static-favicon-ico  legacy=200 migrated=200
+SAME  mvc-static-pics-1-png  legacy=200 migrated=200
+CONTR mvc-bundle-content-css  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/css; charset=utf-8" != expected "text/css"
+        strict:   $.response.body.sha256: "962394d64ffa216c9de710d419e90f55202d4b43e553dfc0920f2dc90eaeed9b" != expected "3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538"
+        strict:   $.response.body.length: 197431 != expected 199898
+        header:   $.headers.content-type: "text/css; charset=utf-8" != expected "text/css"
+CONTR mvc-bundle-bundles-jquery  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+        strict:   $.response.body.sha256: "0fba1eccfd552e3474f36cb0a271b4e6c103303d7e83bdc2ab4553fcd9361946" != expected "83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa"
+        strict:   $.response.body.length: 271752 != expected 87460
+        header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+CONTR mvc-bundle-bundles-jqueryval  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+        strict:   $.response.body.sha256: "50fafe4f648f71b88a56ee20571c153d529aba8d7fba48f10b35124147a4b22d" != expected "2dd80e00f6559e4e0cf921736596e1350d7da7e0f323018f5c6642274d225e1d"
+        strict:   $.response.body.length: 68044 != expected 28742
+        header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+CONTR mvc-bundle-bundles-modernizr  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+        strict:   $.response.body.sha256: "5c783a11b6eaf37c99bf7569081281391610f929894e3c988eadd2052bfdaad2" != expected "4a87e4d5a949776e0197b33dbb1806748cacda1aa2afb4c2bbd7da8e6aa71fe8"
+        strict:   $.response.body.length: 102811 != expected 22095
+        header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+CONTR mvc-bundle-bundles-bootstrap  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+        strict:   $.response.body.sha256: "8211ea80536accdd1dd9b0c9ecf19f9388d82ce62c13dc31ae07180bebc1f15c" != expected "152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a"
+        strict:   $.response.body.length: 140175 != expected 65044
+        header:   $.headers.content-type: "text/javascript; charset=utf-8" != expected "text/javascript"
+CONTR mvc-create-post-valid  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-details-created  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+SAME  mvc-pic-created  legacy=200 migrated=200
+CONTR mvc-create-post-invalid-missing-name  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-create-post-invalid-bad-price  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-create-post-invalid-price-over-max  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-create-post-invalid-price-3dp  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-create-post-invalid-stock-out-of-range  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-create-post-invalid-restock-negative  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-create-post-no-antiforgery  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "98039c9d7d75edcf3c39bc625671fa80dd575174e6e56b2290031e2516f45b04" != expected "15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e"
+        strict:   $.response.body.length: 2026 != expected 17744
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-edit-post-valid  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-details-edited  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-edit-post-invalid-missing-name  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-edit-post-invalid-negative-stock  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-edit-post-invalid-bad-price  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-delete-get-created  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR mvc-delete-post  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR mvc-delete-post-missing  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+SAME  mvc-details-deleted  legacy=404 migrated=404
+CONTR mvc-index-after-mutations  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+SAME  webforms-initial-state  legacy=200 migrated=200
+CONTR wf-list-root  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-default  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-size10-page0  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-size10-page1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-size5-page0  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-size5-page1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-size5-page2  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-size100  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-out-of-range  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-negative-page  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-list-size0  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "6ea63650816d7b77443e20d03e31fa796a85fa99b7b1fc857ac8cca2611c62ec"
+        strict:   $.response.body.length: 152 != expected 7307
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
+        header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.expires: unexpected "-1"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-details-get-1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-details-get-missing  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "506c651e9078a787e129ae31fc8df9f8ef551ae75b975b27b358255155ccceee"
+        strict:   $.response.body.length: 152 != expected 9511
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
+        header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.expires: unexpected "-1"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-edit-get-1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.assets.scripts: length 5 != expected 4
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-edit-get-missing  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "30ee66bc78ac6eccee3a34d4ce75f2262325f0ea876a83aa3c267a67f3d63e61"
+        strict:   $.response.body.length: 152 != expected 5964
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
+        header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.expires: unexpected "-1"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-delete-get-1  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-delete-get-missing  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "0c0617fb2d985bbf80810c1af283fcab6ddc8138b39516086d86bf478aedc043"
+        strict:   $.response.body.length: 152 != expected 9507
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
+        header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.expires: unexpected "-1"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-details-get-12  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-details-get-nonint  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "ac8e62112aff93f5df533e8006d498e1a5adfee2f88d16e642f1693b91766cc5"
+        strict:   $.response.body.length: 152 != expected 7751
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
+        header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.expires: unexpected "-1"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-create-get  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.assets.scripts: length 5 != expected 4
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+SAME  wf-static-pics-1-png  legacy=200 migrated=200
+SAME  wf-static-pics-12-png  legacy=200 migrated=200
+SAME  wf-static-pics-dummy-png  legacy=200 migrated=200
+SAME  wf-static-images-brand-png  legacy=200 migrated=200
+SAME  wf-static-images-brand_dark-png  legacy=200 migrated=200
+SAME  wf-static-images-main_footer_text-png  legacy=200 migrated=200
+SAME  wf-static-favicon-ico  legacy=200 migrated=200
+SAME  wf-static-content-bootstrap-css  legacy=200 migrated=200
+SAME  wf-static-content-custom-css  legacy=200 migrated=200
+SAME  wf-static-content-base-css  legacy=200 migrated=200
+SAME  wf-static-content-site-css  legacy=200 migrated=200
+SAME  wf-static-scripts-jquery-3-3-1-js  legacy=200 migrated=200
+SAME  wf-static-scripts-bootstrap-js  legacy=200 migrated=200
+SAME  wf-static-scripts-respond-js  legacy=200 migrated=200
+SAME  wf-static-scripts-modernizr-2-8-3-js  legacy=200 migrated=200
+CONTR wf-create-post-valid  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR wf-details-created  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-create-post-invalid-missing-name  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR wf-create-post-invalid-bad-price  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "5c8cc146f217e77773034e938db67afd682f18d0d2211565ac4bbb01d5bf6c1d"
+        strict:   $.response.body.length: 152 != expected 8253
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
+        header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.expires: unexpected "-1"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-create-post-invalid-negative-stock  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR wf-edit-post-valid  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR wf-details-edited  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-edit-post-invalid-bad-price  legacy=500 migrated=500
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.sha256: "9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8" != expected "d0db8c2eee6e1d489ae61195a0ab3e04af64d3c9ee2aeb0024682fe0792c15b9"
+        strict:   $.response.body.length: 152 != expected 8245
+        strict:   $.response.body.base64: unexpected "PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR
+        header:   $.headers.cache-control: "no-cache,no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.expires: unexpected "-1"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-edit-post-invalid-missing-name  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR wf-delete-get-created  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"
+CONTR wf-delete-post  legacy=302 migrated=302
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        strict:   $.response.body.html.headings[0][1]: "Object moved to here ." != expected "Object moved to here"
+        strict:   $.response.body.html.text: "Object moved to here ." != expected "Object moved to here"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+CONTR wf-list-after-mutations  legacy=200 migrated=200
+        strict:   $.response.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.cache-control: "no-cache, no-store" != expected "private"
+        header:   $.headers.content-type: "text/html; charset=utf-8" != expected "text/html"
+        header:   $.headers.pragma: unexpected "no-cache"

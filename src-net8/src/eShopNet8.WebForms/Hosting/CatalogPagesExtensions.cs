@@ -45,6 +45,19 @@ namespace eShopNet8.WebForms.Hosting
 
         public static WebApplication UseCatalogPages(this WebApplication app)
         {
+            app.Use(async (context, next) =>
+            {
+                // System.Web's default HttpCachePolicy (Cacheability.Private) for responses that set no cache policy.
+                context.Response.OnStarting(() =>
+                {
+                    if (!context.Response.Headers.ContainsKey(Microsoft.Net.Http.Headers.HeaderNames.CacheControl))
+                    {
+                        context.Response.Headers.CacheControl = "private";
+                    }
+                    return Task.CompletedTask;
+                });
+                await next();
+            });
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
