@@ -31,20 +31,19 @@ public static class CatalogApiExtensions
         files.MapGet("", GetFiles);
         files.MapGet("/{id}", GetFiles);
 
-        // Web API 2 answered other verbs on a matched controller with 405, an Allow header and an HttpError body.
-        brands.MapMethods("", OtherMethods("GET"), (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET"));
-        brands.MapMethods("/{id}", OtherMethods("GET", "DELETE"), (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET", "DELETE"));
-        files.MapMethods("", OtherMethods("GET"), (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET"));
-        files.MapMethods("/{id}", OtherMethods("GET"), (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET"));
+        // Web API 2 action selection also bound Delete(int id) from the query string (api/brands?id=1).
+        brands.MapDelete("", DeleteBrandFromQuery);
+
+        // Web API 2 answered any other verb on a matched controller with 405, an Allow header and an HttpError body.
+        // These method-agnostic endpoints run only when no verb-specific endpoint above matches.
+        brands.Map("", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET")).WithOrder(1);
+        brands.Map("/{id}", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET", "DELETE")).WithOrder(1);
+        files.Map("", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET")).WithOrder(1);
+        files.Map("/{id}", (HttpContext context) => WebApiResults.MethodNotAllowed(context, "GET")).WithOrder(1);
 
         return app;
     }
 
-    private static readonly string[] AllMethods = { "GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS" };
-
-    private static string[] OtherMethods(params string[] allowed) => AllMethods.Except(allowed).ToArray();
-
-    // GET api/brands (and GET api/brands?id=N, which Web API 2 action selection routed to Get(int id)).
     private static IResult GetBrands(HttpContext context, [FromServices] ICatalogService service)
     {
         if (context.Request.Query.TryGetValue("id", out var idValues))
@@ -75,6 +74,18 @@ public static class CatalogApiExtensions
 
     // GET api/files: the legacy endpoint streamed the brand list as an NRBF (binary formatter) payload, an insecure
     // deserialisation sink for any client (INVENTORY Q2). Replaced on purpose with the same {Id, Brand} list as JSON.
+    private static IResult DeleteBrandFromQuery(HttpContext context, [FromServices] ICatalogService service)
+    {
+        if (!context.Request.Query.TryGetValue("id", out var idValues))
+        {
+            return WebApiResults.MethodNotAllowed(context, "GET");
+        }
+
+        return int.TryParse(idValues[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out var id)
+            ? DeleteBrand(context, id, service)
+            : WebApiResults.InvalidInt32Parameter(context, "Delete");
+    }
+
     private static IResult GetFiles([FromServices] ICatalogService service)
     {
         var brands = service.GetCatalogBrands().Select(BrandDto.From).ToList();
