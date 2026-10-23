@@ -6,6 +6,8 @@ using eShop.Catalog.Core.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -18,6 +20,10 @@ namespace eShop.Catalog.Infrastructure.Data
     public class CatalogDBInitializer
     {
         private const string InitializationLockResource = "eShop.Catalog.CatalogDBInitializer";
+        private const string DropCatalogSchemaSql =
+            "DROP TABLE IF EXISTS [Catalog]; DROP TABLE IF EXISTS [CatalogBrand]; DROP TABLE IF EXISTS [CatalogType]; " +
+            "DROP SEQUENCE IF EXISTS [dbo].[catalog_hilo]; DROP SEQUENCE IF EXISTS [dbo].[catalog_brand_hilo]; " +
+            "DROP SEQUENCE IF EXISTS [dbo].[catalog_type_hilo];";
         private const int ConnectAttempts = 10;
         private static readonly TimeSpan ConnectRetryDelay = TimeSpan.FromSeconds(3);
 
@@ -53,6 +59,7 @@ namespace eShop.Catalog.Infrastructure.Data
             await AcquireInitializationLockAsync(lockConnection, cancellationToken);
             try
             {
+                bool databaseExisted = await context.GetService<IRelationalDatabaseCreator>().ExistsAsync(cancellationToken);
                 if (!await context.Database.EnsureCreatedAsync(cancellationToken))
                 {
                     logger.LogInformation("Catalog database already exists; skipping creation and seeding.");
@@ -67,9 +74,18 @@ namespace eShop.Catalog.Infrastructure.Data
                 }
                 catch
                 {
-                    // Seeding only runs on a freshly created database; drop it so the next start retries from scratch.
-                    logger.LogError("Seeding the catalog database failed; dropping it so the next start can retry.");
-                    await context.Database.EnsureDeletedAsync(CancellationToken.None);
+                    // Undo only what this run created so the next start retries from scratch: the whole database if
+                    // it was created here, otherwise just the catalog tables and sequences (keeping users, grants, ...).
+                    if (databaseExisted)
+                    {
+                        logger.LogError("Seeding the catalog failed; dropping the catalog schema it created so the next start can retry.");
+                        await context.Database.ExecuteSqlRawAsync(DropCatalogSchemaSql, CancellationToken.None);
+                    }
+                    else
+                    {
+                        logger.LogError("Seeding the catalog database failed; dropping it so the next start can retry.");
+                        await context.Database.EnsureDeletedAsync(CancellationToken.None);
+                    }
                     throw;
                 }
             }
