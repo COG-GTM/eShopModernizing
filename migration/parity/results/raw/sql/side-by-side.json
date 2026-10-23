@@ -1,0 +1,4150 @@
+{
+  "summary": {
+    "generated_at": "2026-10-23T05:18:57+00:00",
+    "targets": {
+      "mvc": {
+        "legacy": "http://localhost:5100",
+        "migrated": "http://localhost:5200"
+      },
+      "webforms": {
+        "legacy": "http://localhost:5101",
+        "migrated": "http://localhost:5201"
+      }
+    },
+    "host_headers_ignored": [
+      "accept-ranges",
+      "connection",
+      "content-length",
+      "date",
+      "etag",
+      "keep-alive",
+      "last-modified",
+      "server",
+      "transfer-encoding",
+      "x-aspnet-version",
+      "x-aspnetmvc-version",
+      "x-powered-by",
+      "x-sourcefiles"
+    ],
+    "checks": 128,
+    "contract_match": 120,
+    "strict_match": 53,
+    "headers_match": 55,
+    "data_state_checks": 24,
+    "data_state_match": 19,
+    "legacy_vs_baseline_pass": 102,
+    "migrated_vs_baseline_pass": 102
+  },
+  "results": [
+    {
+      "id": "mvc-initial-state",
+      "app": "mvc",
+      "title": "Initial seeded catalog (full list)",
+      "mutates": false,
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_diffs": [],
+      "data_state_checked": true,
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-index-root",
+      "app": "mvc",
+      "title": "Catalog index, default paging (GET /)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-controller",
+      "app": "mvc",
+      "title": "Catalog index via /Catalog",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-action",
+      "app": "mvc",
+      "title": "Catalog index via /Catalog/Index",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Index"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-size5-page0",
+      "app": "mvc",
+      "title": "Index pageSize=5 pageIndex=0",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=0"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-size5-page1",
+      "app": "mvc",
+      "title": "Index pageSize=5 pageIndex=1",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-size5-page2",
+      "app": "mvc",
+      "title": "Index pageSize=5 pageIndex=2 (last, partial)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=2"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-size10-page1",
+      "app": "mvc",
+      "title": "Index pageSize=10 pageIndex=1",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Index?pageSize=10&pageIndex=1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-size100",
+      "app": "mvc",
+      "title": "Index pageSize=100 (all rows)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=100&pageIndex=0"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-out-of-range",
+      "app": "mvc",
+      "title": "Index pageIndex beyond last page (empty table)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=10&pageIndex=5"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-negative-page",
+      "app": "mvc",
+      "title": "Index negative pageIndex",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=10&pageIndex=-1"
+      },
+      "legacy_status": 500,
+      "migrated_status": 200,
+      "contract_diffs": [
+        "$.response.status: 200 != expected 500",
+        "$.response.mime: unexpected \"text/html\"",
+        "$.response.body: unexpected {\"kind\": \"html\", \"html\": {\"title\": \"Index - Catalog manager (MVC)\", \"headings\": [[\"h1\", \"Catalog manager (MVC)\"]], \"text\": \"Catalog manager (MVC) Create New Name Description Brand Type Price Picture n"
+      ],
+      "strict_diffs": [
+        "$.response.status: 200 != expected 500",
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.kind: \"html\" != expected \"binary\"",
+        "$.response.body.sha256: missing (expected \"9829c707f30f7d58a98532073cd58980f1ad8b8d8ee1cbbb158c93e1dbc5a588\")",
+        "$.response.body.length: missing (expected 33976)",
+        "$.response.body.html: unexpected {\"title\": \"Index - Catalog manager (MVC)\", \"headings\": [[\"h1\", \"Catalog manager (MVC)\"]], \"text\": \"Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max sto"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.status: 500 != expected 200",
+        "$.response.mime: missing (expected \"text/html\")",
+        "$.response.body: missing (expected {\"kind\": \"html\", \"html\": {\"title\": \"Index - Catalog manager (MVC)\", \"headings\": [[\"h1\", \"Catalog manager (MVC)\"]], \"text\": \"Catalog manager (MVC) Create New Name Description Brand Type Price Picture n)"
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Previous Showing 10 of 12 products - Page 0 - 2 Next <machine>, <session-start>\" != expected \"Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt $19.50 1.png 100 0 0 Edit | Details | ",
+        "$.response.body.html.links: length 4 != expected 34",
+        "$.response.body.html.links[2].text: \"Previous\" != expected \"Edit\"",
+        "$.response.body.html.links[2].href: \"{base}/?pageSize=10&pageIndex=-2\" != expected \"{base}/Catalog/Edit/1\"",
+        "$.response.body.html.links[2].class: length 3 != expected 1",
+        "$.response.body.html.links[2].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.links[3].text: \"Next\" != expected \"Details\"",
+        "$.response.body.html.links[3].href: \"{base}/?pageSize=10&pageIndex=0\" != expected \"{base}/Catalog/Details/1\"",
+        "$.response.body.html.links[3].class: length 2 != expected 1",
+        "$.response.body.html.links[3].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.images: length 3 != expected 13",
+        "$.response.body.html.images[1]: \"{base}/images/brand_dark.png\" != expected \"{base}/items/1/pic\"",
+        "$.response.body.html.images[2]: \"{base}/images/main_footer_text.png\" != expected \"{base}/items/2/pic\"",
+        "$.response.body.html.tables[0].rows: length 1 != expected 11"
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-size0",
+      "app": "mvc",
+      "title": "Index pageSize=0 (legacy divides by zero)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=0&pageIndex=0"
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"2ecb56d43e1237a33a07e9e6970b49ce20c010b205afc1057b07d5533a0a4709\" != expected \"f5439d5ae2946d8c8f2997a8757e3efa910faa78e77a16b5a6255446de2f26f8\"",
+        "$.response.body.length: 2026 != expected 20767",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-index-size-invalid",
+      "app": "mvc",
+      "title": "Index pageSize not an int (binding falls back to default)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=abc"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-details-1",
+      "app": "mvc",
+      "title": "Details GET, valid id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-details-12",
+      "app": "mvc",
+      "title": "Details GET, last seeded id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/12"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-details-missing",
+      "app": "mvc",
+      "title": "Details GET, missing id -> 404",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/999"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-details-noid",
+      "app": "mvc",
+      "title": "Details GET, absent id -> 400",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details"
+      },
+      "legacy_status": 400,
+      "migrated_status": 400,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-details-badid",
+      "app": "mvc",
+      "title": "Details GET, non-int id -> 400",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/abc"
+      },
+      "legacy_status": 400,
+      "migrated_status": 400,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-edit-get-1",
+      "app": "mvc",
+      "title": "Edit GET, valid id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-edit-get-missing",
+      "app": "mvc",
+      "title": "Edit GET, missing id -> 404",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/999"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-edit-get-noid",
+      "app": "mvc",
+      "title": "Edit GET, absent id -> 400",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit"
+      },
+      "legacy_status": 400,
+      "migrated_status": 400,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-delete-get-1",
+      "app": "mvc",
+      "title": "Delete GET, valid id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-delete-get-missing",
+      "app": "mvc",
+      "title": "Delete GET, missing id -> 404",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/999"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-delete-get-noid",
+      "app": "mvc",
+      "title": "Delete GET, absent id -> 400",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete"
+      },
+      "legacy_status": 400,
+      "migrated_status": 400,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-create-get",
+      "app": "mvc",
+      "title": "Create GET (form + antiforgery token)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Create"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-pic-1",
+      "app": "mvc",
+      "title": "Pic route, valid id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/items/1/pic"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-pic-12",
+      "app": "mvc",
+      "title": "Pic route, last seeded id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/items/12/pic"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-pic-zero",
+      "app": "mvc",
+      "title": "Pic route, id 0 -> 400",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/items/0/pic"
+      },
+      "legacy_status": 400,
+      "migrated_status": 400,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-pic-negative",
+      "app": "mvc",
+      "title": "Pic route, negative id -> 400",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/items/-1/pic"
+      },
+      "legacy_status": 400,
+      "migrated_status": 400,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-pic-missing",
+      "app": "mvc",
+      "title": "Pic route, missing item -> 404",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/items/999/pic"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-pic-nonint",
+      "app": "mvc",
+      "title": "Pic route, non-int id fails the route constraint -> 404",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/items/abc/pic"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.body.kind: \"empty\" != expected \"binary\"",
+        "$.response.body.sha256: missing (expected \"743c638c9e10086575a1ac28e108ece82911490454999fee53e50d0bc221fe52\")",
+        "$.response.body.length: missing (expected 6920)"
+      ],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-api-brands",
+      "app": "mvc",
+      "title": "GET /api/brands (JSON)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/api/brands"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-api-brand-found",
+      "app": "mvc",
+      "title": "GET /api/brands/2",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/api/brands/2"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-api-brand-missing",
+      "app": "mvc",
+      "title": "GET /api/brands/99 -> 404",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/api/brands/99"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-api-brand-delete-found",
+      "app": "mvc",
+      "title": "DELETE /api/brands/2 -> 200 (demo: nothing deleted)",
+      "mutates": false,
+      "request": {
+        "method": "DELETE",
+        "path": "/api/brands/2"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-api-brand-delete-missing",
+      "app": "mvc",
+      "title": "DELETE /api/brands/99 -> 404",
+      "mutates": false,
+      "request": {
+        "method": "DELETE",
+        "path": "/api/brands/99"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-api-brands-after-delete",
+      "app": "mvc",
+      "title": "GET /api/brands after DELETE (still 5 brands)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/api/brands"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-api-files",
+      "app": "mvc",
+      "title": "GET /api/files (BinaryFormatter/NRBF payload, byte-exact)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/api/files"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"application/octet-stream\" != expected \"text/html\"",
+        "$.response.headers.mime: \"application/octet-stream\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"application/octet-stream\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.sha256: \"1861b5d07585e5bd4ca696a5bcc72dd54d761a3867283dce75dc882b5fd97b93\" != expected \"8a33ee7cf9c7a24426c97210ca1dd72ea13f8e4f923936b68c145a0954c06361\"",
+        "$.response.body.length: 721 != expected 719"
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.sha256: \"1861b5d07585e5bd4ca696a5bcc72dd54d761a3867283dce75dc882b5fd97b93\" != expected \"8a33ee7cf9c7a24426c97210ca1dd72ea13f8e4f923936b68c145a0954c06361\"",
+        "$.response.body.length: 721 != expected 719"
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-api-hello",
+      "app": "mvc",
+      "title": "GET /api (CatalogController2: never discovered by MVC 5 -> 404)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/api"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.body.kind: \"empty\" != expected \"binary\"",
+        "$.response.body.sha256: missing (expected \"139224e6063027017a23b2052fea4d9112887b8279ee10e78df943344697db3a\")",
+        "$.response.body.length: missing (expected 6910)"
+      ],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-content-bootstrap-css",
+      "app": "mvc",
+      "title": "Static asset /Content/bootstrap.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/bootstrap.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-content-custom-css",
+      "app": "mvc",
+      "title": "Static asset /Content/custom.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/custom.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-content-base-css",
+      "app": "mvc",
+      "title": "Static asset /Content/base.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/base.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-content-site-css",
+      "app": "mvc",
+      "title": "Static asset /Content/site.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/site.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-scripts-modernizr-2-6-2-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/modernizr-2.6.2.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/modernizr-2.6.2.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-scripts-modernizr-2-8-3-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/modernizr-2.8.3.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/modernizr-2.8.3.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-scripts-jquery-3-3-1-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/jquery-3.3.1.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery-3.3.1.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-scripts-bootstrap-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/bootstrap.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/bootstrap.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-scripts-respond-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/respond.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/respond.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-scripts-jquery-validate-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/jquery.validate.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery.validate.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-scripts-jquery-validate-unobtrusive-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/jquery.validate.unobtrusive.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery.validate.unobtrusive.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-images-brand-png",
+      "app": "mvc",
+      "title": "Static asset /images/brand.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/images/brand.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-images-brand_dark-png",
+      "app": "mvc",
+      "title": "Static asset /images/brand_dark.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/images/brand_dark.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-images-main_footer_text-png",
+      "app": "mvc",
+      "title": "Static asset /images/main_footer_text.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/images/main_footer_text.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-favicon-ico",
+      "app": "mvc",
+      "title": "Static asset /favicon.ico",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/favicon.ico"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-static-pics-1-png",
+      "app": "mvc",
+      "title": "Static asset /Pics/1.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Pics/1.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-bundle-content-css",
+      "app": "mvc",
+      "title": "Bundle endpoint /Content/css (status + type only; WebGrease minified output is not a contract)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/css; charset=utf-8\" != expected \"text/css\"",
+        "$.response.body.sha256: \"962394d64ffa216c9de710d419e90f55202d4b43e553dfc0920f2dc90eaeed9b\" != expected \"3d48468b4e8543dcd1ce950aa62787525a0af293e18430dc65f1aa8ff4218538\"",
+        "$.response.body.length: 197431 != expected 199898"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/css; charset=utf-8\" != expected \"text/css\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-bundle-bundles-jquery",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/jquery (status + type only; WebGrease minified output is not a contract)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/bundles/jquery"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
+        "$.response.body.sha256: \"0fba1eccfd552e3474f36cb0a271b4e6c103303d7e83bdc2ab4553fcd9361946\" != expected \"83c6ec8537d772c8c373ce4e87d49f645e408492aed849eddde13973a8ea4faa\"",
+        "$.response.body.length: 271752 != expected 87460"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-bundle-bundles-jqueryval",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/jqueryval (status + type only; WebGrease minified output is not a contract)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/bundles/jqueryval"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
+        "$.response.body.sha256: \"50fafe4f648f71b88a56ee20571c153d529aba8d7fba48f10b35124147a4b22d\" != expected \"2dd80e00f6559e4e0cf921736596e1350d7da7e0f323018f5c6642274d225e1d\"",
+        "$.response.body.length: 68044 != expected 28742"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-bundle-bundles-modernizr",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/modernizr (status + type only; WebGrease minified output is not a contract)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/bundles/modernizr"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
+        "$.response.body.sha256: \"5c783a11b6eaf37c99bf7569081281391610f929894e3c988eadd2052bfdaad2\" != expected \"4a87e4d5a949776e0197b33dbb1806748cacda1aa2afb4c2bbd7da8e6aa71fe8\"",
+        "$.response.body.length: 102811 != expected 22095"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-bundle-bundles-bootstrap",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/bundles/bootstrap"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\"",
+        "$.response.body.sha256: \"8211ea80536accdd1dd9b0c9ecf19f9388d82ce62c13dc31ae07180bebc1f15c\" != expected \"152034d55c404634569992312931b877a336948bc3f87eb20d46ace41a5cda6a\"",
+        "$.response.body.length: 140175 != expected 65044"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/javascript; charset=utf-8\" != expected \"text/javascript\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-create-post-valid",
+      "app": "mvc",
+      "title": "Create POST valid -> 302 / and item 13 added",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-details-created",
+      "app": "mvc",
+      "title": "Details of created item 13",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/13"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-pic-created",
+      "app": "mvc",
+      "title": "Pic of created item (dummy.png)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/items/13/pic"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-create-post-invalid-missing-name",
+      "app": "mvc",
+      "title": "Create POST invalid (missing name) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-create-post-invalid-bad-price",
+      "app": "mvc",
+      "title": "Create POST invalid (non-numeric price) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "abc",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-create-post-invalid-price-over-max",
+      "app": "mvc",
+      "title": "Create POST invalid (price above 1,000,000) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "1000001",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-create-post-invalid-price-3dp",
+      "app": "mvc",
+      "title": "Create POST invalid (price with 3 decimals) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "12.345",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-create-post-invalid-stock-out-of-range",
+      "app": "mvc",
+      "title": "Create POST invalid (stock above 10 million) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10000001",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-create-post-invalid-restock-negative",
+      "app": "mvc",
+      "title": "Create POST invalid (negative restock) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "-1",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-create-post-no-antiforgery",
+      "app": "mvc",
+      "title": "Create POST without antiforgery token -> rejected",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "Name": "Parity Hoodie",
+          "Description": "Created by the parity harness",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "2",
+          "Price": "25.99",
+          "AvailableStock": "10",
+          "RestockThreshold": "2",
+          "MaxStockThreshold": "50"
+        },
+        "tokens_submitted": []
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"2ecb56d43e1237a33a07e9e6970b49ce20c010b205afc1057b07d5533a0a4709\" != expected \"15b989726dd89be0d6f1b56c0771c74db7c211854cf7fd8310df46d77023329e\"",
+        "$.response.body.length: 2026 != expected 17744",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-edit-post-valid",
+      "app": "mvc",
+      "title": "Edit POST valid (item 1) -> 302 /",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/1",
+        "form_from": "/Catalog/Edit/1",
+        "form_fields": {
+          "Id": "1",
+          "Name": ".NET Bot Black Hoodie v2",
+          "Description": ".NET Bot Black Hoodie",
+          "CatalogBrandId": "5",
+          "CatalogTypeId": "2",
+          "Price": "21.75",
+          "PictureFileName": "1.png",
+          "AvailableStock": "75",
+          "RestockThreshold": "0",
+          "MaxStockThreshold": "0"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-details-edited",
+      "app": "mvc",
+      "title": "Details of edited item 1",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-edit-post-invalid-missing-name",
+      "app": "mvc",
+      "title": "Edit POST invalid (missing name, item 2) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/2",
+        "form_from": "/Catalog/Edit/2",
+        "form_fields": {
+          "Id": "2",
+          "Name": "",
+          "Description": ".NET Black & White Mug",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "1",
+          "Price": "8.50",
+          "PictureFileName": "2.png",
+          "AvailableStock": "100",
+          "RestockThreshold": "0",
+          "MaxStockThreshold": "0"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-edit-post-invalid-negative-stock",
+      "app": "mvc",
+      "title": "Edit POST invalid (negative stock, item 2) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/2",
+        "form_from": "/Catalog/Edit/2",
+        "form_fields": {
+          "Id": "2",
+          "Name": ".NET Black & White Mug",
+          "Description": ".NET Black & White Mug",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "1",
+          "Price": "8.50",
+          "PictureFileName": "2.png",
+          "AvailableStock": "-1",
+          "RestockThreshold": "0",
+          "MaxStockThreshold": "0"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-edit-post-invalid-bad-price",
+      "app": "mvc",
+      "title": "Edit POST invalid (non-numeric price, item 2) -> 200 with validation messages",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/2",
+        "form_from": "/Catalog/Edit/2",
+        "form_fields": {
+          "Id": "2",
+          "Name": ".NET Black & White Mug",
+          "Description": ".NET Black & White Mug",
+          "CatalogBrandId": "2",
+          "CatalogTypeId": "1",
+          "Price": "abc",
+          "PictureFileName": "2.png",
+          "AvailableStock": "100",
+          "RestockThreshold": "0",
+          "MaxStockThreshold": "0"
+        },
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-delete-get-created",
+      "app": "mvc",
+      "title": "Delete GET of created item 13",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/13"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-delete-post",
+      "app": "mvc",
+      "title": "Delete POST item 13 -> 302 /",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Delete/13",
+        "form_from": "/Catalog/Delete/13",
+        "form_fields": {},
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-delete-post-missing",
+      "app": "mvc",
+      "title": "Delete POST missing id 999",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Delete/999",
+        "form_from": "/Catalog/Delete/1",
+        "form_fields": {},
+        "tokens_submitted": [
+          "__RequestVerificationToken"
+        ]
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"2ecb56d43e1237a33a07e9e6970b49ce20c010b205afc1057b07d5533a0a4709\" != expected \"d877b270aaecf1c63f8f21d88674c98a35c177845bb09213d16e5099b9cbe59d\"",
+        "$.response.body.length: 2026 != expected 19948",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04IiAvPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgogICAgPHRpdGxlPiAtIEN"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.status: 500 != expected 302",
+        "$.response.mime: missing (expected \"text/html\")",
+        "$.response.location: missing (expected \"{base}/\")"
+      ],
+      "migrated_vs_baseline": [
+        "$.response.status: 500 != expected 302",
+        "$.response.mime: missing (expected \"text/html\")",
+        "$.response.location: missing (expected \"{base}/\")"
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "mvc-details-deleted",
+      "app": "mvc",
+      "title": "Details of deleted item 13 -> 404",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/13"
+      },
+      "legacy_status": 404,
+      "migrated_status": 404,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "mvc-index-after-mutations",
+      "app": "mvc",
+      "title": "Index after all mutations",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/?pageSize=5&pageIndex=2"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "webforms-initial-state",
+      "app": "webforms",
+      "title": "Initial seeded catalog (full list)",
+      "mutates": false,
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_diffs": [],
+      "data_state_checked": true,
+      "legacy_vs_baseline": [
+        "$.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-list-root",
+      "app": "webforms",
+      "title": "WebForms catalog list, GET /",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-default",
+      "app": "webforms",
+      "title": "WebForms catalog list, /Default",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-size10-page0",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 0 size 10",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/10"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-size10-page1",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 1 size 10",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/1/size/10"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism Wh != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism Whi",
+        "$.response.body.html.tables[0].rows[1][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[2][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism Wh != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism Whi",
+        "$.response.body.html.tables[0].rows[1][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[2][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-size5-page0",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 0 size 5",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/5"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-size5-page1",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 1 size 5",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/1/size/5"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delet != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete R",
+        "$.response.body.html.tables[0].rows[1][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[2][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delet != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete R",
+        "$.response.body.html.tables[0].rows[1][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[2][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-size5-page2",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 2 size 5 (partial)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/2/size/5"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism Wh != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism Whi",
+        "$.response.body.html.tables[0].rows[1][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[2][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism Wh != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism Whi",
+        "$.response.body.html.tables[0].rows[1][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[2][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-size100",
+      "app": "webforms",
+      "title": "WebForms catalog list, size 100 (all rows)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/100"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[11][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[12][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[3][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[11][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[12][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-out-of-range",
+      "app": "webforms",
+      "title": "WebForms catalog list, index beyond last page",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/5/size/10"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-negative-page",
+      "app": "webforms",
+      "title": "WebForms catalog list, negative index",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/-1/size/10"
+      },
+      "legacy_status": 500,
+      "migrated_status": 200,
+      "contract_diffs": [
+        "$.response.status: 200 != expected 500",
+        "$.response.mime: unexpected \"text/html\"",
+        "$.response.body: unexpected {\"kind\": \"html\", \"html\": {\"title\": \"Home Page - Catalog manager (Web Forms)\", \"headings\": [[\"h1\", \"Catalog manager (Web Forms)\"]], \"text\": \"Catalog manager (Web Forms) Create New No data was returned."
+      ],
+      "strict_diffs": [
+        "$.response.status: 200 != expected 500",
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.kind: \"html\" != expected \"binary\"",
+        "$.response.body.sha256: missing (expected \"cdc4124c448c6d0af4d25f8ee0e172d9b9eef7b7472be1b54da04ffd47c8167d\")",
+        "$.response.body.length: missing (expected 20498)",
+        "$.response.body.html: unexpected {\"title\": \"Home Page - Catalog manager (Web Forms)\", \"headings\": [[\"h1\", \"Catalog manager (Web Forms)\"]], \"text\": \"Catalog manager (Web Forms) Create New No data was returned. Previous Showing 10 of 1"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.status: 500 != expected 200",
+        "$.response.mime: missing (expected \"text/html\")",
+        "$.response.body: missing (expected {\"kind\": \"html\", \"html\": {\"title\": \"Home Page - Catalog manager (Web Forms)\", \"headings\": [[\"h1\", \"Catalog manager (Web Forms)\"]], \"text\": \"Catalog manager (Web Forms) Create New Name Description Bran)"
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New No data was returned. Previous Showing 10 of 12 products - Page 0 - 2 Next <machine>, <session-start>\" != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.links: length 4 != expected 34",
+        "$.response.body.html.links[2].text: \"Previous\" != expected \"Edit\"",
+        "$.response.body.html.links[2].href: \"{base}/Default/index/-2/size/10\" != expected \"{base}/Catalog/Edit/1\"",
+        "$.response.body.html.links[2].class: length 3 != expected 1",
+        "$.response.body.html.links[2].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.links[3].text: \"Next\" != expected \"Details\"",
+        "$.response.body.html.links[3].href: \"{base}/Default/index/0/size/10\" != expected \"{base}/Catalog/Details/1\"",
+        "$.response.body.html.links[3].class: length 2 != expected 1",
+        "$.response.body.html.links[3].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.images: length 3 != expected 13",
+        "$.response.body.html.images[1]: \"{base}/images/brand_dark.png\" != expected \"{base}/Pics/1.png\"",
+        "$.response.body.html.images[2]: \"{base}/images/main_footer_text.png\" != expected \"{base}/Pics/2.png\"",
+        "$.response.body.html.tables[0].rows: length 1 != expected 11",
+        "$.response.body.html.tables[0].rows[0]: length 1 != expected 10",
+        "$.response.body.html.tables[0].rows[0][0]: \"No data was returned.\" != expected \"\""
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-size0",
+      "app": "webforms",
+      "title": "WebForms catalog list, size 0 (divide by zero)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/0"
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"4e1c2d87c836fd6e3fcbf84fbc7c8c7f08c60d758a3f67d404d71b377387ec02\"",
+        "$.response.body.length: 152 != expected 7299",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.expires: unexpected \"-1\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-details-get-1",
+      "app": "webforms",
+      "title": "WebForms Details page, valid id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.50 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to  != expected \"Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to l",
+        "$.response.body.html.definitions[4][1]: \"19.50\" != expected \"19.5\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.50 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to  != expected \"Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to l",
+        "$.response.body.html.definitions[4][1]: \"19.50\" != expected \"19.5\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-details-get-missing",
+      "app": "webforms",
+      "title": "WebForms Details page, missing id (legacy NullReferenceException -> 500)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/999"
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"13f9728757d642b5a37346fc728d7ac91a10842a0fa2c5c67fe44ba3c4807b9a\"",
+        "$.response.body.length: 152 != expected 9511",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.expires: unexpected \"-1\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-edit-get-1",
+      "app": "webforms",
+      "title": "WebForms Edit page, valid id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.assets.scripts: length 5 != expected 4"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.forms[0].fields[4].value: \"19.50\" != expected \"19.5\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.forms[0].fields[4].value: \"19.50\" != expected \"19.5\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-edit-get-missing",
+      "app": "webforms",
+      "title": "WebForms Edit page, missing id (legacy NullReferenceException -> 500)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Edit/999"
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"c449c4b87c5d2ec6bfe1aad7334fc903a8a3a85045c538c500514c9fa89d8dfc\"",
+        "$.response.body.length: 152 != expected 5964",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.expires: unexpected \"-1\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-delete-get-1",
+      "app": "webforms",
+      "title": "WebForms Delete page, valid id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/1"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Delete Are you sure you want to delete this? Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.50 Picture name 1.png Stock 100  != expected \"Catalog manager (Web Forms) Delete Are you sure you want to delete this? Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 R",
+        "$.response.body.html.definitions[4][1]: \"19.50\" != expected \"19.5\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Delete Are you sure you want to delete this? Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.50 Picture name 1.png Stock 100  != expected \"Catalog manager (Web Forms) Delete Are you sure you want to delete this? Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 R",
+        "$.response.body.html.definitions[4][1]: \"19.50\" != expected \"19.5\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-delete-get-missing",
+      "app": "webforms",
+      "title": "WebForms Delete page, missing id (legacy NullReferenceException -> 500)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/999"
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"d56981a6068813f72aa501f26d782cae0e4d76b20e0dbaa156d163fa64b03e7c\"",
+        "$.response.body.length: 152 != expected 9507",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.expires: unexpected \"-1\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-details-get-12",
+      "app": "webforms",
+      "title": "WebForms Details page, last seeded id",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/12"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12.00 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list != expected \"Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list <m",
+        "$.response.body.html.definitions[4][1]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12.00 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list != expected \"Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list <m",
+        "$.response.body.html.definitions[4][1]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-details-get-nonint",
+      "app": "webforms",
+      "title": "WebForms Details page, non-int id (legacy FormatException -> 500)",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/abc"
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"138223a7b193554f131452fed0899d869016dbb7cd7d3ac3c63e7d94605f96ce\"",
+        "$.response.body.length: 152 != expected 7751",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.expires: unexpected \"-1\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-create-get",
+      "app": "webforms",
+      "title": "WebForms Create page",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Create"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.assets.scripts: length 5 != expected 4"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-static-pics-1-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/1.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Pics/1.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-pics-12-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/12.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Pics/12.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-pics-dummy-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/dummy.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Pics/dummy.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-images-brand-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/brand.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/images/brand.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-images-brand_dark-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/brand_dark.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/images/brand_dark.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-images-main_footer_text-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/main_footer_text.png",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/images/main_footer_text.png"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-favicon-ico",
+      "app": "webforms",
+      "title": "WebForms static asset /favicon.ico",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/favicon.ico"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-content-bootstrap-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/bootstrap.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/bootstrap.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-content-custom-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/custom.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/custom.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-content-base-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/base.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/base.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-content-site-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/site.css",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Content/site.css"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-scripts-jquery-3-3-1-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/jquery-3.3.1.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/jquery-3.3.1.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-scripts-bootstrap-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/bootstrap.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/bootstrap.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-scripts-respond-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/respond.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/respond.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-static-scripts-modernizr-2-8-3-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/modernizr-2.8.3.js",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Scripts/modernizr-2.8.3.js"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [],
+      "header_diffs": [],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": true,
+      "headers_match": true
+    },
+    {
+      "id": "wf-create-post-valid",
+      "app": "webforms",
+      "title": "WebForms Create postback valid -> redirect /",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "ctl00$MainContent$Name": "Parity Mug",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "9.99",
+          "ctl00$MainContent$Stock": "20",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-details-created",
+      "app": "webforms",
+      "title": "WebForms Details of created item 13",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/13"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-create-post-invalid-missing-name",
+      "app": "webforms",
+      "title": "WebForms Create postback (missing name; server-side checks only)",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "ctl00$MainContent$Name": "",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "9.99",
+          "ctl00$MainContent$Stock": "20",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-create-post-invalid-bad-price",
+      "app": "webforms",
+      "title": "WebForms Create postback (non-numeric price; server-side checks only)",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "ctl00$MainContent$Name": "Parity Mug",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "abc",
+          "ctl00$MainContent$Stock": "20",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"65cd74dd8ab8d1ac294807002cf9046c09c75ed86ee15ddca2d26cbafce55e6a\"",
+        "$.response.body.length: 152 != expected 8253",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.expires: unexpected \"-1\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-create-post-invalid-negative-stock",
+      "app": "webforms",
+      "title": "WebForms Create postback (negative stock; server-side checks only)",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Create",
+        "form_from": "/Catalog/Create",
+        "form_fields": {
+          "ctl00$MainContent$Name": "Parity Mug",
+          "ctl00$MainContent$Description": "Created by the parity harness",
+          "ctl00$MainContent$Brand": "2",
+          "ctl00$MainContent$Type": "1",
+          "ctl00$MainContent$Price": "9.99",
+          "ctl00$MainContent$Stock": "-1",
+          "ctl00$MainContent$Restock": "5",
+          "ctl00$MainContent$Maxstock": "40",
+          "ctl00$MainContent$ctl06": "[ Create ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 500,
+      "migrated_status": 302,
+      "contract_diffs": [
+        "$.response.status: 302 != expected 500",
+        "$.response.mime: unexpected \"text/html\"",
+        "$.response.location: unexpected \"{base}/\""
+      ],
+      "strict_diffs": [
+        "$.response.status: 302 != expected 500",
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.headers.location: unexpected \"{base}/\"",
+        "$.response.body.kind: \"html\" != expected \"binary\"",
+        "$.response.body.sha256: missing (expected \"f114b2702b346c26a45ffabbb78483707ce16a84d74f31d3bd51b1224bbab347\")",
+        "$.response.body.length: missing (expected 8012)",
+        "$.response.body.html: unexpected {\"title\": \"Object moved\", \"headings\": [[\"h2\", \"Object moved to here .\"]], \"text\": \"Object moved to here .\", \"links\": [{\"text\": \"here\", \"href\": \"{base}/\", \"class\": []}], \"images\": [], \"tables\": [], \"de"
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.location: unexpected \"/\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [
+        "$.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
+        "$.data_state.row_count: 15 != expected 14",
+        "$.data_state.rows: length 15 != expected 14"
+      ],
+      "legacy_vs_baseline": [
+        "$.response.status: 500 != expected 302",
+        "$.response.mime: missing (expected \"text/html\")",
+        "$.response.location: missing (expected \"{base}/\")",
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[2].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-edit-post-valid",
+      "app": "webforms",
+      "title": "WebForms Edit postback valid (item 3) -> redirect /",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/3",
+        "form_from": "/Catalog/Edit/3",
+        "form_fields": {
+          "ctl00$MainContent$Name": "Prism White T-Shirt v2",
+          "ctl00$MainContent$Description": "Prism White T-Shirt",
+          "ctl00$MainContent$BrandDropDownList": "5",
+          "ctl00$MainContent$TypeDropDownList": "3",
+          "ctl00$MainContent$Price": "14.25",
+          "ctl00$MainContent$PictureFileName": "3.png",
+          "ctl00$MainContent$Stock": "60",
+          "ctl00$MainContent$Restock": "0",
+          "ctl00$MainContent$Maxstock": "0",
+          "ctl00$MainContent$ctl07": "[ Save ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [
+        "$.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
+        "$.data_state.row_count: 15 != expected 14",
+        "$.data_state.rows: length 15 != expected 14"
+      ],
+      "legacy_vs_baseline": [
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-details-edited",
+      "app": "webforms",
+      "title": "WebForms Details of edited item 3",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Details/3"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-edit-post-invalid-bad-price",
+      "app": "webforms",
+      "title": "WebForms Edit postback (non-numeric price, item 4)",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/4",
+        "form_from": "/Catalog/Edit/4",
+        "form_fields": {
+          "ctl00$MainContent$Name": ".NET Foundation T-shirt",
+          "ctl00$MainContent$Description": ".NET Foundation T-shirt",
+          "ctl00$MainContent$BrandDropDownList": "2",
+          "ctl00$MainContent$TypeDropDownList": "2",
+          "ctl00$MainContent$Price": "abc",
+          "ctl00$MainContent$PictureFileName": "4.png",
+          "ctl00$MainContent$Stock": "100",
+          "ctl00$MainContent$Restock": "0",
+          "ctl00$MainContent$Maxstock": "0",
+          "ctl00$MainContent$ctl07": "[ Save ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 500,
+      "migrated_status": 500,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.sha256: \"9e0a2c6eef14432ea65fa171d3a2fd83bb4a5af8230ab363d70f8b3829a14ce8\" != expected \"4addd674608ea87cc0391612f44b1d129257f53fd8fe0ed29607c1d938f80880\"",
+        "$.response.body.length: 152 != expected 8245",
+        "$.response.body.base64: unexpected \"PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlJ1bnRpbWUgRXJyb3I8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+U2VydmVyIEVycm9yIGluICcvJyBBcHBsaWNhdGlvbi48L2gxPjxoMj48aT5SdW50aW1lIEVycm9yPC9pPjwvaDI+PC9ib2R5PjwvaHR"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache,no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.expires: unexpected \"-1\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [
+        "$.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
+        "$.data_state.row_count: 15 != expected 14",
+        "$.data_state.rows: length 15 != expected 14"
+      ],
+      "legacy_vs_baseline": [
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-edit-post-invalid-missing-name",
+      "app": "webforms",
+      "title": "WebForms Edit postback (missing name, item 4)",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Edit/4",
+        "form_from": "/Catalog/Edit/4",
+        "form_fields": {
+          "ctl00$MainContent$Name": "",
+          "ctl00$MainContent$Description": ".NET Foundation T-shirt",
+          "ctl00$MainContent$BrandDropDownList": "2",
+          "ctl00$MainContent$TypeDropDownList": "2",
+          "ctl00$MainContent$Price": "12.00",
+          "ctl00$MainContent$PictureFileName": "4.png",
+          "ctl00$MainContent$Stock": "100",
+          "ctl00$MainContent$Restock": "0",
+          "ctl00$MainContent$Maxstock": "0",
+          "ctl00$MainContent$ctl07": "[ Save ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [
+        "$.data_state.pager: \"Showing 1000 of 15 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
+        "$.data_state.row_count: 15 != expected 14",
+        "$.data_state.rows: length 15 != expected 14"
+      ],
+      "legacy_vs_baseline": [
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 15 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 15",
+        "$.data_state.rows: length 14 != expected 15",
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-delete-get-created",
+      "app": "webforms",
+      "title": "WebForms Delete page of created item 13",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Catalog/Delete/13"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [],
+      "migrated_vs_baseline": [],
+      "contract_match": true,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-delete-post",
+      "app": "webforms",
+      "title": "WebForms Delete postback item 13 -> redirect /",
+      "mutates": true,
+      "request": {
+        "method": "POST",
+        "path": "/Catalog/Delete/13",
+        "form_from": "/Catalog/Delete/13",
+        "form_fields": {
+          "ctl00$MainContent$ctl11": "[ Delete ]"
+        },
+        "tokens_submitted": [
+          "__EVENTVALIDATION",
+          "__VIEWSTATE"
+        ]
+      },
+      "legacy_status": 302,
+      "migrated_status": 302,
+      "contract_diffs": [],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.headings[0][1]: \"Object moved to here .\" != expected \"Object moved to here\"",
+        "$.response.body.html.text: \"Object moved to here .\" != expected \"Object moved to here\""
+      ],
+      "header_diffs": [
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\""
+      ],
+      "data_state_checked": true,
+      "data_state_diffs": [
+        "$.data_state.pager: \"Showing 1000 of 14 products - Page 1 - 1\" != expected \"Showing 1000 of 13 products - Page 1 - 1\"",
+        "$.data_state.row_count: 14 != expected 13",
+        "$.data_state.rows: length 14 != expected 13"
+      ],
+      "legacy_vs_baseline": [
+        "$.data_state.pager: \"Showing 1000 of 13 products - Page 1 - 1\" != expected \"Showing 1000 of 14 products - Page 1 - 1\"",
+        "$.data_state.row_count: 13 != expected 14",
+        "$.data_state.rows: length 13 != expected 14",
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.data_state.rows[0].cells[5]: \"19.50\" != expected \"19.5\"",
+        "$.data_state.rows[3].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[4].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[5].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[6].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[7].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[8].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[9].cells[5]: \"12.00\" != expected \"12\"",
+        "$.data_state.rows[10].cells[5]: \"8.50\" != expected \"8.5\"",
+        "$.data_state.rows[11].cells[5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    },
+    {
+      "id": "wf-list-after-mutations",
+      "app": "webforms",
+      "title": "WebForms list after all postbacks",
+      "mutates": false,
+      "request": {
+        "method": "GET",
+        "path": "/Default/index/0/size/100"
+      },
+      "legacy_status": 200,
+      "migrated_status": 200,
+      "contract_diffs": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai",
+        "$.response.body.html.links: length 46 != expected 43",
+        "$.response.body.html.links[41].text: \"Edit\" != expected \"Previous\"",
+        "$.response.body.html.links[41].href: \"{base}/Catalog/Edit/15\" != expected \"{base}/Default/index/-1/size/100\"",
+        "$.response.body.html.links[41].class: length 1 != expected 3",
+        "$.response.body.html.links[41].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
+        "$.response.body.html.links[42].text: \"Details\" != expected \"Next\"",
+        "$.response.body.html.links[42].href: \"{base}/Catalog/Details/15\" != expected \"{base}/Default/index/1/size/100\"",
+        "$.response.body.html.links[42].class: length 1 != expected 3",
+        "$.response.body.html.links[42].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
+        "$.response.body.html.images: length 17 != expected 16",
+        "$.response.body.html.images[14]: \"{base}/Pics/dummy.png\" != expected \"{base}/images/brand_dark.png\"",
+        "$.response.body.html.images[15]: \"{base}/images/brand_dark.png\" != expected \"{base}/images/main_footer_text.png\"",
+        "$.response.body.html.tables[0].rows: length 15 != expected 14"
+      ],
+      "strict_diffs": [
+        "$.response.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai",
+        "$.response.body.html.links: length 46 != expected 43",
+        "$.response.body.html.links[41].text: \"Edit\" != expected \"Previous\"",
+        "$.response.body.html.links[41].href: \"{base}/Catalog/Edit/15\" != expected \"{base}/Default/index/-1/size/100\"",
+        "$.response.body.html.links[41].class: length 1 != expected 3",
+        "$.response.body.html.links[41].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
+        "$.response.body.html.links[42].text: \"Details\" != expected \"Next\"",
+        "$.response.body.html.links[42].href: \"{base}/Catalog/Details/15\" != expected \"{base}/Default/index/1/size/100\"",
+        "$.response.body.html.links[42].class: length 1 != expected 3",
+        "$.response.body.html.links[42].class[0]: \"esh-table-link\" != expected \"esh-pager-item\"",
+        "$.response.body.html.images: length 17 != expected 16",
+        "$.response.body.html.images[14]: \"{base}/Pics/dummy.png\" != expected \"{base}/images/brand_dark.png\"",
+        "$.response.body.html.images[15]: \"{base}/images/brand_dark.png\" != expected \"{base}/images/main_footer_text.png\"",
+        "$.response.body.html.tables[0].rows: length 15 != expected 14"
+      ],
+      "header_diffs": [
+        "$.headers.cache-control: \"no-cache, no-store\" != expected \"private\"",
+        "$.headers.content-type: \"text/html; charset=utf-8\" != expected \"text/html\"",
+        "$.headers.pragma: unexpected \"no-cache\""
+      ],
+      "data_state_checked": false,
+      "data_state_diffs": [],
+      "legacy_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.links: length 43 != expected 46",
+        "$.response.body.html.links[41].text: \"Previous\" != expected \"Edit\"",
+        "$.response.body.html.links[41].href: \"{base}/Default/index/-1/size/100\" != expected \"{base}/Catalog/Edit/15\"",
+        "$.response.body.html.links[41].class: length 3 != expected 1",
+        "$.response.body.html.links[41].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.links[42].text: \"Next\" != expected \"Details\"",
+        "$.response.body.html.links[42].href: \"{base}/Default/index/1/size/100\" != expected \"{base}/Catalog/Details/15\"",
+        "$.response.body.html.links[42].class: length 3 != expected 1",
+        "$.response.body.html.links[42].class[0]: \"esh-pager-item\" != expected \"esh-table-link\"",
+        "$.response.body.html.images: length 16 != expected 17",
+        "$.response.body.html.images[14]: \"{base}/images/brand_dark.png\" != expected \"{base}/Pics/dummy.png\"",
+        "$.response.body.html.images[15]: \"{base}/images/main_footer_text.png\" != expected \"{base}/images/brand_dark.png\"",
+        "$.response.body.html.tables[0].rows: length 14 != expected 15",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[11][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[12][5]: \"12.00\" != expected \"12\""
+      ],
+      "migrated_vs_baseline": [
+        "$.response.body.html.text: \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected \"Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail",
+        "$.response.body.html.tables[0].rows[1][5]: \"19.50\" != expected \"19.5\"",
+        "$.response.body.html.tables[0].rows[4][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[5][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[6][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[7][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[8][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[9][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[10][5]: \"12.00\" != expected \"12\"",
+        "$.response.body.html.tables[0].rows[11][5]: \"8.50\" != expected \"8.5\"",
+        "$.response.body.html.tables[0].rows[12][5]: \"12.00\" != expected \"12\""
+      ],
+      "contract_match": false,
+      "strict_match": false,
+      "headers_match": false
+    }
+  ]
+}

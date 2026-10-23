@@ -7,7 +7,7 @@ namespace eShopNet8.Mvc.Api
     {
         public static IEndpointRouteBuilder MapBrandsApi(this IEndpointRouteBuilder endpoints)
         {
-            var group = endpoints.MapGroup("/api/brands");
+            var group = endpoints.MapGroup("/api/brands").WithLegacyNoCacheHeaders();
             group.MapGet("/", GetAll);
             group.MapGet("/{id}", Get);
             group.MapDelete("/{id}", Delete);

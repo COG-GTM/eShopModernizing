@@ -1,0 +1,336 @@
+Parity replay 2026-10-23T05:19:54+00:00
+  mvc       http://localhost:5100        77/80 passed
+  webforms  http://localhost:5101        25/48 passed
+  TOTAL     102/128 passed, 26 failed
+
+PASS  mvc-initial-state
+PASS  mvc-index-root
+PASS  mvc-index-controller
+PASS  mvc-index-action
+PASS  mvc-index-size5-page0
+PASS  mvc-index-size5-page1
+PASS  mvc-index-size5-page2
+PASS  mvc-index-size10-page1
+PASS  mvc-index-size100
+PASS  mvc-index-out-of-range
+FAIL  mvc-index-negative-page
+        $.response.status: 500 != expected 200
+        $.response.mime: missing (expected "text/html")
+        $.response.body: missing (expected {"kind": "html", "html": {"title": "Index - Catalog manager (MVC)", "headings": [["h1", "Catalog manager (MVC)"]], "text": "Catalog manager (MVC) Create New Name Description Brand Type Price Picture n)
+PASS  mvc-index-size0
+PASS  mvc-index-size-invalid
+PASS  mvc-details-1
+PASS  mvc-details-12
+PASS  mvc-details-missing
+PASS  mvc-details-noid
+PASS  mvc-details-badid
+PASS  mvc-edit-get-1
+PASS  mvc-edit-get-missing
+PASS  mvc-edit-get-noid
+PASS  mvc-delete-get-1
+PASS  mvc-delete-get-missing
+PASS  mvc-delete-get-noid
+PASS  mvc-create-get
+PASS  mvc-pic-1
+PASS  mvc-pic-12
+PASS  mvc-pic-zero
+PASS  mvc-pic-negative
+PASS  mvc-pic-missing
+PASS  mvc-pic-nonint
+PASS  mvc-api-brands
+PASS  mvc-api-brand-found
+PASS  mvc-api-brand-missing
+PASS  mvc-api-brand-delete-found
+PASS  mvc-api-brand-delete-missing
+PASS  mvc-api-brands-after-delete
+FAIL  mvc-api-files
+        $.response.body.sha256: "1861b5d07585e5bd4ca696a5bcc72dd54d761a3867283dce75dc882b5fd97b93" != expected "8a33ee7cf9c7a24426c97210ca1dd72ea13f8e4f923936b68c145a0954c06361"
+        $.response.body.length: 721 != expected 719
+PASS  mvc-api-hello
+PASS  mvc-static-content-bootstrap-css
+PASS  mvc-static-content-custom-css
+PASS  mvc-static-content-base-css
+PASS  mvc-static-content-site-css
+PASS  mvc-static-scripts-modernizr-2-6-2-js
+PASS  mvc-static-scripts-modernizr-2-8-3-js
+PASS  mvc-static-scripts-jquery-3-3-1-js
+PASS  mvc-static-scripts-bootstrap-js
+PASS  mvc-static-scripts-respond-js
+PASS  mvc-static-scripts-jquery-validate-js
+PASS  mvc-static-scripts-jquery-validate-unobtrusive-js
+PASS  mvc-static-images-brand-png
+PASS  mvc-static-images-brand_dark-png
+PASS  mvc-static-images-main_footer_text-png
+PASS  mvc-static-favicon-ico
+PASS  mvc-static-pics-1-png
+PASS  mvc-bundle-content-css
+PASS  mvc-bundle-bundles-jquery
+PASS  mvc-bundle-bundles-jqueryval
+PASS  mvc-bundle-bundles-modernizr
+PASS  mvc-bundle-bundles-bootstrap
+PASS  mvc-create-post-valid
+PASS  mvc-details-created
+PASS  mvc-pic-created
+PASS  mvc-create-post-invalid-missing-name
+PASS  mvc-create-post-invalid-bad-price
+PASS  mvc-create-post-invalid-price-over-max
+PASS  mvc-create-post-invalid-price-3dp
+PASS  mvc-create-post-invalid-stock-out-of-range
+PASS  mvc-create-post-invalid-restock-negative
+PASS  mvc-create-post-no-antiforgery
+PASS  mvc-edit-post-valid
+PASS  mvc-details-edited
+PASS  mvc-edit-post-invalid-missing-name
+PASS  mvc-edit-post-invalid-negative-stock
+PASS  mvc-edit-post-invalid-bad-price
+PASS  mvc-delete-get-created
+PASS  mvc-delete-post
+FAIL  mvc-delete-post-missing
+        $.response.status: 500 != expected 302
+        $.response.mime: missing (expected "text/html")
+        $.response.location: missing (expected "{base}/")
+PASS  mvc-details-deleted
+PASS  mvc-index-after-mutations
+FAIL  webforms-initial-state
+        $.initial_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.initial_state.rows[2].cells[5]: "12.00" != expected "12"
+        $.initial_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.initial_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.initial_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.initial_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.initial_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.initial_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.initial_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.initial_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.initial_state.rows[11].cells[5]: "12.00" != expected "12"
+FAIL  wf-list-root
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail
+        $.response.body.html.tables[0].rows[1][5]: "19.50" != expected "19.5"
+        $.response.body.html.tables[0].rows[3][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[4][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[5][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[6][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[7][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[8][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[9][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[10][5]: "12.00" != expected "12"
+FAIL  wf-list-default
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail
+        $.response.body.html.tables[0].rows[1][5]: "19.50" != expected "19.5"
+        $.response.body.html.tables[0].rows[3][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[4][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[5][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[6][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[7][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[8][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[9][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[10][5]: "12.00" != expected "12"
+FAIL  wf-list-size10-page0
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail
+        $.response.body.html.tables[0].rows[1][5]: "19.50" != expected "19.5"
+        $.response.body.html.tables[0].rows[3][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[4][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[5][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[6][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[7][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[8][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[9][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[10][5]: "12.00" != expected "12"
+FAIL  wf-list-size10-page1
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism Wh != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism Whi
+        $.response.body.html.tables[0].rows[1][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[2][5]: "12.00" != expected "12"
+FAIL  wf-list-size5-page0
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail
+        $.response.body.html.tables[0].rows[1][5]: "19.50" != expected "19.5"
+        $.response.body.html.tables[0].rows[3][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[4][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[5][5]: "8.50" != expected "8.5"
+FAIL  wf-list-size5-page1
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delet != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete R
+        $.response.body.html.tables[0].rows[1][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[2][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[3][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[4][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[5][5]: "12.00" != expected "12"
+FAIL  wf-list-size5-page2
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism Wh != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism Whi
+        $.response.body.html.tables[0].rows[1][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[2][5]: "12.00" != expected "12"
+FAIL  wf-list-size100
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail
+        $.response.body.html.tables[0].rows[1][5]: "19.50" != expected "19.5"
+        $.response.body.html.tables[0].rows[3][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[4][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[5][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[6][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[7][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[8][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[9][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[10][5]: "12.00" != expected "12"
+        $.response.body.html.tables[0].rows[11][5]: "8.50" != expected "8.5"
+        $.response.body.html.tables[0].rows[12][5]: "12.00" != expected "12"
+PASS  wf-list-out-of-range
+FAIL  wf-list-negative-page
+        $.response.status: 500 != expected 200
+        $.response.mime: missing (expected "text/html")
+        $.response.body: missing (expected {"kind": "html", "html": {"title": "Home Page - Catalog manager (Web Forms)", "headings": [["h1", "Catalog manager (Web Forms)"]], "text": "Catalog manager (Web Forms) Create New Name Description Bran)
+PASS  wf-list-size0
+FAIL  wf-details-get-1
+        $.response.body.html.text: "Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.50 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to  != expected "Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to l
+        $.response.body.html.definitions[4][1]: "19.50" != expected "19.5"
+PASS  wf-details-get-missing
+FAIL  wf-edit-get-1
+        $.response.body.html.forms[0].fields[4].value: "19.50" != expected "19.5"
+PASS  wf-edit-get-missing
+FAIL  wf-delete-get-1
+        $.response.body.html.text: "Catalog manager (Web Forms) Delete Are you sure you want to delete this? Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.50 Picture name 1.png Stock 100  != expected "Catalog manager (Web Forms) Delete Are you sure you want to delete this? Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 R
+        $.response.body.html.definitions[4][1]: "19.50" != expected "19.5"
+PASS  wf-delete-get-missing
+FAIL  wf-details-get-12
+        $.response.body.html.text: "Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12.00 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list != expected "Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list <m
+        $.response.body.html.definitions[4][1]: "12.00" != expected "12"
+PASS  wf-details-get-nonint
+PASS  wf-create-get
+PASS  wf-static-pics-1-png
+PASS  wf-static-pics-12-png
+PASS  wf-static-pics-dummy-png
+PASS  wf-static-images-brand-png
+PASS  wf-static-images-brand_dark-png
+PASS  wf-static-images-main_footer_text-png
+PASS  wf-static-favicon-ico
+PASS  wf-static-content-bootstrap-css
+PASS  wf-static-content-custom-css
+PASS  wf-static-content-base-css
+PASS  wf-static-content-site-css
+PASS  wf-static-scripts-jquery-3-3-1-js
+PASS  wf-static-scripts-bootstrap-js
+PASS  wf-static-scripts-respond-js
+PASS  wf-static-scripts-modernizr-2-8-3-js
+FAIL  wf-create-post-valid
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[2].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[11].cells[5]: "12.00" != expected "12"
+PASS  wf-details-created
+FAIL  wf-create-post-invalid-missing-name
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[2].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[11].cells[5]: "12.00" != expected "12"
+FAIL  wf-create-post-invalid-bad-price
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[2].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[11].cells[5]: "12.00" != expected "12"
+FAIL  wf-create-post-invalid-negative-stock
+        $.response.status: 500 != expected 302
+        $.response.mime: missing (expected "text/html")
+        $.response.location: missing (expected "{base}/")
+        $.data_state.pager: "Showing 1000 of 14 products - Page 1 - 1" != expected "Showing 1000 of 15 products - Page 1 - 1"
+        $.data_state.row_count: 14 != expected 15
+        $.data_state.rows: length 14 != expected 15
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[2].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+FAIL  wf-edit-post-valid
+        $.data_state.pager: "Showing 1000 of 14 products - Page 1 - 1" != expected "Showing 1000 of 15 products - Page 1 - 1"
+        $.data_state.row_count: 14 != expected 15
+        $.data_state.rows: length 14 != expected 15
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[11].cells[5]: "12.00" != expected "12"
+PASS  wf-details-edited
+FAIL  wf-edit-post-invalid-bad-price
+        $.data_state.pager: "Showing 1000 of 14 products - Page 1 - 1" != expected "Showing 1000 of 15 products - Page 1 - 1"
+        $.data_state.row_count: 14 != expected 15
+        $.data_state.rows: length 14 != expected 15
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[11].cells[5]: "12.00" != expected "12"
+FAIL  wf-edit-post-invalid-missing-name
+        $.data_state.pager: "Showing 1000 of 14 products - Page 1 - 1" != expected "Showing 1000 of 15 products - Page 1 - 1"
+        $.data_state.row_count: 14 != expected 15
+        $.data_state.rows: length 14 != expected 15
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[11].cells[5]: "12.00" != expected "12"
+PASS  wf-delete-get-created
+FAIL  wf-delete-post
+        $.data_state.pager: "Showing 1000 of 13 products - Page 1 - 1" != expected "Showing 1000 of 14 products - Page 1 - 1"
+        $.data_state.row_count: 13 != expected 14
+        $.data_state.rows: length 13 != expected 14
+        $.data_state.rows[0].cells[5]: "19.50" != expected "19.5"
+        $.data_state.rows[3].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[4].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[5].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[6].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[7].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[8].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[9].cells[5]: "12.00" != expected "12"
+        $.data_state.rows[10].cells[5]: "8.50" != expected "8.5"
+        $.data_state.rows[11].cells[5]: "12.00" != expected "12"
+FAIL  wf-list-after-mutations
+        $.response.body.html.text: "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Detai != expected "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Detail
+        $.response.body.html.links: length 43 != expected 46
+        $.response.body.html.links[41].text: "Previous" != expected "Edit"
+        $.response.body.html.links[41].href: "{base}/Default/index/-1/size/100" != expected "{base}/Catalog/Edit/15"
+        $.response.body.html.links[41].class: length 3 != expected 1
+        $.response.body.html.links[41].class[0]: "esh-pager-item" != expected "esh-table-link"
+        $.response.body.html.links[42].text: "Next" != expected "Details"
+        $.response.body.html.links[42].href: "{base}/Default/index/1/size/100" != expected "{base}/Catalog/Details/15"
+        $.response.body.html.links[42].class: length 3 != expected 1
+        $.response.body.html.links[42].class[0]: "esh-pager-item" != expected "esh-table-link"
+        $.response.body.html.images: length 16 != expected 17
+        $.response.body.html.images[14]: "{base}/images/brand_dark.png" != expected "{base}/Pics/dummy.png"
+        $.response.body.html.images[15]: "{base}/images/main_footer_text.png" != expected "{base}/images/brand_dark.png"
+        $.response.body.html.tables[0].rows: length 14 != expected 15
+        $.response.body.html.tables[0].rows[1][5]: "19.50" != expected "19.5"

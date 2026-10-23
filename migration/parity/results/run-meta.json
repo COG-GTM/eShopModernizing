@@ -1,0 +1,55 @@
+{
+  "run_date": "2026-10-23",
+  "integration_base": "devin/net8-eshop-migration @ ef7d36432580f41ea53be542f71e95745e92003b",
+  "intro": "LEGACY (.NET Framework 4.7.2 on Mono 6.12 + xsp4) and MIGRATED (.NET 8 Linux containers built from src-net8) were run side by side on identical seed data and every transcript in migration/baseline/transcripts/ (126 flows + 2 initial-state checks = 128 checks) was replayed against BOTH sides with migration/parity/side_by_side.py (direct legacy-vs-migrated diff) and migration/parity/replay.py (each side vs the recorded legacy baseline). Both apps were restarted before each app's mutating sequence. Nothing below is claimed beyond what these runs observed.",
+  "headline": [
+    "MOCK mode (UseMockData=true, PreconfiguredData seed): 128/128 checks contract-identical, 24/24 full data-state snapshots identical in row order; replay.py vs baseline 128/128 on legacy and 128/128 on migrated.",
+    "MOCK mode strict (whole normalised response incl. error bodies + full Content-Type) 53/128 identical; headers 55/128 identical. Every remaining strict/header diff is classified below (D1-D7); none changes status, Location, page content, form fields, validation messages, JSON or /api/files bytes.",
+    "Before the src-net8 header fixes in this PR the same mock run gave strict 40/128 and headers 2/128 (F1-F4).",
+    "SQL mode (SQL Server 2022, UseMockData=false, both apps on the same database, reset before each sequence): 120/128 contract-identical, 19/24 data-state identical. Differences: S1 negative page (legacy defect), S2 EF6 validate-on-save (OPEN regression, WebForms SQL only; causes 5 of the data-state diffs and 1 contract diff downstream). /api/files byte mismatch in SQL mode was found and fixed (F5).",
+    "OPEN regressions: D5 (bundles unminified, non-functional) and S2 (WebForms SQL negative-stock create accepted).",
+    "Migrated tests: 176 passed / 0 failed / 0 skipped. Legacy: no unit/integration test project exists; the 128-check transcript suite is the legacy baseline suite and passed 128/128 on legacy in mock mode."
+  ],
+  "environment": [
+    "Legacy MVC: throwaway copy /tmp/legacy-mvc via migration/parity/legacy/setup-legacy.sh, xsp4 :5100. Harness-only edits (never committed): UseMockData=true, Views/Web.config System.Web.Mvc 5.2.3.0->5.2.7.0, Content/Site.css copied to site.css, Pics symlink for case-sensitive paths. msbuild warns it cannot resolve System.Web.Entity (unused; app runs).",
+    "Legacy WebForms: throwaway copy, xsp4 :5101, Mono compatibility edits applied by setup-legacy.sh (documented there).",
+    "Migrated: docker compose -f src-net8/docker-compose.yml --profile mock up (images eshopnet8/mvc:local, eshopnet8/webforms:local on mcr.microsoft.com/dotnet/aspnet:8.0), MVC :5200, WebForms :5201. Container route worked; dotnet run was not needed.",
+    "SQL: --profile sql (mcr.microsoft.com/mssql/server:2022-latest on :1433, migrated apps UseMockData=false). Legacy pointed at the same database by migration/parity/sql/setup-legacy-sql.sh (UseMockData=false, System.Data.SqlClient, Encrypt=False). Mono CONNECTED successfully.",
+    "Restart = state reset: mock -> restart app (fresh singleton); SQL -> migration/parity/sql/reset-sql.sh drops the catalog DB, then the restarted app's initializer recreates and reseeds it."
+  ],
+  "normalisations": [
+    "Antiforgery / viewstate fields (__RequestVerificationToken, __VIEWSTATE, __VIEWSTATEGENERATOR, __VIEWSTATEENCRYPTED, __EVENTVALIDATION, __EVENTTARGET, __EVENTARGUMENT, __LASTFOCUS, __PREVIOUSPAGE): values dropped; fetched fresh from each side's form page before each POST.",
+    "Host/port: each side's own origin in absolute URLs (Location, links, img src, text) -> {base}.",
+    "Footer session info `<machine>, <M/d/yyyy h:mm:ss tt>` -> `<machine>, <session-start>` (machine name + session start time).",
+    "HTML is compared as a structured projection (title, visible text with whitespace collapsed and script/style/hidden elements removed, headings, links, images, tables, dl, forms, validation messages, assets); markup formatting is not compared.",
+    "Transport headers not compared: date, server, content-length, connection, keep-alive, transfer-encoding, x-aspnet-version, x-aspnetmvc-version, x-powered-by, x-sourcefiles, etag, last-modified, accept-ranges. Set-Cookie compared by cookie name only (values are random).",
+    "Absolute `Expires` dates (bundles: request time + 1 year) -> `<http-date>`; `Expires: -1` compared literally.",
+    "Contract level (CONTRACT.md parity rules) additionally ignores 3xx/>=400 bodies, Content-Type parameters, and bundle bytes; the strict and header levels do NOT, and their diffs are all listed and classified."
+  ],
+  "sql_limitations": [
+    "The recorded baseline transcripts were captured in mock mode, so SQL-mode replay.py vs baseline is 102/128 on BOTH sides with the same 26 flows failing on each (SQL decimal(18,2) renders 19.50 where the mock renders 19.5 on WebForms; delete of a missing id is 500 in SQL vs 302 in mock on both sides; plus S1/S2/F5 flows). SQL parity is therefore judged legacy-vs-migrated directly.",
+    "EF6 seed scripts are referenced with Windows backslash paths (Models\\Infrastructure\\dbo.*.Sequence.sql); on Linux the legacy SQL setup copies them to literal-backslash filenames in the throwaway copy so EF6 can seed (harness-only).",
+    "Both apps share one database; reset-sql.sh drops it before each side's sequence and the restarted app reseeds it, so each sequence starts from the app's own seed. Seeds matched (initial-state checks identical on both apps).",
+    "SA password generated per run into an untracked env file (src-net8/docker/sql.env.example documents the variable); not committed."
+  ],
+  "tests": [
+    "Migrated: `dotnet test src-net8/eShopNet8.sln -c Release` -> eShop.Catalog.UnitTests 68/68 (incl. Testcontainers SQL), eShopNet8.Mvc.IntegrationTests 68/68, eShopNet8.WebForms.IntegrationTests 40/40; total 176 passed, 0 failed, 0 skipped. Build: 0 errors, 4 NU1902 warnings (AngleSharp 1.1.2 advisory in integration-test projects, pre-existing).",
+    "Legacy: no test projects exist in eShopLegacyMVCSolution / eShopLegacyWebFormsSolution. The transcript suite is the legacy baseline suite: legacy 128/128 (mock), migrated 128/128 (mock)."
+  ],
+  "screenshots": "results/screenshots/<flow>-legacy.png and <flow>-migrated.png for index, details, create, create-validation (client-side validation errors), edit, delete-confirm, webforms-list; captured in mock mode by migration/parity/screenshots_side_by_side.py with headless Chrome at 1280px.",
+  "raw_reports": [
+    "raw/mock/side-by-side.json|.txt (summary + per-flow diffs), raw/mock/side-by-side-raw.json (both sides' full normalised responses)",
+    "raw/mock/legacy-replay/parity-report.json|.txt, raw/mock/migrated-replay/parity-report.json|.txt (replay.py vs baseline)",
+    "raw/sql/... same layout for SQL mode"
+  ],
+  "reproduce": [
+    "migration/parity/legacy/setup-legacy.sh all && migration/parity/legacy/start-legacy.sh mvc && migration/parity/legacy/start-legacy.sh webforms",
+    "docker compose -f src-net8/docker-compose.yml --profile mock up -d --build --wait",
+    "M='docker compose -f src-net8/docker-compose.yml --profile mock'",
+    "python3 migration/parity/side_by_side.py --legacy-mvc http://localhost:5100 --legacy-webforms http://localhost:5101 --migrated-mvc http://localhost:5200 --migrated-webforms http://localhost:5201 \\",
+    "  --restart-legacy-mvc 'migration/parity/legacy/start-legacy.sh mvc' --restart-legacy-webforms 'migration/parity/legacy/start-legacy.sh webforms' \\",
+    "  --restart-migrated-mvc \"$M restart mvc-mock && sleep 3\" --restart-migrated-webforms \"$M restart webforms-mock && sleep 3\" --report-dir migration/parity/results/raw/mock",
+    "# SQL: see migration/parity/sql/setup-legacy-sql.sh and reset-sql.sh headers",
+    "python3 migration/parity/build_report.py"
+  ]
+}
