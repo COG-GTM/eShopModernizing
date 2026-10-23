@@ -85,6 +85,8 @@ if [ "$DOCKER" = 1 ]; then
     PEER_SERVICE="$PEER-sql"
     if [ "$PEER" = mvc ]; then PEER_PORT="${NET8_SQL_MVC_PORT:-5210}"; else PEER_PORT="${NET8_SQL_WEBFORMS_PORT:-5211}"; fi
     PEER_UP=0; dc ps --status running --services 2>/dev/null | grep -qx "$PEER_SERVICE" && PEER_UP=1
+    # NET8_DOCKER_SOLO=1: run only this service (no compose depends_on, peer left stopped), like one legacy app per DB
+    [ "${NET8_DOCKER_SOLO:-0}" = 1 ] && PEER_UP=0
     quiet dc stop "$SERVICE" "$PEER_SERVICE"
     [ "$PEER_UP" = 1 ] && RESTORE_PEER='quiet dc start "$PEER_SERVICE"'
     # the password is read inside the container from its own environment, never passed on a host command line
@@ -93,7 +95,7 @@ if [ "$DOCKER" = 1 ]; then
     if [ "$PEER_UP" = 1 ] && [ "$PEER" = mvc ]; then
       quiet dc start "$PEER_SERVICE"; wait_healthy "$PEER_PORT" "docker compose -f $COMPOSE --profile $PROFILE logs $PEER_SERVICE" "$PEER_SERVICE"
     fi
-    quiet dc start "$SERVICE"
+    if [ "${NET8_DOCKER_SOLO:-0}" = 1 ]; then quiet dc up -d --no-deps "$SERVICE"; else quiet dc start "$SERVICE"; fi
     wait_healthy "$PORT" "docker compose -f $COMPOSE --profile $PROFILE logs $SERVICE"
     RESTORE_PEER=""
     if [ "$PEER_UP" = 1 ] && [ "$PEER" = webforms ]; then
