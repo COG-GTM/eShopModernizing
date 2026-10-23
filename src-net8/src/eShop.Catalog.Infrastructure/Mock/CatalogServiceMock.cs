@@ -5,11 +5,14 @@ using eShop.Catalog.Core.ViewModel;
 
 namespace eShop.Catalog.Infrastructure.Mock
 {
-    // Owned by ticket T2. Faithful port of eShopLegacyMVC.Services.CatalogServiceMock (registered as a singleton):
-    // CRUD persists in-process; brand/type navigation properties are only composed by GetCatalogItemsPaginated,
-    // so FindCatalogItem on an item created/updated since the last list call has null navigations (legacy quirk).
+    // Faithful port of eShopLegacyMVC.Services.CatalogServiceMock (identical in eShopLegacyWebForms), registered as a
+    // singleton (legacy Autofac SingleInstance): CRUD persists in-process; ids are max(Id)+1; Update swaps the list
+    // element for the posted object, so its CatalogBrand/CatalogType stay null until the next GetCatalogItemsPaginated
+    // composes them again; Remove of an unknown/null item is a no-op. The only addition is a lock: legacy relied on
+    // a plain List<T> shared by every request, which races (duplicate ids, enumeration errors) under parallel posts.
     public class CatalogServiceMock : ICatalogService
     {
+        private readonly object syncRoot = new object();
         private readonly List<CatalogItem> catalogItems;
 
         public CatalogServiceMock()
@@ -19,20 +22,26 @@ namespace eShop.Catalog.Infrastructure.Mock
 
         public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize = 10, int pageIndex = 0)
         {
-            var items = ComposeCatalogItems(catalogItems);
+            lock (syncRoot)
+            {
+                var items = ComposeCatalogItems(catalogItems);
 
-            var itemsOnPage = items
-                .OrderBy(c => c.Id)
-                .Skip(pageSize * pageIndex)
-                .Take(pageSize)
-                .ToList();
+                var itemsOnPage = items
+                    .OrderBy(c => c.Id)
+                    .Skip(pageSize * pageIndex)
+                    .Take(pageSize)
+                    .ToList();
 
-            return new PaginatedItemsViewModel<CatalogItem>(pageIndex, pageSize, items.Count, itemsOnPage);
+                return new PaginatedItemsViewModel<CatalogItem>(pageIndex, pageSize, items.Count, itemsOnPage);
+            }
         }
 
         public CatalogItem FindCatalogItem(int id)
         {
-            return catalogItems.FirstOrDefault(x => x.Id == id);
+            lock (syncRoot)
+            {
+                return catalogItems.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         public IEnumerable<CatalogType> GetCatalogTypes()
@@ -47,23 +56,32 @@ namespace eShop.Catalog.Infrastructure.Mock
 
         public void CreateCatalogItem(CatalogItem catalogItem)
         {
-            var maxId = catalogItems.Max(i => i.Id);
-            catalogItem.Id = ++maxId;
-            catalogItems.Add(catalogItem);
+            lock (syncRoot)
+            {
+                var maxId = catalogItems.Max(i => i.Id);
+                catalogItem.Id = ++maxId;
+                catalogItems.Add(catalogItem);
+            }
         }
 
         public void UpdateCatalogItem(CatalogItem modifiedItem)
         {
-            var originalItem = FindCatalogItem(modifiedItem.Id);
-            if (originalItem != null)
+            lock (syncRoot)
             {
-                catalogItems[catalogItems.IndexOf(originalItem)] = modifiedItem;
+                var index = catalogItems.FindIndex(x => x.Id == modifiedItem.Id);
+                if (index >= 0)
+                {
+                    catalogItems[index] = modifiedItem;
+                }
             }
         }
 
         public void RemoveCatalogItem(CatalogItem catalogItem)
         {
-            catalogItems.Remove(catalogItem);
+            lock (syncRoot)
+            {
+                catalogItems.Remove(catalogItem);
+            }
         }
 
         public void Dispose()
