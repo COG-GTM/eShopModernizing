@@ -1,0 +1,38 @@
+{
+  "description": "Flows whose `different` verdict is a deliberate, documented divergence from the legacy baseline (CONTRACT.md section 6). A divergence is accepted only when every difference reason starts with one of its `accept` prefixes (status changes are never accepted); any other `different` flow fails TranscriptParityTests. An entry that matches again is reported in the parity report so it can be removed.",
+  "flows": {
+    "mvc-unknown-path": {
+      "quirk": null,
+      "reason": "Unmapped URL: status 404 matches; the legacy body is the host-generated Mono/xsp4 HttpException error page (Mono version + stack trace), which ASP.NET Core does not reproduce (empty 404). R5 only makes >=500 bodies opaque.",
+      "accept": [
+        "content-type 'text/html' != ''",
+        "body kind html != empty"
+      ]
+    },
+    "mvc-api-root-undiscovered": {
+      "quirk": "Q1",
+      "reason": "/api stays 404 (Q1, CatalogController2 never discovered); only the host-generated Mono 404 error page body differs, as for mvc-unknown-path.",
+      "accept": [
+        "content-type 'text/html' != ''",
+        "body kind html != empty"
+      ]
+    },
+    "mvc-pic-nonnumeric": {
+      "quirk": null,
+      "reason": "/items/abc/pic does not match items/{catalogItemId:int}/pic: status 404 matches; legacy body is the host-generated Mono 404 error page, as for mvc-unknown-path.",
+      "accept": [
+        "content-type 'text/html' != ''",
+        "body kind html != empty"
+      ]
+    },
+    "wf-unknown-path": {
+      "quirk": null,
+      "reason": "Unmapped URL: status 404 and content type match; the legacy body is the host-generated Mono/xsp4 HttpException error page (Mono version + stack trace), which the Razor Pages port does not reproduce verbatim.",
+      "accept": [
+        "html title differs",
+        "html text differs",
+        "html structure differs"
+      ]
+    }
+  }
+}
