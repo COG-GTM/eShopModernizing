@@ -1,0 +1,14 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Legacy code is not nullable-annotated; ports keep reference semantics identical. -->
+    <Nullable>disable</Nullable>
+    <!-- Culture-sensitive output (currency, dates) must render en-US exactly like legacy: keep ICU on. -->
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <Deterministic>true</Deterministic>
+    <EFCoreVersion>8.0.11</EFCoreVersion>
+    <AspNetCoreVersion>8.0.11</AspNetCoreVersion>
+  </PropertyGroup>
+</Project>

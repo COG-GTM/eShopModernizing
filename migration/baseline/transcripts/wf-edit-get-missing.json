@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-edit-get-missing",
+  "app": "webforms",
+  "title": "WebForms Edit page, missing id (legacy NullReferenceException -> 500)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Edit/999"
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "d6f7aea9d8f377dcadf4cef52f9987aec1e140f8594b0fd1eb105c382fa4988f",
+      "length": 5964
+    }
+  }
+}

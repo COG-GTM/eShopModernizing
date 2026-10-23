@@ -1,0 +1,461 @@
+{
+  "flow_id": "wf-list-default",
+  "app": "webforms",
+  "title": "WebForms catalog list, /Default",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Default"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Home Page - Catalog manager (Web Forms)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (Web Forms)"
+          ]
+        ],
+        "text": "Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "Create New",
+            "href": "{base}/Catalog/Create",
+            "class": [
+              "btn",
+              "esh-button",
+              "esh-button-primary"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/1",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/1",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/1",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/2",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/2",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/2",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/3",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/3",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/3",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/4",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/4",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/4",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/5",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/5",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/5",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/6",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/6",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/6",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/7",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/7",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/7",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/8",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/8",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/8",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/9",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/9",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/9",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/10",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/10",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/10",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Previous",
+            "href": "{base}/Default/index/-1/size/10",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--hidden",
+              "esh-pager-item--navigable"
+            ]
+          },
+          {
+            "text": "Next",
+            "href": "{base}/Default/index/1/size/10",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--navigable"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/Pics/1.png",
+          "{base}/Pics/2.png",
+          "{base}/Pics/3.png",
+          "{base}/Pics/4.png",
+          "{base}/Pics/5.png",
+          "{base}/Pics/6.png",
+          "{base}/Pics/7.png",
+          "{base}/Pics/8.png",
+          "{base}/Pics/9.png",
+          "{base}/Pics/10.png",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [
+          {
+            "rows": [
+              [
+                "",
+                "Name",
+                "Description",
+                "Brand",
+                "Type",
+                "Price",
+                "Picture name",
+                "Stock",
+                "Restock",
+                "Max stock"
+              ],
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        ],
+        "definitions": [],
+        "forms": [
+          {
+            "method": "POST",
+            "action": "{base}/Default",
+            "fields": []
+          }
+        ],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

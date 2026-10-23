@@ -1,0 +1,281 @@
+{
+  "flow_id": "mvc-index-size5-page1",
+  "app": "mvc",
+  "title": "Index pageSize=5 pageIndex=1",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/?pageSize=5&pageIndex=1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Index - Catalog manager (MVC)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (MVC)"
+          ]
+        ],
+        "text": "Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt $12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt $12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt $8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug $12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet $12.00 10.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 2 - 3 Next <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "Create New",
+            "href": "{base}/Catalog/Create",
+            "class": [
+              "btn",
+              "esh-button",
+              "esh-button-primary"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/6",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/6",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/6",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/7",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/7",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/7",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/8",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/8",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/8",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/9",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/9",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/9",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/10",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Details",
+            "href": "{base}/Catalog/Details/10",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Delete",
+            "href": "{base}/Catalog/Delete/10",
+            "class": [
+              "esh-table-link"
+            ]
+          },
+          {
+            "text": "Previous",
+            "href": "{base}/?pageSize=5&pageIndex=0",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--navigable"
+            ]
+          },
+          {
+            "text": "Next",
+            "href": "{base}/?pageSize=5&pageIndex=2",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--navigable"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/items/6/pic",
+          "{base}/items/7/pic",
+          "{base}/items/8/pic",
+          "{base}/items/9/pic",
+          "{base}/items/10/pic",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [
+          {
+            "rows": [
+              [
+                "",
+                "Name",
+                "Description",
+                "Brand",
+                "Type",
+                "Price",
+                "Picture name",
+                "Stock",
+                "Restock",
+                "Max stock",
+                ""
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "$12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "$12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "$8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "$12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "$12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        ],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.6.2.js",
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

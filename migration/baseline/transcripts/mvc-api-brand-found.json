@@ -1,0 +1,26 @@
+{
+  "flow_id": "mvc-api-brand-found",
+  "app": "mvc",
+  "title": "GET /api/brands/2",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/api/brands/2"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "mime": "application/json"
+    },
+    "body": {
+      "kind": "json",
+      "json": {
+        "Id": 2,
+        "Brand": ".NET"
+      }
+    }
+  }
+}

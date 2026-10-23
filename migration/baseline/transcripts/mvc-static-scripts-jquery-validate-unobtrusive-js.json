@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-static-scripts-jquery-validate-unobtrusive-js",
+  "app": "mvc",
+  "title": "Static asset /Scripts/jquery.validate.unobtrusive.js",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Scripts/jquery.validate.unobtrusive.js"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/javascript",
+      "mime": "application/javascript"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "5cd342f044b0dbd8a8a512ee91545ace53f8e13c678c698441a9c72799079ad9",
+      "length": 19366
+    }
+  }
+}

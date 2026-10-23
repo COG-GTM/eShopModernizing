@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-details-get-missing",
+  "app": "webforms",
+  "title": "WebForms Details page, missing id (legacy NullReferenceException -> 500)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Details/999"
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "07d9ca17680d58fff94c3b3ec5c76286502a924baefa8fd43420f612428212c4",
+      "length": 9511
+    }
+  }
+}

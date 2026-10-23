@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-pic-created",
+  "app": "mvc",
+  "title": "Pic of created item (dummy.png)",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/items/13/pic"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "image/png",
+      "mime": "image/png"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "8e5cb858eace2ea912630d4cfeb8d6290b85ebbf98e4e45b439e7fdc1bcc6de2",
+      "length": 6574
+    }
+  }
+}

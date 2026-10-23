@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-static-content-bootstrap-css",
+  "app": "webforms",
+  "title": "WebForms static asset /Content/bootstrap.css",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Content/bootstrap.css"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/css",
+      "mime": "text/css"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "35fbb6dc3891aacaf1ffa07abec2344fdbc454aab533a2a03bcf93577eb7837b",
+      "length": 192348
+    }
+  }
+}

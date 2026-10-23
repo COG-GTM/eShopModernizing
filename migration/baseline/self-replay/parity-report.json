@@ -1,0 +1,1424 @@
+{
+  "summary": {
+    "generated_at": "2026-10-23T04:15:20+00:00",
+    "targets": {
+      "mvc": "http://localhost:5100",
+      "webforms": "http://localhost:5101"
+    },
+    "apps": {
+      "mvc": {
+        "total": 80,
+        "passed": 80,
+        "failed": 0
+      },
+      "webforms": {
+        "total": 48,
+        "passed": 48,
+        "failed": 0
+      }
+    },
+    "total": 128,
+    "passed": 128,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "mvc-initial-state",
+      "app": "mvc",
+      "passed": true,
+      "diffs": []
+    },
+    {
+      "id": "mvc-index-root",
+      "app": "mvc",
+      "title": "Catalog index, default paging (GET /)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-controller",
+      "app": "mvc",
+      "title": "Catalog index via /Catalog",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-action",
+      "app": "mvc",
+      "title": "Catalog index via /Catalog/Index",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-size5-page0",
+      "app": "mvc",
+      "title": "Index pageSize=5 pageIndex=0",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-size5-page1",
+      "app": "mvc",
+      "title": "Index pageSize=5 pageIndex=1",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-size5-page2",
+      "app": "mvc",
+      "title": "Index pageSize=5 pageIndex=2 (last, partial)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-size10-page1",
+      "app": "mvc",
+      "title": "Index pageSize=10 pageIndex=1",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-size100",
+      "app": "mvc",
+      "title": "Index pageSize=100 (all rows)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-out-of-range",
+      "app": "mvc",
+      "title": "Index pageIndex beyond last page (empty table)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-negative-page",
+      "app": "mvc",
+      "title": "Index negative pageIndex",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-size0",
+      "app": "mvc",
+      "title": "Index pageSize=0 (legacy divides by zero)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-size-invalid",
+      "app": "mvc",
+      "title": "Index pageSize not an int (binding falls back to default)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-1",
+      "app": "mvc",
+      "title": "Details GET, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-12",
+      "app": "mvc",
+      "title": "Details GET, last seeded id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-missing",
+      "app": "mvc",
+      "title": "Details GET, missing id -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-noid",
+      "app": "mvc",
+      "title": "Details GET, absent id -> 400",
+      "diffs": [],
+      "status": {
+        "expected": 400,
+        "actual": 400
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-badid",
+      "app": "mvc",
+      "title": "Details GET, non-int id -> 400",
+      "diffs": [],
+      "status": {
+        "expected": 400,
+        "actual": 400
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-edit-get-1",
+      "app": "mvc",
+      "title": "Edit GET, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-edit-get-missing",
+      "app": "mvc",
+      "title": "Edit GET, missing id -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-edit-get-noid",
+      "app": "mvc",
+      "title": "Edit GET, absent id -> 400",
+      "diffs": [],
+      "status": {
+        "expected": 400,
+        "actual": 400
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-delete-get-1",
+      "app": "mvc",
+      "title": "Delete GET, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-delete-get-missing",
+      "app": "mvc",
+      "title": "Delete GET, missing id -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-delete-get-noid",
+      "app": "mvc",
+      "title": "Delete GET, absent id -> 400",
+      "diffs": [],
+      "status": {
+        "expected": 400,
+        "actual": 400
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-get",
+      "app": "mvc",
+      "title": "Create GET (form + antiforgery token)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-pic-1",
+      "app": "mvc",
+      "title": "Pic route, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-pic-12",
+      "app": "mvc",
+      "title": "Pic route, last seeded id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-pic-zero",
+      "app": "mvc",
+      "title": "Pic route, id 0 -> 400",
+      "diffs": [],
+      "status": {
+        "expected": 400,
+        "actual": 400
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-pic-negative",
+      "app": "mvc",
+      "title": "Pic route, negative id -> 400",
+      "diffs": [],
+      "status": {
+        "expected": 400,
+        "actual": 400
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-pic-missing",
+      "app": "mvc",
+      "title": "Pic route, missing item -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-pic-nonint",
+      "app": "mvc",
+      "title": "Pic route, non-int id fails the route constraint -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-brands",
+      "app": "mvc",
+      "title": "GET /api/brands (JSON)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-brand-found",
+      "app": "mvc",
+      "title": "GET /api/brands/2",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-brand-missing",
+      "app": "mvc",
+      "title": "GET /api/brands/99 -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-brand-delete-found",
+      "app": "mvc",
+      "title": "DELETE /api/brands/2 -> 200 (demo: nothing deleted)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-brand-delete-missing",
+      "app": "mvc",
+      "title": "DELETE /api/brands/99 -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-brands-after-delete",
+      "app": "mvc",
+      "title": "GET /api/brands after DELETE (still 5 brands)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-files",
+      "app": "mvc",
+      "title": "GET /api/files (BinaryFormatter/NRBF payload, byte-exact)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-api-hello",
+      "app": "mvc",
+      "title": "GET /api (CatalogController2: never discovered by MVC 5 -> 404)",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-content-bootstrap-css",
+      "app": "mvc",
+      "title": "Static asset /Content/bootstrap.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-content-custom-css",
+      "app": "mvc",
+      "title": "Static asset /Content/custom.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-content-base-css",
+      "app": "mvc",
+      "title": "Static asset /Content/base.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-content-site-css",
+      "app": "mvc",
+      "title": "Static asset /Content/site.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-scripts-modernizr-2-6-2-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/modernizr-2.6.2.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-scripts-modernizr-2-8-3-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/modernizr-2.8.3.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-scripts-jquery-3-3-1-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/jquery-3.3.1.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-scripts-bootstrap-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/bootstrap.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-scripts-respond-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/respond.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-scripts-jquery-validate-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/jquery.validate.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-scripts-jquery-validate-unobtrusive-js",
+      "app": "mvc",
+      "title": "Static asset /Scripts/jquery.validate.unobtrusive.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-images-brand-png",
+      "app": "mvc",
+      "title": "Static asset /images/brand.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-images-brand_dark-png",
+      "app": "mvc",
+      "title": "Static asset /images/brand_dark.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-images-main_footer_text-png",
+      "app": "mvc",
+      "title": "Static asset /images/main_footer_text.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-favicon-ico",
+      "app": "mvc",
+      "title": "Static asset /favicon.ico",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-static-pics-1-png",
+      "app": "mvc",
+      "title": "Static asset /Pics/1.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-bundle-content-css",
+      "app": "mvc",
+      "title": "Bundle endpoint /Content/css (status + type only; WebGrease minified output is not a contract)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-bundle-bundles-jquery",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/jquery (status + type only; WebGrease minified output is not a contract)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-bundle-bundles-jqueryval",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/jqueryval (status + type only; WebGrease minified output is not a contract)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-bundle-bundles-modernizr",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/modernizr (status + type only; WebGrease minified output is not a contract)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-bundle-bundles-bootstrap",
+      "app": "mvc",
+      "title": "Bundle endpoint /bundles/bootstrap (status + type only; WebGrease minified output is not a contract)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-valid",
+      "app": "mvc",
+      "title": "Create POST valid -> 302 / and item 13 added",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-created",
+      "app": "mvc",
+      "title": "Details of created item 13",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-pic-created",
+      "app": "mvc",
+      "title": "Pic of created item (dummy.png)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-invalid-missing-name",
+      "app": "mvc",
+      "title": "Create POST invalid (missing name) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-invalid-bad-price",
+      "app": "mvc",
+      "title": "Create POST invalid (non-numeric price) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-invalid-price-over-max",
+      "app": "mvc",
+      "title": "Create POST invalid (price above 1,000,000) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-invalid-price-3dp",
+      "app": "mvc",
+      "title": "Create POST invalid (price with 3 decimals) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-invalid-stock-out-of-range",
+      "app": "mvc",
+      "title": "Create POST invalid (stock above 10 million) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-invalid-restock-negative",
+      "app": "mvc",
+      "title": "Create POST invalid (negative restock) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-create-post-no-antiforgery",
+      "app": "mvc",
+      "title": "Create POST without antiforgery token -> rejected",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-edit-post-valid",
+      "app": "mvc",
+      "title": "Edit POST valid (item 1) -> 302 /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-edited",
+      "app": "mvc",
+      "title": "Details of edited item 1",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-edit-post-invalid-missing-name",
+      "app": "mvc",
+      "title": "Edit POST invalid (missing name, item 2) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-edit-post-invalid-negative-stock",
+      "app": "mvc",
+      "title": "Edit POST invalid (negative stock, item 2) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-edit-post-invalid-bad-price",
+      "app": "mvc",
+      "title": "Edit POST invalid (non-numeric price, item 2) -> 200 with validation messages",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-delete-get-created",
+      "app": "mvc",
+      "title": "Delete GET of created item 13",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-delete-post",
+      "app": "mvc",
+      "title": "Delete POST item 13 -> 302 /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-delete-post-missing",
+      "app": "mvc",
+      "title": "Delete POST missing id 999",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-details-deleted",
+      "app": "mvc",
+      "title": "Details of deleted item 13 -> 404",
+      "diffs": [],
+      "status": {
+        "expected": 404,
+        "actual": 404
+      },
+      "passed": true
+    },
+    {
+      "id": "mvc-index-after-mutations",
+      "app": "mvc",
+      "title": "Index after all mutations",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "webforms-initial-state",
+      "app": "webforms",
+      "passed": true,
+      "diffs": []
+    },
+    {
+      "id": "wf-list-root",
+      "app": "webforms",
+      "title": "WebForms catalog list, GET /",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-default",
+      "app": "webforms",
+      "title": "WebForms catalog list, /Default",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size10-page0",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 0 size 10",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size10-page1",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 1 size 10",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size5-page0",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 0 size 5",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size5-page1",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 1 size 5",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size5-page2",
+      "app": "webforms",
+      "title": "WebForms catalog list, index 2 size 5 (partial)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size100",
+      "app": "webforms",
+      "title": "WebForms catalog list, size 100 (all rows)",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-out-of-range",
+      "app": "webforms",
+      "title": "WebForms catalog list, index beyond last page",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-negative-page",
+      "app": "webforms",
+      "title": "WebForms catalog list, negative index",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-size0",
+      "app": "webforms",
+      "title": "WebForms catalog list, size 0 (divide by zero)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-1",
+      "app": "webforms",
+      "title": "WebForms Details page, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-missing",
+      "app": "webforms",
+      "title": "WebForms Details page, missing id (legacy NullReferenceException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-get-1",
+      "app": "webforms",
+      "title": "WebForms Edit page, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-get-missing",
+      "app": "webforms",
+      "title": "WebForms Edit page, missing id (legacy NullReferenceException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-get-1",
+      "app": "webforms",
+      "title": "WebForms Delete page, valid id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-get-missing",
+      "app": "webforms",
+      "title": "WebForms Delete page, missing id (legacy NullReferenceException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-12",
+      "app": "webforms",
+      "title": "WebForms Details page, last seeded id",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-get-nonint",
+      "app": "webforms",
+      "title": "WebForms Details page, non-int id (legacy FormatException -> 500)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-get",
+      "app": "webforms",
+      "title": "WebForms Create page",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-pics-1-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/1.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-pics-12-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/12.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-pics-dummy-png",
+      "app": "webforms",
+      "title": "WebForms static asset /Pics/dummy.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-images-brand-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/brand.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-images-brand_dark-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/brand_dark.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-images-main_footer_text-png",
+      "app": "webforms",
+      "title": "WebForms static asset /images/main_footer_text.png",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-favicon-ico",
+      "app": "webforms",
+      "title": "WebForms static asset /favicon.ico",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-bootstrap-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/bootstrap.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-custom-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/custom.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-base-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/base.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-content-site-css",
+      "app": "webforms",
+      "title": "WebForms static asset /Content/site.css",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-jquery-3-3-1-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/jquery-3.3.1.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-bootstrap-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/bootstrap.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-respond-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/respond.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-static-scripts-modernizr-2-8-3-js",
+      "app": "webforms",
+      "title": "WebForms static asset /Scripts/modernizr-2.8.3.js",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-valid",
+      "app": "webforms",
+      "title": "WebForms Create postback valid -> redirect /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-created",
+      "app": "webforms",
+      "title": "WebForms Details of created item 13",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-invalid-missing-name",
+      "app": "webforms",
+      "title": "WebForms Create postback (missing name; server-side checks only)",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-invalid-bad-price",
+      "app": "webforms",
+      "title": "WebForms Create postback (non-numeric price; server-side checks only)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-create-post-invalid-negative-stock",
+      "app": "webforms",
+      "title": "WebForms Create postback (negative stock; server-side checks only)",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-post-valid",
+      "app": "webforms",
+      "title": "WebForms Edit postback valid (item 3) -> redirect /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-details-edited",
+      "app": "webforms",
+      "title": "WebForms Details of edited item 3",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-post-invalid-bad-price",
+      "app": "webforms",
+      "title": "WebForms Edit postback (non-numeric price, item 4)",
+      "diffs": [],
+      "status": {
+        "expected": 500,
+        "actual": 500
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-edit-post-invalid-missing-name",
+      "app": "webforms",
+      "title": "WebForms Edit postback (missing name, item 4)",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-get-created",
+      "app": "webforms",
+      "title": "WebForms Delete page of created item 13",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-delete-post",
+      "app": "webforms",
+      "title": "WebForms Delete postback item 13 -> redirect /",
+      "diffs": [],
+      "status": {
+        "expected": 302,
+        "actual": 302
+      },
+      "passed": true
+    },
+    {
+      "id": "wf-list-after-mutations",
+      "app": "webforms",
+      "title": "WebForms list after all postbacks",
+      "diffs": [],
+      "status": {
+        "expected": 200,
+        "actual": 200
+      },
+      "passed": true
+    }
+  ]
+}

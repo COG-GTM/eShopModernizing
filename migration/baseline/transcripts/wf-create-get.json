@@ -1,0 +1,181 @@
+{
+  "flow_id": "wf-create-get",
+  "app": "webforms",
+  "title": "WebForms Create page",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Create"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Create - Catalog manager (Web Forms)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (Web Forms)"
+          ],
+          [
+            "h2",
+            "Create"
+          ]
+        ],
+        "text": "Catalog manager (Web Forms) Create Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Uploading images not allowed for this version. Stock Restock Max stock [ Cancel ] <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "[ Cancel ]",
+            "href": "{base}/",
+            "class": [
+              "btn",
+              "esh-button",
+              "esh-button-secondary"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [],
+        "definitions": [],
+        "forms": [
+          {
+            "method": "POST",
+            "action": "{base}/Catalog/Create",
+            "fields": [
+              {
+                "tag": "input",
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": null
+              },
+              {
+                "tag": "input",
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": null
+              },
+              {
+                "tag": "select",
+                "name": "ctl00$MainContent$Brand",
+                "options": [
+                  [
+                    "1",
+                    "Azure",
+                    false
+                  ],
+                  [
+                    "2",
+                    ".NET",
+                    false
+                  ],
+                  [
+                    "3",
+                    "Visual Studio",
+                    false
+                  ],
+                  [
+                    "4",
+                    "SQL Server",
+                    false
+                  ],
+                  [
+                    "5",
+                    "Other",
+                    false
+                  ]
+                ]
+              },
+              {
+                "tag": "select",
+                "name": "ctl00$MainContent$Type",
+                "options": [
+                  [
+                    "1",
+                    "Mug",
+                    false
+                  ],
+                  [
+                    "2",
+                    "T-Shirt",
+                    false
+                  ],
+                  [
+                    "3",
+                    "Sheet",
+                    false
+                  ],
+                  [
+                    "4",
+                    "USB Memory Stick",
+                    false
+                  ]
+                ]
+              },
+              {
+                "tag": "input",
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "0.00"
+              },
+              {
+                "tag": "input",
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "tag": "input",
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "tag": "input",
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "tag": "input",
+                "name": "ctl00$MainContent$ctl06",
+                "type": "submit",
+                "value": "[ Create ]"
+              }
+            ]
+          }
+        ],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

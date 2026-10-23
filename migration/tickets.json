@@ -1,0 +1,84 @@
+[
+  {
+    "id": "T1",
+    "wave": 1,
+    "title": "Data layer: EF Core 8 CatalogDBContext, HiLo sequences, seeding and SQL ICatalogService",
+    "owned_paths": [
+      "src-net8/src/eShop.Catalog.Infrastructure/Data/**"
+    ],
+    "description": "Port the legacy EF6 data layer (eShopLegacyMVC Models/CatalogDBContext.cs, CatalogItemHiLoGenerator.cs, Models/Infrastructure/CatalogDBInitializer.cs + dbo.*_hilo.Sequence.sql, Services/CatalogService.cs) to EF Core 8 on SQL Server inside src-net8/src/eShop.Catalog.Infrastructure/Data/. Implement the stubs in Data/CatalogDataExtensions.cs: AddCatalogData(services, config) registers nothing when GetCatalogSettings().UseMockData is true; otherwise registers CatalogDBContext (UseSqlServer with ConnectionStrings:CatalogDBContext), the HiLo generator (singleton, blocks of 10 from catalog_hilo), the initializer and a scoped EF CatalogService as ICatalogService. InitializeCatalogDataAsync(host) creates the database if missing, the three bigint sequences (start 1, increment 10), and seeds PreconfiguredData (5 brands, 4 types, 12 items) or, with UseCustomizationData=true, Setup/*.csv + CatalogItems.zip into Pics. Mapping must match legacy: tables Catalog/CatalogBrand/CatalogType, Id not DB-generated, Name max 50 required, Brand/Type max 100 required, PictureFileName required, PictureUri ignored, required FKs. GetCatalogItemsPaginated = Include brand+type, OrderBy Id, Skip/Take, LongCount; Update via Entry(...).State=Modified; FindCatalogItem includes navigations. Copy the Setup/ seed files you need under Data/. Do not touch Core, the csproj, Program.cs or any other ticket's path. Read migration/CONTRACT.md and migration/INVENTORY.md first.",
+    "acceptance": "dotnet build src-net8/eShopNet8.sln green. With SQL Server 2022 on Linux (docker run -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD=... -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest) and UseMockData=false + ConnectionStrings__CatalogDBContext, starting either web app creates the DB, the catalog_hilo/catalog_brand_hilo/catalog_type_hilo sequences and 12/5/4 seed rows (show sqlcmd output in the PR), and is idempotent on restart. In mock mode (default) nothing EF-related is registered and the scaffold still answers /health 200. After T3/T4 merge, the read-only MVC transcripts (mvc-index-*, mvc-details-1/12/missing/noid/badid, mvc-edit-get-*, mvc-delete-get-*, mvc-create-get, mvc-pic-*, mvc-api-brands*) replay green with UseMockData=false (only HiLo-assigned ids of newly created items may differ, as documented in CONTRACT.md)."
+  },
+  {
+    "id": "T2",
+    "wave": 1,
+    "title": "Service layer: mock catalog parity, DI lifetimes and the UseMockData toggle (log4net replacement)",
+    "owned_paths": [
+      "src-net8/src/eShop.Catalog.Infrastructure/Mock/**",
+      "src-net8/src/eShop.Catalog.Infrastructure/DependencyInjection/**"
+    ],
+    "description": "Own the service registration that replaces the Autofac ApplicationModule. The scaffold ships a faithful CatalogServiceMock and an AddCatalogServices that registers it as a singleton when UseMockData=true; harden it without changing observable behaviour: keep the legacy semantics (max(Id)+1 ids, Update replaces the list element so navigations stay null until the next list call, Remove(null) is a no-op, list composes brand/type), make it safe under concurrent requests (lock around list access), keep lifetimes equal to legacy (mock singleton; SQL service scoped, registered by T1). Make the toggle explicit: UseMockData is read only via IConfiguration.GetCatalogSettings() (appsettings default true, env var UseMockData=false or --UseMockData=false override); log the selected mode at startup through ILogger (replacing log4net's root logger; legacy log4Net.xml RollingFileAppender is replaced by console logging configured in code via services.AddLogging, no new packages); fail fast at startup with a clear message if UseMockData=false and no ICatalogService has been registered (i.e. T1 not wired). Do not edit Core, the csproj, Program.cs, appsettings or other tickets' paths.",
+    "acceptance": "dotnet build green. With T3 and T5 merged, every mutation-sequence transcript and its data-state snapshot replays green in mock mode: mvc-create-post-*, mvc-edit-post-*, mvc-delete-post*, mvc-details-created/edited/deleted, mvc-index-after-mutations, wf-create-post-*, wf-edit-post-*, wf-delete-post, wf-details-created/edited, wf-list-after-mutations, plus data-state/mvc-initial.json and webforms-initial.json. Starting with UseMockData=false and no SQL wiring fails fast with the documented message; UseMockData=true logs 'mock' mode. A concurrency smoke (parallel creates) leaves ids unique."
+  },
+  {
+    "id": "T3",
+    "wave": 1,
+    "title": "MVC catalog UI: controllers, Razor views, pic route, layout and static assets",
+    "owned_paths": [
+      "src-net8/src/eShopNet8.Mvc/Hosting/CatalogMvcExtensions.cs",
+      "src-net8/src/eShopNet8.Mvc/Controllers/**",
+      "src-net8/src/eShopNet8.Mvc/Views/**",
+      "src-net8/src/eShopNet8.Mvc/wwwroot/**"
+    ],
+    "description": "Port eShopLegacyMVC CatalogController (Index/Details/Create/Edit/Delete + DeleteConfirmed) and PicController (attribute route items/{catalogItemId:int}/pic named GetPicRouteTemplate, mime by extension, 400 for id<=0, 404 for unknown) to ASP.NET Core MVC in src-net8/src/eShopNet8.Mvc/Controllers (not Controllers/Api), with the views (Index, CatalogTable partial, Details, Create, Edit, Delete, _Layout, Error, _ViewStart, _ViewImports) under Views/ and the legacy Content/, Scripts/, Images/ (served as /images), Pics/ and favicon.ico under wwwroot/ (byte-identical files; site.css lower-case). Implement CatalogMvcExtensions: AddCatalogMvc (AddControllersWithViews, session, antiforgery with field name __RequestVerificationToken, map antiforgery validation failure to HTTP 500 like MVC 5), UseCatalogMvc (exception handling, RequestLocalization fixed to en-US, static files with the legacy MIME map: .js application/javascript, session start storing MachineName + SessionStartTime for the footer, routing), MapCatalogMvc (default route {controller=Catalog}/{action=Index}/{id?} plus attribute routes). Preserve: [Bind] whitelist, absolute PictureUri via Url.RouteUrl(..., Request.Scheme), DisplayFor currency $19.50, pager markup and hidden classes, 400 for missing/non-int id, 404 for unknown id, redirect to / after POSTs, the debug-mode asset tags (individual <link>/<script> for bootstrap/custom/base/site css, modernizr 2.6.2 + 2.8.3, jquery-3.3.1, bootstrap, respond, jquery.validate + unobtrusive on Create/Edit), the data-val-* attributes and validation messages recorded in the transcripts. /Content/css and /bundles/{jquery,jqueryval,modernizr,bootstrap} must answer 200 with text/css / text/javascript (concatenated files are fine). Do not port CatalogController2 (/api must stay 404; that belongs to T4's contract) and do not touch Program.cs or shared files.",
+    "acceptance": "python3 migration/parity/replay.py --mvc-url http://localhost:5200 --restart-cmd-mvc '<restart dotnet run on 5200>' passes every MVC transcript except the mvc-api-* flows owned by T4: mvc-index-* (12), mvc-details-* , mvc-edit-get-*, mvc-delete-get-*, mvc-create-get, mvc-create-post-* (valid, 6 invalid, no-antiforgery -> 500), mvc-edit-post-*, mvc-delete-post*, mvc-pic-* (8), mvc-static-* (16), mvc-bundle-* (5), mvc-index-after-mutations, and all mvc data-state snapshots; attach the parity report and screenshots (migration/parity/screenshots.py --prefix net8) compared with migration/baseline/screenshots/legacy-mvc-*.png."
+  },
+  {
+    "id": "T4",
+    "wave": 1,
+    "title": "Web API endpoints with a deliberate BinaryFormatter replacement (MS-NRBF writer)",
+    "owned_paths": [
+      "src-net8/src/eShopNet8.Mvc/Hosting/CatalogApiExtensions.cs",
+      "src-net8/src/eShopNet8.Mvc/Api/**"
+    ],
+    "description": "Port the Web API 2 controllers (Controllers/WebApi/BrandsController.cs, FilesController.cs) into src-net8/src/eShopNet8.Mvc/Api/ and wire them through CatalogApiExtensions (AddCatalogApi / MapCatalogApi; minimal APIs or [ApiController] controllers, your choice, but configure JSON yourself so property names stay PascalCase: [{\"Id\":1,\"Brand\":\"Azure\"},...]). GET /api/brands, GET /api/brands/{id} (200 object / 404 empty), DELETE /api/brands/{id} (404 if missing, else 200 empty body, nothing deleted). GET /api/files: legacy streams BinaryFormatter output of List<FilesController+BrandDTO> (eShopLegacy.Utilities.Serializing). BinaryFormatter is disabled in .NET 8 and must stay disabled (no EnableUnsafeBinaryFormatterSerialization): write a small explicit MS-NRBF writer (SerializationHeader, BinaryLibrary, ClassWithMembersAndTypes for System.Collections.Generic.List`1 and the BrandDTO class, ArraySingleObject/MemberReference/BinaryObjectString records, MessageEnd) that reproduces the recorded payload byte for byte (transcript mvc-api-files: response.body.base64 + sha256 + length 719 at capture time) from the current brands, and document the decision in the PR. Return it with Content-Type application/octet-stream. /api (legacy CatalogController2) must keep returning 404: MVC 5 never discovered it because the type name does not end in Controller.",
+    "acceptance": "replay.py against the migrated MVC app passes mvc-api-brands, mvc-api-brand-found, mvc-api-brand-missing, mvc-api-brand-delete-found, mvc-api-brand-delete-missing, mvc-api-brands-after-delete, mvc-api-files (sha256 identical) and mvc-api-hello (404). The repo contains no BinaryFormatter usage under src-net8 (grep proof in PR) and the build has no SYSLIB0011 suppressions."
+  },
+  {
+    "id": "T5",
+    "wave": 1,
+    "title": "WebForms catalog -> ASP.NET Core Razor Pages (list, details, create, edit, delete)",
+    "owned_paths": [
+      "src-net8/src/eShopNet8.WebForms/Hosting/CatalogPagesExtensions.cs",
+      "src-net8/src/eShopNet8.WebForms/Pages/**",
+      "src-net8/src/eShopNet8.WebForms/wwwroot/**"
+    ],
+    "description": "Port eShopLegacyWebForms Default.aspx (ListView + pager), Catalog/Details|Edit|Create|Delete.aspx and Site.Master to Razor Pages in src-net8/src/eShopNet8.WebForms/Pages with the legacy routes: /, /Default, /Default/index/{index}/size/{size}, /Catalog/Create, /Catalog/Edit/{id}, /Catalog/Details/{id}, /Catalog/Delete/{id}. Copy Content/, Scripts/, images/, Pics/, favicon.ico into wwwroot (byte-identical). Implement CatalogPagesExtensions (AddCatalogPages, UseCatalogPages with en-US RequestLocalization, static files with the legacy MIME map, session for the footer label, routing; MapCatalogPages). Markup must normalise to the recorded transcripts: table columns and cell text (raw decimal price 19.5, no currency), /Pics/{file} thumbnails, pager links /Default/index/{i}/size/{s} with esh-pager-item--hidden, form field names exactly as WebForms posted them (ctl00$MainContent$Name, $Description, $Brand, $Type, $Price, $Stock, $Restock, $Maxstock on Create; $BrandDropDownList, $TypeDropDownList, $PictureFileName (readonly) on Edit; submit buttons ctl00$MainContent$ctl06 [ Create ], ctl07 [ Save ], ctl11 [ Delete ]), redirects to / after postbacks, and the legacy server-side quirks (unknown/non-int id and size 0 -> 500; empty name / negative stock are saved; non-numeric price -> 500) because the transcripts record them. Client-side validators may be reimplemented with jquery.validate but their messages must stay hidden in the initial markup. Razor Pages antiforgery must accept the posts the harness makes (it collects every hidden input from the GET page). Do not touch Program.cs or other tickets' files.",
+    "acceptance": "python3 migration/parity/replay.py --webforms-url http://localhost:5201 --restart-cmd-webforms '<restart on 5201>' passes all 48 WebForms checks: wf-list-* (11), wf-details-get-*, wf-edit-get-*, wf-delete-get-*, wf-create-get, wf-static-* (15), wf-create-post-* (4), wf-edit-post-* (3), wf-delete-post, wf-details-created/edited, wf-delete-get-created, wf-list-after-mutations, data-state/webforms-initial.json and every wf-* snapshot. Attach the report and net8 screenshots next to migration/baseline/screenshots/legacy-webforms-*.png."
+  },
+  {
+    "id": "T6",
+    "wave": 2,
+    "title": "Containerisation (Linux aspnet:8.0, docker compose with SQL Server) and GitHub Actions build",
+    "owned_paths": [
+      "src-net8/src/eShopNet8.Mvc/Hosting/HealthChecksExtensions.cs",
+      "src-net8/src/eShopNet8.WebForms/Hosting/HealthChecksExtensions.cs",
+      "src-net8/docker/**",
+      "src-net8/docker-compose*.yml",
+      "src-net8/.dockerignore",
+      ".github/workflows/net8-*.yml"
+    ],
+    "description": "Add multi-stage Dockerfiles in src-net8/docker/ (Dockerfile.mvc, Dockerfile.webforms: build on mcr.microsoft.com/dotnet/sdk:8.0, run on the Debian-based mcr.microsoft.com/dotnet/aspnet:8.0 as non-root, listen on 8080, ICU enabled so en-US currency renders $19.50), src-net8/.dockerignore, and src-net8/docker-compose.yml with SQL Server 2022 on Linux (mcr.microsoft.com/mssql/server:2022-latest, password from an env file / variable, never committed), the MVC app on host port 5200 and WebForms on 5201, UseMockData overridable per service (default compose profile: SQL mode for MVC with ConnectionStrings__CatalogDBContext; a 'mock' profile with UseMockData=true for parity replays), healthchecks. Implement HealthChecksExtensions in both apps: /health returns 200 when live and, when UseMockData=false, also checks SQL connectivity (Microsoft.Data.SqlClient is already available through EF Core SqlServer). Add .github/workflows/net8-build.yml: on PRs to devin/net8-eshop-migration touching src-net8/** or migration/**, restore/build/test src-net8/eShopNet8.sln on ubuntu-latest with .NET 8, build both images, start the mock profile and run migration/parity/replay.py against the containers, uploading the parity report as an artefact.",
+    "acceptance": "docker compose -f src-net8/docker-compose.yml --profile mock up -d brings both apps healthy; replay.py --mvc-url http://localhost:5200 --webforms-url http://localhost:5201 against the containers is 128/128 green (needs T3/T4/T5 merged). Default profile: SQL Server healthy, MVC /health 200 with the SQL check, catalog pages render seeded data (needs T1). Workflow YAML passes actionlint and runs green on the PR."
+  },
+  {
+    "id": "T7",
+    "wave": 2,
+    "title": "Test projects: xUnit unit tests + WebApplicationFactory integration tests driven by the baseline",
+    "owned_paths": [
+      "src-net8/tests/**"
+    ],
+    "description": "Own the three test projects already in the scaffold (tests/eShop.Catalog.UnitTests, tests/eShopNet8.Mvc.IntegrationTests, tests/eShopNet8.WebForms.IntegrationTests; you may add packages to them, e.g. System.Formats.Nrbf, Microsoft.EntityFrameworkCore.Sqlite/InMemory, Testcontainers.MsSql, coverlet). Unit tests: PaginatedItemsViewModel (TotalPages, pageSize 0 throws), CatalogItem validation attributes produce the exact legacy messages, CatalogServiceMock semantics (ids, update/remove, nav composition quirk), GetCatalogSettings defaults and env override, the T4 NRBF writer reproduces migration/baseline/transcripts/mvc-api-files.json base64 and decodes with System.Formats.Nrbf, the T1 HiLo generator and EF CatalogService against SQLite or a SQL Server Testcontainer. Integration tests: WebApplicationFactory<eShopNet8.Mvc.Program> / <eShopNet8.WebForms.Program> in mock mode that load migration/baseline/flows.json + transcripts and assert, in-process, status/Location/MIME and key content for every read-only flow (catalog pages, pic route, API, static assets), plus the antiforgery round-trip for create/edit/delete. Produce a coverage report (coverlet, cobertura) in CI output.",
+    "acceptance": "dotnet test src-net8/eShopNet8.sln green locally and in T6's workflow, with transcript-driven integration tests covering every read-only flow in flows.json (MVC 59, WebForms 35 incl. static) and the NRBF byte-equality test; line coverage of eShop.Catalog.Core + Infrastructure + both web apps reported in the PR (target >= 80% for Core/Infrastructure)."
+  }
+]

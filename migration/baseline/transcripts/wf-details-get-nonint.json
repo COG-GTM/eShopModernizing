@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-details-get-nonint",
+  "app": "webforms",
+  "title": "WebForms Details page, non-int id (legacy FormatException -> 500)",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Details/abc"
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "dc96e2b6fd7955f1d5c5840d7f3dddc711abdc07fc031ddd7ad08c71f9df88be",
+      "length": 7751
+    }
+  }
+}

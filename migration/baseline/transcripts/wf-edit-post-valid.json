@@ -1,0 +1,67 @@
+{
+  "flow_id": "wf-edit-post-valid",
+  "app": "webforms",
+  "title": "WebForms Edit postback valid (item 3) -> redirect /",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "POST",
+    "path": "/Catalog/Edit/3",
+    "form_from": "/Catalog/Edit/3",
+    "form_fields": {
+      "ctl00$MainContent$Name": "Prism White T-Shirt v2",
+      "ctl00$MainContent$Description": "Prism White T-Shirt",
+      "ctl00$MainContent$BrandDropDownList": "5",
+      "ctl00$MainContent$TypeDropDownList": "3",
+      "ctl00$MainContent$Price": "14.25",
+      "ctl00$MainContent$PictureFileName": "3.png",
+      "ctl00$MainContent$Stock": "60",
+      "ctl00$MainContent$Restock": "0",
+      "ctl00$MainContent$Maxstock": "0",
+      "ctl00$MainContent$ctl07": "[ Save ]"
+    },
+    "tokens_submitted": [
+      "__EVENTVALIDATION",
+      "__VIEWSTATE"
+    ]
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html",
+      "location": "{base}/"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Object moved",
+        "headings": [
+          [
+            "h2",
+            "Object moved to here"
+          ]
+        ],
+        "text": "Object moved to here",
+        "links": [
+          {
+            "text": "here",
+            "href": "{base}/",
+            "class": []
+          }
+        ],
+        "images": [],
+        "tables": [],
+        "definitions": [],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [],
+          "scripts": []
+        }
+      }
+    }
+  },
+  "data_state": "data-state/wf-edit-post-valid.json"
+}

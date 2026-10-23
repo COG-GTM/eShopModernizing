@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-static-images-brand-png",
+  "app": "mvc",
+  "title": "Static asset /images/brand.png",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/images/brand.png"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "image/png",
+      "mime": "image/png"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "778898667a5f4610b62597e88a79617872eec5d8edc2ad196f89609330b9faa4",
+      "length": 4023
+    }
+  }
+}

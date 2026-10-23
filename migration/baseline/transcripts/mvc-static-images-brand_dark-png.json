@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-static-images-brand_dark-png",
+  "app": "mvc",
+  "title": "Static asset /images/brand_dark.png",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/images/brand_dark.png"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "image/png",
+      "mime": "image/png"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "0d36b5ef9045b34d4bdf90a9916ace13371d06f062bd22e33bfea9a2ceb1f79d",
+      "length": 4266
+    }
+  }
+}

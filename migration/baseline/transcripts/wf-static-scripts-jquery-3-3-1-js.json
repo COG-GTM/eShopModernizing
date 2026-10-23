@@ -1,0 +1,24 @@
+{
+  "flow_id": "wf-static-scripts-jquery-3-3-1-js",
+  "app": "webforms",
+  "title": "WebForms static asset /Scripts/jquery-3.3.1.js",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Scripts/jquery-3.3.1.js"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/javascript",
+      "mime": "application/javascript"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "d8aa24ecc6cecb1a60515bc093f1c9da38a0392612d9ab8ae0f7f36e6eee1fad",
+      "length": 271751
+    }
+  }
+}

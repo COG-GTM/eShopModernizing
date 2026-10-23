@@ -1,0 +1,102 @@
+{
+  "flow_id": "wf-list-out-of-range",
+  "app": "webforms",
+  "title": "WebForms catalog list, index beyond last page",
+  "captured_at": "2026-10-23T04:11:57+00:00",
+  "captured_against": "http://localhost:5101",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Default/index/5/size/10"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Home Page - Catalog manager (Web Forms)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (Web Forms)"
+          ]
+        ],
+        "text": "Catalog manager (Web Forms) Create New No data was returned. Previous Showing 10 of 12 products - Page 6 - 2 Next <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "Create New",
+            "href": "{base}/Catalog/Create",
+            "class": [
+              "btn",
+              "esh-button",
+              "esh-button-primary"
+            ]
+          },
+          {
+            "text": "Previous",
+            "href": "{base}/Default/index/4/size/10",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--navigable"
+            ]
+          },
+          {
+            "text": "Next",
+            "href": "{base}/Default/index/6/size/10",
+            "class": [
+              "esh-pager-item",
+              "esh-pager-item--hidden",
+              "esh-pager-item--navigable"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [
+          {
+            "rows": [
+              [
+                "No data was returned."
+              ]
+            ]
+          }
+        ],
+        "definitions": [],
+        "forms": [
+          {
+            "method": "POST",
+            "action": "{base}/Default/index/5/size/10",
+            "fields": []
+          }
+        ],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

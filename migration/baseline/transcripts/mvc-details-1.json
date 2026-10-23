@@ -1,0 +1,119 @@
+{
+  "flow_id": "mvc-details-1",
+  "app": "mvc",
+  "title": "Details GET, valid id",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Catalog/Details/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "mime": "text/html"
+    },
+    "body": {
+      "kind": "html",
+      "html": {
+        "title": "Details - Catalog manager (MVC)",
+        "headings": [
+          [
+            "h1",
+            "Catalog manager (MVC)"
+          ],
+          [
+            "h2",
+            "Details"
+          ]
+        ],
+        "text": "Catalog manager (MVC) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price $19.50 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to List <machine>, <session-start>",
+        "links": [
+          {
+            "text": "",
+            "href": "{base}/",
+            "class": []
+          },
+          {
+            "text": "Edit",
+            "href": "{base}/Catalog/Edit/1",
+            "class": [
+              "esh-link-item"
+            ]
+          },
+          {
+            "text": "Back to List",
+            "href": "{base}/",
+            "class": [
+              "esh-link-item"
+            ]
+          }
+        ],
+        "images": [
+          "{base}/images/brand.png",
+          "{base}/items/1/pic",
+          "{base}/images/brand_dark.png",
+          "{base}/images/main_footer_text.png"
+        ],
+        "tables": [],
+        "definitions": [
+          [
+            "Name",
+            ".NET Bot Black Hoodie"
+          ],
+          [
+            "Description",
+            ".NET Bot Black Hoodie"
+          ],
+          [
+            "Brand",
+            ".NET"
+          ],
+          [
+            "Type",
+            "T-Shirt"
+          ],
+          [
+            "Price",
+            "$19.50"
+          ],
+          [
+            "Picture name",
+            "1.png"
+          ],
+          [
+            "Stock",
+            "100"
+          ],
+          [
+            "Restock",
+            "0"
+          ],
+          [
+            "Max stock",
+            "0"
+          ]
+        ],
+        "forms": [],
+        "validation": [],
+        "assets": {
+          "stylesheets": [
+            "{base}/Content/bootstrap.css",
+            "{base}/Content/custom.css",
+            "{base}/Content/base.css",
+            "{base}/Content/site.css"
+          ],
+          "scripts": [
+            "{base}/Scripts/modernizr-2.6.2.js",
+            "{base}/Scripts/modernizr-2.8.3.js",
+            "{base}/Scripts/jquery-3.3.1.js",
+            "{base}/Scripts/bootstrap.js",
+            "{base}/Scripts/respond.js"
+          ]
+        }
+      }
+    }
+  }
+}

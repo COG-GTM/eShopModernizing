@@ -1,0 +1,24 @@
+{
+  "flow_id": "mvc-static-pics-1-png",
+  "app": "mvc",
+  "title": "Static asset /Pics/1.png",
+  "captured_at": "2026-10-23T04:12:36+00:00",
+  "captured_against": "http://localhost:5100",
+  "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
+  "request": {
+    "method": "GET",
+    "path": "/Pics/1.png"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "image/png",
+      "mime": "image/png"
+    },
+    "body": {
+      "kind": "binary",
+      "sha256": "0487bc526da61586780355f4f50aa368f09c0a212809b1f08444382f4d789eb0",
+      "length": 151640
+    }
+  }
+}
