@@ -34,17 +34,20 @@ def main(argv=None) -> int:
     for app, base in (("mvc", args.mvc_url), ("webforms", args.webforms_url)):
         if not base:
             continue
+        # Run and validate the whole capture before touching the existing baseline, so a failed
+        # restart or flow leaves the previous transcripts/snapshots intact.
+        actual = run_app(app, base, doc["flows"], getattr(args, f"restart_cmd_{app}"))
+        failed = [f"{e['flow']['id']}: {e['error']}" for e in actual["flows"] if "error" in e]
+        if failed:
+            raise SystemExit(f"{app}: capture failed, baseline left unchanged:\n  " + "\n  ".join(failed))
         for d in (tdir, sdir):
             d.mkdir(parents=True, exist_ok=True)
         for old in list(tdir.glob("*.json")) + list(sdir.glob("*.json")):
             if json.loads(old.read_text()).get("app") == app:
                 old.unlink()
-        actual = run_app(app, base, doc["flows"], getattr(args, f"restart_cmd_{app}"))
         (sdir / f"{app}-initial.json").write_text(json.dumps({"app": app, **actual["initial_state"]}, indent=2))
         for entry in actual["flows"]:
             flow = entry["flow"]
-            if "error" in entry:
-                raise SystemExit(f"{flow['id']}: {entry['error']}")
             transcript = {"flow_id": flow["id"], "app": app, "title": flow["title"], "captured_at": captured_at,
                           "captured_against": base, "runtime": "legacy .NET Framework 4.7.2 on Mono 6.12 + xsp4",
                           "request": entry["request"], "response": entry["response"]}
