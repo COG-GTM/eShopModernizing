@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
 
@@ -8,7 +7,6 @@ namespace eShopNet8.Mvc.Extensions;
 public sealed class CaseInsensitiveFileProvider : IFileProvider
 {
     private readonly IFileProvider _inner;
-    private readonly ConcurrentDictionary<string, string?> _resolved = new(StringComparer.Ordinal);
 
     public CaseInsensitiveFileProvider(IFileProvider inner) => _inner = inner;
 
@@ -30,10 +28,11 @@ public sealed class CaseInsensitiveFileProvider : IFileProvider
 
     public IChangeToken Watch(string filter) => _inner.Watch(filter);
 
-    private string? Resolve(string subpath) => _resolved.GetOrAdd(subpath, path =>
+    // Only reached for paths that do not exist as written; deliberately uncached so request paths cannot grow memory.
+    private string? Resolve(string subpath)
     {
         var current = "";
-        foreach (var segment in path.Split('/', StringSplitOptions.RemoveEmptyEntries))
+        foreach (var segment in subpath.Split('/', StringSplitOptions.RemoveEmptyEntries))
         {
             if (segment is "." or "..") return null;
             var match = _inner.GetDirectoryContents(current)
@@ -42,5 +41,5 @@ public sealed class CaseInsensitiveFileProvider : IFileProvider
             current = current + "/" + match.Name;
         }
         return current.Length == 0 ? null : current;
-    });
+    }
 }
