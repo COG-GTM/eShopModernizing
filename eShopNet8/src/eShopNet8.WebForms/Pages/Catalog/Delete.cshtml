@@ -1,0 +1,20 @@
+@page "{id}"
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    ViewData["PostBackForm"] = true;
+}
+    <h2 class="esh-body-title">Delete</h2>
+    <div class="container">
+        <h3>Are you sure you want to delete this?</h3>
+        <div class="row">
+@await Html.PartialAsync("_ProductDetails", Model.Product)
+                <dt></dt>
+                <dd class="text-right esh-button-actions">
+                    <a class="btn esh-button esh-button-secondary" href="@LegacyPage.AppRelativeRoot(HttpContext.Request)">[ Cancel ]
+                    </a>
+                    <input type="submit" name="@DeleteModel.SubmitButtonName" value="[ Delete ]" class="btn esh-button esh-button-primary" />
+                </dd>
+            </dl>
+        </div>
+    </div>

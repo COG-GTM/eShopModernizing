@@ -1,0 +1,19 @@
+@page "{id}"
+@model DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+    <h2 class="esh-body-title">Details</h2>
+    <div class="container">
+        <div class="row">
+@await Html.PartialAsync("_ProductDetails", Model.Product)
+            </dl>
+        </div>
+        <div class="form-actions no-color esh-link-list">
+            <a class="esh-link-item" href="/Catalog/Edit/@Model.Product.Id">Edit
+            </a>
+            |
+            <a class="esh-link-item" href="@LegacyPage.AppRelativeRoot(HttpContext.Request)">Back to list
+            </a>
+        </div>
+    </div>
