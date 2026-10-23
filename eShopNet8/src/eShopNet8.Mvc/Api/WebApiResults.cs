@@ -1,5 +1,6 @@
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Xml;
 using Microsoft.AspNetCore.Diagnostics;
@@ -13,7 +14,13 @@ namespace eShopNet8.Mvc.Api;
 // formatters (INVENTORY Q16), the HttpError body for failed Int32 parameter binding, and 405 responses with Allow.
 public static class WebApiResults
 {
-    public static readonly JsonSerializerOptions JsonOptions = new() { PropertyNamingPolicy = null };
+    // Newtonsoft (Web API 2) wrote PascalCase names and did not \u-escape characters such as ' in HttpError messages.
+    // Relaxed escaping is safe here because these bodies are always served as application/json, never inlined into HTML.
+    public static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNamingPolicy = null,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    };
 
     private const string LegacyControllerType = "eShopLegacyMVC.Controllers.WebApi.BrandsController";
 
