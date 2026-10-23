@@ -23,7 +23,8 @@ setup_mvc() {
   # 3. Linux is case-sensitive, IIS is not: the layout links ~/images/* (folder is Images) and the
   #    css bundle includes ~/Content/site.css (file is Site.css).
   ln -sfn Images images
-  ln -sfn Site.css Content/site.css
+  #    site.css is a copy, not a symlink: xsp4 serves a symlink truncated to its lstat size (8 bytes).
+  cp Content/Site.css Content/site.css
 }
 
 setup_webforms() {
