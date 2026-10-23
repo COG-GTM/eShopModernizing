@@ -12,8 +12,8 @@ using Microsoft.Extensions.Logging;
 namespace eShop.Catalog.Infrastructure.Data;
 
 // Port of eShopLegacyMVC.Models.Infrastructure.CatalogDBInitializer (EF6 CreateDatabaseIfNotExists):
-// create the database if it does not exist, then (only on creation) seed types, brands, items and, with
-// UseCustomizationData, the CSV data and the CatalogItems.zip pictures. The three HiLo sequences are part of the
+// create the database if it does not exist, then (only while the catalog is empty) seed types, brands, items and,
+// with UseCustomizationData, the CSV data and the CatalogItems.zip pictures. The three HiLo sequences are part of the
 // EF Core model, so EnsureCreated creates them with the tables (legacy ran dbo.*.Sequence.sql scripts instead).
 public class CatalogDBInitializer
 {
@@ -37,33 +37,50 @@ public class CatalogDBInitializer
 
     public async Task InitializeAsync(CancellationToken cancellationToken = default)
     {
-        if (!await EnsureCreatedAsync(cancellationToken))
+        var created = await EnsureCreatedAsync(cancellationToken);
+
+        // MVC and WebForms share the database and both initialize it, so the seed runs under an exclusive app lock in
+        // one transaction: a failed seed rolls back to empty tables (retried on the next start, never dropped), and a
+        // concurrent instance waits for the commit instead of reading or reseeding a half-seeded catalog.
+        await using var transaction = await context.Database.BeginTransactionAsync(cancellationToken);
+        await context.Database.ExecuteSqlRawAsync(
+            "DECLARE @result int; " +
+            "EXEC @result = sp_getapplock @Resource = N'eShop.Catalog.Seed', @LockMode = N'Exclusive', @LockOwner = N'Transaction', @LockTimeout = 120000; " +
+            "IF @result < 0 THROW 50000, 'Timed out waiting for the catalog seed lock', 1;",
+            cancellationToken);
+
+        if (await context.CatalogTypes.AnyAsync(cancellationToken)
+            || await context.CatalogBrands.AnyAsync(cancellationToken)
+            || await context.CatalogItems.AnyAsync(cancellationToken))
         {
             logger.LogInformation("Catalog database already exists; skipping seed");
             return;
         }
 
-        logger.LogInformation("Catalog database created; seeding (UseCustomizationData={UseCustomizationData})", useCustomizationData);
-        try
+        if (!created)
         {
-            Seed();
+            // Brands and types cannot be deleted through the app, so all-empty tables mean an earlier seed never
+            // committed. Sequences are not transactional: restart them so the reseed gets the legacy ids again.
+            logger.LogWarning("Catalog database exists but is empty (an earlier seed did not complete); seeding");
+            await context.Database.ExecuteSqlRawAsync(
+                $"ALTER SEQUENCE [dbo].[{CatalogDBContext.CatalogTypeHiLoSequenceName}] RESTART WITH 1; " +
+                $"ALTER SEQUENCE [dbo].[{CatalogDBContext.CatalogBrandHiLoSequenceName}] RESTART WITH 1; " +
+                $"ALTER SEQUENCE [dbo].[{CatalogDBContext.CatalogItemHiLoSequenceName}] RESTART WITH 1;",
+                cancellationToken);
         }
-        catch (Exception ex)
-        {
-            // Seeding only runs right after creation, so a partially seeded database would never be repaired.
-            // Drop the database this call just created so the next startup recreates and reseeds it.
-            logger.LogError(ex, "Catalog seed failed; dropping the newly created database so the next start reseeds it");
-            await context.Database.EnsureDeletedAsync(CancellationToken.None);
-            throw;
-        }
+
+        logger.LogInformation("Seeding catalog database (UseCustomizationData={UseCustomizationData})", useCustomizationData);
+        Seed();
+        await transaction.CommitAsync(cancellationToken);
     }
 
     public void Seed()
     {
+        // Pictures first (legacy extracted them last): a broken archive then fails before any row is written.
+        AddCatalogItemPictures();
         AddCatalogTypes();
         AddCatalogBrands();
         AddCatalogItems();
-        AddCatalogItemPictures();
     }
 
     private async Task<bool> EnsureCreatedAsync(CancellationToken cancellationToken)
