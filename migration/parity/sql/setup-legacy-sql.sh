@@ -11,7 +11,7 @@ set -euo pipefail
 : "${MSSQL_SA_PASSWORD:?set MSSQL_SA_PASSWORD (same value as the compose sql profile)}"
 export LEGACY_ROOT="${LEGACY_ROOT:-/tmp/sql}"
 here="$(cd "$(dirname "$0")" && pwd)"
-mkdir -p "$LEGACY_ROOT"
+mkdir -p "$LEGACY_ROOT" && chmod 700 "$LEGACY_ROOT"
 
 wire() {
   cd "$1"
@@ -24,6 +24,7 @@ s = open("Web.config").read()
 s = re.sub(r'(name="CatalogDBContext" connectionString=")[^"]*"', lambda m: m.group(1) + cs + '"', s)
 open("Web.config", "w").write(s)
 PY
+  chmod 600 Web.config  # holds the SA password; throwaway copy, never committed
   for f in Models/Infrastructure/dbo.*.Sequence.sql; do cp "$f" "${f//\//\\}"; done
 }
 

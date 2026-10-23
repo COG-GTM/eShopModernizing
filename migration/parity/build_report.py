@@ -53,7 +53,8 @@ RULES = [
      "Legacy CatalogService.GetCatalogItemsPaginated does Skip(pageSize * pageIndex): LINQ-to-Objects (mock) "
      "treats a negative Skip as 0, but EF6 emits a negative OFFSET and SQL Server throws. The migrated "
      "CatalogService guards pageIndex < 0, giving the same result in SQL mode as in mock mode (the recorded baseline).",
-     lambda m, f, k, d: m == "sql" and f in ("mvc-index-negative-page", "wf-list-negative-page")),
+     lambda m, f, k, d: (m == "sql" and f in ("mvc-index-negative-page", "wf-list-negative-page")
+                         and k in ("contract", "strict") and d.startswith(RESPONSE_PATHS))),
     ("S2-ef-validate-on-save", OPEN,
      "SQL mode: WebForms create with negative Stock -> legacy 500 (row rejected), migrated 302 (row inserted); "
      "the extra row then shifts every later WebForms data-state snapshot",
@@ -63,13 +64,31 @@ RULES = [
      "validator over the shared eShop.Catalog.Core model also applies the MVC [Required] Name attribute, which the "
      "legacy WebForms model lacks (tried in this run: it turned wf-create/edit-post-invalid-missing-name into 500s), "
      "so the fix needs a WebForms-specific rule set. Mock mode is unaffected (legacy mock also accepts the row).",
-     lambda m, f, k, d: m == "sql" and f.startswith("wf-") and f in S2_FLOWS),
+     lambda m, f, k, d: m == "sql" and s2_match(f, k, d)),
 ]
 ERROR_FLOWS = {"mvc-index-size0", "mvc-delete-post-missing", "mvc-create-post-no-antiforgery", "mvc-pic-nonint", "mvc-api-hello",
                "wf-list-size0", "wf-details-get-missing", "wf-edit-get-missing", "wf-delete-get-missing",
                "wf-details-get-nonint", "wf-create-post-invalid-bad-price", "wf-edit-post-invalid-bad-price"}
 S2_FLOWS = {"wf-create-post-invalid-negative-stock", "wf-edit-post-valid", "wf-edit-post-invalid-bad-price",
             "wf-edit-post-invalid-missing-name", "wf-delete-post", "wf-list-after-mutations"}
+
+RESPONSE_PATHS = ("$.response.status", "$.response.mime", "$.response.location", "$.response.body",
+                  "$.response.headers.content-type", "$.response.headers.mime")
+EXTRA_ROW_HTML = ("$.response.body.html.text", "$.response.body.html.links", "$.response.body.html.tables",
+                  "$.response.body.html.images")
+EXTRA_ROW_PATHS = ("$.data_state.pager", "$.data_state.row_count", "$.data_state.rows")
+
+
+def s2_match(flow_id: str, kind: str, diff: str) -> bool:
+    """The negative-stock create itself (status/body + one extra row), then only extra-row effects downstream."""
+    if flow_id == "wf-create-post-invalid-negative-stock":
+        return ((kind in ("contract", "strict") and diff.startswith(RESPONSE_PATHS + ("$.response.headers.location",)))
+                or (kind == "header" and diff.startswith(("$.headers.location", "$.headers.content-type")))
+                or (kind == "data" and diff.startswith(EXTRA_ROW_PATHS)))
+    if flow_id == "wf-list-after-mutations":
+        return kind in ("contract", "strict") and diff.startswith(EXTRA_ROW_HTML)
+    return flow_id in S2_FLOWS and kind == "data" and diff.startswith(EXTRA_ROW_PATHS)
+
 
 FIXED_IN_PR = [
     ("F1-webapi-nocache", "Web API 2 default headers on /api/brands and /api/files: `Cache-Control: no-cache`, "

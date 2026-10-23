@@ -103,7 +103,9 @@ def compare(app: str, legacy: dict[str, Any], migrated: dict[str, Any], flows: l
         if "error" in L or "error" in M:
             row.update(legacy_status=None, migrated_status=None,
                        contract_diffs=[f"legacy error: {L.get('error')}", f"migrated error: {M.get('error')}"],
-                       strict_diffs=[], header_diffs=[], data_state_diffs=[], data_state_checked=False)
+                       strict_diffs=[], header_diffs=[], data_state_diffs=[], data_state_checked=False,
+                       legacy_vs_baseline=[f"error: {L['error']}"] if "error" in L else [],
+                       migrated_vs_baseline=[f"error: {M['error']}"] if "error" in M else [])
         else:
             lr, mr = L["response"], M["response"]
             row["legacy_status"], row["migrated_status"] = lr["status"], mr["status"]
