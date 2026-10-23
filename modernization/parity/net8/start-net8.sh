@@ -42,6 +42,21 @@ esac
 PROBE=/health; [ "$SQL" = 1 ] && PROBE=/health/ready
 if [ "$APP" = mvc ]; then PEER=webforms; else PEER=mvc; fi
 RESET=0; [ "$SQL" = 1 ] && [ "$ACTION" = start ] && [ "${NET8_SQL_RESET:-1}" = 1 ] && RESET=1
+if [ "$SQL" = 1 ] && [ "$DOCKER" = 0 ] && [ "$ACTION" = start ]; then
+  : "${NET8_SQL_PASSWORD:?set NET8_SQL_PASSWORD to the local SQL Server sa password}"
+fi
+
+# a SQL peer stopped for the shared-DB reset is brought back even if this restart fails
+RESTORE_PEER=""
+restore_peer() {
+  local rc=$?
+  if [ "$rc" != 0 ] && [ -n "$RESTORE_PEER" ]; then
+    echo "restart of $APP failed; restoring $PEER" >&2
+    eval "$RESTORE_PEER" || true
+  fi
+  exit "$rc"
+}
+trap restore_peer EXIT
 
 wait_healthy() { # port logfile [name]
   local name="${3:-$APP}"
@@ -71,6 +86,7 @@ if [ "$DOCKER" = 1 ]; then
     if [ "$PEER" = mvc ]; then PEER_PORT="${NET8_SQL_MVC_PORT:-5210}"; else PEER_PORT="${NET8_SQL_WEBFORMS_PORT:-5211}"; fi
     PEER_UP=0; dc ps --status running --services 2>/dev/null | grep -qx "$PEER_SERVICE" && PEER_UP=1
     quiet dc stop "$SERVICE" "$PEER_SERVICE"
+    [ "$PEER_UP" = 1 ] && RESTORE_PEER='quiet dc start "$PEER_SERVICE"'
     # the password is read inside the container from its own environment, never passed on a host command line
     dc exec -T sqldata bash -c '/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -b -Q "$0" >/dev/null' "$DROP_DB"
     # mvc-sql seeds first when both run (same order as the compose depends_on)
@@ -79,6 +95,7 @@ if [ "$DOCKER" = 1 ]; then
     fi
     quiet dc start "$SERVICE"
     wait_healthy "$PORT" "docker compose -f $COMPOSE --profile $PROFILE logs $SERVICE"
+    RESTORE_PEER=""
     if [ "$PEER_UP" = 1 ] && [ "$PEER" = webforms ]; then
       quiet dc start "$PEER_SERVICE"; wait_healthy "$PEER_PORT" "docker compose -f $COMPOSE --profile $PROFILE logs $PEER_SERVICE" "$PEER_SERVICE"
     fi
@@ -109,6 +126,7 @@ rm -f "$RUN/$APP.sql-mode"
 PEER_SQL=0
 if [ "$RESET" = 1 ] && [ -f "$RUN/$PEER.sql-mode" ] && fuser -n tcp "$(port_of "$PEER")" >/dev/null 2>&1; then
   PEER_SQL=1; kill_port "$(port_of "$PEER")"; rm -f "$RUN/$PEER.sql-mode"
+  RESTORE_PEER='NET8_SQL_RESET=0 "$HERE/start-net8.sh" "$PEER" --sql'
 fi
 
 STAMP="$OUT/.published"
@@ -123,7 +141,6 @@ fi
 
 ENV=(ASPNETCORE_ENVIRONMENT="${ASPNETCORE_ENVIRONMENT:-Production}")
 if [ "$SQL" = 1 ]; then
-  : "${NET8_SQL_PASSWORD:?set NET8_SQL_PASSWORD to the local SQL Server sa password}"
   SERVER="${NET8_SQL_SERVER:-127.0.0.1,1433}"
   if [ "$RESET" = 1 ]; then
     SQLCMD="$(command -v sqlcmd || echo /opt/mssql-tools18/bin/sqlcmd)"
@@ -141,4 +158,4 @@ fi
   exec setsid nohup dotnet "$PROJECT.dll" --urls "http://127.0.0.1:$PORT" >"$LOG" 2>&1 </dev/null ) &
 [ "$SQL" = 1 ] && touch "$RUN/$APP.sql-mode"
 wait_healthy "$PORT" "$LOG"
-if [ "$PEER_SQL" = 1 ]; then NET8_SQL_RESET=0 "$HERE/start-net8.sh" "$PEER" --sql; fi
+if [ "$PEER_SQL" = 1 ]; then RESTORE_PEER=""; NET8_SQL_RESET=0 "$HERE/start-net8.sh" "$PEER" --sql; fi
