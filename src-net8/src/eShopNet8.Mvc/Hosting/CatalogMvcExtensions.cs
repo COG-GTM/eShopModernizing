@@ -136,6 +136,7 @@ namespace eShopNet8.Mvc.Hosting
             private readonly IFileProvider files;
             private readonly string[] paths;
             private readonly string contentType;
+            private readonly object rebuildLock = new();
             private volatile Snapshot current;
 
             public CachedBundle(IFileProvider files, string[] paths, string contentType)
@@ -151,11 +152,21 @@ namespace eShopNet8.Mvc.Hosting
                 get
                 {
                     var snapshot = current;
-                    if (snapshot.Changed.HasChanged)
+                    if (!snapshot.Changed.HasChanged)
                     {
-                        current = snapshot = Build();
+                        return snapshot.Content;
                     }
-                    return snapshot.Content;
+
+                    // One rebuild at a time, so an older rebuild can never replace a newer one.
+                    lock (rebuildLock)
+                    {
+                        snapshot = current;
+                        if (snapshot.Changed.HasChanged)
+                        {
+                            current = snapshot = Build();
+                        }
+                        return snapshot.Content;
+                    }
                 }
             }
 
