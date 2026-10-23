@@ -1,0 +1,25 @@
+# syntax=docker/dockerfile:1
+# eShopNet8.Mvc: build on the .NET 8 SDK, run on the Debian-based ASP.NET Core 8 runtime (ICU included,
+# so en-US formatting matches legacy). Build context: src-net8/ (see docker-compose.yml).
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY global.json Directory.Build.props ./
+COPY src/eShop.Catalog.Core/eShop.Catalog.Core.csproj src/eShop.Catalog.Core/
+COPY src/eShop.Catalog.Infrastructure/eShop.Catalog.Infrastructure.csproj src/eShop.Catalog.Infrastructure/
+COPY src/eShopNet8.Mvc/eShopNet8.Mvc.csproj src/eShopNet8.Mvc/
+RUN dotnet restore src/eShopNet8.Mvc/eShopNet8.Mvc.csproj
+COPY src/ src/
+RUN dotnet publish src/eShopNet8.Mvc/eShopNet8.Mvc.csproj -c Release --no-restore -o /app/publish /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+ENV ASPNETCORE_HTTP_PORTS=8080 \
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
+    DOTNET_RUNNING_IN_CONTAINER=true
+WORKDIR /app
+COPY --chmod=0755 docker/healthcheck.sh /usr/local/bin/healthcheck
+COPY --from=build /app/publish .
+USER $APP_UID
+EXPOSE 8080
+HEALTHCHECK --interval=10s --timeout=12s --start-period=60s --start-interval=2s --retries=3 CMD ["/usr/local/bin/healthcheck"]
+ENTRYPOINT ["dotnet", "eShopNet8.Mvc.dll"]

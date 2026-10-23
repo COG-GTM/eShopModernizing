@@ -1,0 +1,100 @@
+# eShopNet8 on Linux containers. Run from the repo root:
+#
+#   SQL Server stack (profile "sql": SQL Server 2022 + both apps with UseMockData=false):
+#     export MSSQL_SA_PASSWORD='<strong password>'          # or: --env-file src-net8/docker/sql.env (see sql.env.example)
+#     docker compose -f src-net8/docker-compose.yml --profile sql up -d --wait
+#
+#   Mock stack (profile "mock": in-memory CatalogServiceMock, what the parity replay runs against):
+#     docker compose -f src-net8/docker-compose.yml --profile mock up -d --wait
+#     python3 migration/parity/replay.py --mvc-url http://localhost:5200 --webforms-url http://localhost:5201 \
+#       --restart-cmd-mvc "docker compose -f src-net8/docker-compose.yml --profile mock restart mvc-mock" \
+#       --restart-cmd-webforms "docker compose -f src-net8/docker-compose.yml --profile mock restart webforms-mock"
+#
+# Both profiles publish MVC on 5200 and WebForms on 5201 (container port 8080), so run one profile at a time.
+# Every service is profiled because profile-less services also start under --profile mock; put
+# COMPOSE_PROFILES=sql in the env file to make the SQL stack the default.
+# The sa password only ever comes from the environment / an uncommitted env file.
+
+name: eshopnet8
+
+x-mvc-image: &mvc-image
+  image: eshopnet8/mvc:${ESHOP_TAG:-local}
+  build:
+    context: .
+    dockerfile: docker/Dockerfile.mvc
+
+x-webforms-image: &webforms-image
+  image: eshopnet8/webforms:${ESHOP_TAG:-local}
+  build:
+    context: .
+    dockerfile: docker/Dockerfile.webforms
+
+x-sql-connection: &sql-connection
+  ConnectionStrings__CatalogDBContext: "Server=sqldata,1433;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=${MSSQL_SA_PASSWORD:-};TrustServerCertificate=True;MultipleActiveResultSets=True"
+
+services:
+  sqldata:
+    profiles: [sql]
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    stop_grace_period: 30s
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-}
+    ports:
+      - "${SQL_HOST_PORT:-1433}:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -b -Q 'SELECT 1' -o /dev/null"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      start_interval: 2s
+      retries: 10
+
+  mvc:
+    <<: *mvc-image
+    profiles: [sql]
+    environment:
+      UseMockData: ${MVC_USE_MOCK_DATA:-false}
+      <<: *sql-connection
+    ports:
+      - "5200:8080"
+    depends_on:
+      sqldata:
+        condition: service_healthy
+
+  webforms:
+    <<: *webforms-image
+    profiles: [sql]
+    environment:
+      UseMockData: ${WEBFORMS_USE_MOCK_DATA:-false}
+      <<: *sql-connection
+    ports:
+      - "5201:8080"
+    depends_on:
+      sqldata:
+        condition: service_healthy
+      # MVC creates and seeds the catalog database first, so the two apps never race on initialisation.
+      mvc:
+        condition: service_healthy
+
+  mvc-mock:
+    <<: *mvc-image
+    profiles: [mock]
+    environment:
+      UseMockData: "true"
+    ports:
+      - "5200:8080"
+
+  webforms-mock:
+    <<: *webforms-image
+    profiles: [mock]
+    environment:
+      UseMockData: "true"
+    ports:
+      - "5201:8080"
+
+volumes:
+  sqldata:
