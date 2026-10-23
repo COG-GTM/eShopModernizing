@@ -202,14 +202,20 @@ def main():
         "failing": (str(tot("failing")), tot("failing") == 0),
         "data_state": ("%d / %d" % (tot("data_state_equal"), tot("data_state_checked")), tot("data_state_equal") == tot("data_state_checked")),
     }
+    stale = []
     for c in h["cards"]:
         if c.get("derive") in derived:
             value, good = derived[c["derive"]]
             if value != c["value"]:
-                print("warning: headline card %r: inputs say %s, loaded runs say %s" % (c["derive"], c["value"], value))
+                stale.append("headline card %r: inputs say %s, loaded runs say %s" % (c["derive"], c["value"], value))
             c["value"], c["cls"] = value, "ok" if good else "bad"
     if tot("failing"):
-        print("warning: loaded runs have %d failing flows; review the curated summary paragraphs" % tot("failing"))
+        stale.append("loaded runs have %d failing flows" % tot("failing"))
+    for w in stale:
+        print("warning: " + w)
+    if stale:
+        h["paragraphs"].insert(0, "<b class='bad'>WARNING: the curated summary text below does not match the loaded replays (%s). "
+                                  "Only the derived counts and the run tables reflect these runs.</b>" % esc("; ".join(stale)))
 
     sections = []
     sections.append("<h1>eShop legacy (.NET Framework 4.7.2) vs .NET 8: end-to-end parity report</h1>"
