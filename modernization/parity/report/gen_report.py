@@ -195,6 +195,21 @@ def main():
     regressions_open = sum(1 for d in diffs if d["category"] == "regression" and d["status"].lower().startswith("open"))
     shots_html, shots = screenshots_section(a.screenshots)
     h = inputs["headline"]
+    # headline numbers come from the replays actually loaded, not from the curated inputs
+    tot = lambda k: sum(r["summary"][k] for r in runs.values())
+    derived = {
+        "parity": ("%d / %d" % (tot("flows") - tot("failing"), tot("flows")), tot("failing") == 0),
+        "failing": (str(tot("failing")), tot("failing") == 0),
+        "data_state": ("%d / %d" % (tot("data_state_equal"), tot("data_state_checked")), tot("data_state_equal") == tot("data_state_checked")),
+    }
+    for c in h["cards"]:
+        if c.get("derive") in derived:
+            value, good = derived[c["derive"]]
+            if value != c["value"]:
+                print("warning: headline card %r: inputs say %s, loaded runs say %s" % (c["derive"], c["value"], value))
+            c["value"], c["cls"] = value, "ok" if good else "bad"
+    if tot("failing"):
+        print("warning: loaded runs have %d failing flows; review the curated summary paragraphs" % tot("failing"))
 
     sections = []
     sections.append("<h1>eShop legacy (.NET Framework 4.7.2) vs .NET 8: end-to-end parity report</h1>"

@@ -4,16 +4,19 @@
  "headline": {
   "cards": [
    {
+    "derive": "parity",
     "value": "620 / 620",
     "label": "flow replays at parity across 4 runs (155 flows x mock, SQL, mock-container, SQL-container)",
     "cls": "ok"
    },
    {
+    "derive": "failing",
     "value": "0",
     "label": "failing flows in the final runs",
     "cls": "ok"
    },
    {
+    "derive": "data_state",
     "value": "94 / 94",
     "label": "per-flow data-state checks equal after mutating flows (pages and/or sqlcmd dumps; 30 mutating flows per run, unchecked ones covered by the end-of-sequence snapshots, all equal)",
     "cls": "ok"
@@ -17165,8 +17168,8 @@
    "flow_ids": [],
    "flows": "sql-container run",
    "category": "known limitation",
-   "root_cause": "The container SQL run compares data state through the app pages only (the .NET 8 DB lives in the compose sqldata container); sqlcmd dumps of both DBs were done in the local SQL run.",
-   "status": "Open limitation (harness scope)"
+   "root_cause": "In the container SQL run the .NET 8 apps use the compose profile's own sqldata container (host port 1434), so the legacy DB (host SQL Server 2022 container, port 1433) and the .NET 8 DB are in two containers from the same image rather than one; sqlcmd dumps of both were taken after every mutating flow (--sql-server-net8 127.0.0.1,1434) and were equal. The single-container requirement is met by the local SQL run.",
+   "status": "Accepted (compose profile owns its SQL Server)"
   }
  ],
  "regressions_open": 0,
