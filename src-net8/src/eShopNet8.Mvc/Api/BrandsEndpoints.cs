@@ -14,13 +14,14 @@ namespace eShopNet8.Mvc.Api
             return endpoints;
         }
 
-        internal static IResult GetAll(ICatalogService service)
+        internal static IResult GetAll(HttpRequest request, ICatalogService service)
         {
-            return Results.Json(service.GetCatalogBrands(), CatalogApiJson.Options);
+            var brands = service.GetCatalogBrands();
+            return Negotiated(request, () => LegacyBrandXml.Serialize(brands), brands);
         }
 
         // Legacy binds `int id`; a non-int segment fails binding and Web API 2 answers 400.
-        internal static IResult Get(string id, ICatalogService service)
+        internal static IResult Get(string id, HttpRequest request, ICatalogService service)
         {
             if (!int.TryParse(id, out var brandId))
             {
@@ -33,7 +34,17 @@ namespace eShopNet8.Mvc.Api
                 return Results.NotFound();
             }
 
-            return Results.Json(brand, CatalogApiJson.Options);
+            return Negotiated(request, () => LegacyBrandXml.Serialize(brand), brand);
+        }
+
+        // Web API 2 content negotiation: JSON by default, XML (DataContractSerializer) when the Accept header prefers it.
+        private static IResult Negotiated<T>(HttpRequest request, Func<byte[]> xml, T value)
+        {
+            var (format, mediaType) = LegacyContentNegotiator.Negotiate(request);
+            var contentType = mediaType + "; charset=utf-8";
+            return format == LegacyApiFormat.Xml
+                ? Results.Bytes(xml(), contentType)
+                : Results.Json(value, CatalogApiJson.Options, contentType);
         }
 
         // Demo only, as in legacy: nothing is deleted. Legacy returned an HttpResponseMessage without content,
