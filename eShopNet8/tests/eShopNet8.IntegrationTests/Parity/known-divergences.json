@@ -1,0 +1,6 @@
+{
+  "description": "Flows whose `different` verdict is a deliberate, documented divergence from the legacy baseline (CONTRACT.md section 6). Any other `different` flow fails TranscriptParityTests. Keep in sync with the parity report.",
+  "flows": {
+    "mvc-api-brands-xml": { "quirk": "Q16", "reason": "Web API 2 XML content negotiation (DataContractSerializer) is not reproduced; ASP.NET Core minimal APIs answer JSON (TICKETS.md T4)." }
+  }
+}
