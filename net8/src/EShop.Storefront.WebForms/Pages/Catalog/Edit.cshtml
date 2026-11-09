@@ -17,7 +17,7 @@
                     <label class="control-label col-md-4">Name</label>
                     <div class="col-md-8">
                         <input type="text" value="@V(f.Name)" name="@(p)Name" id="ctl00_MainContent_Name" class="form-control" />
-                        <partial name="_Validator" model="f.ErrorFor(nameof(f.Name))" />
+                        <partial name="_Validator" model="f.ErrorFor(nameof(f.Name))" view-data='new ViewDataDictionary(ViewData) { ["ValidatorCss"] = "field-validation-valid text-danger" }' />
                     </div>
                 </div>
 
