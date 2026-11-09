@@ -37,6 +37,7 @@ rm -f "$RES/dotnet-test.trx"
 ESHOP_TESTS_REQUIRE_ALL=1 "$DOTNET" test net8/EShopStorefront.sln -nologo --logger "trx;LogFileName=dotnet-test.trx" --results-directory "$RES" || true
 
 echo "== characterization suite against both sides (fresh mock state each)"
+rm -f "$RES/characterization-legacy.xml" "$RES/characterization-migrated.xml"
 legacy "$LEGACY_ROOT" mock 5100 5101 "$HARNESS/reset.sh" all >/dev/null
 MVC_BASE_URL=http://127.0.0.1:5100 WEBFORMS_BASE_URL=http://127.0.0.1:5101 "$PYTHON" -m pytest -q -p no:cacheprovider \
   modernization/tools/tests --junitxml "$RES/characterization-legacy.xml" | tail -n 1 || true
