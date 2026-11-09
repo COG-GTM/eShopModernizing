@@ -1,0 +1,27 @@
+{
+  "app": "mvc",
+  "case": "api-types",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {
+      "Accept": "application/json"
+    },
+    "method": "GET",
+    "path": "/api/types"
+  },
+  "response": {
+    "body": "{\"Message\":\"No HTTP resource was found that matches the request URI '{{BASE}}/api/types'.\",\"MessageDetail\":\"No type was found that matches the controller named 'types'.\"}",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "semantic": {
+      "json": {
+        "Message": "No HTTP resource was found that matches the request URI '{{BASE}}/api/types'.",
+        "MessageDetail": "No type was found that matches the controller named 'types'."
+      }
+    },
+    "status": 404
+  },
+  "seq": 70
+}

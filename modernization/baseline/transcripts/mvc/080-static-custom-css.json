@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "static-custom-css",
+  "flow": "static",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Content/custom.css"
+  },
+  "response": {
+    "body": "﻿/* Override the default bootstrap behavior where horizontal description lists \n   will truncate terms that are too long to fit in the left column \n*/\n.dl-horizontal dt {\n    white-space: normal;\n}\n\n/* Tables */\n.table thead > tr > th,\n.table tbody > tr > th,\n.table tfoot > tr > th,\n.table thead > tr > td,\n.table tbody > tr > td,\n.table tfoot > tr > td {\n    border: none;\n    white-space: nowrap;\n}\n\n.table tbody tr > td {\n    vertical-align: middle;\n    border-bottom: 1px solid #eee;\n}\n",
+    "headers": {
+      "content-type": "text/css"
+    },
+    "semantic": {
+      "text": "﻿/* Override the default bootstrap behavior where horizontal description lists \n   will truncate terms that are too long to fit in the left column \n*/\n.dl-horizontal dt {\n    white-space: normal;\n}\n\n/* Tables */\n.table thead > tr > th,\n.table tbody > tr > th,\n.table tfoot > tr > th,\n.table thead > tr > td,\n.table tbody > tr > td,\n.table tfoot > tr > td {\n    border: none;\n    white-space: nowrap;\n}\n\n.table tbody tr > td {\n    vertical-align: middle;\n    border-bottom: 1px solid #eee;\n}\n"
+    },
+    "status": 200
+  },
+  "seq": 80
+}

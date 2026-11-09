@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "api-brand-delete-missing-999",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "DELETE",
+    "path": "/api/brands/999"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 404
+  },
+  "seq": 66
+}

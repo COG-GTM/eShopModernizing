@@ -1,0 +1,26 @@
+{
+  "app": "mvc",
+  "case": "pic-item-12",
+  "flow": "pics",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/items/12/pic"
+  },
+  "response": {
+    "body": {
+      "length": 168886,
+      "sha256": "f6c852bd458ce80d724b0532750208eb1775bb269fe95fc0e41f905a904759c9"
+    },
+    "headers": {
+      "content-type": "image/png"
+    },
+    "semantic": {
+      "length": 168886,
+      "sha256": "f6c852bd458ce80d724b0532750208eb1775bb269fe95fc0e41f905a904759c9"
+    },
+    "status": 200
+  },
+  "seq": 55
+}

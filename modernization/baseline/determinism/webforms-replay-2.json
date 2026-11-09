@@ -1,0 +1,270 @@
+{
+  "app": "webforms",
+  "base_url": "http://127.0.0.1:5101",
+  "strict": true,
+  "total": 52,
+  "passed": 52,
+  "failed": 0,
+  "results": [
+    {
+      "case": "001-list-root.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "002-list-default.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "003-list-default-aspx.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "004-list-size10-page0.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "005-list-size10-page1.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "006-list-size10-page2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "007-list-size5-page0.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "008-list-size5-page1.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "009-list-size5-page2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "010-list-size20-page0.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "011-list-size12-page0.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "012-list-size1-page0.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "013-list-size1-page11.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "014-list-size3-page3.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "015-list-size100-page0.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "016-list-nonnumeric-route.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "017-details-1.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "018-details-5.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "019-details-12.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "020-details-missing-999.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "021-details-nonnumeric-id.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "022-create-get.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "023-create-post-invalid-missing-name.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "024-create-post-invalid-price-negative.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "025-create-post-invalid-price-not-number.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "026-create-post-invalid-price-too-large.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "027-create-post-invalid-stock-negative.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "028-create-post-invalid-restock-not-number.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "029-create-post-invalid-maxstock-too-large.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "030-create-post-valid.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "031-state-after-create.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "032-details-created-13.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "033-edit-get-1.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "034-edit-get-missing-999.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "035-edit-post-invalid-missing-name.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "036-edit-post-invalid-stock-negative.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "037-edit-post-valid.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "038-state-after-edit.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "039-details-edited-1.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "040-delete-get-2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "041-delete-get-missing-999.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "042-delete-post-2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "043-state-after-delete.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "044-details-deleted-2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "045-static-bundle-css.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "046-static-site-css.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "047-static-brand-image.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "048-static-pic-file.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "049-static-webforms-js.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "050-static-favicon.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "051-error-unknown-path.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "052-error-unknown-page.json",
+      "result": "pass",
+      "diffs": []
+    }
+  ]
+}

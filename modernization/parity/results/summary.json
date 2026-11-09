@@ -1,0 +1,53 @@
+{
+  "generated": "2026-11-09T18:48:14+00:00",
+  "commit": "426a3c7",
+  "transcripts": {
+    "mvc": {
+      "legacy_passed": 86,
+      "legacy_total": 86,
+      "passed": 86,
+      "total": 86,
+      "accepted": [],
+      "failures": [],
+      "base_url": "http://127.0.0.1:5200",
+      "strict": false,
+      "ok": true
+    },
+    "webforms": {
+      "legacy_passed": 52,
+      "legacy_total": 52,
+      "passed": 52,
+      "total": 52,
+      "accepted": [],
+      "failures": [],
+      "base_url": "http://127.0.0.1:5201",
+      "strict": false,
+      "ok": true
+    }
+  },
+  "characterization": {
+    "legacy_passed": 77,
+    "legacy_total": 77,
+    "passed": 77,
+    "total": 77,
+    "by_suite": {
+      "mvc": {
+        "passed": 48,
+        "total": 48,
+        "legacy_passed": 48,
+        "legacy_total": 48
+      },
+      "webforms": {
+        "passed": 29,
+        "total": 29,
+        "legacy_passed": 29,
+        "legacy_total": 29
+      }
+    },
+    "accepted": [],
+    "failures": [],
+    "not_run": [],
+    "ok": true
+  },
+  "ok": true
+}

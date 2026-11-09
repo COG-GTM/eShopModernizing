@@ -1,0 +1,28 @@
+# Mock mode (UseMockData=true): in-memory singleton catalog per app, restart = reset.
+#   docker compose -f net8/docker/compose.mock.yml up -d --build --wait
+name: eshop-storefront-mock
+
+services:
+  mvc:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.mvc
+    image: eshop-storefront-mvc:local
+    hostname: "${STOREFRONT_HOSTNAME:-eshop-storefront-mvc}"
+    environment:
+      UseMockData: "true"
+      UseCustomizationData: "false"
+    ports:
+      - "127.0.0.1:${MVC_PORT:-5200}:8080"
+
+  webforms:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.webforms
+    image: eshop-storefront-webforms:local
+    hostname: "${STOREFRONT_HOSTNAME:-eshop-storefront-webforms}"
+    environment:
+      UseMockData: "true"
+      UseCustomizationData: "false"
+    ports:
+      - "127.0.0.1:${WEBFORMS_PORT:-5201}:8080"

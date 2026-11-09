@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "delete-get-no-id",
+  "flow": "delete",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Delete"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 400
+  },
+  "seq": 50
+}

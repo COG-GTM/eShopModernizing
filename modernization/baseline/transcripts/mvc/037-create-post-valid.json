@@ -1,0 +1,38 @@
+{
+  "app": "mvc",
+  "case": "create-post-valid",
+  "flow": "create",
+  "kind": "request",
+  "request": {
+    "drop": [],
+    "fields": {
+      "AvailableStock": "10",
+      "CatalogBrandId": "2",
+      "CatalogTypeId": "1",
+      "Description": "Created by the transcript recorder",
+      "MaxStockThreshold": "50",
+      "Name": "Transcript Item",
+      "Price": "12.34",
+      "RestockThreshold": "2"
+    },
+    "form_page": "/Catalog/Create",
+    "method": "POST",
+    "path": "/Catalog/Create"
+  },
+  "response": {
+    "body": "<html><head><title>Object moved</title></head><body>\r\n<h2>Object moved to <a href=\"/\">here</a></h2>\r\n</body><html>\r\n",
+    "headers": {
+      "content-type": "text/html",
+      "location": "/"
+    },
+    "semantic": {
+      "errors": [],
+      "fields": [],
+      "rows": [],
+      "text": "Object moved Object moved to here",
+      "title": "Object moved"
+    },
+    "status": 302
+  },
+  "seq": 37
+}

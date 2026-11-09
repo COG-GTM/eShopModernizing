@@ -1,0 +1,66 @@
+{
+  "app": "mvc",
+  "case": "list-size3-page3",
+  "flow": "list",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Index?pageSize=3&pageIndex=3"
+  },
+  "response": {
+    "body": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Index - Catalog manager (MVC)</title>\n    <link href=\"/Content/bootstrap.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/custom.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/base.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/site.css\" rel=\"stylesheet\"/>\n\n    <script src=\"/Scripts/modernizr-2.6.2.js\"></script>\n<script src=\"/Scripts/modernizr-2.8.3.js\"></script>\n\n</head>\n<body>\n    <header class=\"navbar navbar-light navbar-static-top\">\n        <div class=\"esh-header-brand\">\n            <a href=\"/\">\n                <img src=\"/images/brand.png\" />\n            </a>\n        </div>\n    </header>\n    <section class=\"esh-app-hero\">\n        <div class=\"container esh-header\">\n            <h1 class=\"esh-header-title\" >Catalog manager <span>(MVC)</span></h1>\n        </div>\n    </section>\n\n    \n\n\n<div class=\"esh-table\">\n    <p class=\"esh-link-wrapper\">\n        <a class=\"btn esh-button esh-button-primary\" href=\"/Catalog/Create\">Create New</a>\n    </p>\n\n    <table class=\"table\">\n    <thead>\n        <tr class=\"esh-table-header\">\n            <th>\n            </th>\n            <th>\n                Name\n            </th>\n            <th>\n                Description\n            </th>\n            <th>\n                Brand\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Price\n            </th>\n            <th>\n                Picture name\n            </th>\n            <th>\n                Stock\n            </th>\n            <th>\n                Restock\n            </th>\n            <th>\n                Max stock\n            </th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody>\n            <tr>\n                <td>\n                    <img class=\"esh-thumbnail\" src=\"{{BASE}}/items/10/pic\" />\n                </td>\n                <td>\n                    .NET Foundation Sheet\n                </td>\n                <td>\n                    .NET Foundation Sheet\n                </td>\n                <td>\n                    .NET\n                </td>\n                <td>\n                    Sheet\n                </td>\n                <td class=\"esh-table-price\">\n                    $12.00\n                </td>\n                <td>\n                    10.png\n                </td>\n                <td>\n                    100\n                </td>\n                <td>\n                    0\n                </td>\n                <td>\n                    0\n                </td>\n                <td>\n                    <a class=\"esh-table-link\" href=\"/Catalog/Edit/10\">Edit</a> |\n                    <a class=\"esh-table-link\" href=\"/Catalog/Details/10\">Details</a> |\n                    <a class=\"esh-table-link\" href=\"/Catalog/Delete/10\">Delete</a>\n                </td>\n            </tr>\n            <tr>\n                <td>\n                    <img class=\"esh-thumbnail\" src=\"{{BASE}}/items/11/pic\" />\n                </td>\n                <td>\n                    Cup&lt;T&gt; Sheet\n                </td>\n                <td>\n                    Cup&lt;T&gt; Sheet\n                </td>\n                <td>\n                    .NET\n                </td>\n                <td>\n                    Sheet\n                </td>\n                <td class=\"esh-table-price\">\n                    $8.50\n                </td>\n                <td>\n                    11.png\n                </td>\n                <td>\n                    100\n                </td>\n                <td>\n                    0\n                </td>\n                <td>\n                    0\n                </td>\n                <td>\n                    <a class=\"esh-table-link\" href=\"/Catalog/Edit/11\">Edit</a> |\n                    <a class=\"esh-table-link\" href=\"/Catalog/Details/11\">Details</a> |\n                    <a class=\"esh-table-link\" href=\"/Catalog/Delete/11\">Delete</a>\n                </td>\n            </tr>\n            <tr>\n                <td>\n                    <img class=\"esh-thumbnail\" src=\"{{BASE}}/items/12/pic\" />\n                </td>\n                <td>\n                    Prism White TShirt\n                </td>\n                <td>\n                    Prism White TShirt\n                </td>\n                <td>\n                    Other\n                </td>\n                <td>\n                    T-Shirt\n                </td>\n                <td class=\"esh-table-price\">\n                    $12.00\n                </td>\n                <td>\n                    12.png\n                </td>\n                <td>\n                    100\n                </td>\n                <td>\n                    0\n                </td>\n                <td>\n                    0\n                </td>\n                <td>\n                    <a class=\"esh-table-link\" href=\"/Catalog/Edit/12\">Edit</a> |\n                    <a class=\"esh-table-link\" href=\"/Catalog/Details/12\">Details</a> |\n                    <a class=\"esh-table-link\" href=\"/Catalog/Delete/12\">Delete</a>\n                </td>\n            </tr>\n    </tbody>\n\n</table>\n\n    <div class=\"esh-pager\">\n        <div class=\"container\">\n            <article class=\"esh-pager-wrapper row\">\n                <nav>\n\n<a class=\"esh-pager-item esh-pager-item--navigable\" href=\"/?pageSize=3&amp;pageIndex=2\">Previous</a>\n                    <span class=\"esh-pager-item\">\n                        Showing 3 of 12 products - Page 4 - 4\n                    </span>\n\n<a class=\"esh-pager-item esh-pager-item--navigable esh-pager-item--hidden\" href=\"/?pageSize=3&amp;pageIndex=4\">Next</a>\n            </nav>\n        </article>\n    </div>\n</div>\n\n</div>\n\n\n    <footer class=\"esh-app-footer\">\n        <div class=\"container\">\n            <article class=\"row\">\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-brand\" src=\"/images/brand_dark.png\" />\n                </section>\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-text hidden-xs\" src=\"/images/main_footer_text.png\" width=\"335\" height=\"26\" alt=\"footer text image\" />\n                    <br />\n\n                    <small>{{HOST}}, {{DATETIME}}</small>\n                </section>\n                \n            </article>\n        </div>\n    </footer>\n\n    <script src=\"/Scripts/jquery-3.3.1.js\"></script>\n\n    <script src=\"/Scripts/bootstrap.js\"></script>\n<script src=\"/Scripts/respond.js\"></script>\n\n    \n</body>\n</html>\n",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "errors": [],
+      "fields": [],
+      "rows": [
+        [
+          "",
+          ".NET Foundation Sheet",
+          ".NET Foundation Sheet",
+          ".NET",
+          "Sheet",
+          "$12.00",
+          "10.png",
+          "100",
+          "0",
+          "0",
+          "Edit | Details | Delete"
+        ],
+        [
+          "",
+          "Cup<T> Sheet",
+          "Cup<T> Sheet",
+          ".NET",
+          "Sheet",
+          "$8.50",
+          "11.png",
+          "100",
+          "0",
+          "0",
+          "Edit | Details | Delete"
+        ],
+        [
+          "",
+          "Prism White TShirt",
+          "Prism White TShirt",
+          "Other",
+          "T-Shirt",
+          "$12.00",
+          "12.png",
+          "100",
+          "0",
+          "0",
+          "Edit | Details | Delete"
+        ]
+      ],
+      "text": "Index - Catalog manager (MVC) Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Foundation Sheet .NET Foundation Sheet .NET Sheet $12.00 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet $8.50 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt $12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 3 of 12 products - Page 4 - 4 Next {{HOST}}, {{DATETIME}}",
+      "title": "Index - Catalog manager (MVC)"
+    },
+    "status": 200
+  },
+  "seq": 15
+}

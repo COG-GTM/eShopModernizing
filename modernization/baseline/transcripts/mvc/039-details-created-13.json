@@ -1,0 +1,26 @@
+{
+  "app": "mvc",
+  "case": "details-created-13",
+  "flow": "details",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Details/13"
+  },
+  "response": {
+    "body": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Details - Catalog manager (MVC)</title>\n    <link href=\"/Content/bootstrap.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/custom.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/base.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/site.css\" rel=\"stylesheet\"/>\n\n    <script src=\"/Scripts/modernizr-2.6.2.js\"></script>\n<script src=\"/Scripts/modernizr-2.8.3.js\"></script>\n\n</head>\n<body>\n    <header class=\"navbar navbar-light navbar-static-top\">\n        <div class=\"esh-header-brand\">\n            <a href=\"/\">\n                <img src=\"/images/brand.png\" />\n            </a>\n        </div>\n    </header>\n    <section class=\"esh-app-hero\">\n        <div class=\"container esh-header\">\n            <h1 class=\"esh-header-title\" >Catalog manager <span>(MVC)</span></h1>\n        </div>\n    </section>\n\n    \n\n\n<h2 class=\"esh-body-title\">Details</h2>\n\n<div class=\"container\">\n    <div class=\"row\">\n        <img class=\"col-md-6 esh-picture\" src=\"{{BASE}}/items/13/pic\" />\n        <dl class=\"col-md-6 dl-horizontal\">\n            <dt>\n                Name\n            </dt>\n\n            <dd>\n                Transcript Item\n            </dd>\n\n            <dt>\n                Description\n            </dt>\n\n            <dd>\n                Created by the transcript recorder\n            </dd>\n\n            <dt>\n                Brand\n            </dt>\n\n            <dd>\n                .NET\n            </dd>\n\n            <dt>\n                Type\n            </dt>\n\n            <dd>\n                Mug\n            </dd>\n\n            <dt>\n                Price\n            </dt>\n\n            <dd>\n                $12.34\n            </dd>\n\n            <dt>\n                Picture name\n            </dt>\n\n            <dd>\n                dummy.png\n            </dd>\n\n            <dt>\n                Stock\n            </dt>\n\n            <dd>\n                10\n            </dd>\n\n            <dt>\n                Restock\n            </dt>\n\n            <dd>\n                2\n            </dd>\n\n            <dt>\n                Max stock\n            </dt>\n\n            <dd>\n                50\n            </dd>\n\n        </dl>\n    </div>\n    <p class=\"esh-link-list esh-link-item--margin\">\n        <a class=\"esh-link-item\" href=\"/Catalog/Edit/13\">Edit</a> |\n        <a class=\"esh-link-item\" href=\"/\">Back to List</a>\n    </p>\n</div>\n\n\n    <footer class=\"esh-app-footer\">\n        <div class=\"container\">\n            <article class=\"row\">\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-brand\" src=\"/images/brand_dark.png\" />\n                </section>\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-text hidden-xs\" src=\"/images/main_footer_text.png\" width=\"335\" height=\"26\" alt=\"footer text image\" />\n                    <br />\n\n                    <small>{{HOST}}, {{DATETIME}}</small>\n                </section>\n                \n            </article>\n        </div>\n    </footer>\n\n    <script src=\"/Scripts/jquery-3.3.1.js\"></script>\n\n    <script src=\"/Scripts/bootstrap.js\"></script>\n<script src=\"/Scripts/respond.js\"></script>\n\n    \n</body>\n</html>\n",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "errors": [],
+      "fields": [],
+      "rows": [],
+      "text": "Details - Catalog manager (MVC) Catalog manager (MVC) Details Name Transcript Item Description Created by the transcript recorder Brand .NET Type Mug Price $12.34 Picture name dummy.png Stock 10 Restock 2 Max stock 50 Edit | Back to List {{HOST}}, {{DATETIME}}",
+      "title": "Details - Catalog manager (MVC)"
+    },
+    "status": 200
+  },
+  "seq": 39
+}

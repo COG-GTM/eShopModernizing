@@ -1,0 +1,24 @@
+{
+  "app": "mvc",
+  "case": "api-brand-1-xml",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {
+      "Accept": "application/xml"
+    },
+    "method": "GET",
+    "path": "/api/brands/1"
+  },
+  "response": {
+    "body": "<CatalogBrand xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/eShopLegacyMVC.Models\"><Brand>Azure</Brand><Id>1</Id></CatalogBrand>",
+    "headers": {
+      "content-type": "application/xml; charset=utf-8"
+    },
+    "semantic": {
+      "text": "<CatalogBrand xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/eShopLegacyMVC.Models\"><Brand>Azure</Brand><Id>1</Id></CatalogBrand>"
+    },
+    "status": 200
+  },
+  "seq": 63
+}

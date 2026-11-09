@@ -1,0 +1,27 @@
+{
+  "app": "mvc",
+  "case": "api-brand-1",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {
+      "Accept": "application/json"
+    },
+    "method": "GET",
+    "path": "/api/brands/1"
+  },
+  "response": {
+    "body": "{\"Id\":1,\"Brand\":\"Azure\"}",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "semantic": {
+      "json": {
+        "Brand": "Azure",
+        "Id": 1
+      }
+    },
+    "status": 200
+  },
+  "seq": 62
+}

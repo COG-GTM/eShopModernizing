@@ -1,0 +1,24 @@
+{
+  "app": "mvc",
+  "case": "api-brands-xml",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {
+      "Accept": "application/xml"
+    },
+    "method": "GET",
+    "path": "/api/brands"
+  },
+  "response": {
+    "body": "<ArrayOfCatalogBrand xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/eShopLegacyMVC.Models\"><CatalogBrand><Brand>Azure</Brand><Id>1</Id></CatalogBrand><CatalogBrand><Brand>.NET</Brand><Id>2</Id></CatalogBrand><CatalogBrand><Brand>Visual Studio</Brand><Id>3</Id></CatalogBrand><CatalogBrand><Brand>SQL Server</Brand><Id>4</Id></CatalogBrand><CatalogBrand><Brand>Other</Brand><Id>5</Id></CatalogBrand></ArrayOfCatalogBrand>",
+    "headers": {
+      "content-type": "application/xml; charset=utf-8"
+    },
+    "semantic": {
+      "text": "<ArrayOfCatalogBrand xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/eShopLegacyMVC.Models\"><CatalogBrand><Brand>Azure</Brand><Id>1</Id></CatalogBrand><CatalogBrand><Brand>.NET</Brand><Id>2</Id></CatalogBrand><CatalogBrand><Brand>Visual Studio</Brand><Id>3</Id></CatalogBrand><CatalogBrand><Brand>SQL Server</Brand><Id>4</Id></CatalogBrand><CatalogBrand><Brand>Other</Brand><Id>5</Id></CatalogBrand></ArrayOfCatalogBrand>"
+    },
+    "status": 200
+  },
+  "seq": 60
+}

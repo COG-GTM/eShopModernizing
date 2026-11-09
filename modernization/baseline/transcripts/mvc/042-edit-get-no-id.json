@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "edit-get-no-id",
+  "flow": "edit",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Edit"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 400
+  },
+  "seq": 42
+}
