@@ -37,7 +37,6 @@ public static class LegacyHosting
         app.UseStaticFiles(LegacyStaticContent.CreateOptions(app.Environment.WebRootPath, bundles));
         app.UseRouting();
         app.UseSession();
-        app.UseMiddleware<LegacySessionMiddleware>();
         return app;
     }
 }
