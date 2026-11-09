@@ -1,6 +1,67 @@
-@* Owned by T5. Scaffold stub; reproduce legacy Site.Master. *@
+@* Owned by T5. Reproduces the legacy Site.Master: one page-wide post-back form (pages must not render their own <form>),
+   the ScriptManager script references that exist as files, header/hero, content and the session footer. *@
+@using EShop.Storefront.WebForms.Hosting
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" /><title>@ViewBag.Title - Catalog manager (Web Forms)</title></head>
-<body>@RenderBody()</body>
+
+<html lang="en">
+<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>
+	@(ViewData["Title"] ?? ViewBag.Title) - Catalog manager (Web Forms)
+</title><script src="/Scripts/modernizr-2.8.3.js"></script>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/custom.css" rel="stylesheet"/>
+<link href="/Content/base.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /></head>
+<body>
+    <form method="post" id="ctl01">
+        <script src="/Scripts/jquery-3.3.1.js"></script>
+        <script src="/Scripts/bootstrap.js"></script>
+        <script src="/Scripts/respond.js"></script>
+        
+        <script src="/Scripts/WebForms/WebForms.js"></script>
+<script src="/Scripts/WebForms/WebUIValidation.js"></script>
+<script src="/Scripts/WebForms/MenuStandards.js"></script>
+<script src="/Scripts/WebForms/Focus.js"></script>
+<script src="/Scripts/WebForms/GridView.js"></script>
+<script src="/Scripts/WebForms/DetailsView.js"></script>
+<script src="/Scripts/WebForms/TreeView.js"></script>
+<script src="/Scripts/WebForms/WebParts.js"></script>
+
+
+        <header class="navbar navbar-light navbar-static-top">
+            <div class="esh-header-brand">
+                <a href="./">
+                    <img src="~/images/brand.png" />
+                </a>
+            </div>
+        </header>
+
+        <section class="esh-app-hero">
+            <div class="container esh-header">
+                <h1 class="esh-header-title">Catalog manager <span>(Web Forms)</span></h1>
+            </div>
+        </section>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <footer class="esh-app-footer">
+            <div class="container">
+                <article class="row">
+                    <section class="col-sm-6">
+                        <img class="esh-app-footer-brand" src="~/images/brand_dark.png" />
+                    </section>
+                    <section class="col-sm-6">
+                        <img class="esh-app-footer-text hidden-xs" src="~/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+                        <br />
+                        <small style="color:white"><span id="ctl00_SessionInfoLabel">@LegacySessionMiddleware.SessionInfo(Context)</span></small>
+                    </section>
+                </article>
+            </div>
+        </footer>
+
+    @await RenderSectionAsync("scripts", required: false)
+</form>
+</body>
 </html>

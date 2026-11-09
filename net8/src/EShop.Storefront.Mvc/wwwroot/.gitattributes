@@ -1,0 +1,3 @@
+# Captured legacy bundle responses must stay byte-identical (the style bundle contains CRLF line endings).
+Content/css -text
+bundles/* -text
