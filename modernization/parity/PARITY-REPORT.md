@@ -1,6 +1,6 @@
 # .NET 8 storefront parity report
 
-Generated 2026-11-09T18:37:25+00:00 at commit `1706eff` by `modernization/parity/run-parity.sh`. Each transcript set is replayed against a freshly started .NET 8 app in mock mode (`UseMockData=true`; MVC `127.0.0.1:5200`, Razor Pages `127.0.0.1:5201`), compared per CONTRACT.md §3.
+Generated 2026-11-09T18:38:51+00:00 at commit `ad983a9` by `modernization/parity/run-parity.sh`. Each transcript set is replayed against a freshly started .NET 8 app in mock mode (`UseMockData=true`; MVC `127.0.0.1:5200`, Razor Pages `127.0.0.1:5201`), compared per CONTRACT.md §3.
 
 **Overall: NOT AT PARITY** — transcripts 14/138 (legacy 138/138), characterization tests 6/77 (legacy 77/77).
 
