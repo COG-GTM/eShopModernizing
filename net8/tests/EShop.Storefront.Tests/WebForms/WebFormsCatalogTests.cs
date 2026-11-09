@@ -98,4 +98,21 @@ public class WebFormsCatalogTests(WebFormsAppFixture app) : IClassFixture<WebFor
         Assert.Equal(200, r.Status);
         Assert.Contains(message, Errors(r));
     }
+
+    // System.Web ResolveClientUrl renders ~/ links relative to the request directory, so they still resolve to the root on routed pages.
+    [SkippableTheory]
+    [InlineData("/", "favicon.ico", "./", null)]
+    [InlineData("/Default/index/0/size/10", "../../../../favicon.ico", "../../../../", null)]
+    [InlineData("/Catalog/Details/1", "../../favicon.ico", "../../", "../../")]
+    [InlineData("/Catalog/Create", "../favicon.ico", "../", "../")]
+    public async Task App_relative_links_resolve_like_ResolveClientUrl(string path, string favicon, string brand, string? backToList)
+    {
+        app.Require(Slice.CatalogData, Slice.RazorCatalog, Slice.Hosting);
+        var r = await Wf.GetAsync(path);
+        Assert.Equal(200, r.Status);
+        Assert.Equal(favicon, r.Html.QuerySelector("link[rel='shortcut icon']")!.GetAttribute("href"));
+        Assert.Equal(brand, r.Html.QuerySelector(".esh-header-brand a")!.GetAttribute("href"));
+        if (backToList is not null)
+            Assert.Equal(backToList, r.Html.QuerySelectorAll("a.esh-link-item, a.esh-button-secondary").Last().GetAttribute("href"));
+    }
 }

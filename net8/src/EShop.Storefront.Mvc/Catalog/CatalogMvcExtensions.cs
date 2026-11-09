@@ -11,8 +11,12 @@ public static class CatalogMvcExtensions
 
     public static IServiceCollection AddCatalogMvc(this IServiceCollection services)
     {
-        services.AddControllersWithViews();
+        // MVC 5 had no implicit [Required] for strings (e.g. the read-only PictureFileName on Edit).
+        services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+        services.Configure<Microsoft.AspNetCore.Mvc.MvcViewOptions>(options =>
+            options.ClientModelValidatorProviders.Add(new IntegerNumberClientValidatorProvider()));
         services.AddAntiforgery();
+        LegacyXFrameOptionsAntiforgery.Decorate(services);
         return services;
     }
 

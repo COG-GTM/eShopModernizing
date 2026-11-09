@@ -9,7 +9,6 @@
 <h2 class="esh-body-title">Edit</h2>
 
 <div class="container">
-    <form method="post">
         <div class="row">
             <img class="col-md-6 esh-picture" src="/Pics/@f.PictureFileName" />
             <div class="col-md-6 form-horizontal">
@@ -18,7 +17,7 @@
                     <label class="control-label col-md-4">Name</label>
                     <div class="col-md-8">
                         <input type="text" value="@V(f.Name)" name="@(p)Name" id="ctl00_MainContent_Name" class="form-control" />
-                        <partial name="_Validator" model="f.ErrorFor(nameof(f.Name))" />
+                        <partial name="_Validator" model="f.ErrorFor(nameof(f.Name))" view-data='new ViewDataDictionary(ViewData) { ["ValidatorCss"] = "field-validation-valid text-danger" }' />
                     </div>
                 </div>
 
@@ -94,11 +93,10 @@
 
                 <div class="form-group">
                     <div class="col-md-12 text-right esh-button-actions">
-                        <a class="btn esh-button esh-button-secondary" href="@Url.Content("~/")">[ Cancel ]</a>
+                        <a class="btn esh-button esh-button-secondary" href="@EShop.Storefront.WebForms.Hosting.LegacyClientUrl.Resolve(HttpContext, "~")">[ Cancel ]</a>
                         <input type="submit" name="@(p + EditModel.SaveButtonId)" value="[ Save ]" class="btn esh-button esh-button-primary" />
                     </div>
                 </div>
             </div>
         </div>
-    </form>
 </div>
