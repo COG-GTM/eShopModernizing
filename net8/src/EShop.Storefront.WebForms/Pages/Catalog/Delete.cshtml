@@ -1,0 +1,24 @@
+@page
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+<h2 class="esh-body-title">Delete</h2>
+
+<div class="container">
+    <h3>Are you sure you want to delete this?</h3>
+    <form method="post">
+        <div class="row">
+            <img class="col-md-6 esh-picture" src="/Pics/@Model.ProductToDelete.PictureFileName" />
+            <dl class="col-md-6 dl-horizontal">
+                <partial name="_ProductSummary" model="Model.ProductToDelete" />
+
+                <dt></dt>
+                <dd class="text-right esh-button-actions">
+                    <a class="btn esh-button esh-button-secondary" href="@Url.Content("~/")">[ Cancel ]</a>
+                    <input type="submit" name="@(WebFormsCatalogForm.Prefix + DeleteModel.DeleteButtonId)" value="[ Delete ]" class="btn esh-button esh-button-primary" />
+                </dd>
+            </dl>
+        </div>
+    </form>
+</div>
