@@ -25,6 +25,8 @@ for a in "$@"; do
 done
 APP="$PARITY_DIR/app.sh"
 mkdir -p "$RESULTS"
+# Drop the previous run's evidence so a replay or pytest run that dies early is reported as missing, not as stale passes.
+rm -f "$RESULTS"/mvc.json "$RESULTS"/webforms.json "$RESULTS"/characterization.* "$RESULTS"/summary.json
 "$PYTHON" -c "import requests, bs4, pytest" 2>/dev/null \
   || { echo "missing python deps: pip install -r modernization/tools/requirements.txt" >&2; exit 2; }
 cleanup() { [ "$KEEP" = 1 ] || "$APP" stop all >/dev/null 2>&1 || true; }
