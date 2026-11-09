@@ -64,11 +64,15 @@ public partial class CatalogDbInitializer
             if (await SequenceExistsAsync(CatalogItemHiLoGenerator.SequenceName, cancellationToken))
             {
                 logger.LogInformation("Catalog database {Database} already seeded", database);
-                return;
+            }
+            else
+            {
+                await SeedAsync(cancellationToken);
+                logger.LogInformation("Catalog database {Database} created and seeded (customization data: {Custom})", database, options.UseCustomizationData);
             }
 
-            await SeedAsync(cancellationToken);
-            logger.LogInformation("Catalog database {Database} created and seeded (customization data: {Custom})", database, options.UseCustomizationData);
+            // Pictures live in each app's own web root, so an app joining a database another app already seeded still needs them.
+            AddCatalogItemPictures();
         }
         finally
         {
@@ -90,8 +94,6 @@ public partial class CatalogDbInitializer
         AddCatalogBrands();
         AddCatalogItems();
         await transaction.CommitAsync(cancellationToken);
-
-        AddCatalogItemPictures();
     }
 
     private void AddCatalogTypes()
