@@ -72,14 +72,14 @@ internal static class LegacyWebApi
             return LegacyWebApiResponse.WriteEmptyAsync(context, exists ? StatusCodes.Status200OK : StatusCodes.Status404NotFound);
         }
 
-        return LegacyWebApiResponse.WriteMethodNotAllowedAsync(context, hasId ? "GET, DELETE" : "GET");
+        return LegacyWebApiResponse.WriteMethodNotAllowedAsync(context, hasId ? new[] { "GET", "DELETE" } : new[] { "GET" });
     }
 
     private static Task FilesAsync(HttpContext context)
     {
         if (!HttpMethods.IsGet(context.Request.Method))
         {
-            return LegacyWebApiResponse.WriteMethodNotAllowedAsync(context, "GET");
+            return LegacyWebApiResponse.WriteMethodNotAllowedAsync(context, new[] { "GET" });
         }
 
         var brands = Service(context).GetCatalogBrands().Select(b => new BrandListNrbfWriter.BrandDto(b.Id, b.Brand)).ToList();

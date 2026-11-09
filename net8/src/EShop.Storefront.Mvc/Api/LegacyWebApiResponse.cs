@@ -79,8 +79,9 @@ internal static class LegacyWebApiResponse
                 writer.WriteEndElement();
             });
 
-    public static Task WriteMethodNotAllowedAsync(HttpContext context, string allow)
+    public static Task WriteMethodNotAllowedAsync(HttpContext context, string[] allow)
     {
+        // Web API emits one Allow header per supported method.
         context.Response.Headers.Allow = allow;
         return WriteErrorAsync(context, StatusCodes.Status405MethodNotAllowed,
             $"The requested resource does not support http method '{context.Request.Method}'.");
