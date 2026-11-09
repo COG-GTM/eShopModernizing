@@ -13,7 +13,8 @@ public static class LegacyClientUrl
     public static string Resolve(HttpContext context, string appRelativeUrl)
     {
         var target = appRelativeUrl.StartsWith("~/") ? appRelativeUrl[2..] : appRelativeUrl.TrimStart('~');
-        var path = (context.Request.PathBase + context.Request.Path).Value;
+        // Relative to the application root (Request.Path excludes PathBase), as ~/ is in System.Web.
+        var path = context.Request.Path.Value;
         if (string.IsNullOrEmpty(path)) path = "/";
         var depth = path[..(path.LastIndexOf('/') + 1)].Count(c => c == '/') - 1;
         if (depth <= 0) return target.Length == 0 ? "./" : target;
