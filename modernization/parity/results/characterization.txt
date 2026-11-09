@@ -1,0 +1,1403 @@
+FFFFFFFFFFFFFF.F.F.F..FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.FFFFFFF [ 93%]
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+________________ test_list_default_shows_first_10_ordered_by_id ________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_list_default_shows_first_10_ordered_by_id(mvc):
+        r = mvc.get("/")
+>       assert r.status_code == 200 and "text/html" in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:12: AssertionError
+__________________________ test_list_paging[10-0-10] ___________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 10, index = 0
+count = 10
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+___________________________ test_list_paging[10-1-2] ___________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 10, index = 1
+count = 2
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+___________________________ test_list_paging[10-2-0] ___________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 10, index = 2
+count = 0
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+___________________________ test_list_paging[5-0-5] ____________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 5, index = 0, count = 5
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+___________________________ test_list_paging[5-2-2] ____________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 5, index = 2, count = 2
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+__________________________ test_list_paging[12-0-12] ___________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 12, index = 0
+count = 12
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+__________________________ test_list_paging[20-0-12] ___________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 20, index = 0
+count = 12
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+___________________________ test_list_paging[1-11-1] ___________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 1, index = 11
+count = 1
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+___________________________ test_list_paging[3-3-3] ____________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, size = 3, index = 3, count = 3
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging(mvc, size, index, count):
+        r = mvc.get(f"/Catalog/Index?pageSize={size}&pageIndex={index}")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:22: AssertionError
+___________________ test_list_page_size_zero_is_server_error ___________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_list_page_size_zero_is_server_error(mvc):
+>       assert mvc.get("/Catalog/Index?pageSize=0&pageIndex=0").status_code == 500
+E       AssertionError: assert 404 == 500
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = get('/Catalog/Index?pageSize=0&pageIndex=0')
+E        +      where get = <conftest.Client object at 0x7937bf043fb0>.get
+
+modernization/tools/tests/test_mvc.py:27: AssertionError
+______________ test_list_nonnumeric_params_fall_back_to_defaults _______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_list_nonnumeric_params_fall_back_to_defaults(mvc):
+>       assert len(rows(mvc.get("/Catalog/Index?pageSize=abc&pageIndex=xyz"))) == 10
+E       AssertionError: assert 0 == 10
+E        +  where 0 = len([])
+E        +    where [] = rows(<Response [404]>)
+E        +      where <Response [404]> = get('/Catalog/Index?pageSize=abc&pageIndex=xyz')
+E        +        where get = <conftest.Client object at 0x7937bf043fb0>.get
+
+modernization/tools/tests/test_mvc.py:31: AssertionError
+____________________ test_details[1-.NET Bot Black Hoodie] _____________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, item = 1
+name = '.NET Bot Black Hoodie'
+
+    @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (5, "Roslyn Red Sheet")])
+    def test_details(mvc, item, name):
+        r = mvc.get(f"/Catalog/Details/{item}")
+>       assert r.status_code == 200 and name in r.text
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:37: AssertionError
+_______________________ test_details[5-Roslyn Red Sheet] _______________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, item = 5
+name = 'Roslyn Red Sheet'
+
+    @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (5, "Roslyn Red Sheet")])
+    def test_details(mvc, item, name):
+        r = mvc.get(f"/Catalog/Details/{item}")
+>       assert r.status_code == 200 and name in r.text
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:37: AssertionError
+_____________ test_missing_and_bad_requests[/Catalog/Details-400] ______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/Catalog/Details'
+status = 400
+
+    @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 404), ("/Catalog/Details", 400),
+                                             ("/Catalog/Edit/999", 404), ("/Catalog/Edit", 400),
+                                             ("/Catalog/Delete/999", 404), ("/Catalog/Delete", 400),
+                                             ("/does-not-exist", 404), ("/Catalog/NoSuchAction", 404)])
+    def test_missing_and_bad_requests(mvc, path, status):
+>       assert mvc.get(path).status_code == status
+E       AssertionError: assert 404 == 400
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = get('/Catalog/Details')
+E        +      where get = <conftest.Client object at 0x7937bf043fb0>.get
+
+modernization/tools/tests/test_mvc.py:45: AssertionError
+_______________ test_missing_and_bad_requests[/Catalog/Edit-400] _______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/Catalog/Edit'
+status = 400
+
+    @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 404), ("/Catalog/Details", 400),
+                                             ("/Catalog/Edit/999", 404), ("/Catalog/Edit", 400),
+                                             ("/Catalog/Delete/999", 404), ("/Catalog/Delete", 400),
+                                             ("/does-not-exist", 404), ("/Catalog/NoSuchAction", 404)])
+    def test_missing_and_bad_requests(mvc, path, status):
+>       assert mvc.get(path).status_code == status
+E       AssertionError: assert 404 == 400
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = get('/Catalog/Edit')
+E        +      where get = <conftest.Client object at 0x7937bf043fb0>.get
+
+modernization/tools/tests/test_mvc.py:45: AssertionError
+______________ test_missing_and_bad_requests[/Catalog/Delete-400] ______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/Catalog/Delete'
+status = 400
+
+    @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 404), ("/Catalog/Details", 400),
+                                             ("/Catalog/Edit/999", 404), ("/Catalog/Edit", 400),
+                                             ("/Catalog/Delete/999", 404), ("/Catalog/Delete", 400),
+                                             ("/does-not-exist", 404), ("/Catalog/NoSuchAction", 404)])
+    def test_missing_and_bad_requests(mvc, path, status):
+>       assert mvc.get(path).status_code == status
+E       AssertionError: assert 404 == 400
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = get('/Catalog/Delete')
+E        +      where get = <conftest.Client object at 0x7937bf043fb0>.get
+
+modernization/tools/tests/test_mvc.py:45: AssertionError
+_____________________________ test_create_get_form _____________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_create_get_form(mvc):
+        r = mvc.get("/Catalog/Create")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:50: AssertionError
+__________ test_create_validation[Name--The Name field is required.] ___________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'Name', value = ''
+message = 'The Name field is required.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[Price-1.234-The field Price must be a positive number with maximum two decimals.] _
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'Price'
+value = '1.234'
+message = 'The field Price must be a positive number with maximum two decimals.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[Price-2000000-The field Price must be between 0 and 1000000.] _
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'Price'
+value = '2000000', message = 'The field Price must be between 0 and 1000000.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+__ test_create_validation[Price-abc-The value 'abc' is not valid for Price.] ___
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'Price', value = 'abc'
+message = "The value 'abc' is not valid for Price."
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_________ test_create_validation[Price--The Price field is required.] __________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'Price', value = ''
+message = 'The Price field is required.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[AvailableStock--1-The field Stock must be between 0 and 10 million.] _
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'AvailableStock'
+value = '-1', message = 'The field Stock must be between 0 and 10 million.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '-1', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[RestockThreshold-20000000-The field Restock must be between 0 and 10 million.] _
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'RestockThreshold'
+value = '20000000'
+message = 'The field Restock must be between 0 and 10 million.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[MaxStockThreshold-abc-The value 'abc' is not valid for Max stock.] _
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, field = 'MaxStockThreshold'
+value = 'abc', message = "The value 'abc' is not valid for Max stock."
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "1.234", "The field Price must be a positive number with maximum two decimals."),
+        ("Price", "2000000", "The field Price must be between 0 and 1000000."),
+        ("Price", "abc", "The value 'abc' is not valid for Price."),
+        ("Price", "", "The Price field is required."),
+        ("AvailableStock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("RestockThreshold", "20000000", "The field Restock must be between 0 and 10 million."),
+        ("MaxStockThreshold", "abc", "The value 'abc' is not valid for Max stock."),
+    ])
+    def test_create_validation(mvc, field, value, message):
+>       r = form_post(mvc, "/Catalog/Create", {**VALID, field: value})
+
+modernization/tools/tests/test_mvc.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+______________ test_create_without_antiforgery_token_is_rejected _______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_create_without_antiforgery_token_is_rejected(mvc):
+>       r = form_post(mvc, "/Catalog/Create", VALID, drop=["__RequestVerificationToken"])
+
+modernization/tools/tests/test_mvc.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = ['__RequestVerificationToken'], submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+______________________________ test_pic_endpoint _______________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_pic_endpoint(mvc):
+        r = mvc.get("/items/1/pic")
+>       assert r.status_code == 200 and r.headers["content-type"] == "image/png" and len(r.content) == 151640
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:81: AssertionError
+_____________________________ test_api_brands_json _____________________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_api_brands_json(mvc):
+        r = mvc.get("/api/brands", headers={"Accept": "application/json"})
+>       assert r.status_code == 200 and r.headers["content-type"].startswith("application/json")
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:87: AssertionError
+___________________ test_api_brands_xml_content_negotiation ____________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_api_brands_xml_content_negotiation(mvc):
+        r = mvc.get("/api/brands", headers={"Accept": "application/xml"})
+>       assert r.status_code == 200 and r.headers["content-type"].startswith("application/xml")
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:94: AssertionError
+_____________________________ test_api_brand_by_id _____________________________
+
+self = <Response [404]>, kwargs = {}
+
+    def json(self, **kwargs):
+        r"""Returns the json-encoded content of a response, if any.
+    
+        :param \*\*kwargs: Optional arguments that ``json.loads`` takes.
+        :raises requests.exceptions.JSONDecodeError: If the response body does not
+            contain valid json.
+        """
+    
+        if not self.encoding and self.content and len(self.content) > 3:
+            # No encoding set. JSON RFC 4627 section 3 states we should expect
+            # UTF-8, -16 or -32. Detect which one to use; If the detection or
+            # decoding fails, fall back to `self.text` (using charset_normalizer to make
+            # a best guess).
+            encoding = guess_json_utf(self.content)
+            if encoding is not None:
+                try:
+                    return complexjson.loads(self.content.decode(encoding), **kwargs)
+                except UnicodeDecodeError:
+                    # Wrong UTF codec detected; usually because it's not UTF-8
+                    # but some other 8-bit codec.  This is an RFC violation,
+                    # and the server didn't bother to tell us what codec *was*
+                    # used.
+                    pass
+                except JSONDecodeError as e:
+                    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+    
+        try:
+>           return complexjson.loads(self.text, **kwargs)
+
+../../dbtvenv/lib/python3.12/site-packages/requests/models.py:974: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.pyenv/versions/3.12.13/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+../../.pyenv/versions/3.12.13/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7937c06746e0>, s = '', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../.pyenv/versions/3.12.13/lib/python3.12/json/decoder.py:356: JSONDecodeError
+
+During handling of the above exception, another exception occurred:
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_api_brand_by_id(mvc):
+>       assert mvc.get("/api/brands/1", headers={"Accept": "application/json"}).json() == {"Id": 1, "Brand": "Azure"}
+
+modernization/tools/tests/test_mvc.py:99: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Response [404]>, kwargs = {}
+
+    def json(self, **kwargs):
+        r"""Returns the json-encoded content of a response, if any.
+    
+        :param \*\*kwargs: Optional arguments that ``json.loads`` takes.
+        :raises requests.exceptions.JSONDecodeError: If the response body does not
+            contain valid json.
+        """
+    
+        if not self.encoding and self.content and len(self.content) > 3:
+            # No encoding set. JSON RFC 4627 section 3 states we should expect
+            # UTF-8, -16 or -32. Detect which one to use; If the detection or
+            # decoding fails, fall back to `self.text` (using charset_normalizer to make
+            # a best guess).
+            encoding = guess_json_utf(self.content)
+            if encoding is not None:
+                try:
+                    return complexjson.loads(self.content.decode(encoding), **kwargs)
+                except UnicodeDecodeError:
+                    # Wrong UTF codec detected; usually because it's not UTF-8
+                    # but some other 8-bit codec.  This is an RFC violation,
+                    # and the server didn't bother to tell us what codec *was*
+                    # used.
+                    pass
+                except JSONDecodeError as e:
+                    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+    
+        try:
+            return complexjson.loads(self.text, **kwargs)
+        except JSONDecodeError as e:
+            # Catch JSON-related errors and raise as requests.JSONDecodeError
+            # This aliases json.JSONDecodeError and simplejson.JSONDecodeError
+>           raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+E           requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+../../dbtvenv/lib/python3.12/site-packages/requests/models.py:978: JSONDecodeError
+____________________ test_api_brand_delete_is_non_mutating _____________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_api_brand_delete_is_non_mutating(mvc):
+>       assert mvc.request("DELETE", "/api/brands/1").status_code == 200
+E       AssertionError: assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = request('DELETE', '/api/brands/1')
+E        +      where request = <conftest.Client object at 0x7937bf043fb0>.request
+
+modernization/tools/tests/test_mvc.py:104: AssertionError
+______________________ test_api_brands_unsupported_verbs _______________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_api_brands_unsupported_verbs(mvc):
+>       assert mvc.request("POST", "/api/brands", json={"Id": 9, "Brand": "X"}).status_code == 405
+E       AssertionError: assert 404 == 405
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = request('POST', '/api/brands', json={'Brand': 'X', 'Id': 9})
+E        +      where request = <conftest.Client object at 0x7937bf043fb0>.request
+
+modernization/tools/tests/test_mvc.py:110: AssertionError
+___________________ test_api_files_returns_binary_brand_list ___________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_api_files_returns_binary_brand_list(mvc):
+        r = mvc.get("/api/files")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:116: AssertionError
+__________________ test_static_content[/Content/css-text/css] __________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/Content/css'
+ctype = 'text/css'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+_______________ test_static_content[/bundles/jquery-javascript] ________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/bundles/jquery'
+ctype = 'javascript'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+______________ test_static_content[/bundles/jqueryval-javascript] ______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/bundles/jqueryval'
+ctype = 'javascript'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+______________ test_static_content[/bundles/modernizr-javascript] ______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/bundles/modernizr'
+ctype = 'javascript'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+______________ test_static_content[/bundles/bootstrap-javascript] ______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/bundles/bootstrap'
+ctype = 'javascript'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+_______________ test_static_content[/images/brand.png-image/png] _______________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/images/brand.png'
+ctype = 'image/png'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+__________________ test_static_content[/Pics/1.png-image/png] __________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/Pics/1.png'
+ctype = 'image/png'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+___________________ test_static_content[/favicon.ico-image] ____________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>, path = '/favicon.ico'
+ctype = 'image'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
+                                            ("/bundles/jqueryval", "javascript"), ("/bundles/modernizr", "javascript"),
+                                            ("/bundles/bootstrap", "javascript"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/favicon.ico", "image")])
+    def test_static_content(mvc, path, ctype):
+        r = mvc.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_mvc.py:127: AssertionError
+_____________________ test_zz_create_edit_delete_roundtrip _____________________
+
+mvc = <conftest.Client object at 0x7937bf043fb0>
+
+    def test_zz_create_edit_delete_roundtrip(mvc):
+>       r = form_post(mvc, "/Catalog/Create", VALID)
+
+modernization/tools/tests/test_mvc.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937bf043fb0>, page = '/Catalog/Create'
+fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
+drop = (), submit = None
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+______________________________ test_list_default _______________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>
+
+    def test_list_default(wf):
+        r = wf.get("/")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:12: AssertionError
+_________________________ test_list_aliases[/Default] __________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/Default'
+
+    @pytest.mark.parametrize("path", ["/Default", "/Default.aspx"])
+    def test_list_aliases(wf, path):
+>       assert len(rows(wf.get(path))) == 10
+E       AssertionError: assert 0 == 10
+E        +  where 0 = len([])
+E        +    where [] = rows(<Response [404]>)
+E        +      where <Response [404]> = get('/Default')
+E        +        where get = <conftest.Client object at 0x7937be9cc290>.get
+
+modernization/tools/tests/test_webforms.py:19: AssertionError
+_______________________ test_list_aliases[/Default.aspx] _______________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/Default.aspx'
+
+    @pytest.mark.parametrize("path", ["/Default", "/Default.aspx"])
+    def test_list_aliases(wf, path):
+>       assert len(rows(wf.get(path))) == 10
+E       AssertionError: assert 0 == 10
+E        +  where 0 = len([])
+E        +    where [] = rows(<Response [404]>)
+E        +      where <Response [404]> = get('/Default.aspx')
+E        +        where get = <conftest.Client object at 0x7937be9cc290>.get
+
+modernization/tools/tests/test_webforms.py:19: AssertionError
+_______________________ test_list_paging_route[10-0-10] ________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 10, index = 0
+count = 10
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+________________________ test_list_paging_route[10-1-2] ________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 10, index = 1, count = 2
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+________________________ test_list_paging_route[5-0-5] _________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 5, index = 0, count = 5
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+________________________ test_list_paging_route[5-2-2] _________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 5, index = 2, count = 2
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+_______________________ test_list_paging_route[12-0-12] ________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 12, index = 0
+count = 12
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+_______________________ test_list_paging_route[20-0-12] ________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 20, index = 0
+count = 12
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+________________________ test_list_paging_route[1-11-1] ________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 1, index = 11, count = 1
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+________________________ test_list_paging_route[3-3-3] _________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, size = 3, index = 3, count = 3
+
+    @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
+                                                  (20, 0, 12), (1, 11, 1), (3, 3, 3)])
+    def test_list_paging_route(wf, size, index, count):
+        r = wf.get(f"/Default/index/{index}/size/{size}")
+>       assert r.status_code == 200 and len(rows(r)) == count
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:26: AssertionError
+____________________ test_details[1-.NET Bot Black Hoodie] _____________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, item = 1
+name = '.NET Bot Black Hoodie'
+
+    @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (12, "Prism White TShirt")])
+    def test_details(wf, item, name):
+        r = wf.get(f"/Catalog/Details/{item}")
+>       assert r.status_code == 200 and name in r.text
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:32: AssertionError
+_____________________ test_details[12-Prism White TShirt] ______________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, item = 12
+name = 'Prism White TShirt'
+
+    @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (12, "Prism White TShirt")])
+    def test_details(wf, item, name):
+        r = wf.get(f"/Catalog/Details/{item}")
+>       assert r.status_code == 200 and name in r.text
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:32: AssertionError
+____________________ test_missing[/Catalog/Details/999-500] ____________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/Catalog/Details/999'
+status = 500
+
+    @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 500), ("/Catalog/Edit/999", 500),
+                                             ("/Catalog/Delete/999", 500), ("/does-not-exist", 404)])
+    def test_missing(wf, path, status):
+>       assert wf.get(path).status_code == status
+E       AssertionError: assert 404 == 500
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = get('/Catalog/Details/999')
+E        +      where get = <conftest.Client object at 0x7937be9cc290>.get
+
+modernization/tools/tests/test_webforms.py:38: AssertionError
+_____________________ test_missing[/Catalog/Edit/999-500] ______________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/Catalog/Edit/999'
+status = 500
+
+    @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 500), ("/Catalog/Edit/999", 500),
+                                             ("/Catalog/Delete/999", 500), ("/does-not-exist", 404)])
+    def test_missing(wf, path, status):
+>       assert wf.get(path).status_code == status
+E       AssertionError: assert 404 == 500
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = get('/Catalog/Edit/999')
+E        +      where get = <conftest.Client object at 0x7937be9cc290>.get
+
+modernization/tools/tests/test_webforms.py:38: AssertionError
+____________________ test_missing[/Catalog/Delete/999-500] _____________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/Catalog/Delete/999'
+status = 500
+
+    @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 500), ("/Catalog/Edit/999", 500),
+                                             ("/Catalog/Delete/999", 500), ("/does-not-exist", 404)])
+    def test_missing(wf, path, status):
+>       assert wf.get(path).status_code == status
+E       AssertionError: assert 404 == 500
+E        +  where 404 = <Response [404]>.status_code
+E        +    where <Response [404]> = get('/Catalog/Delete/999')
+E        +      where get = <conftest.Client object at 0x7937be9cc290>.get
+
+modernization/tools/tests/test_webforms.py:38: AssertionError
+_____________________________ test_create_get_form _____________________________
+
+wf = <conftest.Client object at 0x7937be9cc290>
+
+    def test_create_get_form(wf):
+        r = wf.get("/Catalog/Create")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:43: AssertionError
+__________ test_create_validation[Name--The Name field is required.] ___________
+
+wf = <conftest.Client object at 0x7937be9cc290>, field = 'Name', value = ''
+message = 'The Name field is required.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "-5", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Price", "abc", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Stock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("Restock", "abc", "The field Restock must be between 0 and 10 million."),
+        ("Maxstock", "20000000", "The field Max stock must be between 0 and 10 million."),
+    ])
+    def test_create_validation(wf, field, value, message):
+>       r = form_post(wf, "/Catalog/Create", {**VALID, field: value}, submit="[ Create ]")
+
+modernization/tools/tests/test_webforms.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937be9cc290>, page = '/Catalog/Create'
+fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': '', ...}
+drop = (), submit = '[ Create ]'
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[Price--5-The Price must be a positive number with maximum two decimals between 0 and 1 million.] _
+
+wf = <conftest.Client object at 0x7937be9cc290>, field = 'Price', value = '-5'
+message = 'The Price must be a positive number with maximum two decimals between 0 and 1 million.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "-5", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Price", "abc", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Stock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("Restock", "abc", "The field Restock must be between 0 and 10 million."),
+        ("Maxstock", "20000000", "The field Max stock must be between 0 and 10 million."),
+    ])
+    def test_create_validation(wf, field, value, message):
+>       r = form_post(wf, "/Catalog/Create", {**VALID, field: value}, submit="[ Create ]")
+
+modernization/tools/tests/test_webforms.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937be9cc290>, page = '/Catalog/Create'
+fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
+drop = (), submit = '[ Create ]'
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[Price-abc-The Price must be a positive number with maximum two decimals between 0 and 1 million.] _
+
+wf = <conftest.Client object at 0x7937be9cc290>, field = 'Price', value = 'abc'
+message = 'The Price must be a positive number with maximum two decimals between 0 and 1 million.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "-5", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Price", "abc", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Stock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("Restock", "abc", "The field Restock must be between 0 and 10 million."),
+        ("Maxstock", "20000000", "The field Max stock must be between 0 and 10 million."),
+    ])
+    def test_create_validation(wf, field, value, message):
+>       r = form_post(wf, "/Catalog/Create", {**VALID, field: value}, submit="[ Create ]")
+
+modernization/tools/tests/test_webforms.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937be9cc290>, page = '/Catalog/Create'
+fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
+drop = (), submit = '[ Create ]'
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[Stock--1-The field Stock must be between 0 and 10 million.] _
+
+wf = <conftest.Client object at 0x7937be9cc290>, field = 'Stock', value = '-1'
+message = 'The field Stock must be between 0 and 10 million.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "-5", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Price", "abc", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Stock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("Restock", "abc", "The field Restock must be between 0 and 10 million."),
+        ("Maxstock", "20000000", "The field Max stock must be between 0 and 10 million."),
+    ])
+    def test_create_validation(wf, field, value, message):
+>       r = form_post(wf, "/Catalog/Create", {**VALID, field: value}, submit="[ Create ]")
+
+modernization/tools/tests/test_webforms.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937be9cc290>, page = '/Catalog/Create'
+fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
+drop = (), submit = '[ Create ]'
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[Restock-abc-The field Restock must be between 0 and 10 million.] _
+
+wf = <conftest.Client object at 0x7937be9cc290>, field = 'Restock'
+value = 'abc', message = 'The field Restock must be between 0 and 10 million.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "-5", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Price", "abc", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Stock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("Restock", "abc", "The field Restock must be between 0 and 10 million."),
+        ("Maxstock", "20000000", "The field Max stock must be between 0 and 10 million."),
+    ])
+    def test_create_validation(wf, field, value, message):
+>       r = form_post(wf, "/Catalog/Create", {**VALID, field: value}, submit="[ Create ]")
+
+modernization/tools/tests/test_webforms.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937be9cc290>, page = '/Catalog/Create'
+fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
+drop = (), submit = '[ Create ]'
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+_ test_create_validation[Maxstock-20000000-The field Max stock must be between 0 and 10 million.] _
+
+wf = <conftest.Client object at 0x7937be9cc290>, field = 'Maxstock'
+value = '20000000'
+message = 'The field Max stock must be between 0 and 10 million.'
+
+    @pytest.mark.parametrize("field,value,message", [
+        ("Name", "", "The Name field is required."),
+        ("Price", "-5", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Price", "abc", "The Price must be a positive number with maximum two decimals between 0 and 1 million."),
+        ("Stock", "-1", "The field Stock must be between 0 and 10 million."),
+        ("Restock", "abc", "The field Restock must be between 0 and 10 million."),
+        ("Maxstock", "20000000", "The field Max stock must be between 0 and 10 million."),
+    ])
+    def test_create_validation(wf, field, value, message):
+>       r = form_post(wf, "/Catalog/Create", {**VALID, field: value}, submit="[ Create ]")
+
+modernization/tools/tests/test_webforms.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937be9cc290>, page = '/Catalog/Create'
+fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '20000000', 'Name': 'Characterization Item', ...}
+drop = (), submit = '[ Create ]'
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+___________________ test_static[/Content/site.css-text/css] ____________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/Content/site.css'
+ctype = 'text/css'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/Scripts/WebForms/WebForms.js", "javascript")])
+    def test_static(wf, path, ctype):
+        r = wf.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:65: AssertionError
+___________________ test_static[/images/brand.png-image/png] ___________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/images/brand.png'
+ctype = 'image/png'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/Scripts/WebForms/WebForms.js", "javascript")])
+    def test_static(wf, path, ctype):
+        r = wf.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:65: AssertionError
+______________________ test_static[/Pics/1.png-image/png] ______________________
+
+wf = <conftest.Client object at 0x7937be9cc290>, path = '/Pics/1.png'
+ctype = 'image/png'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/Scripts/WebForms/WebForms.js", "javascript")])
+    def test_static(wf, path, ctype):
+        r = wf.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:65: AssertionError
+____________ test_static[/Scripts/WebForms/WebForms.js-javascript] _____________
+
+wf = <conftest.Client object at 0x7937be9cc290>
+path = '/Scripts/WebForms/WebForms.js', ctype = 'javascript'
+
+    @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
+                                            ("/Pics/1.png", "image/png"), ("/Scripts/WebForms/WebForms.js", "javascript")])
+    def test_static(wf, path, ctype):
+        r = wf.get(path)
+>       assert r.status_code == 200 and ctype in r.headers["content-type"]
+E       assert (404 == 200)
+E        +  where 404 = <Response [404]>.status_code
+
+modernization/tools/tests/test_webforms.py:65: AssertionError
+_____________________ test_zz_create_edit_delete_roundtrip _____________________
+
+wf = <conftest.Client object at 0x7937be9cc290>
+
+    def test_zz_create_edit_delete_roundtrip(wf):
+>       r = form_post(wf, "/Catalog/Create", VALID, submit="[ Create ]")
+
+modernization/tools/tests/test_webforms.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+client = <conftest.Client object at 0x7937be9cc290>, page = '/Catalog/Create'
+fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
+drop = (), submit = '[ Create ]'
+
+    def form_post(client, page, fields=None, drop=(), submit=None):
+        r = client.get(page)
+>       assert r.status_code == 200, (page, r.status_code)
+E       AssertionError: ('/Catalog/Create', 404)
+
+modernization/tools/tests/helpers.py:33: AssertionError
+==================================== PASSES ====================================
+- generated xml file: /home/ubuntu/repos/eShopModernizing/modernization/parity/results/characterization.xml -
+=========================== short test summary info ============================
+PASSED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/Catalog/Details/999-404]
+PASSED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/Catalog/Edit/999-404]
+PASSED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/Catalog/Delete/999-404]
+PASSED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/does-not-exist-404]
+PASSED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/Catalog/NoSuchAction-404]
+PASSED modernization/tools/tests/test_webforms.py::test_missing[/does-not-exist-404]
+FAILED modernization/tools/tests/test_mvc.py::test_list_default_shows_first_10_ordered_by_id
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[10-0-10] - ass...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[10-1-2] - asse...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[10-2-0] - asse...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[5-0-5] - asser...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[5-2-2] - asser...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[12-0-12] - ass...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[20-0-12] - ass...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[1-11-1] - asse...
+FAILED modernization/tools/tests/test_mvc.py::test_list_paging[3-3-3] - asser...
+FAILED modernization/tools/tests/test_mvc.py::test_list_page_size_zero_is_server_error
+FAILED modernization/tools/tests/test_mvc.py::test_list_nonnumeric_params_fall_back_to_defaults
+FAILED modernization/tools/tests/test_mvc.py::test_details[1-.NET Bot Black Hoodie]
+FAILED modernization/tools/tests/test_mvc.py::test_details[5-Roslyn Red Sheet]
+FAILED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/Catalog/Details-400]
+FAILED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/Catalog/Edit-400]
+FAILED modernization/tools/tests/test_mvc.py::test_missing_and_bad_requests[/Catalog/Delete-400]
+FAILED modernization/tools/tests/test_mvc.py::test_create_get_form - assert 4...
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[Name--The Name field is required.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[Price-1.234-The field Price must be a positive number with maximum two decimals.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[Price-2000000-The field Price must be between 0 and 1000000.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[Price-abc-The value 'abc' is not valid for Price.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[Price--The Price field is required.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[AvailableStock--1-The field Stock must be between 0 and 10 million.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[RestockThreshold-20000000-The field Restock must be between 0 and 10 million.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_validation[MaxStockThreshold-abc-The value 'abc' is not valid for Max stock.]
+FAILED modernization/tools/tests/test_mvc.py::test_create_without_antiforgery_token_is_rejected
+FAILED modernization/tools/tests/test_mvc.py::test_pic_endpoint - assert (404...
+FAILED modernization/tools/tests/test_mvc.py::test_api_brands_json - assert (...
+FAILED modernization/tools/tests/test_mvc.py::test_api_brands_xml_content_negotiation
+FAILED modernization/tools/tests/test_mvc.py::test_api_brand_by_id - requests...
+FAILED modernization/tools/tests/test_mvc.py::test_api_brand_delete_is_non_mutating
+FAILED modernization/tools/tests/test_mvc.py::test_api_brands_unsupported_verbs
+FAILED modernization/tools/tests/test_mvc.py::test_api_files_returns_binary_brand_list
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/Content/css-text/css]
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/bundles/jquery-javascript]
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/bundles/jqueryval-javascript]
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/bundles/modernizr-javascript]
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/bundles/bootstrap-javascript]
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/images/brand.png-image/png]
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/Pics/1.png-image/png]
+FAILED modernization/tools/tests/test_mvc.py::test_static_content[/favicon.ico-image]
+FAILED modernization/tools/tests/test_mvc.py::test_zz_create_edit_delete_roundtrip
+FAILED modernization/tools/tests/test_webforms.py::test_list_default - assert...
+FAILED modernization/tools/tests/test_webforms.py::test_list_aliases[/Default]
+FAILED modernization/tools/tests/test_webforms.py::test_list_aliases[/Default.aspx]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[10-0-10]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[10-1-2]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[5-0-5]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[5-2-2]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[12-0-12]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[20-0-12]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[1-11-1]
+FAILED modernization/tools/tests/test_webforms.py::test_list_paging_route[3-3-3]
+FAILED modernization/tools/tests/test_webforms.py::test_details[1-.NET Bot Black Hoodie]
+FAILED modernization/tools/tests/test_webforms.py::test_details[12-Prism White TShirt]
+FAILED modernization/tools/tests/test_webforms.py::test_missing[/Catalog/Details/999-500]
+FAILED modernization/tools/tests/test_webforms.py::test_missing[/Catalog/Edit/999-500]
+FAILED modernization/tools/tests/test_webforms.py::test_missing[/Catalog/Delete/999-500]
+FAILED modernization/tools/tests/test_webforms.py::test_create_get_form - ass...
+FAILED modernization/tools/tests/test_webforms.py::test_create_validation[Name--The Name field is required.]
+FAILED modernization/tools/tests/test_webforms.py::test_create_validation[Price--5-The Price must be a positive number with maximum two decimals between 0 and 1 million.]
+FAILED modernization/tools/tests/test_webforms.py::test_create_validation[Price-abc-The Price must be a positive number with maximum two decimals between 0 and 1 million.]
+FAILED modernization/tools/tests/test_webforms.py::test_create_validation[Stock--1-The field Stock must be between 0 and 10 million.]
+FAILED modernization/tools/tests/test_webforms.py::test_create_validation[Restock-abc-The field Restock must be between 0 and 10 million.]
+FAILED modernization/tools/tests/test_webforms.py::test_create_validation[Maxstock-20000000-The field Max stock must be between 0 and 10 million.]
+FAILED modernization/tools/tests/test_webforms.py::test_static[/Content/site.css-text/css]
+FAILED modernization/tools/tests/test_webforms.py::test_static[/images/brand.png-image/png]
+FAILED modernization/tools/tests/test_webforms.py::test_static[/Pics/1.png-image/png]
+FAILED modernization/tools/tests/test_webforms.py::test_static[/Scripts/WebForms/WebForms.js-javascript]
+FAILED modernization/tools/tests/test_webforms.py::test_zz_create_edit_delete_roundtrip
+71 failed, 6 passed in 0.56s
