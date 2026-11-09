@@ -1,0 +1,26 @@
+{
+  "app": "mvc",
+  "case": "list-size10-page2",
+  "flow": "list",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Index?pageSize=10&pageIndex=2"
+  },
+  "response": {
+    "body": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Index - Catalog manager (MVC)</title>\n    <link href=\"/Content/bootstrap.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/custom.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/base.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/site.css\" rel=\"stylesheet\"/>\n\n    <script src=\"/Scripts/modernizr-2.6.2.js\"></script>\n<script src=\"/Scripts/modernizr-2.8.3.js\"></script>\n\n</head>\n<body>\n    <header class=\"navbar navbar-light navbar-static-top\">\n        <div class=\"esh-header-brand\">\n            <a href=\"/\">\n                <img src=\"/images/brand.png\" />\n            </a>\n        </div>\n    </header>\n    <section class=\"esh-app-hero\">\n        <div class=\"container esh-header\">\n            <h1 class=\"esh-header-title\" >Catalog manager <span>(MVC)</span></h1>\n        </div>\n    </section>\n\n    \n\n\n<div class=\"esh-table\">\n    <p class=\"esh-link-wrapper\">\n        <a class=\"btn esh-button esh-button-primary\" href=\"/Catalog/Create\">Create New</a>\n    </p>\n\n    <table class=\"table\">\n    <thead>\n        <tr class=\"esh-table-header\">\n            <th>\n            </th>\n            <th>\n                Name\n            </th>\n            <th>\n                Description\n            </th>\n            <th>\n                Brand\n            </th>\n            <th>\n                Type\n            </th>\n            <th>\n                Price\n            </th>\n            <th>\n                Picture name\n            </th>\n            <th>\n                Stock\n            </th>\n            <th>\n                Restock\n            </th>\n            <th>\n                Max stock\n            </th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody>\n    </tbody>\n\n</table>\n\n    <div class=\"esh-pager\">\n        <div class=\"container\">\n            <article class=\"esh-pager-wrapper row\">\n                <nav>\n\n<a class=\"esh-pager-item esh-pager-item--navigable\" href=\"/?pageSize=10&amp;pageIndex=1\">Previous</a>\n                    <span class=\"esh-pager-item\">\n                        Showing 10 of 12 products - Page 3 - 2\n                    </span>\n\n<a class=\"esh-pager-item esh-pager-item--navigable esh-pager-item--hidden\" href=\"/?pageSize=10&amp;pageIndex=3\">Next</a>\n            </nav>\n        </article>\n    </div>\n</div>\n\n</div>\n\n\n    <footer class=\"esh-app-footer\">\n        <div class=\"container\">\n            <article class=\"row\">\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-brand\" src=\"/images/brand_dark.png\" />\n                </section>\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-text hidden-xs\" src=\"/images/main_footer_text.png\" width=\"335\" height=\"26\" alt=\"footer text image\" />\n                    <br />\n\n                    <small>{{HOST}}, {{DATETIME}}</small>\n                </section>\n                \n            </article>\n        </div>\n    </footer>\n\n    <script src=\"/Scripts/jquery-3.3.1.js\"></script>\n\n    <script src=\"/Scripts/bootstrap.js\"></script>\n<script src=\"/Scripts/respond.js\"></script>\n\n    \n</body>\n</html>\n",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "errors": [],
+      "fields": [],
+      "rows": [],
+      "text": "Index - Catalog manager (MVC) Catalog manager (MVC) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Previous Showing 10 of 12 products - Page 3 - 2 Next {{HOST}}, {{DATETIME}}",
+      "title": "Index - Catalog manager (MVC)"
+    },
+    "status": 200
+  },
+  "seq": 6
+}

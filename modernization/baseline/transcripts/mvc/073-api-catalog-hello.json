@@ -1,0 +1,25 @@
+{
+  "app": "mvc",
+  "case": "api-catalog-hello",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/api/catalog"
+  },
+  "response": {
+    "body": "{\"Message\":\"No HTTP resource was found that matches the request URI '{{BASE}}/api/catalog'.\",\"MessageDetail\":\"No type was found that matches the controller named 'catalog'.\"}",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "semantic": {
+      "json": {
+        "Message": "No HTTP resource was found that matches the request URI '{{BASE}}/api/catalog'.",
+        "MessageDetail": "No type was found that matches the controller named 'catalog'."
+      }
+    },
+    "status": 404
+  },
+  "seq": 73
+}

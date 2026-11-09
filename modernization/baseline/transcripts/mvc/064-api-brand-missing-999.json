@@ -1,0 +1,24 @@
+{
+  "app": "mvc",
+  "case": "api-brand-missing-999",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {
+      "Accept": "application/json"
+    },
+    "method": "GET",
+    "path": "/api/brands/999"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 404
+  },
+  "seq": 64
+}

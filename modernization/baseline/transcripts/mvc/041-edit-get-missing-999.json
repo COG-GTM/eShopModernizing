@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "edit-get-missing-999",
+  "flow": "edit",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Edit/999"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 404
+  },
+  "seq": 41
+}

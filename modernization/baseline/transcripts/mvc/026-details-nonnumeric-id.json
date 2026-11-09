@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "details-nonnumeric-id",
+  "flow": "details",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Details/abc"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 400
+  },
+  "seq": 26
+}

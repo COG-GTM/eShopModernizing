@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "pic-item-missing-999",
+  "flow": "pics",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/items/999/pic"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 404
+  },
+  "seq": 57
+}

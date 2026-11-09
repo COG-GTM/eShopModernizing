@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "api-brand-delete-1",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "DELETE",
+    "path": "/api/brands/1"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 200
+  },
+  "seq": 65
+}

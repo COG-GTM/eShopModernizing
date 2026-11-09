@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- FROZEN scaffold file: tickets must not edit (see modernization/TICKETS.md). -->
+  <PropertyGroup>
+    <RootNamespace>EShop.Storefront.Mvc</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EShop.Catalog\EShop.Catalog.csproj" />
+  </ItemGroup>
+</Project>

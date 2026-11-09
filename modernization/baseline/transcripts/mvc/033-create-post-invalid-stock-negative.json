@@ -1,0 +1,122 @@
+{
+  "app": "mvc",
+  "case": "create-post-invalid-stock-negative",
+  "flow": "create",
+  "kind": "request",
+  "request": {
+    "drop": [],
+    "fields": {
+      "AvailableStock": "-1",
+      "Description": "Created by the transcript recorder",
+      "MaxStockThreshold": "50",
+      "Name": "Transcript Item",
+      "Price": "12.34",
+      "RestockThreshold": "2"
+    },
+    "form_page": "/Catalog/Create",
+    "method": "POST",
+    "path": "/Catalog/Create"
+  },
+  "response": {
+    "body": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Create - Catalog manager (MVC)</title>\n    <link href=\"/Content/bootstrap.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/custom.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/base.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/site.css\" rel=\"stylesheet\"/>\n\n    <script src=\"/Scripts/modernizr-2.6.2.js\"></script>\n<script src=\"/Scripts/modernizr-2.8.3.js\"></script>\n\n</head>\n<body>\n    <header class=\"navbar navbar-light navbar-static-top\">\n        <div class=\"esh-header-brand\">\n            <a href=\"/\">\n                <img src=\"/images/brand.png\" />\n            </a>\n        </div>\n    </header>\n    <section class=\"esh-app-hero\">\n        <div class=\"container esh-header\">\n            <h1 class=\"esh-header-title\" >Catalog manager <span>(MVC)</span></h1>\n        </div>\n    </section>\n\n    \n\n\n<h2 class=\"esh-body-title\">Create</h2>\n\n\n<form action=\"/Catalog/Create\" method=\"post\"><input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"{{VOLATILE}}\" />    <div class=\"form-horizontal\">\n        <div class=\"validation-summary-errors text-danger\"><ul><li style=\"display:none\"></li>\n</ul></div>\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"Name\">Name</label>\n            <div class=\"col-md-3\">\n                <input class=\"form-control text-box single-line\" data-val=\"true\" data-val-required=\"The Name field is required.\" id=\"Name\" name=\"Name\" type=\"text\" value=\"Transcript Item\" />\n                <span class=\"field-validation-valid text-danger\" data-valmsg-for=\"Name\" data-valmsg-replace=\"true\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"Description\">Description</label>\n            <div class=\"col-md-3\">\n                <input class=\"form-control text-box single-line\" id=\"Description\" name=\"Description\" type=\"text\" value=\"Created by the transcript recorder\" />\n                <span class=\"field-validation-valid text-danger\" data-valmsg-for=\"Description\" data-valmsg-replace=\"true\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"CatalogBrandId\">Brand</label>\n            <div class=\"col-md-3\">\n                <select class=\"form-control\" id=\"CatalogBrandId\" name=\"CatalogBrandId\"><option selected=\"selected\" value=\"1\">Azure</option>\n<option value=\"2\">.NET</option>\n<option value=\"3\">Visual Studio</option>\n<option value=\"4\">SQL Server</option>\n<option value=\"5\">Other</option>\n</select>\n                <span class=\"field-validation-valid text-danger\" data-valmsg-for=\"CatalogBrandId\" data-valmsg-replace=\"true\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"CatalogTypeId\">Type</label>\n            <div class=\"col-md-3\">\n                <select class=\"form-control\" id=\"CatalogTypeId\" name=\"CatalogTypeId\"><option selected=\"selected\" value=\"1\">Mug</option>\n<option value=\"2\">T-Shirt</option>\n<option value=\"3\">Sheet</option>\n<option value=\"4\">USB Memory Stick</option>\n</select>\n                <span class=\"field-validation-valid text-danger\" data-valmsg-for=\"CatalogTypeId\" data-valmsg-replace=\"true\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"Price\">Price</label>\n            <div class=\"col-md-3\">\n                <input class=\"form-control text-box single-line\" data-val=\"true\" data-val-number=\"The field Price must be a number.\" data-val-range=\"The field Price must be between 0 and 1000000.\" data-val-range-max=\"1000000\" data-val-range-min=\"0\" data-val-regex=\"The field Price must be a positive number with maximum two decimals.\" data-val-regex-pattern=\"^\\d+(\\.\\d{0,2})*$\" data-val-required=\"The Price field is required.\" id=\"Price\" name=\"Price\" type=\"text\" value=\"12.34\" />\n                <span class=\"field-validation-valid text-danger\" data-valmsg-for=\"Price\" data-valmsg-replace=\"true\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"PictureFileName\">Picture name</label>\n            <div class=\"col-md-4 esh-form-information\">\n                Uploading images not allowed for this version.\n                \n                \n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"AvailableStock\">Stock</label>\n            <div class=\"col-md-3\">\n                <input class=\"input-validation-error form-control text-box single-line\" data-val=\"true\" data-val-number=\"The field Stock must be a number.\" data-val-range=\"The field Stock must be between 0 and 10 million.\" data-val-range-max=\"10000000\" data-val-range-min=\"0\" data-val-required=\"The Stock field is required.\" id=\"AvailableStock\" name=\"AvailableStock\" type=\"number\" value=\"-1\" />\n                <span class=\"field-validation-error text-danger\" data-valmsg-for=\"AvailableStock\" data-valmsg-replace=\"true\">The field Stock must be between 0 and 10 million.</span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"RestockThreshold\">Restock</label>\n            <div class=\"col-md-3\">\n                <input class=\"form-control text-box single-line\" data-val=\"true\" data-val-number=\"The field Restock must be a number.\" data-val-range=\"The field Restock must be between 0 and 10 million.\" data-val-range-max=\"10000000\" data-val-range-min=\"0\" data-val-required=\"The Restock field is required.\" id=\"RestockThreshold\" name=\"RestockThreshold\" type=\"number\" value=\"2\" />\n                <span class=\"field-validation-valid text-danger\" data-valmsg-for=\"RestockThreshold\" data-valmsg-replace=\"true\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"control-label col-md-2\" for=\"MaxStockThreshold\">Max stock</label>\n            <div class=\"col-md-3\">\n                <input class=\"form-control text-box single-line\" data-val=\"true\" data-val-number=\"The field Max stock must be a number.\" data-val-range=\"The field Max stock must be between 0 and 10 million.\" data-val-range-max=\"10000000\" data-val-range-min=\"0\" data-val-required=\"The Max stock field is required.\" id=\"MaxStockThreshold\" name=\"MaxStockThreshold\" type=\"number\" value=\"50\" />\n                <span class=\"field-validation-valid text-danger\" data-valmsg-for=\"MaxStockThreshold\" data-valmsg-replace=\"true\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group\">\n            <div class=\"col-md-offset-2 col-md-3 text-right esh-button-actions\">\n                <a class=\"btn esh-button esh-button-secondary\" href=\"/\">[ Cancel ]</a>\n                <input type=\"submit\" value=\"[ Create ]\" class=\"btn esh-button esh-button-primary\" />\n            </div>\n        </div>\n    </div>\n</form>\n<div>\n    \n</div>\n\n\n\n    <footer class=\"esh-app-footer\">\n        <div class=\"container\">\n            <article class=\"row\">\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-brand\" src=\"/images/brand_dark.png\" />\n                </section>\n                <section class=\"col-sm-6\">\n                    <img class=\"esh-app-footer-text hidden-xs\" src=\"/images/main_footer_text.png\" width=\"335\" height=\"26\" alt=\"footer text image\" />\n                    <br />\n\n                    <small>{{HOST}}, {{DATETIME}}</small>\n                </section>\n                \n            </article>\n        </div>\n    </footer>\n\n    <script src=\"/Scripts/jquery-3.3.1.js\"></script>\n\n    <script src=\"/Scripts/bootstrap.js\"></script>\n<script src=\"/Scripts/respond.js\"></script>\n\n    \n    <script src=\"/Scripts/jquery.validate.js\"></script>\n<script src=\"/Scripts/jquery.validate.unobtrusive.js\"></script>\n\n\n</body>\n</html>\n",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "errors": [
+        "The field Stock must be between 0 and 10 million."
+      ],
+      "fields": [
+        {
+          "name": "Name",
+          "type": "text",
+          "value": "Transcript Item"
+        },
+        {
+          "name": "Description",
+          "type": "text",
+          "value": "Created by the transcript recorder"
+        },
+        {
+          "name": "CatalogBrandId",
+          "options": [
+            [
+              "Azure",
+              "1"
+            ],
+            [
+              ".NET",
+              "2"
+            ],
+            [
+              "Visual Studio",
+              "3"
+            ],
+            [
+              "SQL Server",
+              "4"
+            ],
+            [
+              "Other",
+              "5"
+            ]
+          ],
+          "selected": [
+            "1"
+          ],
+          "type": "select"
+        },
+        {
+          "name": "CatalogTypeId",
+          "options": [
+            [
+              "Mug",
+              "1"
+            ],
+            [
+              "T-Shirt",
+              "2"
+            ],
+            [
+              "Sheet",
+              "3"
+            ],
+            [
+              "USB Memory Stick",
+              "4"
+            ]
+          ],
+          "selected": [
+            "1"
+          ],
+          "type": "select"
+        },
+        {
+          "name": "Price",
+          "type": "text",
+          "value": "12.34"
+        },
+        {
+          "name": "AvailableStock",
+          "type": "number",
+          "value": "-1"
+        },
+        {
+          "name": "RestockThreshold",
+          "type": "number",
+          "value": "2"
+        },
+        {
+          "name": "MaxStockThreshold",
+          "type": "number",
+          "value": "50"
+        }
+      ],
+      "rows": [],
+      "text": "Create - Catalog manager (MVC) Catalog manager (MVC) Create Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Uploading images not allowed for this version. Stock The field Stock must be between 0 and 10 million. Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+      "title": "Create - Catalog manager (MVC)"
+    },
+    "status": 200
+  },
+  "seq": 33
+}

@@ -1,0 +1,27 @@
+{
+  "app": "mvc",
+  "case": "api-brands-post-not-allowed",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "data": "{\"Id\":9,\"Brand\":\"X\"}",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "method": "POST",
+    "path": "/api/brands"
+  },
+  "response": {
+    "body": "{\"Message\":\"The requested resource does not support http method 'POST'.\"}",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "semantic": {
+      "json": {
+        "Message": "The requested resource does not support http method 'POST'."
+      }
+    },
+    "status": 405
+  },
+  "seq": 68
+}
