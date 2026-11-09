@@ -120,6 +120,11 @@ def main(paths):
         result = json.loads(p.read_text())
         for app in result["apps"]:
             raw_dir = p.parent / "raw" / result["mode"] / app["app"]
+            if not raw_dir.is_dir():
+                # Full bodies live only in raw/ (git-ignored); the JSON keeps clipped bodies, so reclassifying without
+                # raw/ would invent differences. Keep the classification recorded when the run was made.
+                print(f"{p.name}: {app['app']}: no {raw_dir}, keeping recorded classification", file=sys.stderr)
+                continue
             for case in app["cases"]:
                 classify_case(app["app"], result["mode"], case, raw_dir)
         result["classification"] = summarise(result)
