@@ -64,13 +64,13 @@
       "id": "test_mvc::test_list_page_size_zero_is_server_error",
       "suite": "mvc",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Index?pageSize=0&pageIndex=0')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Index?pageSize=0&pageIndex=0')\n +      where get = <conftest.Client object at 0x72703ab9c980>.get"
     },
     {
       "id": "test_mvc::test_list_nonnumeric_params_fall_back_to_defaults",
       "suite": "mvc",
       "outcome": "failed",
-      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Catalog/Index?pageSize=abc&pageIndex=xyz')\n +        where get = <conftest.Client object at 0x730629989070>.get"
+      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Catalog/Index?pageSize=abc&pageIndex=xyz')\n +        where get = <conftest.Client object at 0x72703ab9c980>.get"
     },
     {
       "id": "test_mvc::test_details[1-.NET Bot Black Hoodie]",
@@ -94,7 +94,7 @@
       "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Details-400]",
       "suite": "mvc",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Details')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Details')\n +      where get = <conftest.Client object at 0x72703ab9c980>.get"
     },
     {
       "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Edit/999-404]",
@@ -106,7 +106,7 @@
       "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Edit-400]",
       "suite": "mvc",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Edit')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Edit')\n +      where get = <conftest.Client object at 0x72703ab9c980>.get"
     },
     {
       "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Delete/999-404]",
@@ -118,7 +118,7 @@
       "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Delete-400]",
       "suite": "mvc",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Delete')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Delete')\n +      where get = <conftest.Client object at 0x72703ab9c980>.get"
     },
     {
       "id": "test_mvc::test_missing_and_bad_requests[/does-not-exist-404]",
@@ -220,13 +220,13 @@
       "id": "test_mvc::test_api_brand_delete_is_non_mutating",
       "suite": "mvc",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 200\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = request('DELETE', '/api/brands/1')\n +      where request = <conftest.Client object at 0x730629989070>.request"
+      "message": "AssertionError: assert 404 == 200\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = request('DELETE', '/api/brands/1')\n +      where request = <conftest.Client object at 0x72703ab9c980>.request"
     },
     {
       "id": "test_mvc::test_api_brands_unsupported_verbs",
       "suite": "mvc",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 405\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = request('POST', '/api/brands', json={'Brand': 'X', 'Id': 9})\n +      where request = <conftest.Client object at 0x730629989070>.request"
+      "message": "AssertionError: assert 404 == 405\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = request('POST', '/api/brands', json={'Brand': 'X', 'Id': 9})\n +      where request = <conftest.Client object at 0x72703ab9c980>.request"
     },
     {
       "id": "test_mvc::test_api_files_returns_binary_brand_list",
@@ -298,13 +298,13 @@
       "id": "test_webforms::test_list_aliases[/Default]",
       "suite": "webforms",
       "outcome": "failed",
-      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Default')\n +        where get = <conftest.Client object at 0x7306298927e0>.get"
+      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Default')\n +        where get = <conftest.Client object at 0x72703a596600>.get"
     },
     {
       "id": "test_webforms::test_list_aliases[/Default.aspx]",
       "suite": "webforms",
       "outcome": "failed",
-      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Default.aspx')\n +        where get = <conftest.Client object at 0x7306298927e0>.get"
+      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Default.aspx')\n +        where get = <conftest.Client object at 0x72703a596600>.get"
     },
     {
       "id": "test_webforms::test_list_paging_route[10-0-10]",
@@ -370,19 +370,19 @@
       "id": "test_webforms::test_missing[/Catalog/Details/999-500]",
       "suite": "webforms",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Details/999')\n +      where get = <conftest.Client object at 0x7306298927e0>.get"
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Details/999')\n +      where get = <conftest.Client object at 0x72703a596600>.get"
     },
     {
       "id": "test_webforms::test_missing[/Catalog/Edit/999-500]",
       "suite": "webforms",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Edit/999')\n +      where get = <conftest.Client object at 0x7306298927e0>.get"
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Edit/999')\n +      where get = <conftest.Client object at 0x72703a596600>.get"
     },
     {
       "id": "test_webforms::test_missing[/Catalog/Delete/999-500]",
       "suite": "webforms",
       "outcome": "failed",
-      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Delete/999')\n +      where get = <conftest.Client object at 0x7306298927e0>.get"
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Delete/999')\n +      where get = <conftest.Client object at 0x72703a596600>.get"
     },
     {
       "id": "test_webforms::test_missing[/does-not-exist-404]",

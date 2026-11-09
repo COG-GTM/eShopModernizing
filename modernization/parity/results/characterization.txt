@@ -3,7 +3,7 @@ FFFFF                                                                    [100%]
 =================================== FAILURES ===================================
 ________________ test_list_default_shows_first_10_ordered_by_id ________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_list_default_shows_first_10_ordered_by_id(mvc):
         r = mvc.get("/")
@@ -14,7 +14,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:12: AssertionError
 __________________________ test_list_paging[10-0-10] ___________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 10, index = 0
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 10, index = 0
 count = 10
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -28,7 +28,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 ___________________________ test_list_paging[10-1-2] ___________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 10, index = 1
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 10, index = 1
 count = 2
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -42,7 +42,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 ___________________________ test_list_paging[10-2-0] ___________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 10, index = 2
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 10, index = 2
 count = 0
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -56,7 +56,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 ___________________________ test_list_paging[5-0-5] ____________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 5, index = 0, count = 5
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 5, index = 0, count = 5
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -69,7 +69,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 ___________________________ test_list_paging[5-2-2] ____________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 5, index = 2, count = 2
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 5, index = 2, count = 2
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -82,7 +82,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 __________________________ test_list_paging[12-0-12] ___________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 12, index = 0
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 12, index = 0
 count = 12
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -96,7 +96,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 __________________________ test_list_paging[20-0-12] ___________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 20, index = 0
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 20, index = 0
 count = 12
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -110,7 +110,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 ___________________________ test_list_paging[1-11-1] ___________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 1, index = 11
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 1, index = 11
 count = 1
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -124,7 +124,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 ___________________________ test_list_paging[3-3-3] ____________________________
 
-mvc = <conftest.Client object at 0x730629989070>, size = 3, index = 3, count = 3
+mvc = <conftest.Client object at 0x72703ab9c980>, size = 3, index = 3, count = 3
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (10, 2, 0), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -137,19 +137,19 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:22: AssertionError
 ___________________ test_list_page_size_zero_is_server_error ___________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_list_page_size_zero_is_server_error(mvc):
 >       assert mvc.get("/Catalog/Index?pageSize=0&pageIndex=0").status_code == 500
 E       AssertionError: assert 404 == 500
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = get('/Catalog/Index?pageSize=0&pageIndex=0')
-E        +      where get = <conftest.Client object at 0x730629989070>.get
+E        +      where get = <conftest.Client object at 0x72703ab9c980>.get
 
 modernization/tools/tests/test_mvc.py:27: AssertionError
 ______________ test_list_nonnumeric_params_fall_back_to_defaults _______________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_list_nonnumeric_params_fall_back_to_defaults(mvc):
 >       assert len(rows(mvc.get("/Catalog/Index?pageSize=abc&pageIndex=xyz"))) == 10
@@ -157,12 +157,12 @@ E       AssertionError: assert 0 == 10
 E        +  where 0 = len([])
 E        +    where [] = rows(<Response [404]>)
 E        +      where <Response [404]> = get('/Catalog/Index?pageSize=abc&pageIndex=xyz')
-E        +        where get = <conftest.Client object at 0x730629989070>.get
+E        +        where get = <conftest.Client object at 0x72703ab9c980>.get
 
 modernization/tools/tests/test_mvc.py:31: AssertionError
 ____________________ test_details[1-.NET Bot Black Hoodie] _____________________
 
-mvc = <conftest.Client object at 0x730629989070>, item = 1
+mvc = <conftest.Client object at 0x72703ab9c980>, item = 1
 name = '.NET Bot Black Hoodie'
 
     @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (5, "Roslyn Red Sheet")])
@@ -175,7 +175,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:37: AssertionError
 _______________________ test_details[5-Roslyn Red Sheet] _______________________
 
-mvc = <conftest.Client object at 0x730629989070>, item = 5
+mvc = <conftest.Client object at 0x72703ab9c980>, item = 5
 name = 'Roslyn Red Sheet'
 
     @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (5, "Roslyn Red Sheet")])
@@ -188,7 +188,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:37: AssertionError
 _____________ test_missing_and_bad_requests[/Catalog/Details-400] ______________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/Catalog/Details'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/Catalog/Details'
 status = 400
 
     @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 404), ("/Catalog/Details", 400),
@@ -200,12 +200,12 @@ status = 400
 E       AssertionError: assert 404 == 400
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = get('/Catalog/Details')
-E        +      where get = <conftest.Client object at 0x730629989070>.get
+E        +      where get = <conftest.Client object at 0x72703ab9c980>.get
 
 modernization/tools/tests/test_mvc.py:45: AssertionError
 _______________ test_missing_and_bad_requests[/Catalog/Edit-400] _______________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/Catalog/Edit'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/Catalog/Edit'
 status = 400
 
     @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 404), ("/Catalog/Details", 400),
@@ -217,12 +217,12 @@ status = 400
 E       AssertionError: assert 404 == 400
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = get('/Catalog/Edit')
-E        +      where get = <conftest.Client object at 0x730629989070>.get
+E        +      where get = <conftest.Client object at 0x72703ab9c980>.get
 
 modernization/tools/tests/test_mvc.py:45: AssertionError
 ______________ test_missing_and_bad_requests[/Catalog/Delete-400] ______________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/Catalog/Delete'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/Catalog/Delete'
 status = 400
 
     @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 404), ("/Catalog/Details", 400),
@@ -234,12 +234,12 @@ status = 400
 E       AssertionError: assert 404 == 400
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = get('/Catalog/Delete')
-E        +      where get = <conftest.Client object at 0x730629989070>.get
+E        +      where get = <conftest.Client object at 0x72703ab9c980>.get
 
 modernization/tools/tests/test_mvc.py:45: AssertionError
 _____________________________ test_create_get_form _____________________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_create_get_form(mvc):
         r = mvc.get("/Catalog/Create")
@@ -250,7 +250,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:50: AssertionError
 __________ test_create_validation[Name--The Name field is required.] ___________
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'Name', value = ''
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'Name', value = ''
 message = 'The Name field is required.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -269,7 +269,7 @@ message = 'The Name field is required.'
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -281,7 +281,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[Price-1.234-The field Price must be a positive number with maximum two decimals.] _
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'Price'
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'Price'
 value = '1.234'
 message = 'The field Price must be a positive number with maximum two decimals.'
 
@@ -301,7 +301,7 @@ message = 'The field Price must be a positive number with maximum two decimals.'
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -313,7 +313,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[Price-2000000-The field Price must be between 0 and 1000000.] _
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'Price'
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'Price'
 value = '2000000', message = 'The field Price must be between 0 and 1000000.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -332,7 +332,7 @@ value = '2000000', message = 'The field Price must be between 0 and 1000000.'
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -344,7 +344,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 __ test_create_validation[Price-abc-The value 'abc' is not valid for Price.] ___
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'Price', value = 'abc'
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'Price', value = 'abc'
 message = "The value 'abc' is not valid for Price."
 
     @pytest.mark.parametrize("field,value,message", [
@@ -363,7 +363,7 @@ message = "The value 'abc' is not valid for Price."
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -375,7 +375,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _________ test_create_validation[Price--The Price field is required.] __________
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'Price', value = ''
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'Price', value = ''
 message = 'The Price field is required.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -394,7 +394,7 @@ message = 'The Price field is required.'
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -406,7 +406,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[AvailableStock--1-The field Stock must be between 0 and 10 million.] _
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'AvailableStock'
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'AvailableStock'
 value = '-1', message = 'The field Stock must be between 0 and 10 million.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -425,7 +425,7 @@ value = '-1', message = 'The field Stock must be between 0 and 10 million.'
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '-1', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -437,7 +437,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[RestockThreshold-20000000-The field Restock must be between 0 and 10 million.] _
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'RestockThreshold'
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'RestockThreshold'
 value = '20000000'
 message = 'The field Restock must be between 0 and 10 million.'
 
@@ -457,7 +457,7 @@ message = 'The field Restock must be between 0 and 10 million.'
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -469,7 +469,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[MaxStockThreshold-abc-The value 'abc' is not valid for Max stock.] _
 
-mvc = <conftest.Client object at 0x730629989070>, field = 'MaxStockThreshold'
+mvc = <conftest.Client object at 0x72703ab9c980>, field = 'MaxStockThreshold'
 value = 'abc', message = "The value 'abc' is not valid for Max stock."
 
     @pytest.mark.parametrize("field,value,message", [
@@ -488,7 +488,7 @@ value = 'abc', message = "The value 'abc' is not valid for Max stock."
 modernization/tools/tests/test_mvc.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -500,7 +500,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 ______________ test_create_without_antiforgery_token_is_rejected _______________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_create_without_antiforgery_token_is_rejected(mvc):
 >       r = form_post(mvc, "/Catalog/Create", VALID, drop=["__RequestVerificationToken"])
@@ -508,7 +508,7 @@ mvc = <conftest.Client object at 0x730629989070>
 modernization/tools/tests/test_mvc.py:75: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = ['__RequestVerificationToken'], submit = None
 
@@ -520,7 +520,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 ______________________________ test_pic_endpoint _______________________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_pic_endpoint(mvc):
         r = mvc.get("/items/1/pic")
@@ -531,7 +531,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:81: AssertionError
 _____________________________ test_api_brands_json _____________________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_api_brands_json(mvc):
         r = mvc.get("/api/brands", headers={"Accept": "application/json"})
@@ -542,7 +542,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:87: AssertionError
 ___________________ test_api_brands_xml_content_negotiation ____________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_api_brands_xml_content_negotiation(mvc):
         r = mvc.get("/api/brands", headers={"Accept": "application/xml"})
@@ -592,7 +592,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <json.decoder.JSONDecoder object at 0x73062b570770>, s = '', idx = 0
+self = <json.decoder.JSONDecoder object at 0x72703c2306e0>, s = '', idx = 0
 
     def raw_decode(self, s, idx=0):
         """Decode a JSON document from ``s`` (a ``str`` beginning with
@@ -613,7 +613,7 @@ E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char
 
 During handling of the above exception, another exception occurred:
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_api_brand_by_id(mvc):
 >       assert mvc.get("/api/brands/1", headers={"Accept": "application/json"}).json() == {"Id": 1, "Brand": "Azure"}
@@ -660,31 +660,31 @@ E           requests.exceptions.JSONDecodeError: Expecting value: line 1 column 
 ../../dbtvenv/lib/python3.12/site-packages/requests/models.py:978: JSONDecodeError
 ____________________ test_api_brand_delete_is_non_mutating _____________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_api_brand_delete_is_non_mutating(mvc):
 >       assert mvc.request("DELETE", "/api/brands/1").status_code == 200
 E       AssertionError: assert 404 == 200
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = request('DELETE', '/api/brands/1')
-E        +      where request = <conftest.Client object at 0x730629989070>.request
+E        +      where request = <conftest.Client object at 0x72703ab9c980>.request
 
 modernization/tools/tests/test_mvc.py:104: AssertionError
 ______________________ test_api_brands_unsupported_verbs _______________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_api_brands_unsupported_verbs(mvc):
 >       assert mvc.request("POST", "/api/brands", json={"Id": 9, "Brand": "X"}).status_code == 405
 E       AssertionError: assert 404 == 405
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = request('POST', '/api/brands', json={'Brand': 'X', 'Id': 9})
-E        +      where request = <conftest.Client object at 0x730629989070>.request
+E        +      where request = <conftest.Client object at 0x72703ab9c980>.request
 
 modernization/tools/tests/test_mvc.py:110: AssertionError
 ___________________ test_api_files_returns_binary_brand_list ___________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_api_files_returns_binary_brand_list(mvc):
         r = mvc.get("/api/files")
@@ -695,7 +695,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:116: AssertionError
 __________________ test_static_content[/Content/css-text/css] __________________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/Content/css'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/Content/css'
 ctype = 'text/css'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -711,7 +711,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 _______________ test_static_content[/bundles/jquery-javascript] ________________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/bundles/jquery'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/bundles/jquery'
 ctype = 'javascript'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -727,7 +727,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 ______________ test_static_content[/bundles/jqueryval-javascript] ______________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/bundles/jqueryval'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/bundles/jqueryval'
 ctype = 'javascript'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -743,7 +743,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 ______________ test_static_content[/bundles/modernizr-javascript] ______________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/bundles/modernizr'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/bundles/modernizr'
 ctype = 'javascript'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -759,7 +759,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 ______________ test_static_content[/bundles/bootstrap-javascript] ______________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/bundles/bootstrap'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/bundles/bootstrap'
 ctype = 'javascript'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -775,7 +775,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 _______________ test_static_content[/images/brand.png-image/png] _______________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/images/brand.png'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/images/brand.png'
 ctype = 'image/png'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -791,7 +791,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 __________________ test_static_content[/Pics/1.png-image/png] __________________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/Pics/1.png'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/Pics/1.png'
 ctype = 'image/png'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -807,7 +807,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 ___________________ test_static_content[/favicon.ico-image] ____________________
 
-mvc = <conftest.Client object at 0x730629989070>, path = '/favicon.ico'
+mvc = <conftest.Client object at 0x72703ab9c980>, path = '/favicon.ico'
 ctype = 'image'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/css", "text/css"), ("/bundles/jquery", "javascript"),
@@ -823,7 +823,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_mvc.py:127: AssertionError
 _____________________ test_zz_create_edit_delete_roundtrip _____________________
 
-mvc = <conftest.Client object at 0x730629989070>
+mvc = <conftest.Client object at 0x72703ab9c980>
 
     def test_zz_create_edit_delete_roundtrip(mvc):
 >       r = form_post(mvc, "/Catalog/Create", VALID)
@@ -831,7 +831,7 @@ mvc = <conftest.Client object at 0x730629989070>
 modernization/tools/tests/test_mvc.py:131: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x730629989070>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703ab9c980>, page = '/Catalog/Create'
 fields = {'AvailableStock': '10', 'CatalogBrandId': '2', 'CatalogTypeId': '1', 'Description': 'char', ...}
 drop = (), submit = None
 
@@ -843,7 +843,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 ______________________________ test_list_default _______________________________
 
-wf = <conftest.Client object at 0x7306298927e0>
+wf = <conftest.Client object at 0x72703a596600>
 
     def test_list_default(wf):
         r = wf.get("/")
@@ -854,7 +854,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:12: AssertionError
 _________________________ test_list_aliases[/Default] __________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/Default'
+wf = <conftest.Client object at 0x72703a596600>, path = '/Default'
 
     @pytest.mark.parametrize("path", ["/Default", "/Default.aspx"])
     def test_list_aliases(wf, path):
@@ -863,12 +863,12 @@ E       AssertionError: assert 0 == 10
 E        +  where 0 = len([])
 E        +    where [] = rows(<Response [404]>)
 E        +      where <Response [404]> = get('/Default')
-E        +        where get = <conftest.Client object at 0x7306298927e0>.get
+E        +        where get = <conftest.Client object at 0x72703a596600>.get
 
 modernization/tools/tests/test_webforms.py:19: AssertionError
 _______________________ test_list_aliases[/Default.aspx] _______________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/Default.aspx'
+wf = <conftest.Client object at 0x72703a596600>, path = '/Default.aspx'
 
     @pytest.mark.parametrize("path", ["/Default", "/Default.aspx"])
     def test_list_aliases(wf, path):
@@ -877,12 +877,12 @@ E       AssertionError: assert 0 == 10
 E        +  where 0 = len([])
 E        +    where [] = rows(<Response [404]>)
 E        +      where <Response [404]> = get('/Default.aspx')
-E        +        where get = <conftest.Client object at 0x7306298927e0>.get
+E        +        where get = <conftest.Client object at 0x72703a596600>.get
 
 modernization/tools/tests/test_webforms.py:19: AssertionError
 _______________________ test_list_paging_route[10-0-10] ________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 10, index = 0
+wf = <conftest.Client object at 0x72703a596600>, size = 10, index = 0
 count = 10
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -896,7 +896,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 ________________________ test_list_paging_route[10-1-2] ________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 10, index = 1, count = 2
+wf = <conftest.Client object at 0x72703a596600>, size = 10, index = 1, count = 2
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -909,7 +909,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 ________________________ test_list_paging_route[5-0-5] _________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 5, index = 0, count = 5
+wf = <conftest.Client object at 0x72703a596600>, size = 5, index = 0, count = 5
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -922,7 +922,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 ________________________ test_list_paging_route[5-2-2] _________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 5, index = 2, count = 2
+wf = <conftest.Client object at 0x72703a596600>, size = 5, index = 2, count = 2
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -935,7 +935,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 _______________________ test_list_paging_route[12-0-12] ________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 12, index = 0
+wf = <conftest.Client object at 0x72703a596600>, size = 12, index = 0
 count = 12
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -949,7 +949,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 _______________________ test_list_paging_route[20-0-12] ________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 20, index = 0
+wf = <conftest.Client object at 0x72703a596600>, size = 20, index = 0
 count = 12
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
@@ -963,7 +963,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 ________________________ test_list_paging_route[1-11-1] ________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 1, index = 11, count = 1
+wf = <conftest.Client object at 0x72703a596600>, size = 1, index = 11, count = 1
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -976,7 +976,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 ________________________ test_list_paging_route[3-3-3] _________________________
 
-wf = <conftest.Client object at 0x7306298927e0>, size = 3, index = 3, count = 3
+wf = <conftest.Client object at 0x72703a596600>, size = 3, index = 3, count = 3
 
     @pytest.mark.parametrize("size,index,count", [(10, 0, 10), (10, 1, 2), (5, 0, 5), (5, 2, 2), (12, 0, 12),
                                                   (20, 0, 12), (1, 11, 1), (3, 3, 3)])
@@ -989,7 +989,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:26: AssertionError
 ____________________ test_details[1-.NET Bot Black Hoodie] _____________________
 
-wf = <conftest.Client object at 0x7306298927e0>, item = 1
+wf = <conftest.Client object at 0x72703a596600>, item = 1
 name = '.NET Bot Black Hoodie'
 
     @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (12, "Prism White TShirt")])
@@ -1002,7 +1002,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:32: AssertionError
 _____________________ test_details[12-Prism White TShirt] ______________________
 
-wf = <conftest.Client object at 0x7306298927e0>, item = 12
+wf = <conftest.Client object at 0x72703a596600>, item = 12
 name = 'Prism White TShirt'
 
     @pytest.mark.parametrize("item,name", [(1, ".NET Bot Black Hoodie"), (12, "Prism White TShirt")])
@@ -1015,7 +1015,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:32: AssertionError
 ____________________ test_missing[/Catalog/Details/999-500] ____________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/Catalog/Details/999'
+wf = <conftest.Client object at 0x72703a596600>, path = '/Catalog/Details/999'
 status = 500
 
     @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 500), ("/Catalog/Edit/999", 500),
@@ -1025,12 +1025,12 @@ status = 500
 E       AssertionError: assert 404 == 500
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = get('/Catalog/Details/999')
-E        +      where get = <conftest.Client object at 0x7306298927e0>.get
+E        +      where get = <conftest.Client object at 0x72703a596600>.get
 
 modernization/tools/tests/test_webforms.py:38: AssertionError
 _____________________ test_missing[/Catalog/Edit/999-500] ______________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/Catalog/Edit/999'
+wf = <conftest.Client object at 0x72703a596600>, path = '/Catalog/Edit/999'
 status = 500
 
     @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 500), ("/Catalog/Edit/999", 500),
@@ -1040,12 +1040,12 @@ status = 500
 E       AssertionError: assert 404 == 500
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = get('/Catalog/Edit/999')
-E        +      where get = <conftest.Client object at 0x7306298927e0>.get
+E        +      where get = <conftest.Client object at 0x72703a596600>.get
 
 modernization/tools/tests/test_webforms.py:38: AssertionError
 ____________________ test_missing[/Catalog/Delete/999-500] _____________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/Catalog/Delete/999'
+wf = <conftest.Client object at 0x72703a596600>, path = '/Catalog/Delete/999'
 status = 500
 
     @pytest.mark.parametrize("path,status", [("/Catalog/Details/999", 500), ("/Catalog/Edit/999", 500),
@@ -1055,12 +1055,12 @@ status = 500
 E       AssertionError: assert 404 == 500
 E        +  where 404 = <Response [404]>.status_code
 E        +    where <Response [404]> = get('/Catalog/Delete/999')
-E        +      where get = <conftest.Client object at 0x7306298927e0>.get
+E        +      where get = <conftest.Client object at 0x72703a596600>.get
 
 modernization/tools/tests/test_webforms.py:38: AssertionError
 _____________________________ test_create_get_form _____________________________
 
-wf = <conftest.Client object at 0x7306298927e0>
+wf = <conftest.Client object at 0x72703a596600>
 
     def test_create_get_form(wf):
         r = wf.get("/Catalog/Create")
@@ -1071,7 +1071,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:43: AssertionError
 __________ test_create_validation[Name--The Name field is required.] ___________
 
-wf = <conftest.Client object at 0x7306298927e0>, field = 'Name', value = ''
+wf = <conftest.Client object at 0x72703a596600>, field = 'Name', value = ''
 message = 'The Name field is required.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -1088,7 +1088,7 @@ message = 'The Name field is required.'
 modernization/tools/tests/test_webforms.py:57: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x7306298927e0>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703a596600>, page = '/Catalog/Create'
 fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': '', ...}
 drop = (), submit = '[ Create ]'
 
@@ -1100,7 +1100,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[Price--5-The Price must be a positive number with maximum two decimals between 0 and 1 million.] _
 
-wf = <conftest.Client object at 0x7306298927e0>, field = 'Price', value = '-5'
+wf = <conftest.Client object at 0x72703a596600>, field = 'Price', value = '-5'
 message = 'The Price must be a positive number with maximum two decimals between 0 and 1 million.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -1117,7 +1117,7 @@ message = 'The Price must be a positive number with maximum two decimals between
 modernization/tools/tests/test_webforms.py:57: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x7306298927e0>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703a596600>, page = '/Catalog/Create'
 fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
 drop = (), submit = '[ Create ]'
 
@@ -1129,7 +1129,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[Price-abc-The Price must be a positive number with maximum two decimals between 0 and 1 million.] _
 
-wf = <conftest.Client object at 0x7306298927e0>, field = 'Price', value = 'abc'
+wf = <conftest.Client object at 0x72703a596600>, field = 'Price', value = 'abc'
 message = 'The Price must be a positive number with maximum two decimals between 0 and 1 million.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -1146,7 +1146,7 @@ message = 'The Price must be a positive number with maximum two decimals between
 modernization/tools/tests/test_webforms.py:57: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x7306298927e0>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703a596600>, page = '/Catalog/Create'
 fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
 drop = (), submit = '[ Create ]'
 
@@ -1158,7 +1158,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[Stock--1-The field Stock must be between 0 and 10 million.] _
 
-wf = <conftest.Client object at 0x7306298927e0>, field = 'Stock', value = '-1'
+wf = <conftest.Client object at 0x72703a596600>, field = 'Stock', value = '-1'
 message = 'The field Stock must be between 0 and 10 million.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -1175,7 +1175,7 @@ message = 'The field Stock must be between 0 and 10 million.'
 modernization/tools/tests/test_webforms.py:57: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x7306298927e0>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703a596600>, page = '/Catalog/Create'
 fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
 drop = (), submit = '[ Create ]'
 
@@ -1187,7 +1187,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[Restock-abc-The field Restock must be between 0 and 10 million.] _
 
-wf = <conftest.Client object at 0x7306298927e0>, field = 'Restock'
+wf = <conftest.Client object at 0x72703a596600>, field = 'Restock'
 value = 'abc', message = 'The field Restock must be between 0 and 10 million.'
 
     @pytest.mark.parametrize("field,value,message", [
@@ -1204,7 +1204,7 @@ value = 'abc', message = 'The field Restock must be between 0 and 10 million.'
 modernization/tools/tests/test_webforms.py:57: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x7306298927e0>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703a596600>, page = '/Catalog/Create'
 fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
 drop = (), submit = '[ Create ]'
 
@@ -1216,7 +1216,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 _ test_create_validation[Maxstock-20000000-The field Max stock must be between 0 and 10 million.] _
 
-wf = <conftest.Client object at 0x7306298927e0>, field = 'Maxstock'
+wf = <conftest.Client object at 0x72703a596600>, field = 'Maxstock'
 value = '20000000'
 message = 'The field Max stock must be between 0 and 10 million.'
 
@@ -1234,7 +1234,7 @@ message = 'The field Max stock must be between 0 and 10 million.'
 modernization/tools/tests/test_webforms.py:57: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x7306298927e0>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703a596600>, page = '/Catalog/Create'
 fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '20000000', 'Name': 'Characterization Item', ...}
 drop = (), submit = '[ Create ]'
 
@@ -1246,7 +1246,7 @@ E       AssertionError: ('/Catalog/Create', 404)
 modernization/tools/tests/helpers.py:33: AssertionError
 ___________________ test_static[/Content/site.css-text/css] ____________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/Content/site.css'
+wf = <conftest.Client object at 0x72703a596600>, path = '/Content/site.css'
 ctype = 'text/css'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
@@ -1260,7 +1260,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:65: AssertionError
 ___________________ test_static[/images/brand.png-image/png] ___________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/images/brand.png'
+wf = <conftest.Client object at 0x72703a596600>, path = '/images/brand.png'
 ctype = 'image/png'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
@@ -1274,7 +1274,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:65: AssertionError
 ______________________ test_static[/Pics/1.png-image/png] ______________________
 
-wf = <conftest.Client object at 0x7306298927e0>, path = '/Pics/1.png'
+wf = <conftest.Client object at 0x72703a596600>, path = '/Pics/1.png'
 ctype = 'image/png'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
@@ -1288,7 +1288,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:65: AssertionError
 ____________ test_static[/Scripts/WebForms/WebForms.js-javascript] _____________
 
-wf = <conftest.Client object at 0x7306298927e0>
+wf = <conftest.Client object at 0x72703a596600>
 path = '/Scripts/WebForms/WebForms.js', ctype = 'javascript'
 
     @pytest.mark.parametrize("path,ctype", [("/Content/site.css", "text/css"), ("/images/brand.png", "image/png"),
@@ -1302,7 +1302,7 @@ E        +  where 404 = <Response [404]>.status_code
 modernization/tools/tests/test_webforms.py:65: AssertionError
 _____________________ test_zz_create_edit_delete_roundtrip _____________________
 
-wf = <conftest.Client object at 0x7306298927e0>
+wf = <conftest.Client object at 0x72703a596600>
 
     def test_zz_create_edit_delete_roundtrip(wf):
 >       r = form_post(wf, "/Catalog/Create", VALID, submit="[ Create ]")
@@ -1310,7 +1310,7 @@ wf = <conftest.Client object at 0x7306298927e0>
 modernization/tools/tests/test_webforms.py:69: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-client = <conftest.Client object at 0x7306298927e0>, page = '/Catalog/Create'
+client = <conftest.Client object at 0x72703a596600>, page = '/Catalog/Create'
 fields = {'Brand': '2', 'Description': 'char', 'Maxstock': '50', 'Name': 'Characterization Item', ...}
 drop = (), submit = '[ Create ]'
 
@@ -1400,4 +1400,4 @@ FAILED modernization/tools/tests/test_webforms.py::test_static[/images/brand.png
 FAILED modernization/tools/tests/test_webforms.py::test_static[/Pics/1.png-image/png]
 FAILED modernization/tools/tests/test_webforms.py::test_static[/Scripts/WebForms/WebForms.js-javascript]
 FAILED modernization/tools/tests/test_webforms.py::test_zz_create_edit_delete_roundtrip
-71 failed, 6 passed in 0.57s
+71 failed, 6 passed in 0.56s
