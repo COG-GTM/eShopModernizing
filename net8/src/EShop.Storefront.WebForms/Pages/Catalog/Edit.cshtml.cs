@@ -1,3 +1,4 @@
+using System.Globalization;
 using EShop.Catalog.Contracts;
 using EShop.Storefront.WebForms.Catalog;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,9 @@ public class EditModel(ICatalogService catalogService, ILogger<EditModel> logger
     {
         var product = LoadProduct();
         Form = WebFormsCatalogForm.FromRequest(Request.Form, "BrandDropDownList", "TypeDropDownList");
+        Form.ConstrainSelections(Brands, Types,
+            product.CatalogBrandId.ToString(CultureInfo.InvariantCulture),
+            product.CatalogTypeId.ToString(CultureInfo.InvariantCulture));
         // The picture TextBox is ReadOnly in legacy, so a posted value is ignored.
         Form.PictureFileName = product.PictureFileName;
         if (!WebFormsCatalogForm.WasClicked(Request.Form, SaveButtonId) || !Form.Validate())

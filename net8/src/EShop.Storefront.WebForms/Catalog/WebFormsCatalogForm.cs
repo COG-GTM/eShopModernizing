@@ -75,6 +75,22 @@ public sealed partial class WebFormsCatalogForm
     /// <summary>Legacy <c>Convert.ToInt32(Page.RouteData.Values[key])</c>: null is 0, non-numeric throws FormatException (500).</summary>
     public static int RouteInt(object? value) => Convert.ToInt32(value as string, LegacyCulture);
 
+    /// <summary>
+    /// A DropDownList ignores a posted value that is not one of its items and keeps its previous selection,
+    /// so an unknown brand/type id falls back to <paramref name="fallbackBrand"/>/<paramref name="fallbackType"/>.
+    /// </summary>
+    public void ConstrainSelections(IEnumerable<CatalogBrand> brands, IEnumerable<CatalogType> types, string? fallbackBrand, string? fallbackType)
+    {
+        if (!brands.Any(b => b.Id.ToString(CultureInfo.InvariantCulture) == Brand))
+        {
+            Brand = fallbackBrand;
+        }
+        if (!types.Any(t => t.Id.ToString(CultureInfo.InvariantCulture) == Type))
+        {
+            Type = fallbackType;
+        }
+    }
+
     public bool Validate()
     {
         Errors.Clear();

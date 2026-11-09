@@ -1,3 +1,4 @@
+using System.Globalization;
 using EShop.Catalog.Contracts;
 using EShop.Storefront.WebForms.Catalog;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,9 @@ public class CreateModel(ICatalogService catalogService) : PageModel
     {
         LoadLists();
         Form = WebFormsCatalogForm.FromRequest(Request.Form, "Brand", "Type");
+        Form.ConstrainSelections(Brands, Types,
+            Brands.FirstOrDefault()?.Id.ToString(CultureInfo.InvariantCulture),
+            Types.FirstOrDefault()?.Id.ToString(CultureInfo.InvariantCulture));
         if (!WebFormsCatalogForm.WasClicked(Request.Form, CreateButtonId) || !Form.Validate())
         {
             return Page();
