@@ -29,7 +29,15 @@ stop_app() {
     rm -f "$pidfile"
   fi
   for _ in $(seq 1 50); do [ -z "$(port_pids "$p")" ] && break; sleep 0.2; done
-  for pid in $(port_pids "$p"); do kill -9 "$pid" 2>/dev/null || true; done  # by port only, never by name
+  # A listener left over from an earlier parity run (no pid file) is killed only if it is this app's dll;
+  # anything else on the port is reported and left alone.
+  for pid in $(port_pids "$p"); do
+    if tr '\0' ' ' < "/proc/$pid/cmdline" 2>/dev/null | grep -q "$(project "$app").dll"; then
+      kill -9 "$pid" 2>/dev/null || true
+    else
+      echo "port $p is held by an unrelated process (pid $pid); not stopping it" >&2
+    fi
+  done
   echo "$app stopped (:$p)"
 }
 
