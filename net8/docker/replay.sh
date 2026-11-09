@@ -25,6 +25,7 @@ RESULTS="$HERE/results"; mkdir -p "$RESULTS"
 "$STACK" "$MODE" up "${UP_ARGS[@]}"
 
 status=0
+rm -f "$RESULTS/$MODE"-*.json "$RESULTS/sql-seed.csv" "$RESULTS/sql-parity.json"
 if [[ "$MODE" == sql ]]; then
   "$STACK" sql reset all
   "$STACK" sql seed | tee "$RESULTS/sql-seed.csv"
@@ -35,9 +36,10 @@ for app in mvc webforms; do
     --base-url "$("$STACK" "$MODE" url "$app")" \
     --reset-cmd "'$STACK' $MODE reset $app" \
     --report "$RESULTS/$MODE-$app.json" || { [[ "$MODE" == mock ]] && status=1; }
+  [[ -f "$RESULTS/$MODE-$app.json" ]] || { echo "no replay report for $app" >&2; status=1; }
 done
 
-if [[ "$MODE" == sql ]]; then
+if [[ "$MODE" == sql && "$status" == 0 ]]; then
   python3 "$HERE/sql_parity.py" --results "$RESULTS" --seed "$RESULTS/sql-seed.csv" --report "$RESULTS/sql-parity.json" || status=1
 fi
 

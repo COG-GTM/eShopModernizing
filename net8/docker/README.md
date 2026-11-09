@@ -32,7 +32,8 @@ pip install -r modernization/tools/requirements.txt
 docker compose -f net8/docker/compose.mock.yml up -d --build --wait     # or: net8/docker/stack.sh mock up
 net8/docker/replay.sh mock [--no-build] [--tests]                       # expects mvc 86/86 + webforms 52/52
 
-# SQL mode (stack.sh generates a throwaway SA password into net8/docker/.sql.env, git-ignored; or export MSSQL_SA_PASSWORD)
+# SQL mode (stack.sh generates a throwaway SA password into net8/docker/.sql.env, git-ignored; or export MSSQL_SA_PASSWORD,
+# which is embedded unquoted in the connection string: avoid `;`, `=`, quotes)
 net8/docker/stack.sh sql up
 net8/docker/stack.sh sql seed                                            # 12 items / 5 brands / 4 types / 3 HiLo sequences per DB
 net8/docker/replay.sh sql [--no-build]                                   # replay + sql_parity.py vs legacy SQL mode
