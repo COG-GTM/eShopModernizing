@@ -1,0 +1,28 @@
+# syntax=docker/dockerfile:1
+# Build context: net8/ (see compose.*.yml). Ignore rules: Dockerfile.webforms.dockerignore (BuildKit per-Dockerfile ignore).
+ARG DOTNET_VERSION=8.0
+
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
+WORKDIR /src
+COPY global.json Directory.Build.props ./
+COPY src/EShop.Catalog/EShop.Catalog.csproj src/EShop.Catalog/
+COPY src/EShop.Storefront.WebForms/EShop.Storefront.WebForms.csproj src/EShop.Storefront.WebForms/
+RUN dotnet restore src/EShop.Storefront.WebForms/EShop.Storefront.WebForms.csproj
+COPY src/ src/
+RUN dotnet publish src/EShop.Storefront.WebForms/EShop.Storefront.WebForms.csproj -c Release -o /app/publish -p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+# The app runs as the image's non-root user (APP_UID); only the picture folder is writable (UseCustomizationData seeding).
+RUN mkdir -p wwwroot/Pics && chown -R "$APP_UID" wwwroot/Pics
+ENV ASPNETCORE_URLS=http://+:8080 \
+    ASPNETCORE_ENVIRONMENT=Production \
+    UseMockData=true \
+    UseCustomizationData=false
+EXPOSE 8080
+USER $APP_UID
+# aspnet:8.0 has no curl/wget: probe over bash /dev/tcp. Kestrel only listens after catalog initialisation, so any non-5xx answer means ready.
+HEALTHCHECK --interval=5s --timeout=5s --start-period=10s --retries=24 \
+    CMD ["bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET / HTTP/1.0\\r\\nHost: localhost\\r\\n\\r\\n' >&3 && head -n1 <&3 | grep -Eq '^HTTP/1\\.[01] [234]'"]
+ENTRYPOINT ["dotnet", "EShop.Storefront.WebForms.dll"]
