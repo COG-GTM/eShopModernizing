@@ -5,7 +5,7 @@
 
 Reads side-by-side-{mock,sql}.json (side_by_side.py + classify.py), dotnet-test.trx, characterization-{legacy,migrated}.xml,
 env.json (written by run-side-by-side.sh) and classifications.json; screenshots/<id>-{legacy,migrated}.png are inlined as
-base64. Exit 0 only when every transcript matches by contract on both modes, every data-state check matches, every test
+base64, as are browser-evidence/*.png listed in browser-evidence/evidence.json. Exit 0 only when every transcript matches by contract on both modes, every data-state check matches, every test
 passes and no strict difference is unexplained."""
 import argparse
 import base64
@@ -169,6 +169,13 @@ def main():
         if mp.exists():
             shot_html += (f"<h3>{e(lp.name.replace('-legacy.png', ''))}</h3><div class='pair'><figure>{img(lp)}<figcaption>legacy (Mono + xsp4)"
                           f"</figcaption></figure><figure>{img(mp)}<figcaption>migrated (.NET 8 container)</figcaption></figure></div>")
+    browser_html = ""
+    bdir = PARITY / "browser-evidence"
+    if (bdir / "evidence.json").exists():
+        bev = json.loads((bdir / "evidence.json").read_text())
+        browser_html = f"<p>{e(bev.get('source', ''))}</p><div class='pair'>" + "".join(
+            f"<figure>{img(bdir / s['file'])}<figcaption>{e(s['caption'])}</figcaption></figure>"
+            for s in bev.get("screenshots", []) if (bdir / s["file"]).exists()) + "</div>"
     env_rows = [[e(k), f"<code>{e(str(v))}</code>"] for k, v in env.items()]
     doc = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>eShop storefront .NET 8 parity report</title>
 <style>
@@ -227,6 +234,7 @@ A transport retry re-sends a request that Mono/xsp4 rejected with 500 "The forma
 <li><b>Pre-existing legacy defects</b>: rules classified <code>pre-existing-legacy-defect</code> above (not reproduced), plus the Mono/xsp4 transport flake
 counted in the retry column. WebForms <code>/Content/css</code> and <code>/bundles/WebFormsJs</code> 404 on Mono (legacy harness limitation).</li></ul>
 <h2>Screenshots (mock mode)</h2>{shot_html or '<p>No screenshots captured.</p>'}
+<h2>Browser walkthrough of the migrated storefront</h2>{browser_html or '<p>No browser walkthrough evidence recorded.</p>'}
 <h2>Per-flow legacy vs migrated</h2>
 <details open><summary>{len(flow_rows)} flow executions</summary>{table(['mode', 'app', 'flow file', 'group', 'request', 'legacy', 'migrated', 'contract', 'legacy vs baseline', 'migrated vs baseline', 'strict'], flow_rows, 'flows')}</details>
 <h2>Data-state checks</h2>{table(['mode', 'app', 'check', 'legacy vs migrated'], check_rows)}

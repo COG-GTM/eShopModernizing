@@ -8468,7 +8468,7 @@
             {
               "field": "header:set-cookie",
               "legacy": "ASP.NET_SessionId=*; path=/",
-              "migrated": ".AspNetCore.Antiforgery.VyLW6ORzMgk=*; httponly; httponly, .aspnetcore.session=cfdj8jxj3pr%2bopjcn%2fnhmuhtx1sufzzqaodx5td5vqcv20zawxtzddfkvp4cbpyfch7s7kx9zzz1em3auibr9ldc%2fmew2dwpney0vrkf1ov8ntsqz7qhoph1pasnhzxm6nhndpln76xjpa2iqjrlwkl8rhcsgpexgx6ufywf5%2fapvodl; path=/; path=/; samesite=lax; samesite=strict"
+              "migrated": ".AspNetCore.Antiforgery.VyLW6ORzMgk=*; httponly; httponly, .aspnetcore.session=cfdj8pixiitvm3zhr1lbbvet%2bdkyk3nhyy1hoqbcacyaus1myukdx20%2bygkmmhdpv8txh3o6keugzwkhun91k9qtsggf3oijlloha3tmf%2bayyskxxhqcmrhh9tpulp3hyjwki8fbi3rk7gaov2uhv7nzmjms1svmscnglynn1j%2bg3cnz; path=/; path=/; samesite=lax; samesite=strict"
             },
             {
               "field": "runtime-headers",
@@ -8595,7 +8595,7 @@
               "rule": "FW-HDR-COOKIE-NAMES",
               "field": "header:set-cookie",
               "legacy": "ASP.NET_SessionId=*; path=/",
-              "migrated": ".AspNetCore.Antiforgery.VyLW6ORzMgk=*; httponly; httponly, .aspnetcore.session=cfdj8jxj3pr%2bopjcn%2fnhmuhtx1sufzzqaodx5td5vqcv20zawxtzddfkvp4cbpyfch7s7kx9zzz1em3auibr9ldc%2fmew2dwpney0vrkf1ov8ntsqz7qhoph1pasnhzxm6nhndpln76xjpa2iqjrlwkl8rhcsgpexgx6ufywf5%2fapvodl; path=/; path=/; samesite=lax; samesite=strict"
+              "migrated": ".AspNetCore.Antiforgery.VyLW6ORzMgk=*; httponly; httponly, .aspnetcore.session=cfdj8pixiitvm3zhr1lbbvet%2bdkyk3nhyy1hoqbcacyaus1myukdx20%2bygkmmhdpv8txh3o6keugzwkhun91k9qtsggf3oijlloha3tmf%2bayyskxxhqcmrhh9tpulp3hyjwki8fbi3rk7gaov2uhv7nzmjms1svmscnglynn1j%2bg3cnz; path=/; path=/; samesite=lax; samesite=strict"
             },
             {
               "rule": "FW-HDR-WF-XFRAME-NEW-TOKEN",

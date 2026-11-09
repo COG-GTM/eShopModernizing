@@ -1,0 +1,33 @@
+{
+  "source": "Testing agent: browser-driven walkthrough of the migrated .NET 8 containers (isolated compose projects, mock :5300/:5301, SQL :5310/:5311) at integration head 72f595f; the 3m13s recording is attached to the umbrella PR.",
+  "screenshots": [
+    {
+      "file": "01-mvc-catalog-list.png",
+      "caption": "MVC catalog list with product pictures (mock mode, :5300)"
+    },
+    {
+      "file": "02-mvc-details.png",
+      "caption": "MVC details: .NET Bot Black Hoodie, $19.50"
+    },
+    {
+      "file": "03-mvc-create-invalid-price.png",
+      "caption": "MVC create: price 12.345 rejected by validation, item not created"
+    },
+    {
+      "file": "04-mvc-edit-persisted.png",
+      "caption": "MVC edit persisted: renamed item at $29.95 in a fresh list"
+    },
+    {
+      "file": "05-api-brands-json.png",
+      "caption": "GET /api/brands with Accept: application/json: HTTP 200, five brands"
+    },
+    {
+      "file": "06-webforms-replacement-list.png",
+      "caption": "WebForms replacement (Razor) catalog list, legacy price formatting"
+    },
+    {
+      "file": "07-sql-mode-after-restart.png",
+      "caption": "UseMockData=false: SQL-created item still listed after MVC container restart"
+    }
+  ]
+}
