@@ -122,7 +122,10 @@ def main(paths):
             raw_dir = p.parent / "raw" / result["mode"] / app["app"]
             if not raw_dir.is_dir():
                 # Full bodies live only in raw/ (git-ignored); the JSON keeps clipped bodies, so reclassifying without
-                # raw/ would invent differences. Keep the classification recorded when the run was made.
+                # raw/ would invent differences. Keep the classification recorded when the run was made, if any.
+                if "classification" not in result:
+                    print(f"{p.name}: {app['app']}: no {raw_dir} and no recorded classification", file=sys.stderr)
+                    return 2
                 print(f"{p.name}: {app['app']}: no {raw_dir}, keeping recorded classification", file=sys.stderr)
                 continue
             for case in app["cases"]:
