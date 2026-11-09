@@ -28,6 +28,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.mvc
     image: eshop-storefront-mvc:local
+    hostname: "${STOREFRONT_HOSTNAME:-eshop-storefront-mvc}"
     environment:
       <<: *app-env
       ConnectionStrings__CatalogDBContext: "Server=sqlserver,1433;Database=eShopStorefrontCatalog_mvc;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=False;TrustServerCertificate=True"
@@ -42,6 +43,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.webforms
     image: eshop-storefront-webforms:local
+    hostname: "${STOREFRONT_HOSTNAME:-eshop-storefront-webforms}"
     environment:
       <<: *app-env
       ConnectionStrings__CatalogDBContext: "Server=sqlserver,1433;Database=eShopStorefrontCatalog_webforms;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=False;TrustServerCertificate=True"

@@ -12,6 +12,9 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MODE="${1:?usage: stack.sh <mock|sql> <up|down|reset|seed|url> [args]}"
 CMD="${2:?usage: stack.sh <mock|sql> <up|down|reset|seed|url> [args]}"
 shift 2
+# The layouts print Environment.MachineName (the container hostname) in the footer; transcript replay normalises only the
+# replaying host's name, so the containers take that name (a recreated container would otherwise get a new random id).
+export STOREFRONT_HOSTNAME="${STOREFRONT_HOSTNAME:-$(hostname)}"
 
 case "$MODE" in
   mock) COMPOSE=(docker compose -f "$HERE/compose.mock.yml") ;;

@@ -41,6 +41,10 @@ net8/docker/replay.sh sql [--no-build]                                   # repla
 net8/docker/stack.sh mock down; net8/docker/stack.sh sql down
 ```
 
+The layouts print the machine name (`Environment.MachineName`) in the footer and transcript replay normalises only the replaying
+host's name, so `stack.sh` sets `STOREFRONT_HOSTNAME=$(hostname)` and compose gives each app container that hostname (default
+`eshop-storefront-<app>`; export `STOREFRONT_HOSTNAME` yourself when replaying against stacks started with raw compose commands).
+
 Raw compose commands for SQL mode need the env file: `docker compose -f net8/docker/compose.sql.yml --env-file net8/docker/.sql.env ...`.
 
 Replays always start from fresh state: `transcript.py replay --reset-cmd` calls `stack.sh <mode> reset <app>`, which recreates the
@@ -52,5 +56,6 @@ app container (new in-memory catalog) and, in SQL mode, first drops the app's da
 - **Mock:** `replay.sh mock` exits 0 only if all 138 transcripts (mvc 86 + webforms 52) match the mock-mode baseline.
 - **SQL:** `replay.sh sql` exits 0 only if both databases seed 12/5/4 (+3 sequences) and `sql_parity.py` finds, per case, the same
   outcome and identical diffs as legacy SQL mode. Legacy SQL mode was MVC 85/86 (only `071-api-files`: 721 vs 719 bytes) and
-  WebForms 29/52 (23 price-formatting diffs, `19.50` vs `19.5`, CONTRACT.md §6). `071-api-files` is held to the mock bytes, so the
-  expected .NET 8 SQL result is MVC 86/86 and WebForms 29/52 with exactly the legacy price-formatting diffs.
+  WebForms 29/52 (23 price-formatting diffs, `19.50` vs `19.5`, CONTRACT.md §6). CONTRACT.md §6 requires the .NET 8 SQL mode to
+  match legacy SQL mode, so the expected .NET 8 SQL result is MVC 85/86 (`071-api-files` returns the legacy SQL 721-byte payload)
+  and WebForms 29/52 with exactly the legacy price-formatting diffs, i.e. 86/86 and 52/52 matching legacy SQL mode.
