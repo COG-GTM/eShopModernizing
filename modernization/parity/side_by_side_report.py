@@ -167,8 +167,7 @@ def main():
     for lp in sorted(shots.glob("*-legacy.png")) if shots.exists() else []:
         mp = lp.with_name(lp.name.replace("-legacy.png", "-migrated.png"))
         if mp.exists():
-            taken = datetime.datetime.fromtimestamp(lp.stat().st_mtime, datetime.timezone.utc).isoformat(timespec="seconds")
-            shot_html += (f"<h3>{e(lp.name.replace('-legacy.png', ''))} <small>(captured {e(taken)})</small></h3><div class='pair'><figure>{img(lp)}<figcaption>legacy (Mono + xsp4)"
+            shot_html += (f"<h3>{e(lp.name.replace('-legacy.png', ''))}</h3><div class='pair'><figure>{img(lp)}<figcaption>legacy (Mono + xsp4)"
                           f"</figcaption></figure><figure>{img(mp)}<figcaption>migrated (.NET 8 container)</figcaption></figure></div>")
     env_rows = [[e(k), f"<code>{e(str(v))}</code>"] for k, v in env.items()]
     doc = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>eShop storefront .NET 8 parity report</title>
