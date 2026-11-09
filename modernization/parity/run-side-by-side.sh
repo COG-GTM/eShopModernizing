@@ -79,4 +79,5 @@ env = {
 }
 json.dump(env, open(sys.argv[1], "w"), indent=2)
 PY
-"$PYTHON" "$PARITY_DIR/side_by_side_report.py" --results "$RES"
+# --no-screenshots: do not embed pairs left over from an earlier run
+"$PYTHON" "$PARITY_DIR/side_by_side_report.py" --results "$RES" $([ "$SHOTS" = 1 ] || echo --screenshots "$RES/no-screenshots")
