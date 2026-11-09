@@ -1,0 +1,38 @@
+{
+  "app": "webforms",
+  "case": "create-post-valid",
+  "flow": "create",
+  "kind": "request",
+  "request": {
+    "drop": [],
+    "fields": {
+      "Brand": "2",
+      "Description": "Created by the transcript recorder",
+      "Maxstock": "50",
+      "Name": "Transcript Item",
+      "Price": "12.34",
+      "Restock": "2",
+      "Stock": "10",
+      "Type": "1"
+    },
+    "form_page": "/Catalog/Create",
+    "method": "POST",
+    "path": "/Catalog/Create"
+  },
+  "response": {
+    "body": "<html><head><title>Object moved</title></head><body>\r\n<h2>Object moved to <a href=\"/\">here</a></h2>\r\n</body><html>\r\n",
+    "headers": {
+      "content-type": "text/html",
+      "location": "/"
+    },
+    "semantic": {
+      "errors": [],
+      "fields": [],
+      "rows": [],
+      "text": "Object moved Object moved to here",
+      "title": "Object moved"
+    },
+    "status": 302
+  },
+  "seq": 30
+}

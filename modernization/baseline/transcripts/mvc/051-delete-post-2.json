@@ -1,0 +1,29 @@
+{
+  "app": "mvc",
+  "case": "delete-post-2",
+  "flow": "delete",
+  "kind": "request",
+  "request": {
+    "drop": [],
+    "fields": {},
+    "form_page": "/Catalog/Delete/2",
+    "method": "POST",
+    "path": "/Catalog/Delete/2"
+  },
+  "response": {
+    "body": "<html><head><title>Object moved</title></head><body>\r\n<h2>Object moved to <a href=\"/\">here</a></h2>\r\n</body><html>\r\n",
+    "headers": {
+      "content-type": "text/html",
+      "location": "/"
+    },
+    "semantic": {
+      "errors": [],
+      "fields": [],
+      "rows": [],
+      "text": "Object moved Object moved to here",
+      "title": "Object moved"
+    },
+    "status": 302
+  },
+  "seq": 51
+}

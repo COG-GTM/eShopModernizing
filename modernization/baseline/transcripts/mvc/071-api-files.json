@@ -1,0 +1,23 @@
+{
+  "app": "mvc",
+  "case": "api-files",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/api/files"
+  },
+  "response": {
+    "body": "\u0000\u0001\u0000\u0000\u0000����\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\f\u0002\u0000\u0000\u0000EeShopLegacyMVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\u0004\u0001\u0000\u0000\u0000�\u0001System.Collections.Generic.List`1[[eShopLegacyMVC.Controllers.WebApi.FilesController+BrandDTO, eShopLegacyMVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]\u0003\u0000\u0000\u0000\u0006_items\u0005_size\b_version\u0004\u0000\u0000<eShopLegacyMVC.Controllers.WebApi.FilesController+BrandDTO[]\u0002\u0000\u0000\u0000\b\b\t\u0003\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0007\u0003\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0004:eShopLegacyMVC.Controllers.WebApi.FilesController+BrandDTO\u0002\u0000\u0000\u0000\t\u0004\u0000\u0000\u0000\t\u0005\u0000\u0000\u0000\t\u0006\u0000\u0000\u0000\t\u0007\u0000\u0000\u0000\t\b\u0000\u0000\u0000\u0005\u0004\u0000\u0000\u0000:eShopLegacyMVC.Controllers.WebApi.FilesController+BrandDTO\u0002\u0000\u0000\u0000\u0013<Id>k__BackingField\u0016<Brand>k__BackingField\u0000\u0001\b\u0002\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0006\t\u0000\u0000\u0000\u0005Azure\u0001\u0005\u0000\u0000\u0000\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0006\n\u0000\u0000\u0000\u0004.NET\u0001\u0006\u0000\u0000\u0000\u0004\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0006\u000b\u0000\u0000\u0000\rVisual Studio\u0001\u0007\u0000\u0000\u0000\u0004\u0000\u0000\u0000\u0004\u0000\u0000\u0000\u0006\f\u0000\u0000\u0000\nSQL Server\u0001\b\u0000\u0000\u0000\u0004\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0006\r\u0000\u0000\u0000\u0005Other\u000b",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "length": 719,
+      "sha256": "8a33ee7cf9c7a24426c97210ca1dd72ea13f8e4f923936b68c145a0954c06361"
+    },
+    "status": 200
+  },
+  "seq": 71
+}

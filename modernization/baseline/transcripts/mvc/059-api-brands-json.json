@@ -1,0 +1,45 @@
+{
+  "app": "mvc",
+  "case": "api-brands-json",
+  "flow": "api",
+  "kind": "request",
+  "request": {
+    "headers": {
+      "Accept": "application/json"
+    },
+    "method": "GET",
+    "path": "/api/brands"
+  },
+  "response": {
+    "body": "[{\"Id\":1,\"Brand\":\"Azure\"},{\"Id\":2,\"Brand\":\".NET\"},{\"Id\":3,\"Brand\":\"Visual Studio\"},{\"Id\":4,\"Brand\":\"SQL Server\"},{\"Id\":5,\"Brand\":\"Other\"}]",
+    "headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "semantic": {
+      "json": [
+        {
+          "Brand": "Azure",
+          "Id": 1
+        },
+        {
+          "Brand": ".NET",
+          "Id": 2
+        },
+        {
+          "Brand": "Visual Studio",
+          "Id": 3
+        },
+        {
+          "Brand": "SQL Server",
+          "Id": 4
+        },
+        {
+          "Brand": "Other",
+          "Id": 5
+        }
+      ]
+    },
+    "status": 200
+  },
+  "seq": 59
+}

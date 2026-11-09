@@ -1,0 +1,22 @@
+{
+  "app": "mvc",
+  "case": "delete-get-missing-999",
+  "flow": "delete",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Delete/999"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "empty": true
+    },
+    "status": 404
+  },
+  "seq": 49
+}

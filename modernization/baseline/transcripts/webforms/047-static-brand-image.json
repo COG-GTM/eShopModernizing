@@ -1,0 +1,26 @@
+{
+  "app": "webforms",
+  "case": "static-brand-image",
+  "flow": "static",
+  "kind": "request",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/images/brand.png"
+  },
+  "response": {
+    "body": {
+      "length": 4023,
+      "sha256": "778898667a5f4610b62597e88a79617872eec5d8edc2ad196f89609330b9faa4"
+    },
+    "headers": {
+      "content-type": "image/png"
+    },
+    "semantic": {
+      "length": 4023,
+      "sha256": "778898667a5f4610b62597e88a79617872eec5d8edc2ad196f89609330b9faa4"
+    },
+    "status": 200
+  },
+  "seq": 47
+}

@@ -1,0 +1,173 @@
+{
+  "app": "mvc",
+  "case": "state-after-delete",
+  "flow": "data-state",
+  "kind": "state",
+  "request": {
+    "headers": {},
+    "method": "GET",
+    "path": "/Catalog/Index?pageSize=100&pageIndex=0"
+  },
+  "response": {
+    "state_rows": [
+      [
+        "",
+        "Edited Hoodie",
+        ".NET Bot Black Hoodie",
+        "Visual Studio",
+        "T-Shirt",
+        "$21.75",
+        "1.png",
+        "7",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Prism White T-Shirt",
+        "Prism White T-Shirt",
+        "Other",
+        "T-Shirt",
+        "$12.00",
+        "3.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        ".NET Foundation T-shirt",
+        ".NET Foundation T-shirt",
+        ".NET",
+        "T-Shirt",
+        "$12.00",
+        "4.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Roslyn Red Sheet",
+        "Roslyn Red Sheet",
+        "Other",
+        "Sheet",
+        "$8.50",
+        "5.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        ".NET Blue Hoodie",
+        ".NET Blue Hoodie",
+        ".NET",
+        "T-Shirt",
+        "$12.00",
+        "6.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Roslyn Red T-Shirt",
+        "Roslyn Red T-Shirt",
+        "Other",
+        "T-Shirt",
+        "$12.00",
+        "7.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Kudu Purple Hoodie",
+        "Kudu Purple Hoodie",
+        "Other",
+        "T-Shirt",
+        "$8.50",
+        "8.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Cup<T> White Mug",
+        "Cup<T> White Mug",
+        "Other",
+        "Mug",
+        "$12.00",
+        "9.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        ".NET Foundation Sheet",
+        ".NET Foundation Sheet",
+        ".NET",
+        "Sheet",
+        "$12.00",
+        "10.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Cup<T> Sheet",
+        "Cup<T> Sheet",
+        ".NET",
+        "Sheet",
+        "$8.50",
+        "11.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Prism White TShirt",
+        "Prism White TShirt",
+        "Other",
+        "T-Shirt",
+        "$12.00",
+        "12.png",
+        "100",
+        "0",
+        "0",
+        "Edit | Details | Delete"
+      ],
+      [
+        "",
+        "Transcript Item",
+        "Created by the transcript recorder",
+        ".NET",
+        "Mug",
+        "$12.34",
+        "dummy.png",
+        "10",
+        "2",
+        "50",
+        "Edit | Details | Delete"
+      ]
+    ],
+    "status": 200
+  },
+  "seq": 52
+}

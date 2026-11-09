@@ -1,0 +1,4718 @@
+{
+  "app": "webforms",
+  "base_url": "http://127.0.0.1:5111",
+  "strict": false,
+  "total": 52,
+  "passed": 29,
+  "failed": 23,
+  "results": [
+    {
+      "case": "001-list-root.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "002-list-default.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "003-list-default-aspx.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "004-list-size10-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "005-list-size10-page1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 2 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 2 - 2 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.50",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "006-list-size10-page2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "007-list-size5-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 1 - 3 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 1 - 3 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "008-list-size5-page1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 2 - 3 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 2 - 3 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "009-list-size5-page2.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 3 - 3 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 3 - 3 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.50",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "010-list-size20-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 20 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 20 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.50",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "011-list-size12-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 12 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 12 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.50",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "012-list-size1-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete Previous Showing 1 of 12 products - Page 1 - 12 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete Previous Showing 1 of 12 products - Page 1 - 12 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "013-list-size1-page11.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 1 of 12 products - Page 12 - 12 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Prism White TShirt Prism White TShirt Other T-Shirt 12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 1 of 12 products - Page 12 - 12 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "014-list-size3-page3.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 3 of 12 products - Page 4 - 4 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 3 of 12 products - Page 4 - 4 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.50",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "015-list-size100-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 100 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Home Page - Catalog manager (Web Forms)",
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.50 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12.00 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12.00 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.50 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12.00 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12.00 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.50 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12.00 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12.00 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.50 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12.00 12.png 100 0 0 Edit | Details | Delete Previous Showing 100 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.50",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.50",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12.00",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.50",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12.00",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12.00",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.50",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12.00",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case": "016-list-nonnumeric-route.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "017-details-1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Details - Catalog manager (Web Forms)",
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.50 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "case": "018-details-5.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Roslyn Red Sheet Description Roslyn Red Sheet Brand Other Type Sheet Price 8.5 Picture name 5.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Details - Catalog manager (Web Forms)",
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Roslyn Red Sheet Description Roslyn Red Sheet Brand Other Type Sheet Price 8.50 Picture name 5.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "case": "019-details-12.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Details - Catalog manager (Web Forms)",
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12.00 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "fields": [],
+            "errors": [],
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "case": "020-details-missing-999.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "021-details-nonnumeric-id.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "022-create-get.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "023-create-post-invalid-missing-name.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "024-create-post-invalid-price-negative.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "025-create-post-invalid-price-not-number.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "026-create-post-invalid-price-too-large.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "027-create-post-invalid-stock-negative.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "028-create-post-invalid-restock-not-number.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "029-create-post-invalid-maxstock-too-large.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "030-create-post-valid.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "031-state-after-create.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "state_rows",
+          "expected": [
+            [
+              "",
+              ".NET Bot Black Hoodie",
+              ".NET Bot Black Hoodie",
+              ".NET",
+              "T-Shirt",
+              "19.5",
+              "1.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Black & White Mug",
+              ".NET Black & White Mug",
+              ".NET",
+              "Mug",
+              "8.50",
+              "2.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.5",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.5",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.5",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ],
+          "actual": [
+            [
+              "",
+              ".NET Bot Black Hoodie",
+              ".NET Bot Black Hoodie",
+              ".NET",
+              "T-Shirt",
+              "19.50",
+              "1.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Black & White Mug",
+              ".NET Black & White Mug",
+              ".NET",
+              "Mug",
+              "8.50",
+              "2.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12.00",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.50",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12.00",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.50",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12.00",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12.00",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.50",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "case": "032-details-created-13.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "033-edit-get-1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$BrandDropDownList",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$TypeDropDownList",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "19.5"
+              },
+              {
+                "name": "ctl00$MainContent$PictureFileName",
+                "type": "text",
+                "value": "1.png"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "100"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl07",
+                "type": "submit",
+                "value": "[ Save ]"
+              }
+            ],
+            "rows": [],
+            "text": "Edit - Catalog manager (Web Forms) Catalog manager (Web Forms) Edit Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Stock Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "title": "Edit - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Edit - Catalog manager (Web Forms)",
+            "text": "Edit - Catalog manager (Web Forms) Catalog manager (Web Forms) Edit Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Stock Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$BrandDropDownList",
+                "type": "select",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ]
+              },
+              {
+                "name": "ctl00$MainContent$TypeDropDownList",
+                "type": "select",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ]
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "19.50"
+              },
+              {
+                "name": "ctl00$MainContent$PictureFileName",
+                "type": "text",
+                "value": "1.png"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "100"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl07",
+                "type": "submit",
+                "value": "[ Save ]"
+              }
+            ],
+            "errors": [],
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "case": "034-edit-get-missing-999.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "035-edit-post-invalid-missing-name.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [
+              "The Name field is required."
+            ],
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": null
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$BrandDropDownList",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$TypeDropDownList",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "19.5"
+              },
+              {
+                "name": "ctl00$MainContent$PictureFileName",
+                "type": "text",
+                "value": "1.png"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "100"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl07",
+                "type": "submit",
+                "value": "[ Save ]"
+              }
+            ],
+            "rows": [],
+            "text": "Edit - Catalog manager (Web Forms) Catalog manager (Web Forms) Edit Name The Name field is required. Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Stock Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "title": "Edit - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Edit - Catalog manager (Web Forms)",
+            "text": "Edit - Catalog manager (Web Forms) Catalog manager (Web Forms) Edit Name The Name field is required. Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Stock Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": null
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$BrandDropDownList",
+                "type": "select",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ]
+              },
+              {
+                "name": "ctl00$MainContent$TypeDropDownList",
+                "type": "select",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ]
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "19.50"
+              },
+              {
+                "name": "ctl00$MainContent$PictureFileName",
+                "type": "text",
+                "value": "1.png"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "100"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl07",
+                "type": "submit",
+                "value": "[ Save ]"
+              }
+            ],
+            "errors": [
+              "The Name field is required."
+            ],
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "case": "036-edit-post-invalid-stock-negative.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [
+              "The field Stock must be between 0 and 10 million."
+            ],
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$BrandDropDownList",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$TypeDropDownList",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "19.5"
+              },
+              {
+                "name": "ctl00$MainContent$PictureFileName",
+                "type": "text",
+                "value": "1.png"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "-1"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl07",
+                "type": "submit",
+                "value": "[ Save ]"
+              }
+            ],
+            "rows": [],
+            "text": "Edit - Catalog manager (Web Forms) Catalog manager (Web Forms) Edit Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Stock The field Stock must be between 0 and 10 million. Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "title": "Edit - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "title": "Edit - Catalog manager (Web Forms)",
+            "text": "Edit - Catalog manager (Web Forms) Catalog manager (Web Forms) Edit Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Stock The field Stock must be between 0 and 10 million. Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$BrandDropDownList",
+                "type": "select",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ]
+              },
+              {
+                "name": "ctl00$MainContent$TypeDropDownList",
+                "type": "select",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ]
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "19.50"
+              },
+              {
+                "name": "ctl00$MainContent$PictureFileName",
+                "type": "text",
+                "value": "1.png"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "-1"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl07",
+                "type": "submit",
+                "value": "[ Save ]"
+              }
+            ],
+            "errors": [
+              "The field Stock must be between 0 and 10 million."
+            ],
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "case": "037-edit-post-valid.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "038-state-after-edit.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "state_rows",
+          "expected": [
+            [
+              "",
+              "Edited Hoodie",
+              ".NET Bot Black Hoodie",
+              "Visual Studio",
+              "T-Shirt",
+              "21.75",
+              "1.png",
+              "7",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Black & White Mug",
+              ".NET Black & White Mug",
+              ".NET",
+              "Mug",
+              "8.50",
+              "2.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.5",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.5",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.5",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ],
+          "actual": [
+            [
+              "",
+              "Edited Hoodie",
+              ".NET Bot Black Hoodie",
+              "Visual Studio",
+              "T-Shirt",
+              "21.75",
+              "1.png",
+              "7",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Black & White Mug",
+              ".NET Black & White Mug",
+              ".NET",
+              "Mug",
+              "8.50",
+              "2.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12.00",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.50",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12.00",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.50",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12.00",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12.00",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.50",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "case": "039-details-edited-1.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "040-delete-get-2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "041-delete-get-missing-999.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "042-delete-post-2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "043-state-after-delete.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "state_rows",
+          "expected": [
+            [
+              "",
+              "Edited Hoodie",
+              ".NET Bot Black Hoodie",
+              "Visual Studio",
+              "T-Shirt",
+              "21.75",
+              "1.png",
+              "7",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.5",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.5",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.5",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ],
+          "actual": [
+            [
+              "",
+              "Edited Hoodie",
+              ".NET Bot Black Hoodie",
+              "Visual Studio",
+              "T-Shirt",
+              "21.75",
+              "1.png",
+              "7",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12.00",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.50",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12.00",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.50",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12.00",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12.00",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.50",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12.00",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "case": "044-details-deleted-2.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "045-static-bundle-css.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "046-static-site-css.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "047-static-brand-image.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "048-static-pic-file.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "049-static-webforms-js.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "050-static-favicon.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "051-error-unknown-path.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "052-error-unknown-page.json",
+      "result": "pass",
+      "diffs": []
+    }
+  ]
+}

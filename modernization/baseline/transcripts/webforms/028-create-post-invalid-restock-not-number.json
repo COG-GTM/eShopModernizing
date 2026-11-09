@@ -1,0 +1,127 @@
+{
+  "app": "webforms",
+  "case": "create-post-invalid-restock-not-number",
+  "flow": "create",
+  "kind": "request",
+  "request": {
+    "drop": [],
+    "fields": {
+      "Description": "Created by the transcript recorder",
+      "Maxstock": "50",
+      "Name": "Transcript Item",
+      "Price": "12.34",
+      "Restock": "abc",
+      "Stock": "10"
+    },
+    "form_page": "/Catalog/Create",
+    "method": "POST",
+    "path": "/Catalog/Create"
+  },
+  "response": {
+    "body": "<!DOCTYPE html>\n\n<html lang=\"en\">\n<head><meta charset=\"utf-8\"/><meta content=\"width=device-width, initial-scale=1.0\" name=\"viewport\"/><title>\r\n\tCreate - Catalog manager (Web Forms)\n</title><script src=\"/Scripts/modernizr-2.8.3.js\"></script>\n<link href=\"/Content/bootstrap.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/custom.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/base.css\" rel=\"stylesheet\"/>\n<link href=\"/Content/site.css\" rel=\"stylesheet\"/>\n<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"../favicon.ico\" /></head>\n<body>\n    <form method=\"post\" action=\"Create\" id=\"ctl00_ctl01\">\r\n<script type=\"text/javascript\">//<![CDATA[\n\tvar theForm;\n\tif (document.getElementById) { theForm = document.getElementById ('ctl00_ctl01'); }\n\telse { theForm = document.ctl00_ctl01; }\n//]]></script>\n\r\n<div class=\"aspNetHidden\">\r\n\r\n\r\n<input type=\"hidden\" name=\"__EVENTARGUMENT\" id=\"__EVENTARGUMENT\" value=\"\" /><input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"{{VOLATILE}}\" /><input type=\"hidden\" name=\"__EVENTTARGET\" id=\"__EVENTTARGET\" value=\"\" />\n</div>\r\n\r\n<script type=\"text/javascript\">//<![CDATA[\nwindow._form = theForm;\nwindow.__doPostBack = function (eventTarget, eventArgument) {\n\tif(theForm.onsubmit && theForm.onsubmit() == false) return;\n\ttheForm.__EVENTTARGET.value = eventTarget;\n\ttheForm.__EVENTARGUMENT.value = eventArgument;\n\ttheForm.submit();\n}\n//]]></script>\n\r\n<script src=\"/WebResource.axd?{{AXD}}\" type=\"text/javascript\"></script>\n<script type=\"text/javascript\">//<![CDATA[\nWebForm_Initialize(window);\n//]]></script>\n\r\n<script src=\"/ScriptResource.axd?{{AXD}}\" type=\"text/javascript\"></script>\n<script type=\"text/javascript\">//<![CDATA[\nif (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');\n//]]></script>\n<script src=\"/ScriptResource.axd?{{AXD}}\" type=\"text/javascript\"></script>\n\n        <script type=\"text/javascript\">\n//<![CDATA[\nSys.WebForms.PageRequestManager._initialize('ctl00$ctl08', document.getElementById('ctl00_ctl01'));\nSys.WebForms.PageRequestManager.getInstance()._updateControls([], [], [], 90);\n//]]\n</script>\n\n        <script src=\"/Scripts/jquery-3.3.1.js\"></script>\n        <script src=\"/Scripts/bootstrap.js\"></script>\n        <script src=\"/Scripts/respond.js\"></script>\n        \n        <script src=\"/Scripts/WebForms/WebForms.js\"></script>\n<script src=\"/Scripts/WebForms/WebUIValidation.js\"></script>\n<script src=\"/Scripts/WebForms/MenuStandards.js\"></script>\n<script src=\"/Scripts/WebForms/Focus.js\"></script>\n<script src=\"/Scripts/WebForms/GridView.js\"></script>\n<script src=\"/Scripts/WebForms/DetailsView.js\"></script>\n<script src=\"/Scripts/WebForms/TreeView.js\"></script>\n<script src=\"/Scripts/WebForms/WebParts.js\"></script>\n\n\n        <header class=\"navbar navbar-light navbar-static-top\">\n            <div class=\"esh-header-brand\">\n                <a href=\"../\">\n                    <img src=\"/images/brand.png\" />\n                </a>\n            </div>\n        </header>\n\n        <section class=\"esh-app-hero\">\n            <div class=\"container esh-header\">\n                <h1 class=\"esh-header-title\">Catalog manager <span>(Web Forms)</span></h1>\n            </div>\n        </section>\n\n        <div>\n            \n\n    <h2 class=\"esh-body-title\">Create</h2>\n\n    <div>\n        <div class=\"form-horizontal\">\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Name</label>\n                <div class=\"col-md-3\">\n                    <input type=\"text\" value=\"Transcript Item\" name=\"ctl00$MainContent$Name\" id=\"ctl00_MainContent_Name\" class=\"form-control\" />\n                    \n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Description</label>\n                <div class=\"col-md-3\">\n                    <input type=\"text\" value=\"Created by the transcript recorder\" name=\"ctl00$MainContent$Description\" id=\"ctl00_MainContent_Description\" class=\"form-control\" />\n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Brand</label>\n                <div class=\"col-md-3\">\n                    <select name=\"ctl00$MainContent$Brand\" id=\"ctl00_MainContent_Brand\" class=\"form-control\">\r\n\t<option selected=\"selected\" value=\"1\">Azure</option>\r\n\t<option value=\"2\">.NET</option>\r\n\t<option value=\"3\">Visual Studio</option>\r\n\t<option value=\"4\">SQL Server</option>\r\n\t<option value=\"5\">Other</option>\r\n\n</select>\n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Type</label>\n                <div class=\"col-md-3\">\n                    <select name=\"ctl00$MainContent$Type\" id=\"ctl00_MainContent_Type\" class=\"form-control\">\r\n\t<option selected=\"selected\" value=\"1\">Mug</option>\r\n\t<option value=\"2\">T-Shirt</option>\r\n\t<option value=\"3\">Sheet</option>\r\n\t<option value=\"4\">USB Memory Stick</option>\r\n\n</select>\n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Price</label>\n                <div class=\"col-md-3\">\n                    <input type=\"text\" value=\"12.34\" name=\"ctl00$MainContent$Price\" id=\"ctl00_MainContent_Price\" class=\"form-control\" />\n                    \n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Picture name</label>\n                <div class=\"col-md-4 esh-form-information\">\n                    Uploading images not allowed for this version.\n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Stock</label>\n                <div class=\"col-md-3\">\n                    <input type=\"text\" value=\"10\" name=\"ctl00$MainContent$Stock\" id=\"ctl00_MainContent_Stock\" class=\"form-control\" />\n                    \n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Restock</label>\n                <div class=\"col-md-3\">\n                    <input type=\"text\" value=\"abc\" name=\"ctl00$MainContent$Restock\" id=\"ctl00_MainContent_Restock\" class=\"form-control\" />\n                    <span class=\"text-danger\" style=\"color:Red;\">The field Restock must be between 0 and 10 million.</span>\n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <label class=\"control-label col-md-2\">Max stock</label>\n                <div class=\"col-md-3\">\n                    <input type=\"text\" value=\"50\" name=\"ctl00$MainContent$Maxstock\" id=\"ctl00_MainContent_Maxstock\" class=\"form-control\" />\n                    \n                </div>\n            </div>\n\n            <div class=\"form-group\">\n                <div class=\"col-md-offset-2 col-md-3 text-right esh-button-actions\">\n                    <a class=\"btn esh-button esh-button-secondary\" href=\"../\">[ Cancel ]\n                    </a>\n                    <input type=\"submit\" name=\"ctl00$MainContent$ctl06\" value=\"[ Create ]\" class=\"btn esh-button esh-button-primary\" />\n                </div>\n            </div>\n        </div>\n    </div>\n\n        </div>\n\n        <footer class=\"esh-app-footer\">\n            <div class=\"container\">\n                <article class=\"row\">\n                    <section class=\"col-sm-6\">\n                        <img class=\"esh-app-footer-brand\" src=\"/images/brand_dark.png\" />\n                    </section>\n                    <section class=\"col-sm-6\">\n                        <img class=\"esh-app-footer-text hidden-xs\" src=\"/images/main_footer_text.png\" width=\"335\" height=\"26\" alt=\"footer text image\" />\n                        <br />\n                        <small style=\"color:white\"><span id=\"ctl00_SessionInfoLabel\">{{HOST}}, {{DATETIME}}</span></small>\n                    </section>\n                </article>\n            </div>\n        </footer>\n\n    \r\n<div class=\"aspNetHidden\">\r\n<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"{{VOLATILE}}\" />\n</div>\r\n\r\n<script type=\"text/javascript\">//<![CDATA[\nSys.Application.initialize();\n//]]></script>\n</form>\n</body>\n</html>\n",
+    "headers": {
+      "content-type": "text/html"
+    },
+    "semantic": {
+      "errors": [
+        "The field Restock must be between 0 and 10 million."
+      ],
+      "fields": [
+        {
+          "name": "ctl00$MainContent$Name",
+          "type": "text",
+          "value": "Transcript Item"
+        },
+        {
+          "name": "ctl00$MainContent$Description",
+          "type": "text",
+          "value": "Created by the transcript recorder"
+        },
+        {
+          "name": "ctl00$MainContent$Brand",
+          "options": [
+            [
+              "Azure",
+              "1"
+            ],
+            [
+              ".NET",
+              "2"
+            ],
+            [
+              "Visual Studio",
+              "3"
+            ],
+            [
+              "SQL Server",
+              "4"
+            ],
+            [
+              "Other",
+              "5"
+            ]
+          ],
+          "selected": [
+            "1"
+          ],
+          "type": "select"
+        },
+        {
+          "name": "ctl00$MainContent$Type",
+          "options": [
+            [
+              "Mug",
+              "1"
+            ],
+            [
+              "T-Shirt",
+              "2"
+            ],
+            [
+              "Sheet",
+              "3"
+            ],
+            [
+              "USB Memory Stick",
+              "4"
+            ]
+          ],
+          "selected": [
+            "1"
+          ],
+          "type": "select"
+        },
+        {
+          "name": "ctl00$MainContent$Price",
+          "type": "text",
+          "value": "12.34"
+        },
+        {
+          "name": "ctl00$MainContent$Stock",
+          "type": "text",
+          "value": "10"
+        },
+        {
+          "name": "ctl00$MainContent$Restock",
+          "type": "text",
+          "value": "abc"
+        },
+        {
+          "name": "ctl00$MainContent$Maxstock",
+          "type": "text",
+          "value": "50"
+        },
+        {
+          "name": "ctl00$MainContent$ctl06",
+          "type": "submit",
+          "value": "[ Create ]"
+        }
+      ],
+      "rows": [],
+      "text": "Create - Catalog manager (Web Forms) Catalog manager (Web Forms) Create Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Uploading images not allowed for this version. Stock Restock The field Restock must be between 0 and 10 million. Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+      "title": "Create - Catalog manager (Web Forms)"
+    },
+    "status": 200
+  },
+  "seq": 28
+}
