@@ -12,6 +12,8 @@ public static class CatalogMvcExtensions
     public static IServiceCollection AddCatalogMvc(this IServiceCollection services)
     {
         services.AddControllersWithViews();
+        services.Configure<Microsoft.AspNetCore.Mvc.MvcViewOptions>(options =>
+            options.ClientModelValidatorProviders.Add(new IntegerNumberClientValidatorProvider()));
         services.AddAntiforgery();
         return services;
     }

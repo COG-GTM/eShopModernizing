@@ -15,7 +15,7 @@
 
                 <dt></dt>
                 <dd class="text-right esh-button-actions">
-                    <a class="btn esh-button esh-button-secondary" href="@Url.Content("~/")">[ Cancel ]</a>
+                    <a class="btn esh-button esh-button-secondary" href="@LegacyClientUrl.Resolve(HttpContext, "~")">[ Cancel ]</a>
                     <input type="submit" name="@(WebFormsCatalogForm.Prefix + DeleteModel.DeleteButtonId)" value="[ Delete ]" class="btn esh-button esh-button-primary" />
                 </dd>
             </dl>

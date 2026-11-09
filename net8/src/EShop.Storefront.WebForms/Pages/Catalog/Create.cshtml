@@ -90,7 +90,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
-                <a class="btn esh-button esh-button-secondary" href="@Url.Content("~/")">[ Cancel ]</a>
+                <a class="btn esh-button esh-button-secondary" href="@LegacyClientUrl.Resolve(HttpContext, "~")">[ Cancel ]</a>
                 <input type="submit" name="@(p + CreateModel.CreateButtonId)" value="[ Create ]" class="btn esh-button esh-button-primary" />
             </div>
         </div>

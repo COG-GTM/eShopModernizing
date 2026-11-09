@@ -126,4 +126,18 @@ public class MvcCatalogTests(MvcAppFixture app) : IClassFixture<MvcAppFixture>
         var r = await FormPostAsync(Mvc, "/Catalog/Create", Valid, drop: ["__RequestVerificationToken"]);
         Assert.Equal(500, r.Status); // legacy MVC 5 HttpAntiForgeryException; CONTRACT.md section 5: reproduce 500
     }
+
+    // MVC 5 emitted data-val-number for int properties too; Core only does it for floating-point types.
+    [SkippableTheory]
+    [InlineData("/Catalog/Create", "AvailableStock", "The field Stock must be a number.")]
+    [InlineData("/Catalog/Create", "RestockThreshold", "The field Restock must be a number.")]
+    [InlineData("/Catalog/Create", "MaxStockThreshold", "The field Max stock must be a number.")]
+    [InlineData("/Catalog/Edit/1", "Id", "The field Id must be a number.")]
+    public async Task Integer_inputs_carry_client_number_validation(string path, string field, string message)
+    {
+        app.Require(Slice.CatalogData, Slice.MvcCatalog);
+        var r = await Mvc.GetAsync(path);
+        Assert.Equal(200, r.Status);
+        Assert.Equal(message, r.Html.QuerySelector($"input[name={field}]")!.GetAttribute("data-val-number"));
+    }
 }

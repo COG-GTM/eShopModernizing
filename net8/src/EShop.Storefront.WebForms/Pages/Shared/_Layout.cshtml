@@ -11,7 +11,7 @@
 <link href="/Content/custom.css" rel="stylesheet"/>
 <link href="/Content/base.css" rel="stylesheet"/>
 <link href="/Content/site.css" rel="stylesheet"/>
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /></head>
+<link rel="shortcut icon" type="image/x-icon" href="@LegacyClientUrl.Resolve(Context, "~/favicon.ico")" /></head>
 <body>
     <form method="post" id="ctl01">
         <script src="/Scripts/jquery-3.3.1.js"></script>
@@ -30,7 +30,7 @@
 
         <header class="navbar navbar-light navbar-static-top">
             <div class="esh-header-brand">
-                <a href="./">
+                <a href="@LegacyClientUrl.Resolve(Context, "~/")">
                     <img src="~/images/brand.png" />
                 </a>
             </div>
