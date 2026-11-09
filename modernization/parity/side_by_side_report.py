@@ -123,8 +123,10 @@ def main():
         "fixed": CLS["fixed"], "unexplained_differences": unexplained,
     }
     parity = (all(m["contract"] == m["total"] for m in modes) and all(c["match"] for c in checks) and unexplained == 0
-              and all(t and t["failed"] == 0 and t["total"] > 0 for t in tests.values())
-              and not any(m["baseline_deviation_one_side"] for m in modes))
+              and all(t and t["failed"] == 0 and t["skipped"] == 0 and t["total"] > 0 for t in tests.values())
+              and not any(m["baseline_deviation_one_side"] for m in modes)
+              # mock replays the exact seed the baseline was recorded on, so any drift (even shared) is a failure
+              and not any(m["baseline_deviation_both"] for m in modes if m["mode"] == "mock"))
     summary["verdict"] = "PARITY" if parity else "NOT PARITY"
     (res / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
 
