@@ -3,10 +3,8 @@
 
 Both replays use the mock-mode transcripts as expectation, so each case is either a pass or a list of diffs. The .NET 8 SQL mode
 matches legacy SQL mode when, per case, the outcome is the same and every diff (field, expected, actual) is identical: WebForms then
-differs from mock only in the documented price formatting (CONTRACT.md section 6). One case is held to the mock baseline instead:
-
-  mvc 071-api-files  legacy SQL mode serialised a 721-byte List<BrandDTO> (internal capacity differs from mock's 719 bytes).
-                     The acceptance (TICKETS.md T7: MVC 86/86) requires the .NET 8 SQL mode to return the mock bytes.
+differs from mock only in the documented price formatting, and MVC 071-api-files returns the 721-byte legacy SQL payload
+instead of mock's 719 bytes (CONTRACT.md section 6: the .NET 8 SQL mode must match legacy SQL mode).
 
 Also checks the seed counts from `stack.sh sql seed` (12 items, 5 brands, 4 types, 3 HiLo sequences per app database).
 """
@@ -18,7 +16,6 @@ import sys
 
 REPO = pathlib.Path(__file__).resolve().parents[2]
 LEGACY = REPO / "modernization" / "baseline" / "sql-mode"
-MUST_MATCH_MOCK = {("mvc", "071-api-files.json")}
 EXPECTED_SEED = {"items": 12, "brands": 5, "types": 4, "hilo_sequences": 3}
 
 
@@ -36,12 +33,8 @@ def compare_app(app, results_dir):
         if lg is None or nt is None:
             cases.append({"case": name, "match": False, "reason": "missing in " + ("legacy" if lg is None else ".NET 8")})
             continue
-        if (app, name) in MUST_MATCH_MOCK:
-            ok = nt["result"] == "pass"
-            reason = "held to the mock baseline (legacy SQL bytes differ)"
-        else:
-            ok = nt["result"] == lg["result"] and nt.get("diffs", []) == lg.get("diffs", [])
-            reason = "same outcome and diffs" if ok else f"legacy={lg['result']} net8={nt['result']} (diffs differ)"
+        ok = nt["result"] == lg["result"] and nt.get("diffs", []) == lg.get("diffs", [])
+        reason = "same outcome and diffs" if ok else f"legacy={lg['result']} net8={nt['result']} (diffs differ)"
         cases.append({"case": name, "match": ok, "legacy": lg["result"], "net8": nt["result"], "reason": reason})
     return {
         "app": app,

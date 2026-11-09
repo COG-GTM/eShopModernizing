@@ -8,6 +8,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.mvc
     image: eshop-storefront-mvc:local
+    hostname: "${STOREFRONT_HOSTNAME:-eshop-storefront-mvc}"
     environment:
       UseMockData: "true"
       UseCustomizationData: "false"
@@ -19,6 +20,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.webforms
     image: eshop-storefront-webforms:local
+    hostname: "${STOREFRONT_HOSTNAME:-eshop-storefront-webforms}"
     environment:
       UseMockData: "true"
       UseCustomizationData: "false"
