@@ -6,7 +6,11 @@ public static class CatalogPagesExtensions
     /// <summary>Registers the catalog Razor Pages with the legacy WebForms page routes (see <see cref="LegacyPageRouteConvention"/>).</summary>
     public static IServiceCollection AddCatalogPages(this IServiceCollection services)
     {
-        services.AddRazorPages(options => options.Conventions.Add(new LegacyPageRouteConvention()));
+        services.AddRazorPages(options =>
+        {
+            options.Conventions.Add(new LegacyPageRouteConvention());
+            options.Conventions.ConfigureFilter(new AntiforgeryFailureAs500Filter());
+        });
         return services;
     }
 
