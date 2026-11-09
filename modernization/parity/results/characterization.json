@@ -1,0 +1,466 @@
+{
+  "tests": [
+    {
+      "id": "test_mvc::test_list_default_shows_first_10_ordered_by_id",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[10-0-10]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[10-1-2]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[10-2-0]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[5-0-5]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[5-2-2]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[12-0-12]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[20-0-12]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[1-11-1]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_paging[3-3-3]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_list_page_size_zero_is_server_error",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Index?pageSize=0&pageIndex=0')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+    },
+    {
+      "id": "test_mvc::test_list_nonnumeric_params_fall_back_to_defaults",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Catalog/Index?pageSize=abc&pageIndex=xyz')\n +        where get = <conftest.Client object at 0x730629989070>.get"
+    },
+    {
+      "id": "test_mvc::test_details[1-.NET Bot Black Hoodie]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_details[5-Roslyn Red Sheet]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Details/999-404]",
+      "suite": "mvc",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Details-400]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Details')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Edit/999-404]",
+      "suite": "mvc",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Edit-400]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Edit')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Delete/999-404]",
+      "suite": "mvc",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Delete-400]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 400\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Delete')\n +      where get = <conftest.Client object at 0x730629989070>.get"
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/does-not-exist-404]",
+      "suite": "mvc",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "id": "test_mvc::test_missing_and_bad_requests[/Catalog/NoSuchAction-404]",
+      "suite": "mvc",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "id": "test_mvc::test_create_get_form",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_create_validation[Name--The Name field is required.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_validation[Price-1.234-The field Price must be a positive number with maximum two decimals.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_validation[Price-2000000-The field Price must be between 0 and 1000000.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_validation[Price-abc-The value 'abc' is not valid for Price.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_validation[Price--The Price field is required.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_validation[AvailableStock--1-The field Stock must be between 0 and 10 million.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_validation[RestockThreshold-20000000-The field Restock must be between 0 and 10 million.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_validation[MaxStockThreshold-abc-The value 'abc' is not valid for Max stock.]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_create_without_antiforgery_token_is_rejected",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_mvc::test_pic_endpoint",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_api_brands_json",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_api_brands_xml_content_negotiation",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_api_brand_by_id",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "id": "test_mvc::test_api_brand_delete_is_non_mutating",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 200\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = request('DELETE', '/api/brands/1')\n +      where request = <conftest.Client object at 0x730629989070>.request"
+    },
+    {
+      "id": "test_mvc::test_api_brands_unsupported_verbs",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 405\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = request('POST', '/api/brands', json={'Brand': 'X', 'Id': 9})\n +      where request = <conftest.Client object at 0x730629989070>.request"
+    },
+    {
+      "id": "test_mvc::test_api_files_returns_binary_brand_list",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/Content/css-text/css]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/bundles/jquery-javascript]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/bundles/jqueryval-javascript]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/bundles/modernizr-javascript]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/bundles/bootstrap-javascript]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/images/brand.png-image/png]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/Pics/1.png-image/png]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_static_content[/favicon.ico-image]",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_mvc::test_zz_create_edit_delete_roundtrip",
+      "suite": "mvc",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_webforms::test_list_default",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_aliases[/Default]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Default')\n +        where get = <conftest.Client object at 0x7306298927e0>.get"
+    },
+    {
+      "id": "test_webforms::test_list_aliases[/Default.aspx]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: assert 0 == 10\n +  where 0 = len([])\n +    where [] = rows(<Response [404]>)\n +      where <Response [404]> = get('/Default.aspx')\n +        where get = <conftest.Client object at 0x7306298927e0>.get"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[10-0-10]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[10-1-2]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[5-0-5]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[5-2-2]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[12-0-12]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[20-0-12]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[1-11-1]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_list_paging_route[3-3-3]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_details[1-.NET Bot Black Hoodie]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_details[12-Prism White TShirt]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_missing[/Catalog/Details/999-500]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Details/999')\n +      where get = <conftest.Client object at 0x7306298927e0>.get"
+    },
+    {
+      "id": "test_webforms::test_missing[/Catalog/Edit/999-500]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Edit/999')\n +      where get = <conftest.Client object at 0x7306298927e0>.get"
+    },
+    {
+      "id": "test_webforms::test_missing[/Catalog/Delete/999-500]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: assert 404 == 500\n +  where 404 = <Response [404]>.status_code\n +    where <Response [404]> = get('/Catalog/Delete/999')\n +      where get = <conftest.Client object at 0x7306298927e0>.get"
+    },
+    {
+      "id": "test_webforms::test_missing[/does-not-exist-404]",
+      "suite": "webforms",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "id": "test_webforms::test_create_get_form",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert 404 == 200\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_create_validation[Name--The Name field is required.]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_webforms::test_create_validation[Price--5-The Price must be a positive number with maximum two decimals between 0 and 1 million.]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_webforms::test_create_validation[Price-abc-The Price must be a positive number with maximum two decimals between 0 and 1 million.]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_webforms::test_create_validation[Stock--1-The field Stock must be between 0 and 10 million.]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_webforms::test_create_validation[Restock-abc-The field Restock must be between 0 and 10 million.]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_webforms::test_create_validation[Maxstock-20000000-The field Max stock must be between 0 and 10 million.]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    },
+    {
+      "id": "test_webforms::test_static[/Content/site.css-text/css]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_static[/images/brand.png-image/png]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_static[/Pics/1.png-image/png]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_static[/Scripts/WebForms/WebForms.js-javascript]",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "assert (404 == 200)\n +  where 404 = <Response [404]>.status_code"
+    },
+    {
+      "id": "test_webforms::test_zz_create_edit_delete_roundtrip",
+      "suite": "webforms",
+      "outcome": "failed",
+      "message": "AssertionError: ('/Catalog/Create', 404)"
+    }
+  ]
+}

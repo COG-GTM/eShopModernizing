@@ -1,0 +1,1511 @@
+{
+  "generated": "2026-11-09T18:34:59+00:00",
+  "commit": "2fea68c",
+  "transcripts": {
+    "mvc": {
+      "legacy_passed": 86,
+      "legacy_total": 86,
+      "passed": 11,
+      "total": 86,
+      "accepted": [],
+      "failures": [
+        {
+          "case": "001-list-root.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "002-list-catalog-index.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "003-list-catalog-default-route.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "004-list-size10-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "005-list-size10-page1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "006-list-size10-page2.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "007-list-size5-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "008-list-size5-page1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "009-list-size5-page2.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "010-list-size5-page3.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "011-list-size20-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "012-list-size12-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "013-list-size1-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "014-list-size1-page11.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "015-list-size3-page3.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "016-list-size100-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "017-list-page-only.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "018-list-size-only.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "019-list-size0.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "020-list-nonnumeric-params.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "021-details-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "022-details-5.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "023-details-12.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "025-details-no-id.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "026-details-nonnumeric-id.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "027-create-get.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "028-create-post-invalid-missing-name.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "029-create-post-invalid-price-three-decimals.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "030-create-post-invalid-price-too-large.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "031-create-post-invalid-price-not-number.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "032-create-post-invalid-price-empty.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "033-create-post-invalid-stock-negative.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "034-create-post-invalid-restock-too-large.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "035-create-post-invalid-maxstock-not-number.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "036-create-post-missing-antiforgery.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "037-create-post-valid.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "038-state-after-create.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "state_rows"
+          ]
+        },
+        {
+          "case": "039-details-created-13.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "040-edit-get-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "042-edit-get-no-id.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "043-edit-post-invalid-missing-name.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "044-edit-post-invalid-price-too-large.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "045-edit-post-valid.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "046-state-after-edit.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "state_rows"
+          ]
+        },
+        {
+          "case": "047-details-edited-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "048-delete-get-2.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "050-delete-get-no-id.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "051-delete-post-2.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "052-state-after-delete.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "state_rows"
+          ]
+        },
+        {
+          "case": "054-pic-item-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "055-pic-item-12.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "056-pic-item-created-13.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "059-api-brands-json.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "060-api-brands-xml.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "061-api-brands-default-accept.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "062-api-brand-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "063-api-brand-1-xml.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "065-api-brand-delete-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type"
+          ]
+        },
+        {
+          "case": "067-api-brands-after-delete.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "068-api-brands-post-not-allowed.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "semantic"
+          ]
+        },
+        {
+          "case": "069-api-brands-put-not-allowed.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "semantic"
+          ]
+        },
+        {
+          "case": "070-api-types.json",
+          "result": "fail",
+          "fields": [
+            "semantic"
+          ]
+        },
+        {
+          "case": "071-api-files.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "073-api-catalog-hello.json",
+          "result": "fail",
+          "fields": [
+            "semantic"
+          ]
+        },
+        {
+          "case": "074-static-bundle-css.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "075-static-bundle-jquery.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "076-static-bundle-jqueryval.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "077-static-bundle-modernizr.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "078-static-bundle-bootstrap.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "079-static-site-css.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "080-static-custom-css.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "081-static-brand-image.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "082-static-pic-file.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "083-static-favicon.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "084-static-jquery-file.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        }
+      ],
+      "base_url": "http://127.0.0.1:5200",
+      "strict": false,
+      "ok": false
+    },
+    "webforms": {
+      "legacy_passed": 52,
+      "legacy_total": 52,
+      "passed": 3,
+      "total": 52,
+      "accepted": [],
+      "failures": [
+        {
+          "case": "001-list-root.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "002-list-default.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "003-list-default-aspx.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "004-list-size10-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "005-list-size10-page1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "006-list-size10-page2.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "007-list-size5-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "008-list-size5-page1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "009-list-size5-page2.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "010-list-size20-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "011-list-size12-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "012-list-size1-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "013-list-size1-page11.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "014-list-size3-page3.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "015-list-size100-page0.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "016-list-nonnumeric-route.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "017-details-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "018-details-5.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "019-details-12.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "020-details-missing-999.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "021-details-nonnumeric-id.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "022-create-get.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "023-create-post-invalid-missing-name.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "024-create-post-invalid-price-negative.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "025-create-post-invalid-price-not-number.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "026-create-post-invalid-price-too-large.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "027-create-post-invalid-stock-negative.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "028-create-post-invalid-restock-not-number.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "029-create-post-invalid-maxstock-too-large.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "030-create-post-valid.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "031-state-after-create.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "state_rows"
+          ]
+        },
+        {
+          "case": "032-details-created-13.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "033-edit-get-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "034-edit-get-missing-999.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "035-edit-post-invalid-missing-name.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "036-edit-post-invalid-stock-negative.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "037-edit-post-valid.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "038-state-after-edit.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "state_rows"
+          ]
+        },
+        {
+          "case": "039-details-edited-1.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "040-delete-get-2.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "041-delete-get-missing-999.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "042-delete-post-2.json",
+          "result": "fail",
+          "fields": [
+            "error"
+          ]
+        },
+        {
+          "case": "043-state-after-delete.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "state_rows"
+          ]
+        },
+        {
+          "case": "044-details-deleted-2.json",
+          "result": "fail",
+          "fields": [
+            "status"
+          ]
+        },
+        {
+          "case": "046-static-site-css.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "047-static-brand-image.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "048-static-pic-file.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "049-static-webforms-js.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        },
+        {
+          "case": "050-static-favicon.json",
+          "result": "fail",
+          "fields": [
+            "status",
+            "content-type",
+            "semantic"
+          ]
+        }
+      ],
+      "base_url": "http://127.0.0.1:5201",
+      "strict": false,
+      "ok": false
+    }
+  },
+  "characterization": {
+    "legacy_passed": 77,
+    "legacy_total": 77,
+    "passed": 6,
+    "total": 77,
+    "by_suite": {
+      "mvc": {
+        "passed": 5,
+        "total": 48,
+        "legacy_passed": 48,
+        "legacy_total": 48
+      },
+      "webforms": {
+        "passed": 1,
+        "total": 29,
+        "legacy_passed": 29,
+        "legacy_total": 29
+      }
+    },
+    "accepted": [],
+    "failures": [
+      {
+        "id": "test_mvc::test_list_default_shows_first_10_ordered_by_id",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[10-0-10]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[10-1-2]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[10-2-0]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[5-0-5]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[5-2-2]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[12-0-12]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[20-0-12]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[1-11-1]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_paging[3-3-3]",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_page_size_zero_is_server_error",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 500",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_list_nonnumeric_params_fall_back_to_defaults",
+        "outcome": "failed",
+        "message": "AssertionError: assert 0 == 10",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_details[1-.NET Bot Black Hoodie]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_details[5-Roslyn Red Sheet]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Details-400]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 400",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Edit-400]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 400",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_missing_and_bad_requests[/Catalog/Delete-400]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 400",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_get_form",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[Name--The Name field is required.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[Price-1.234-The field Price must be a positive number with maximum two decimals.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[Price-2000000-The field Price must be between 0 and 1000000.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[Price-abc-The value 'abc' is not valid for Price.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[Price--The Price field is required.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[AvailableStock--1-The field Stock must be between 0 and 10 million.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[RestockThreshold-20000000-The field Restock must be between 0 and 10 million.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_validation[MaxStockThreshold-abc-The value 'abc' is not valid for Max stock.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_create_without_antiforgery_token_is_rejected",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_pic_endpoint",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_api_brands_json",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_api_brands_xml_content_negotiation",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_api_brand_by_id",
+        "outcome": "failed",
+        "message": "requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_api_brand_delete_is_non_mutating",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_api_brands_unsupported_verbs",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 405",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_api_files_returns_binary_brand_list",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/Content/css-text/css]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/bundles/jquery-javascript]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/bundles/jqueryval-javascript]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/bundles/modernizr-javascript]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/bundles/bootstrap-javascript]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/images/brand.png-image/png]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/Pics/1.png-image/png]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_static_content[/favicon.ico-image]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_mvc::test_zz_create_edit_delete_roundtrip",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_default",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_aliases[/Default]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 0 == 10",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_aliases[/Default.aspx]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 0 == 10",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[10-0-10]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[10-1-2]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[5-0-5]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[5-2-2]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[12-0-12]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[20-0-12]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[1-11-1]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_list_paging_route[3-3-3]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_details[1-.NET Bot Black Hoodie]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_details[12-Prism White TShirt]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_missing[/Catalog/Details/999-500]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 500",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_missing[/Catalog/Edit/999-500]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 500",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_missing[/Catalog/Delete/999-500]",
+        "outcome": "failed",
+        "message": "AssertionError: assert 404 == 500",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_create_get_form",
+        "outcome": "failed",
+        "message": "assert 404 == 200",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_create_validation[Name--The Name field is required.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_create_validation[Price--5-The Price must be a positive number with maximum two decimals between 0 and 1 million.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_create_validation[Price-abc-The Price must be a positive number with maximum two decimals between 0 and 1 million.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_create_validation[Stock--1-The field Stock must be between 0 and 10 million.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_create_validation[Restock-abc-The field Restock must be between 0 and 10 million.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_create_validation[Maxstock-20000000-The field Max stock must be between 0 and 10 million.]",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_static[/Content/site.css-text/css]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_static[/images/brand.png-image/png]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_static[/Pics/1.png-image/png]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_static[/Scripts/WebForms/WebForms.js-javascript]",
+        "outcome": "failed",
+        "message": "assert (404 == 200)",
+        "legacy": "passed"
+      },
+      {
+        "id": "test_webforms::test_zz_create_edit_delete_roundtrip",
+        "outcome": "failed",
+        "message": "AssertionError: ('/Catalog/Create', 404)",
+        "legacy": "passed"
+      }
+    ],
+    "not_run": [],
+    "ok": false
+  },
+  "ok": false
+}

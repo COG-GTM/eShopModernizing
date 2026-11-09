@@ -1,0 +1,3009 @@
+{
+  "app": "webforms",
+  "base_url": "http://127.0.0.1:5201",
+  "strict": false,
+  "total": 52,
+  "passed": 3,
+  "failed": 49,
+  "results": [
+    {
+      "case": "001-list-root.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "002-list-default.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "003-list-default-aspx.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "004-list-size10-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 1 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "005-list-size10-page1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 10 of 12 products - Page 2 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "006-list-size10-page2.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "No data was returned."
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New No data was returned. Previous Showing 10 of 12 products - Page 3 - 2 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "007-list-size5-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 1 - 3 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "008-list-size5-page1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 2 - 3 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "009-list-size5-page2.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 5 of 12 products - Page 3 - 3 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "010-list-size20-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 20 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "011-list-size12-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 12 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "012-list-size1-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete Previous Showing 1 of 12 products - Page 1 - 12 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "013-list-size1-page11.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 1 of 12 products - Page 12 - 12 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "014-list-size3-page3.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 3 of 12 products - Page 4 - 4 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "015-list-size100-page0.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [
+              [
+                "",
+                ".NET Bot Black Hoodie",
+                ".NET Bot Black Hoodie",
+                ".NET",
+                "T-Shirt",
+                "19.5",
+                "1.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Black & White Mug",
+                ".NET Black & White Mug",
+                ".NET",
+                "Mug",
+                "8.50",
+                "2.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White T-Shirt",
+                "Prism White T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "3.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation T-shirt",
+                ".NET Foundation T-shirt",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "4.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red Sheet",
+                "Roslyn Red Sheet",
+                "Other",
+                "Sheet",
+                "8.5",
+                "5.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Blue Hoodie",
+                ".NET Blue Hoodie",
+                ".NET",
+                "T-Shirt",
+                "12",
+                "6.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Roslyn Red T-Shirt",
+                "Roslyn Red T-Shirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "7.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Kudu Purple Hoodie",
+                "Kudu Purple Hoodie",
+                "Other",
+                "T-Shirt",
+                "8.5",
+                "8.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> White Mug",
+                "Cup<T> White Mug",
+                "Other",
+                "Mug",
+                "12",
+                "9.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                ".NET Foundation Sheet",
+                ".NET Foundation Sheet",
+                ".NET",
+                "Sheet",
+                "12",
+                "10.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Cup<T> Sheet",
+                "Cup<T> Sheet",
+                ".NET",
+                "Sheet",
+                "8.5",
+                "11.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ],
+              [
+                "",
+                "Prism White TShirt",
+                "Prism White TShirt",
+                "Other",
+                "T-Shirt",
+                "12",
+                "12.png",
+                "100",
+                "0",
+                "0",
+                "Edit | Details | Delete"
+              ]
+            ],
+            "text": "Home Page - Catalog manager (Web Forms) Catalog manager (Web Forms) Create New Name Description Brand Type Price Picture name Stock Restock Max stock .NET Bot Black Hoodie .NET Bot Black Hoodie .NET T-Shirt 19.5 1.png 100 0 0 Edit | Details | Delete .NET Black & White Mug .NET Black & White Mug .NET Mug 8.50 2.png 100 0 0 Edit | Details | Delete Prism White T-Shirt Prism White T-Shirt Other T-Shirt 12 3.png 100 0 0 Edit | Details | Delete .NET Foundation T-shirt .NET Foundation T-shirt .NET T-Shirt 12 4.png 100 0 0 Edit | Details | Delete Roslyn Red Sheet Roslyn Red Sheet Other Sheet 8.5 5.png 100 0 0 Edit | Details | Delete .NET Blue Hoodie .NET Blue Hoodie .NET T-Shirt 12 6.png 100 0 0 Edit | Details | Delete Roslyn Red T-Shirt Roslyn Red T-Shirt Other T-Shirt 12 7.png 100 0 0 Edit | Details | Delete Kudu Purple Hoodie Kudu Purple Hoodie Other T-Shirt 8.5 8.png 100 0 0 Edit | Details | Delete Cup<T> White Mug Cup<T> White Mug Other Mug 12 9.png 100 0 0 Edit | Details | Delete .NET Foundation Sheet .NET Foundation Sheet .NET Sheet 12 10.png 100 0 0 Edit | Details | Delete Cup<T> Sheet Cup<T> Sheet .NET Sheet 8.5 11.png 100 0 0 Edit | Details | Delete Prism White TShirt Prism White TShirt Other T-Shirt 12 12.png 100 0 0 Edit | Details | Delete Previous Showing 100 of 12 products - Page 1 - 1 Next {{HOST}}, {{DATETIME}}",
+            "title": "Home Page - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "016-list-nonnumeric-route.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 500,
+          "actual": 404
+        }
+      ]
+    },
+    {
+      "case": "017-details-1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name .NET Bot Black Hoodie Description .NET Bot Black Hoodie Brand .NET Type T-Shirt Price 19.5 Picture name 1.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "018-details-5.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Roslyn Red Sheet Description Roslyn Red Sheet Brand Other Type Sheet Price 8.5 Picture name 5.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "019-details-12.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Prism White TShirt Description Prism White TShirt Brand Other Type T-Shirt Price 12 Picture name 12.png Stock 100 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "020-details-missing-999.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 500,
+          "actual": 404
+        }
+      ]
+    },
+    {
+      "case": "021-details-nonnumeric-id.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 500,
+          "actual": 404
+        }
+      ]
+    },
+    {
+      "case": "022-create-get.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": null
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": null
+              },
+              {
+                "name": "ctl00$MainContent$Brand",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$Type",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "0.00"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl06",
+                "type": "submit",
+                "value": "[ Create ]"
+              }
+            ],
+            "rows": [],
+            "text": "Create - Catalog manager (Web Forms) Catalog manager (Web Forms) Create Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Uploading images not allowed for this version. Stock Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "title": "Create - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "023-create-post-invalid-missing-name.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-invalid-missing-name: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "024-create-post-invalid-price-negative.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-invalid-price-negative: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "025-create-post-invalid-price-not-number.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-invalid-price-not-number: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "026-create-post-invalid-price-too-large.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-invalid-price-too-large: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "027-create-post-invalid-stock-negative.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-invalid-stock-negative: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "028-create-post-invalid-restock-not-number.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-invalid-restock-not-number: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "029-create-post-invalid-maxstock-too-large.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-invalid-maxstock-too-large: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "030-create-post-valid.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: create-post-valid: form page /Catalog/Create returned 404"
+        }
+      ]
+    },
+    {
+      "case": "031-state-after-create.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "state_rows",
+          "expected": [
+            [
+              "",
+              ".NET Bot Black Hoodie",
+              ".NET Bot Black Hoodie",
+              ".NET",
+              "T-Shirt",
+              "19.5",
+              "1.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Black & White Mug",
+              ".NET Black & White Mug",
+              ".NET",
+              "Mug",
+              "8.50",
+              "2.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.5",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.5",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.5",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ],
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "032-details-created-13.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Transcript Item Description Created by the transcript recorder Brand .NET Type Mug Price 12.34 Picture name dummy.png Stock 10 Restock 2 Max stock 50 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "033-edit-get-1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [
+              {
+                "name": "ctl00$MainContent$Name",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$Description",
+                "type": "text",
+                "value": ".NET Bot Black Hoodie"
+              },
+              {
+                "name": "ctl00$MainContent$BrandDropDownList",
+                "options": [
+                  [
+                    "Azure",
+                    "1"
+                  ],
+                  [
+                    ".NET",
+                    "2"
+                  ],
+                  [
+                    "Visual Studio",
+                    "3"
+                  ],
+                  [
+                    "SQL Server",
+                    "4"
+                  ],
+                  [
+                    "Other",
+                    "5"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$TypeDropDownList",
+                "options": [
+                  [
+                    "Mug",
+                    "1"
+                  ],
+                  [
+                    "T-Shirt",
+                    "2"
+                  ],
+                  [
+                    "Sheet",
+                    "3"
+                  ],
+                  [
+                    "USB Memory Stick",
+                    "4"
+                  ]
+                ],
+                "selected": [
+                  "2"
+                ],
+                "type": "select"
+              },
+              {
+                "name": "ctl00$MainContent$Price",
+                "type": "text",
+                "value": "19.5"
+              },
+              {
+                "name": "ctl00$MainContent$PictureFileName",
+                "type": "text",
+                "value": "1.png"
+              },
+              {
+                "name": "ctl00$MainContent$Stock",
+                "type": "text",
+                "value": "100"
+              },
+              {
+                "name": "ctl00$MainContent$Restock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$Maxstock",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "name": "ctl00$MainContent$ctl07",
+                "type": "submit",
+                "value": "[ Save ]"
+              }
+            ],
+            "rows": [],
+            "text": "Edit - Catalog manager (Web Forms) Catalog manager (Web Forms) Edit Name Description Brand Azure .NET Visual Studio SQL Server Other Type Mug T-Shirt Sheet USB Memory Stick Price Picture name Stock Restock Max stock [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "title": "Edit - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "034-edit-get-missing-999.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 500,
+          "actual": 404
+        }
+      ]
+    },
+    {
+      "case": "035-edit-post-invalid-missing-name.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: edit-post-invalid-missing-name: form page /Catalog/Edit/1 returned 404"
+        }
+      ]
+    },
+    {
+      "case": "036-edit-post-invalid-stock-negative.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: edit-post-invalid-stock-negative: form page /Catalog/Edit/1 returned 404"
+        }
+      ]
+    },
+    {
+      "case": "037-edit-post-valid.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: edit-post-valid: form page /Catalog/Edit/1 returned 404"
+        }
+      ]
+    },
+    {
+      "case": "038-state-after-edit.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "state_rows",
+          "expected": [
+            [
+              "",
+              "Edited Hoodie",
+              ".NET Bot Black Hoodie",
+              "Visual Studio",
+              "T-Shirt",
+              "21.75",
+              "1.png",
+              "7",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Black & White Mug",
+              ".NET Black & White Mug",
+              ".NET",
+              "Mug",
+              "8.50",
+              "2.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.5",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.5",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.5",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ],
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "039-details-edited-1.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [],
+            "rows": [],
+            "text": "Details - Catalog manager (Web Forms) Catalog manager (Web Forms) Details Name Edited Hoodie Description .NET Bot Black Hoodie Brand Visual Studio Type T-Shirt Price 21.75 Picture name 1.png Stock 7 Restock 0 Max stock 0 Edit | Back to list {{HOST}}, {{DATETIME}}",
+            "title": "Details - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "040-delete-get-2.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/html",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "errors": [],
+            "fields": [
+              {
+                "name": "ctl00$MainContent$ctl11",
+                "type": "submit",
+                "value": "[ Delete ]"
+              }
+            ],
+            "rows": [],
+            "text": "Delete - Catalog manager (Web Forms) Catalog manager (Web Forms) Delete Are you sure you want to delete this? Name .NET Black & White Mug Description .NET Black & White Mug Brand .NET Type Mug Price 8.50 Picture name 2.png Stock 100 Restock 0 Max stock 0 [ Cancel ] {{HOST}}, {{DATETIME}}",
+            "title": "Delete - Catalog manager (Web Forms)"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "041-delete-get-missing-999.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 500,
+          "actual": 404
+        }
+      ]
+    },
+    {
+      "case": "042-delete-post-2.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "error",
+          "expected": null,
+          "actual": "RuntimeError: delete-post-2: form page /Catalog/Delete/2 returned 404"
+        }
+      ]
+    },
+    {
+      "case": "043-state-after-delete.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "state_rows",
+          "expected": [
+            [
+              "",
+              "Edited Hoodie",
+              ".NET Bot Black Hoodie",
+              "Visual Studio",
+              "T-Shirt",
+              "21.75",
+              "1.png",
+              "7",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White T-Shirt",
+              "Prism White T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "3.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation T-shirt",
+              ".NET Foundation T-shirt",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "4.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red Sheet",
+              "Roslyn Red Sheet",
+              "Other",
+              "Sheet",
+              "8.5",
+              "5.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Blue Hoodie",
+              ".NET Blue Hoodie",
+              ".NET",
+              "T-Shirt",
+              "12",
+              "6.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Roslyn Red T-Shirt",
+              "Roslyn Red T-Shirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "7.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Kudu Purple Hoodie",
+              "Kudu Purple Hoodie",
+              "Other",
+              "T-Shirt",
+              "8.5",
+              "8.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> White Mug",
+              "Cup<T> White Mug",
+              "Other",
+              "Mug",
+              "12",
+              "9.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              ".NET Foundation Sheet",
+              ".NET Foundation Sheet",
+              ".NET",
+              "Sheet",
+              "12",
+              "10.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Cup<T> Sheet",
+              "Cup<T> Sheet",
+              ".NET",
+              "Sheet",
+              "8.5",
+              "11.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Prism White TShirt",
+              "Prism White TShirt",
+              "Other",
+              "T-Shirt",
+              "12",
+              "12.png",
+              "100",
+              "0",
+              "0",
+              "Edit | Details | Delete"
+            ],
+            [
+              "",
+              "Transcript Item",
+              "Created by the transcript recorder",
+              ".NET",
+              "Mug",
+              "12.34",
+              "dummy.png",
+              "10",
+              "2",
+              "50",
+              "Edit | Details | Delete"
+            ]
+          ],
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "044-details-deleted-2.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 500,
+          "actual": 404
+        }
+      ]
+    },
+    {
+      "case": "045-static-bundle-css.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "046-static-site-css.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "text/css",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "text": "﻿/* Slider */\n.esh-app-hero {\n    background-image: url(\"../images/main_banner.png\");\n    background-size: cover;\n    height: 12.5vw;\n    width: 100%;\n}\n\n/* Header */\n.esh-header {\n    height: 100%;\n}\n\n.esh-header:before {\n    content: '';\n    display: inline-block;\n    vertical-align: middle;\n    height: 100%;\n}\n\n.esh-header-brand {\n    max-width: 1440px;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.esh-header-title {\n    font-family: Montserrat, sans-serif;\n    position: relative;\n    font-size: 4vw;\n    font-weight: 600;\n    color: #FFFFFF;\n    display: inline-block;\n    vertical-align: middle;\n}\n\n.esh-header-title > span {\n    font-weight: 300;\n}\n\n/* Footer */\n.esh-app-footer {\n    background-color: #000000;\n    border-top: 1px solid #EEEEEE;\n    margin-top: 2.5rem;\n    padding-bottom: 2.5rem;\n    padding-top: 2.5rem;\n    width: 100%;\n    float: left;\n}\n\n.esh-app-footer-brand {\n    height: 50px;\n    width: 230px;\n}\n\n/* Body */\n.esh-body-title {\n    font-family: Montserrat, sans-serif;\n    padding-left: 3rem;\n    padding-top: 1rem;\n    padding-bottom: 1.5rem;\n    margin: 0px;\n    margin-bottom: 2rem;\n    background-color: #00A69C;\n    font-size: 3rem;\n    color: #FFFFFF;\n}\n\n/*Price*/\n.esh-price:before {\n    content: '$';\n}\n\n/* Table */\n.esh-table {\n    max-width: 1440px;\n    padding-top: 10px;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.esh-table-header {\n    border-bottom: none;\n}\n\n.esh-table th {\n    font-size: 1rem;\n    text-transform: uppercase;\n}\n\n.esh-table td {\n    font-size: 1rem;\n    font-weight: 300;\n}\n\n.esh-table-price {\n    font-size: 1em;\n    font-weight: 600;\n}\n\n.esh-table-link {\n    color: inherit;\n    font-weight: 600;\n    cursor: pointer;\n    transition: color 0.35s;\n}\n\n.esh-table-link:hover {\n    color: #75b918;\n    transition: color 0.35s;\n}\n\n.esh-thumbnail {\n    max-width: 120px;\n    height: auto;\n}\n\n.esh-picture {\n    max-width: 370px;\n    height: auto;\n    width: 100%;\n}\n\n.esh-link-wrapper {\n    line-height: 3rem;\n    position: relative;\n    text-align: left;\n}\n\n.esh-link-item {\n    color: inherit;\n    font-size: 2rem;\n    font-weight: 600;\n    cursor: pointer;\n    transition: color 0.35s;\n}\n\n    .esh-link-item:hover {\n        color: #75b918;\n        transition: color 0.35s;\n    }\n\n.esh-link-item--margin {\n    margin-left: 1rem;\n}\n\n.esh-link-list {\n    font-size: 2rem;\n    margin-left: 1rem;\n}\n\n.esh-button-actions .esh-button + .esh-button {\n    margin-left: 1rem;\n}\n\n.esh-button {\n    border: 0;\n    border-radius: 0;\n    color: #FFFFFF;\n    display: inline-block;\n    font-size: 1rem;\n    font-weight: 400;\n    margin-top: 1rem;\n    padding: 1rem 1.5rem;\n    text-align: center;\n    text-transform: uppercase;\n    transition: all 0.35s;\n}\n\n.esh-button-primary {\n    background-color: #83D01B;\n}\n\n.esh-button-primary:hover {\n    background-color: #4A760f;\n    color: white;\n}\n\n.esh-button-secondary {\n    background-color: #E52638;\n}\n\n.esh-button-secondary:hover {\n    background-color: #b20000;\n    color: white;\n}\n\n.esh-button-primary:hover {\n    background-color: #4a760f;\n    transition: all 0.35s;\n}\n\n.esh-form-information {\n    padding-top: 7px;\n    color: #888888;\n}\n\n/*Pager*/\n.esh-pager-wrapper {\n    padding-top: 1rem;\n    text-align: center;\n}\n\n.esh-pager-item {\n    margin: 0 5vw;\n    color: #333333;\n}\n\n.esh-pager-item--hidden {\n    opacity: 0;\n    pointer-events: none;\n}\n\n.esh-pager-item--navigable {\n    cursor: pointer;\n    display: inline-block;\n}\n\n.esh-pager-item--navigable:hover {\n    color: #83D01B;\n}\n\n@media screen and (max-width: 1280px) {\n    .esh-pager-item {\n        font-size: 0.85rem;\n    }\n}\n\n@media screen and (max-width: 1024px) {\n    .esh-pager-item {\n        margin: 0 2.5vw;\n    }\n\n    .esh-app-hero {\n        height: 20vw;\n    }\n}\n\n@media screen and (min-width: 1800px) {\n    .esh-header-title {\n        font-size:4rem;\n    }\n}\n\n"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "047-static-brand-image.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "image/png",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "length": 4023,
+            "sha256": "778898667a5f4610b62597e88a79617872eec5d8edc2ad196f89609330b9faa4"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "048-static-pic-file.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "image/png",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "length": 151640,
+            "sha256": "0487bc526da61586780355f4f50aa368f09c0a212809b1f08444382f4d789eb0"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "049-static-webforms-js.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "application/javascript",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "text": "//CdnPath=http://ajax.aspnetcdn.com/ajax/4.5.1/1/WebForms.js\nfunction WebForm_PostBackOptions(eventTarget, eventArgument, validation, validationGroup, actionUrl, trackFocus, clientSubmit) {\n    this.eventTarget = eventTarget;\n    this.eventArgument = eventArgument;\n    this.validation = validation;\n    this.validationGroup = validationGroup;\n    this.actionUrl = actionUrl;\n    this.trackFocus = trackFocus;\n    this.clientSubmit = clientSubmit;\n}\nfunction WebForm_DoPostBackWithOptions(options) {\n    var validationResult = true;\n    if (options.validation) {\n        if (typeof(Page_ClientValidate) == 'function') {\n            validationResult = Page_ClientValidate(options.validationGroup);\n        }\n    }\n    if (validationResult) {\n        if ((typeof(options.actionUrl) != \"undefined\") && (options.actionUrl != null) && (options.actionUrl.length > 0)) {\n            theForm.action = options.actionUrl;\n        }\n        if (options.trackFocus) {\n            var lastFocus = theForm.elements[\"__LASTFOCUS\"];\n            if ((typeof(lastFocus) != \"undefined\") && (lastFocus != null)) {\n                if (typeof(document.activeElement) == \"undefined\") {\n                    lastFocus.value = options.eventTarget;\n                }\n                else {\n                    var active = document.activeElement;\n                    if ((typeof(active) != \"undefined\") && (active != null)) {\n                        if ((typeof(active.id) != \"undefined\") && (active.id != null) && (active.id.length > 0)) {\n                            lastFocus.value = active.id;\n                        }\n                        else if (typeof(active.name) != \"undefined\") {\n                            lastFocus.value = active.name;\n                        }\n                    }\n                }\n            }\n        }\n    }\n    if (options.clientSubmit) {\n        __doPostBack(options.eventTarget, options.eventArgument);\n    }\n}\nvar __pendingCallbacks = new Array();\nvar __synchronousCallBackIndex = -1;\nfunction WebForm_DoCallback(eventTarget, eventArgument, eventCallback, context, errorCallback, useAsync) {\n    var postData = __theFormPostData +\n                \"__CALLBACKID=\" + WebForm_EncodeCallback(eventTarget) +\n                \"&__CALLBACKPARAM=\" + WebForm_EncodeCallback(eventArgument);\n    if (theForm[\"__EVENTVALIDATION\"]) {\n        postData += \"&__EVENTVALIDATION=\" + WebForm_EncodeCallback(theForm[\"__EVENTVALIDATION\"].value);\n    }\n    var xmlRequest,e;\n    try {\n        xmlRequest = new XMLHttpRequest();\n    }\n    catch(e) {\n        try {\n            xmlRequest = new ActiveXObject(\"Microsoft.XMLHTTP\");\n        }\n        catch(e) {\n        }\n    }\n    var setRequestHeaderMethodExists = true;\n    try {\n        setRequestHeaderMethodExists = (xmlRequest && xmlRequest.setRequestHeader);\n    }\n    catch(e) {}\n    var callback = new Object();\n    callback.eventCallback = eventCallback;\n    callback.context = context;\n    callback.errorCallback = errorCallback;\n    callback.async = useAsync;\n    var callbackIndex = WebForm_FillFirstAvailableSlot(__pendingCallbacks, callback);\n    if (!useAsync) {\n        if (__synchronousCallBackIndex != -1) {\n            __pendingCallbacks[__synchronousCallBackIndex] = null;\n        }\n        __synchronousCallBackIndex = callbackIndex;\n    }\n    if (setRequestHeaderMethodExists) {\n        xmlRequest.onreadystatechange = WebForm_CallbackComplete;\n        callback.xmlRequest = xmlRequest;\n        // e.g. http:\n        var action = theForm.action || document.location.pathname, fragmentIndex = action.indexOf('#');\n        if (fragmentIndex !== -1) {\n            action = action.substr(0, fragmentIndex);\n        }\n        if (!__nonMSDOMBrowser) {\n            var queryIndex = action.indexOf('?');\n            if (queryIndex !== -1) {\n                var path = action.substr(0, queryIndex);\n                if (path.indexOf(\"%\") === -1) {\n                    action = encodeURI(path) + action.substr(queryIndex);\n                }\n            }\n            else if (action.indexOf(\"%\") === -1) {\n                action = encodeURI(action);\n            }\n        }\n        xmlRequest.open(\"POST\", action, true);\n        xmlRequest.setRequestHeader(\"Content-Type\", \"application/x-www-form-urlencoded; charset=utf-8\");\n        xmlRequest.send(postData);\n        return;\n    }\n    callback.xmlRequest = new Object();\n    var callbackFrameID = \"__CALLBACKFRAME\" + callbackIndex;\n    var xmlRequestFrame = document.frames[callbackFrameID];\n    if (!xmlRequestFrame) {\n        xmlRequestFrame = document.createElement(\"IFRAME\");\n        xmlRequestFrame.width = \"1\";\n        xmlRequestFrame.height = \"1\";\n        xmlRequestFrame.frameBorder = \"0\";\n        xmlRequestFrame.id = callbackFrameID;\n        xmlRequestFrame.name = callbackFrameID;\n        xmlRequestFrame.style.position = \"absolute\";\n        xmlRequestFrame.style.top = \"-100px\"\n        xmlRequestFrame.style.left = \"-100px\";\n        try {\n            if (callBackFrameUrl) {\n                xmlRequestFrame.src = callBackFrameUrl;\n            }\n        }\n        catch(e) {}\n        document.body.appendChild(xmlRequestFrame);\n    }\n    var interval = window.setInterval(function() {\n        xmlRequestFrame = document.frames[callbackFrameID];\n        if (xmlRequestFrame && xmlRequestFrame.document) {\n            window.clearInterval(interval);\n            xmlRequestFrame.document.write(\"\");\n            xmlRequestFrame.document.close();\n            xmlRequestFrame.document.write('<html><body><form method=\"post\"><input type=\"hidden\" name=\"__CALLBACKLOADSCRIPT\" value=\"t\"></form></body></html>');\n            xmlRequestFrame.document.close();\n            xmlRequestFrame.document.forms[0].action = theForm.action;\n            var count = __theFormPostCollection.length;\n            var element;\n            for (var i = 0; i < count; i++) {\n                element = __theFormPostCollection[i];\n                if (element) {\n                    var fieldElement = xmlRequestFrame.document.createElement(\"INPUT\");\n                    fieldElement.type = \"hidden\";\n                    fieldElement.name = element.name;\n                    fieldElement.value = element.value;\n                    xmlRequestFrame.document.forms[0].appendChild(fieldElement);\n                }\n            }\n            var callbackIdFieldElement = xmlRequestFrame.document.createElement(\"INPUT\");\n            callbackIdFieldElement.type = \"hidden\";\n            callbackIdFieldElement.name = \"__CALLBACKID\";\n            callbackIdFieldElement.value = eventTarget;\n            xmlRequestFrame.document.forms[0].appendChild(callbackIdFieldElement);\n            var callbackParamFieldElement = xmlRequestFrame.document.createElement(\"INPUT\");\n            callbackParamFieldElement.type = \"hidden\";\n            callbackParamFieldElement.name = \"__CALLBACKPARAM\";\n            callbackParamFieldElement.value = eventArgument;\n            xmlRequestFrame.document.forms[0].appendChild(callbackParamFieldElement);\n            if (theForm[\"__EVENTVALIDATION\"]) {\n                var callbackValidationFieldElement = xmlRequestFrame.document.createElement(\"INPUT\");\n                callbackValidationFieldElement.type = \"hidden\";\n                callbackValidationFieldElement.name = \"__EVENTVALIDATION\";\n                callbackValidationFieldElement.value = theForm[\"__EVENTVALIDATION\"].value;\n                xmlRequestFrame.document.forms[0].appendChild(callbackValidationFieldElement);\n            }\n            var callbackIndexFieldElement = xmlRequestFrame.document.createElement(\"INPUT\");\n            callbackIndexFieldElement.type = \"hidden\";\n            callbackIndexFieldElement.name = \"__CALLBACKINDEX\";\n            callbackIndexFieldElement.value = callbackIndex;\n            xmlRequestFrame.document.forms[0].appendChild(callbackIndexFieldElement);\n            xmlRequestFrame.document.forms[0].submit();\n        }\n    }, 10);\n}\nfunction WebForm_CallbackComplete() {\n    for (var i = 0; i < __pendingCallbacks.length; i++) {\n        callbackObject = __pendingCallbacks[i];\n        if (callbackObject && callbackObject.xmlRequest && (callbackObject.xmlRequest.readyState == 4)) {\n            if (!__pendingCallbacks[i].async) {\n                __synchronousCallBackIndex = -1;\n            }\n            __pendingCallbacks[i] = null;\n            var callbackFrameID = \"__CALLBACKFRAME\" + i;\n            var xmlRequestFrame = document.getElementById(callbackFrameID);\n            if (xmlRequestFrame) {\n                xmlRequestFrame.parentNode.removeChild(xmlRequestFrame);\n            }\n            WebForm_ExecuteCallback(callbackObject);\n        }\n    }\n}\nfunction WebForm_ExecuteCallback(callbackObject) {\n    var response = callbackObject.xmlRequest.responseText;\n    if (response.charAt(0) == \"s\") {\n        if ((typeof(callbackObject.eventCallback) != \"undefined\") && (callbackObject.eventCallback != null)) {\n            callbackObject.eventCallback(response.substring(1), callbackObject.context);\n        }\n    }\n    else if (response.charAt(0) == \"e\") {\n        if ((typeof(callbackObject.errorCallback) != \"undefined\") && (callbackObject.errorCallback != null)) {\n            callbackObject.errorCallback(response.substring(1), callbackObject.context);\n        }\n    }\n    else {\n        var separatorIndex = response.indexOf(\"|\");\n        if (separatorIndex != -1) {\n            var validationFieldLength = parseInt(response.substring(0, separatorIndex));\n            if (!isNaN(validationFieldLength)) {\n                var validationField = response.substring(separatorIndex + 1, separatorIndex + validationFieldLength + 1);\n                if (validationField != \"\") {\n                    var validationFieldElement = theForm[\"__EVENTVALIDATION\"];\n                    if (!validationFieldElement) {\n                        validationFieldElement = document.createElement(\"INPUT\");\n                        validationFieldElement.type = \"hidden\";\n                        validationFieldElement.name = \"__EVENTVALIDATION\";\n                        theForm.appendChild(validationFieldElement);\n                    }\n                    validationFieldElement.value = validationField;\n                }\n                if ((typeof(callbackObject.eventCallback) != \"undefined\") && (callbackObject.eventCallback != null)) {\n                    callbackObject.eventCallback(response.substring(separatorIndex + validationFieldLength + 1), callbackObject.context);\n                }\n            }\n        }\n    }\n}\nfunction WebForm_FillFirstAvailableSlot(array, element) {\n    var i;\n    for (i = 0; i < array.length; i++) {\n        if (!array[i]) break;\n    }\n    array[i] = element;\n    return i;\n}\nvar __nonMSDOMBrowser = (window.navigator.appName.toLowerCase().indexOf('explorer') == -1);\nvar __theFormPostData = \"\";\nvar __theFormPostCollection = new Array();\nvar __callbackTextTypes = /^(text|password|hidden|search|tel|url|email|number|range|color|datetime|date|month|week|time|datetime-local)$/i;\nfunction WebForm_InitCallback() {\n    var formElements = theForm.elements,\n        count = formElements.length,\n        element;\n    for (var i = 0; i < count; i++) {\n        element = formElements[i];\n        var tagName = element.tagName.toLowerCase();\n        if (tagName == \"input\") {\n            var type = element.type;\n            if ((__callbackTextTypes.test(type) || ((type == \"checkbox\" || type == \"radio\") && element.checked))\n                && (element.id != \"__EVENTVALIDATION\")) {\n                WebForm_InitCallbackAddField(element.name, element.value);\n            }\n        }\n        else if (tagName == \"select\") {\n            var selectCount = element.options.length;\n            for (var j = 0; j < selectCount; j++) {\n                var selectChild = element.options[j];\n                if (selectChild.selected == true) {\n                    WebForm_InitCallbackAddField(element.name, element.value);\n                }\n            }\n        }\n        else if (tagName == \"textarea\") {\n            WebForm_InitCallbackAddField(element.name, element.value);\n        }\n    }\n}\nfunction WebForm_InitCallbackAddField(name, value) {\n    var nameValue = new Object();\n    nameValue.name = name;\n    nameValue.value = value;\n    __theFormPostCollection[__theFormPostCollection.length] = nameValue;\n    __theFormPostData += WebForm_EncodeCallback(name) + \"=\" + WebForm_EncodeCallback(value) + \"&\";\n}\nfunction WebForm_EncodeCallback(parameter) {\n    if (encodeURIComponent) {\n        return encodeURIComponent(parameter);\n    }\n    else {\n        return escape(parameter);\n    }\n}\nvar __disabledControlArray = new Array();\nfunction WebForm_ReEnableControls() {\n    if (typeof(__enabledControlArray) == 'undefined') {\n        return false;\n    }\n    var disabledIndex = 0;\n    for (var i = 0; i < __enabledControlArray.length; i++) {\n        var c;\n        if (__nonMSDOMBrowser) {\n            c = document.getElementById(__enabledControlArray[i]);\n        }\n        else {\n            c = document.all[__enabledControlArray[i]];\n        }\n        if ((typeof(c) != \"undefined\") && (c != null) && (c.disabled == true)) {\n            c.disabled = false;\n            __disabledControlArray[disabledIndex++] = c;\n        }\n    }\n    setTimeout(\"WebForm_ReDisableControls()\", 0);\n    return true;\n}\nfunction WebForm_ReDisableControls() {\n    for (var i = 0; i < __disabledControlArray.length; i++) {\n        __disabledControlArray[i].disabled = true;\n    }\n}\nfunction WebForm_SimulateClick(element, event) {\n    var clickEvent;\n    if (element) {\n        if (element.click) {\n            element.click();\n        } else { \n            clickEvent = document.createEvent(\"MouseEvents\");\n            clickEvent.initMouseEvent(\"click\", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);\n            if (!element.dispatchEvent(clickEvent)) {\n                return true;\n            }\n        }\n        event.cancelBubble = true;\n        if (event.stopPropagation) {\n            event.stopPropagation();\n        }\n        return false;\n    }\n    return true;\n}\nfunction WebForm_FireDefaultButton(event, target) {\n    if (event.keyCode == 13) {\n        var src = event.srcElement || event.target;\n        if (src &&\n            ((src.tagName.toLowerCase() == \"input\") &&\n             (src.type.toLowerCase() == \"submit\" || src.type.toLowerCase() == \"button\")) ||\n            ((src.tagName.toLowerCase() == \"a\") &&\n             (src.href != null) && (src.href != \"\")) ||\n            (src.tagName.toLowerCase() == \"textarea\")) {\n            return true;\n        }\n        var defaultButton;\n        if (__nonMSDOMBrowser) {\n            defaultButton = document.getElementById(target);\n        }\n        else {\n            defaultButton = document.all[target];\n        }\n        if (defaultButton) {\n            return WebForm_SimulateClick(defaultButton, event);\n        } \n    }\n    return true;\n}\nfunction WebForm_GetScrollX() {\n    if (__nonMSDOMBrowser) {\n        return window.pageXOffset;\n    }\n    else {\n        if (document.documentElement && document.documentElement.scrollLeft) {\n            return document.documentElement.scrollLeft;\n        }\n        else if (document.body) {\n            return document.body.scrollLeft;\n        }\n    }\n    return 0;\n}\nfunction WebForm_GetScrollY() {\n    if (__nonMSDOMBrowser) {\n        return window.pageYOffset;\n    }\n    else {\n        if (document.documentElement && document.documentElement.scrollTop) {\n            return document.documentElement.scrollTop;\n        }\n        else if (document.body) {\n            return document.body.scrollTop;\n        }\n    }\n    return 0;\n}\nfunction WebForm_SaveScrollPositionSubmit() {\n    if (__nonMSDOMBrowser) {\n        theForm.elements['__SCROLLPOSITIONY'].value = window.pageYOffset;\n        theForm.elements['__SCROLLPOSITIONX'].value = window.pageXOffset;\n    }\n    else {\n        theForm.__SCROLLPOSITIONX.value = WebForm_GetScrollX();\n        theForm.__SCROLLPOSITIONY.value = WebForm_GetScrollY();\n    }\n    if ((typeof(this.oldSubmit) != \"undefined\") && (this.oldSubmit != null)) {\n        return this.oldSubmit();\n    }\n    return true;\n}\nfunction WebForm_SaveScrollPositionOnSubmit() {\n    theForm.__SCROLLPOSITIONX.value = WebForm_GetScrollX();\n    theForm.__SCROLLPOSITIONY.value = WebForm_GetScrollY();\n    if ((typeof(this.oldOnSubmit) != \"undefined\") && (this.oldOnSubmit != null)) {\n        return this.oldOnSubmit();\n    }\n    return true;\n}\nfunction WebForm_RestoreScrollPosition() {\n    if (__nonMSDOMBrowser) {\n        window.scrollTo(theForm.elements['__SCROLLPOSITIONX'].value, theForm.elements['__SCROLLPOSITIONY'].value);\n    }\n    else {\n        window.scrollTo(theForm.__SCROLLPOSITIONX.value, theForm.__SCROLLPOSITIONY.value);\n    }\n    if ((typeof(theForm.oldOnLoad) != \"undefined\") && (theForm.oldOnLoad != null)) {\n        return theForm.oldOnLoad();\n    }\n    return true;\n}\nfunction WebForm_TextBoxKeyHandler(event) {\n    if (event.keyCode == 13) {\n        var target;\n        if (__nonMSDOMBrowser) {\n            target = event.target;\n        }\n        else {\n            target = event.srcElement;\n        }\n        if ((typeof(target) != \"undefined\") && (target != null)) {\n            if (typeof(target.onchange) != \"undefined\") {\n                target.onchange();\n                event.cancelBubble = true;\n                if (event.stopPropagation) event.stopPropagation();\n                return false;\n            }\n        }\n    }\n    return true;\n}\nfunction WebForm_TrimString(value) {\n    return value.replace(/^\\s+|\\s+$/g, '')\n}\nfunction WebForm_AppendToClassName(element, className) {\n    var currentClassName = ' ' + WebForm_TrimString(element.className) + ' ';\n    className = WebForm_TrimString(className);\n    var index = currentClassName.indexOf(' ' + className + ' ');\n    if (index === -1) {\n        element.className = (element.className === '') ? className : element.className + ' ' + className;\n    }\n}\nfunction WebForm_RemoveClassName(element, className) {\n    var currentClassName = ' ' + WebForm_TrimString(element.className) + ' ';\n    className = WebForm_TrimString(className);\n    var index = currentClassName.indexOf(' ' + className + ' ');\n    if (index >= 0) {\n        element.className = WebForm_TrimString(currentClassName.substring(0, index) + ' ' +\n            currentClassName.substring(index + className.length + 1, currentClassName.length));\n    }\n}\nfunction WebForm_GetElementById(elementId) {\n    if (document.getElementById) {\n        return document.getElementById(elementId);\n    }\n    else if (document.all) {\n        return document.all[elementId];\n    }\n    else return null;\n}\nfunction WebForm_GetElementByTagName(element, tagName) {\n    var elements = WebForm_GetElementsByTagName(element, tagName);\n    if (elements && elements.length > 0) {\n        return elements[0];\n    }\n    else return null;\n}\nfunction WebForm_GetElementsByTagName(element, tagName) {\n    if (element && tagName) {\n        if (element.getElementsByTagName) {\n            return element.getElementsByTagName(tagName);\n        }\n        if (element.all && element.all.tags) {\n            return element.all.tags(tagName);\n        }\n    }\n    return null;\n}\nfunction WebForm_GetElementDir(element) {\n    if (element) {\n        if (element.dir) {\n            return element.dir;\n        }\n        return WebForm_GetElementDir(element.parentNode);\n    }\n    return \"ltr\";\n}\nfunction WebForm_GetElementPosition(element) {\n    var result = new Object();\n    result.x = 0;\n    result.y = 0;\n    result.width = 0;\n    result.height = 0;\n    if (element.offsetParent) {\n        result.x = element.offsetLeft;\n        result.y = element.offsetTop;\n        var parent = element.offsetParent;\n        while (parent) {\n            result.x += parent.offsetLeft;\n            result.y += parent.offsetTop;\n            var parentTagName = parent.tagName.toLowerCase();\n            if (parentTagName != \"table\" &&\n                parentTagName != \"body\" && \n                parentTagName != \"html\" && \n                parentTagName != \"div\" && \n                parent.clientTop && \n                parent.clientLeft) {\n                result.x += parent.clientLeft;\n                result.y += parent.clientTop;\n            }\n            parent = parent.offsetParent;\n        }\n    }\n    else if (element.left && element.top) {\n        result.x = element.left;\n        result.y = element.top;\n    }\n    else {\n        if (element.x) {\n            result.x = element.x;\n        }\n        if (element.y) {\n            result.y = element.y;\n        }\n    }\n    if (element.offsetWidth && element.offsetHeight) {\n        result.width = element.offsetWidth;\n        result.height = element.offsetHeight;\n    }\n    else if (element.style && element.style.pixelWidth && element.style.pixelHeight) {\n        result.width = element.style.pixelWidth;\n        result.height = element.style.pixelHeight;\n    }\n    return result;\n}\nfunction WebForm_GetParentByTagName(element, tagName) {\n    var parent = element.parentNode;\n    var upperTagName = tagName.toUpperCase();\n    while (parent && (parent.tagName.toUpperCase() != upperTagName)) {\n        parent = parent.parentNode ? parent.parentNode : parent.parentElement;\n    }\n    return parent;\n}\nfunction WebForm_SetElementHeight(element, height) {\n    if (element && element.style) {\n        element.style.height = height + \"px\";\n    }\n}\nfunction WebForm_SetElementWidth(element, width) {\n    if (element && element.style) {\n        element.style.width = width + \"px\";\n    }\n}\nfunction WebForm_SetElementX(element, x) {\n    if (element && element.style) {\n        element.style.left = x + \"px\";\n    }\n}\nfunction WebForm_SetElementY(element, y) {\n    if (element && element.style) {\n        element.style.top = y + \"px\";\n    }\n}"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "050-static-favicon.json",
+      "result": "fail",
+      "diffs": [
+        {
+          "field": "status",
+          "expected": 200,
+          "actual": 404
+        },
+        {
+          "field": "content-type",
+          "expected": "image/x-icon",
+          "actual": ""
+        },
+        {
+          "field": "semantic",
+          "expected": {
+            "length": 32038,
+            "sha256": "a94f8a8553caea8430dd4ca3cc01d4e318d19828f74cb65453ffb7f5d9e2f44d"
+          },
+          "actual": {
+            "empty": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "051-error-unknown-path.json",
+      "result": "pass",
+      "diffs": []
+    },
+    {
+      "case": "052-error-unknown-page.json",
+      "result": "pass",
+      "diffs": []
+    }
+  ]
+}
