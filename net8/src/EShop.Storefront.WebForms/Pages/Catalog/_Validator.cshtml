@@ -1,0 +1,5 @@
+@model string?
+@if (!string.IsNullOrEmpty(Model))
+{
+    <span class="field-validation-valid text-danger" style="color:Red;">@Model</span>
+}
