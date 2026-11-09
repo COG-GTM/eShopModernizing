@@ -25,7 +25,7 @@ RESULTS="$HERE/results"; mkdir -p "$RESULTS"
 "$STACK" "$MODE" up "${UP_ARGS[@]}"
 
 status=0
-rm -f "$RESULTS/$MODE"-*.json "$RESULTS/sql-seed.csv" "$RESULTS/sql-parity.json"
+rm -f "$RESULTS/$MODE"-*
 if [[ "$MODE" == sql ]]; then
   "$STACK" sql reset all
   "$STACK" sql seed | tee "$RESULTS/sql-seed.csv"
