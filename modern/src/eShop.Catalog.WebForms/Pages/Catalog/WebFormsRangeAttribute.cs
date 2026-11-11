@@ -86,6 +86,7 @@ public sealed partial class WebFormsRangeAttribute : ValidationAttribute
     [GeneratedRegex(@"^\s*(?<sign>[-+])?(?<digits>[0-9]+)\s*$")]
     private static partial Regex IntegerPattern();
 
-    [GeneratedRegex(@"^\s*(?<sign>[-+])?(?<int>[0-9]{1,3}(,[0-9]{3})+|[0-9]*)(\s*\.\s*(?<frac>[0-9]{1,2}))?\s*$")]
+    // BaseCompareValidator.ConvertCurrency / WebUIValidation.js: whitespace only before the decimal point, 0-2 fraction digits.
+    [GeneratedRegex(@"^\s*(?<sign>[-+])?(?<int>[0-9]{1,3}(,[0-9]{3})+|[0-9]*)\s*(\.(?<frac>[0-9]{0,2}))?\s*$")]
     private static partial Regex CurrencyPattern();
 }

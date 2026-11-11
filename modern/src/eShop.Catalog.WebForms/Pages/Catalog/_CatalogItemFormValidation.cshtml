@@ -15,7 +15,7 @@
                 var digits = parseInt(span.getAttribute('data-val-digits'), 10), size = parseInt(span.getAttribute('data-val-groupsize'), 10);
                 var first = size > 0 ? '{1,' + size + '}' : '+', next = size > 0 ? '{' + size + '}' : '+';
                 var re = new RegExp('^\\s*([-+])?([0-9]' + first + '(\\' + grp + '[0-9]' + next + ')+|[0-9]*)' +
-                    (digits > 0 ? '(\\s*\\' + dec + '\\s*([0-9]{1,' + digits + '}))?' : '') + '\\s*$');
+                    (digits > 0 ? '\\s*(\\' + dec + '([0-9]{0,' + digits + '}))?' : '') + '\\s*$');
                 m = text.match(re);
                 if (!m) { return null; }
                 var whole = (m[2] || '').split(grp).join(''), frac = digits > 0 ? (m[5] || '') : '';

@@ -102,6 +102,18 @@ public sealed partial class FormRoundTripTests : IDisposable
     }
 
     [Fact]
+    public async Task Create_post_accepts_legacy_trailing_decimal_point_price()
+    {
+        var form = ValidCreateForm("Trailing point");
+        form[P + "Price"] = "7.";
+
+        using var response = await Post("/Catalog/Create", await Token("/Catalog/Create"), form);
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.Equal(7m, Catalog.FindCatalogItem(13)!.Price);
+    }
+
+    [Fact]
     public async Task Create_post_cannot_overpost_PictureFileName_or_OnReorder()
     {
         var form = ValidCreateForm("Overposted");
@@ -123,6 +135,7 @@ public sealed partial class FormRoundTripTests : IDisposable
     [InlineData("Name", "", CatalogItemFormInput.NameRequiredMessage)]
     [InlineData("Price", "1000000.01", CatalogItemFormInput.PriceRangeMessage)]
     [InlineData("Price", "-1", CatalogItemFormInput.PriceRangeMessage)]
+    [InlineData("Price", "1 . 2", CatalogItemFormInput.PriceRangeMessage)]
     [InlineData("Stock", "10000001", CatalogItemFormInput.StockRangeMessage)]
     [InlineData("Restock", "-1", CatalogItemFormInput.RestockRangeMessage)]
     [InlineData("Maxstock", "abc", CatalogItemFormInput.MaxStockRangeMessage)]
