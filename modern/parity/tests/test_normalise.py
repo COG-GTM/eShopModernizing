@@ -156,11 +156,16 @@ class Classification(unittest.TestCase):
         self.assertEqual("FAIL", verdict)
 
     def test_legacy_mock_decision_covers_harness_error_in_mock(self):
-        verdict, reason = classify("webforms", "mock", "delete-13-post", ["status", "body", "harness"],
+        verdict, reason = classify("webforms", "mock", "delete-13-post", ["harness"],
                                    {"status": None, "error": "no POST form"}, {"status": 302})
         self.assertEqual("INTENTIONAL", verdict)
         self.assertIn("Decision B", reason)
         self.assertIn("harness error", reason)
+
+    def test_legacy_mock_decision_rejects_unexpected_status(self):
+        verdict, _ = classify("webforms", "mock", "list-after-delete", ["status", "body"],
+                              {"status": 200}, {"status": 500})
+        self.assertEqual("FAIL", verdict)
 
     def test_mock_only_rule_does_not_cover_sql(self):
         verdict, reason = classify("mvc", "sql", "details-13-edited", ["body"], {"status": 200}, {"status": 200})

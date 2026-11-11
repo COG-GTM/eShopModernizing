@@ -1,6 +1,6 @@
 # MBA-3849 side-by-side parity results
 
-Commit `cdd3ba69421b9750308236765ba3eba2b3e6253a`, generated 2026-11-11 23:10 UTC. Full report (request-level table, body diffs, screenshots): `parity-report.html` (attached to the PR / Jira, not committed).
+Commit `cdd3ba69421b9750308236765ba3eba2b3e6253a`, generated 2026-11-11 23:12 UTC. Full report (request-level table, body diffs, screenshots): `parity-report.html` (attached to the PR / Jira, not committed).
 
 | App | Mode | PASS | INTENTIONAL | FAIL |
 |---|---|---|---|---|

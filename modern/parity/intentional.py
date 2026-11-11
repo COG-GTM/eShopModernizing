@@ -79,11 +79,19 @@ RULES += [
      "fields": {"status", "location", "body"}, "legacy": {302, 500}, "modern": {200}, "reason": VALIDATION_ENFORCED},
     {"apps": ["mvc"], "modes": ["mock"], "steps": ["details-13-edited", "delete-13-get", "details-13-after-noaf-delete"],
      "fields": {"body"}, "legacy": {200}, "modern": {200}, "reason": LEGACY_MOCK_LOOKUPS},
-    # legacy's 500 on GET Delete/13 leaves no form to post, hence the "harness" field on the two Delete posts
     {"apps": ["webforms"], "modes": ["mock"],
-     "steps": ["details-13", "details-13-edited", "delete-13-get", "delete-13-post-no-button",
-               "details-13-after-nobutton", "delete-13-post", "list-after-delete", "details-13-deleted"],
-     "fields": {"status", "body", "harness"}, "legacy": None, "modern": None, "reason": LEGACY_MOCK_LOOKUPS},
+     "steps": ["details-13", "details-13-edited", "delete-13-get", "details-13-after-nobutton"],
+     "fields": {"status", "body"}, "legacy": {500}, "modern": {200}, "reason": LEGACY_MOCK_LOOKUPS},
+    # legacy's 500 on GET Delete/13 leaves no form to post (harness error, legacy status None)
+    {"apps": ["webforms"], "modes": ["mock"], "steps": ["delete-13-post-no-button"],
+     "fields": {"harness"}, "legacy": {None}, "modern": {200}, "reason": LEGACY_MOCK_LOOKUPS},
+    {"apps": ["webforms"], "modes": ["mock"], "steps": ["delete-13-post"],
+     "fields": {"harness"}, "legacy": {None}, "modern": {302}, "reason": LEGACY_MOCK_LOOKUPS},
+    # so item 13 is still listed in legacy but deleted in modern
+    {"apps": ["webforms"], "modes": ["mock"], "steps": ["list-after-delete"],
+     "fields": {"body"}, "legacy": {200}, "modern": {200}, "reason": LEGACY_MOCK_LOOKUPS},
+    {"apps": ["webforms"], "modes": ["mock"], "steps": ["details-13-deleted"],
+     "fields": {"status", "body"}, "legacy": {200}, "modern": {500}, "reason": LEGACY_MOCK_LOOKUPS},
 ]
 
 
