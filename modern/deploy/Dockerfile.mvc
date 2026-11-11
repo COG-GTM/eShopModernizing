@@ -1,0 +1,19 @@
+# syntax=docker/dockerfile:1
+# eShop.Catalog.Mvc (ASP.NET Core 8) - build context: modern/
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY global.json Directory.Build.props Directory.Packages.props ./
+COPY src/eShop.Catalog.Data/eShop.Catalog.Data.csproj src/eShop.Catalog.Data/
+COPY src/eShop.Catalog.Mvc/eShop.Catalog.Mvc.csproj src/eShop.Catalog.Mvc/
+RUN dotnet restore src/eShop.Catalog.Mvc/eShop.Catalog.Mvc.csproj
+COPY src/ src/
+RUN dotnet publish src/eShop.Catalog.Mvc/eShop.Catalog.Mvc.csproj -c Release -o /app/publish --no-restore /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+ENV ASPNETCORE_HTTP_PORTS=8080 \
+    DOTNET_RUNNING_IN_CONTAINER=true
+COPY --from=build /app/publish .
+USER $APP_UID
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "eShop.Catalog.Mvc.dll"]

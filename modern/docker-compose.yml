@@ -1,0 +1,95 @@
+# eShop catalog (ASP.NET Core 8) on Linux containers - slice S9 (MBA-3848).
+#
+#   cp .env.example .env            # set MSSQL_SA_PASSWORD (never commit .env)
+#   docker compose up --build --wait                       # SQL Server 2022 + both apps (UseMockData=false)
+#   docker compose --profile mock up --build --wait catalog-mvc-mock catalog-webforms-mock   # in-memory data, no SQL Server
+#   deploy/compose-smoke.sh                                 # end-to-end smoke test of both modes
+#
+# Probes: GET /healthz (liveness, no dependencies) and GET /healthz/ready (readiness, SQL Server check).
+name: eshop-catalog-modern
+
+x-app-healthcheck: &app-healthcheck
+  # aspnet:8.0 has no curl/wget: plain HTTP/1.1 over bash /dev/tcp, healthy only on 200.
+  test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /healthz/ready HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n' >&3 && head -n1 <&3 | grep -q ' 200 '"]
+  interval: 10s
+  timeout: 5s
+  retries: 6
+  start_period: 20s
+
+x-app-sql-env: &app-sql-env
+  ASPNETCORE_ENVIRONMENT: Production
+  UseMockData: "false"
+  ConnectionStrings__CatalogDBContext: "Server=sqldata,1433;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True"
+
+x-app-mock-env: &app-mock-env
+  ASPNETCORE_ENVIRONMENT: Production
+  UseMockData: "true"
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+    ports:
+      - "${SQLSERVER_PORT:-5433}:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -b -Q 'SELECT 1' > /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  catalog-mvc:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.mvc
+    image: eshop-catalog-mvc:local
+    environment: *app-sql-env
+    ports:
+      - "${CATALOG_MVC_PORT:-5300}:8080"
+    depends_on:
+      sqldata:
+        condition: service_healthy
+    healthcheck: *app-healthcheck
+
+  catalog-webforms:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.webforms
+    image: eshop-catalog-webforms:local
+    environment: *app-sql-env
+    ports:
+      - "${CATALOG_WEBFORMS_PORT:-5301}:8080"
+    depends_on:
+      sqldata:
+        condition: service_healthy
+    healthcheck: *app-healthcheck
+
+  catalog-mvc-mock:
+    profiles: ["mock"]
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.mvc
+    image: eshop-catalog-mvc:local
+    environment: *app-mock-env
+    ports:
+      - "${CATALOG_MVC_MOCK_PORT:-5310}:8080"
+    healthcheck: *app-healthcheck
+
+  catalog-webforms-mock:
+    profiles: ["mock"]
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.webforms
+    image: eshop-catalog-webforms:local
+    environment: *app-mock-env
+    ports:
+      - "${CATALOG_WEBFORMS_MOCK_PORT:-5311}:8080"
+    healthcheck: *app-healthcheck
+
+volumes:
+  sqldata:

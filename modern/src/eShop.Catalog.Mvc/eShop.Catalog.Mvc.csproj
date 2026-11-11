@@ -5,4 +5,7 @@
   <ItemGroup>
     <ProjectReference Include="..\eShop.Catalog.Data\eShop.Catalog.Data.csproj" />
   </ItemGroup>
+  <ItemGroup Label="Ops (S9)">
+    <PackageReference Include="Microsoft.Data.SqlClient" />
+  </ItemGroup>
 </Project>
