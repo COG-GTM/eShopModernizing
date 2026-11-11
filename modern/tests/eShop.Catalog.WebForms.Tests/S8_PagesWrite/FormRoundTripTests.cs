@@ -138,6 +138,8 @@ public sealed partial class FormRoundTripTests : IDisposable
     [InlineData("Price", "1000000.01", CatalogItemFormInput.PriceRangeMessage)]
     [InlineData("Price", "-1", CatalogItemFormInput.PriceRangeMessage)]
     [InlineData("Price", "1 . 2", CatalogItemFormInput.PriceRangeMessage)]
+    [InlineData("Price", "1 .", CatalogItemFormInput.PriceRangeMessage)]
+    [InlineData("Price", "1 .2", CatalogItemFormInput.PriceRangeMessage)]
     [InlineData("Stock", "10000001", CatalogItemFormInput.StockRangeMessage)]
     [InlineData("Restock", "-1", CatalogItemFormInput.RestockRangeMessage)]
     [InlineData("Maxstock", "abc", CatalogItemFormInput.MaxStockRangeMessage)]
@@ -267,6 +269,33 @@ public sealed partial class FormRoundTripTests : IDisposable
         Assert.Equal(".NET Bot Black Hoodie", item.Name);
         Assert.Equal(19.5m, item.Price);
         Assert.Equal(100, item.AvailableStock);
+    }
+
+    [Theory]
+    [InlineData("1 .")]
+    [InlineData("1 .2")]
+    public async Task Edit_post_with_unparseable_price_rerenders_price_message_instead_of_500(string price)
+    {
+        var form = new Dictionary<string, string>
+        {
+            [P + "Name"] = "Should not be saved",
+            [P + "Description"] = "x",
+            [P + "BrandDropDownList"] = "4",
+            [P + "TypeDropDownList"] = "1",
+            [P + "Price"] = price,
+            [P + "Stock"] = "1",
+            [P + "Restock"] = "0",
+            [P + "Maxstock"] = "0",
+        };
+
+        using var response = await Post("/Catalog/Edit/1", await Token("/Catalog/Edit/1"), form);
+        var html = await response.Content.ReadAsStringAsync();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal([CatalogItemFormInput.PriceRangeMessage], DownlevelMessages(html));
+        var item = Catalog.FindCatalogItem(1)!;
+        Assert.Equal(".NET Bot Black Hoodie", item.Name);
+        Assert.Equal(19.5m, item.Price);
     }
 
     [Fact]
