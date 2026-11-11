@@ -11,7 +11,10 @@ builder.Services.AddCatalogWebApi();                        // S5  Hosting/WebAp
 
 var app = builder.Build();
 
+app.UseCatalogForwardedHeaders();                           // S2  Hosting/MvcUiExtensions.cs
+app.UseCatalogSession();                                    // S2  Hosting/MvcUiExtensions.cs
 app.UseCatalogErrorHandling();                              // S2  Hosting/MvcUiExtensions.cs
+app.UseCatalogLocalization();                               // S2  Hosting/MvcUiExtensions.cs
 app.UseCatalogStaticFiles();                                // S2  Hosting/MvcUiExtensions.cs
 app.UseRouting();
 app.MapCatalogHealthChecks();                               // S9  Hosting/ObservabilityExtensions.cs (/healthz)
