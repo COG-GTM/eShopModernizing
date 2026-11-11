@@ -1,0 +1,172 @@
+GET /Catalog/Index?pageSize=10&pageIndex=1
+status: 200
+content-type: text/html
+cache-control: private
+---
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index - Catalog manager (MVC)
+</title>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/custom.css" rel="stylesheet"/>
+<link href="/Content/base.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+<script src="/Scripts/modernizr-2.6.2.js">
+</script>
+<script src="/Scripts/modernizr-2.8.3.js">
+</script>
+</head>
+<body>
+<header class="navbar navbar-light navbar-static-top">
+<div class="esh-header-brand">
+<a href="/">
+<img src="/images/brand.png" />
+</a>
+</div>
+</header>
+<section class="esh-app-hero">
+<div class="container esh-header">
+<h1 class="esh-header-title" >Catalog manager
+<span>(MVC)
+</span>
+</h1>
+</div>
+</section>
+<div class="esh-table">
+<p class="esh-link-wrapper">
+<a class="btn esh-button esh-button-primary" href="/Catalog/Create">Create New
+</a>
+</p>
+<table class="table">
+<thead>
+<tr class="esh-table-header">
+<th>
+</th>
+<th> Name
+</th>
+<th> Description
+</th>
+<th> Brand
+</th>
+<th> Type
+</th>
+<th> Price
+</th>
+<th> Picture name
+</th>
+<th> Stock
+</th>
+<th> Restock
+</th>
+<th> Max stock
+</th>
+<th>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/11/pic" />
+</td>
+<td> Cup&lt;T&gt; Sheet
+</td>
+<td> Cup&lt;T&gt; Sheet
+</td>
+<td> .NET
+</td>
+<td> Sheet
+</td>
+<td class="esh-table-price"> $8.50
+</td>
+<td> 11.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/11">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/11">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/11">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/12/pic" />
+</td>
+<td> Prism White TShirt
+</td>
+<td> Prism White TShirt
+</td>
+<td> Other
+</td>
+<td> T-Shirt
+</td>
+<td class="esh-table-price"> $12.00
+</td>
+<td> 12.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/12">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/12">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/12">Delete
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="esh-pager">
+<div class="container">
+<article class="esh-pager-wrapper row">
+<nav>
+<a class="esh-pager-item esh-pager-item--navigable" href="/?pageSize=10&amp;pageIndex=0">Previous
+</a>
+<span class="esh-pager-item"> Showing 10 of 12 products - Page 2 - 2
+</span>
+<a class="esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" href="/?pageSize=10&amp;pageIndex=2">Next
+</a>
+</nav>
+</article>
+</div>
+</div>
+</div>
+<footer class="esh-app-footer">
+<div class="container">
+<article class="row">
+<section class="col-sm-6">
+<img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+</section>
+<section class="col-sm-6">
+<img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+<br />
+<small>{masked}
+</small>
+</section>
+</article>
+</div>
+</footer>
+<script src="/Scripts/jquery-3.3.1.js">
+</script>
+<script src="/Scripts/bootstrap.js">
+</script>
+<script src="/Scripts/respond.js">
+</script>
+</body>
+</html>

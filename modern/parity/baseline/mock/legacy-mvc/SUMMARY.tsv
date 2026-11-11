@@ -1,0 +1,20 @@
+route	status	content-type	location	normalised-sha256
+/	200	text/html		72b1bd3e16a9dd00
+/Catalog/Index?pageSize=10&pageIndex=1	200	text/html		be647b1506358a8c
+/Catalog/Index?pageSize=5&pageIndex=2	200	text/html		cf876c56f5601463
+/Catalog/Details/1	200	text/html		84f8354e1d168c8b
+/Catalog/Details/999	404	text/html		605cd651ee208837
+/Catalog/Details	400	text/html		605cd651ee208837
+/Catalog/Create	200	text/html		6fc12f6c7c64715c
+/Catalog/Edit/1	200	text/html		9c1dfa54b0617591
+/Catalog/Edit/999	404	text/html		605cd651ee208837
+/Catalog/Delete/1	200	text/html		3096a5e9a85849ae
+/Catalog/Delete/999	404	text/html		605cd651ee208837
+/items/1/pic	200	image/png		4484a4eae9e3c5ac
+/items/999/pic	404	text/html		605cd651ee208837
+/items/0/pic	400	text/html		605cd651ee208837
+/api	404	text/html		36a2d222aa0ef5b2
+/api/brands	200	application/json; charset=utf-8		284afa632a68a69b
+/api/brands/2	200	application/json; charset=utf-8		98ce3348e3a1eee4
+/api/brands/999	404	text/html		605cd651ee208837
+/api/files	200	text/html		4963854ea87fbe58

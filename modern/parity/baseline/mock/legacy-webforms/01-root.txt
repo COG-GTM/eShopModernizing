@@ -1,0 +1,662 @@
+GET /
+status: 200
+content-type: text/html
+cache-control: private
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title> Home Page - Catalog manager (Web Forms)
+</title>
+<script src="/Scripts/modernizr-2.8.3.js">
+</script>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/custom.css" rel="stylesheet"/>
+<link href="/Content/base.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+<form method="post" action="Default.aspx" id="ctl00_ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="{masked}" />
+</div>
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjax.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js" type="text/javascript">
+</script>
+<script src="/Scripts/jquery-3.3.1.js" type="text/javascript">
+</script>
+<script src="/Scripts/bootstrap.js" type="text/javascript">
+</script>
+<script src="/Scripts/respond.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/WebForms.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/WebUIValidation.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/MenuStandards.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/GridView.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/DetailsView.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/TreeView.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/WebParts.js" type="text/javascript">
+</script>
+<script src="/Scripts/WebForms/Focus.js" type="text/javascript">
+</script>
+<header class="navbar navbar-light navbar-static-top">
+<div class="esh-header-brand">
+<a href="./">
+<img src="/images/brand.png" />
+</a>
+</div>
+</header>
+<section class="esh-app-hero">
+<div class="container esh-header">
+<h1 class="esh-header-title">Catalog manager
+<span>(Web Forms)
+</span>
+</h1>
+</div>
+</section>
+<div>
+<div class="esh-table">
+<p class="esh-link-wrapper">
+<a class="btn esh-button esh-button-primary" href="/Catalog/Create"> Create New
+</a>
+</p>
+<span id="ctl00_MainContent_productList">
+<table class="table">
+<thead>
+<tr class="esh-table-header">
+<th>
+</th>
+<th>Name
+</th>
+<th>Description
+</th>
+<th>Brand
+</th>
+<th>Type
+</th>
+<th>Price
+</th>
+<th>Picture name
+</th>
+<th>Stock
+</th>
+<th>Restock
+</th>
+<th>Max stock
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/1.png' />
+</a>
+</td>
+<td>
+<p> .NET Bot Black Hoodie
+</p>
+</td>
+<td>
+<p> .NET Bot Black Hoodie
+</p>
+</td>
+<td>
+<p> .NET
+</p>
+</td>
+<td>
+<p> T-Shirt
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">19.5
+</span>
+</p>
+</td>
+<td>
+<p> 1.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/1"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/1"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/1"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/2.png' />
+</a>
+</td>
+<td>
+<p> .NET Black &amp; White Mug
+</p>
+</td>
+<td>
+<p> .NET Black &amp; White Mug
+</p>
+</td>
+<td>
+<p> .NET
+</p>
+</td>
+<td>
+<p> Mug
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">8.50
+</span>
+</p>
+</td>
+<td>
+<p> 2.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/2"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/2"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/2"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/3.png' />
+</a>
+</td>
+<td>
+<p> Prism White T-Shirt
+</p>
+</td>
+<td>
+<p> Prism White T-Shirt
+</p>
+</td>
+<td>
+<p> Other
+</p>
+</td>
+<td>
+<p> T-Shirt
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">12
+</span>
+</p>
+</td>
+<td>
+<p> 3.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/3"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/3"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/3"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/4.png' />
+</a>
+</td>
+<td>
+<p> .NET Foundation T-shirt
+</p>
+</td>
+<td>
+<p> .NET Foundation T-shirt
+</p>
+</td>
+<td>
+<p> .NET
+</p>
+</td>
+<td>
+<p> T-Shirt
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">12
+</span>
+</p>
+</td>
+<td>
+<p> 4.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/4"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/4"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/4"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/5.png' />
+</a>
+</td>
+<td>
+<p> Roslyn Red Sheet
+</p>
+</td>
+<td>
+<p> Roslyn Red Sheet
+</p>
+</td>
+<td>
+<p> Other
+</p>
+</td>
+<td>
+<p> Sheet
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">8.5
+</span>
+</p>
+</td>
+<td>
+<p> 5.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/5"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/5"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/5"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/6.png' />
+</a>
+</td>
+<td>
+<p> .NET Blue Hoodie
+</p>
+</td>
+<td>
+<p> .NET Blue Hoodie
+</p>
+</td>
+<td>
+<p> .NET
+</p>
+</td>
+<td>
+<p> T-Shirt
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">12
+</span>
+</p>
+</td>
+<td>
+<p> 6.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/6"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/6"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/6"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/7.png' />
+</a>
+</td>
+<td>
+<p> Roslyn Red T-Shirt
+</p>
+</td>
+<td>
+<p> Roslyn Red T-Shirt
+</p>
+</td>
+<td>
+<p> Other
+</p>
+</td>
+<td>
+<p> T-Shirt
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">12
+</span>
+</p>
+</td>
+<td>
+<p> 7.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/7"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/7"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/7"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/8.png' />
+</a>
+</td>
+<td>
+<p> Kudu Purple Hoodie
+</p>
+</td>
+<td>
+<p> Kudu Purple Hoodie
+</p>
+</td>
+<td>
+<p> Other
+</p>
+</td>
+<td>
+<p> T-Shirt
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">8.5
+</span>
+</p>
+</td>
+<td>
+<p> 8.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/8"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/8"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/8"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/9.png' />
+</a>
+</td>
+<td>
+<p> Cup&lt;T&gt; White Mug
+</p>
+</td>
+<td>
+<p> Cup&lt;T&gt; White Mug
+</p>
+</td>
+<td>
+<p> Other
+</p>
+</td>
+<td>
+<p> Mug
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">12
+</span>
+</p>
+</td>
+<td>
+<p> 9.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/9"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/9"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/9"> Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<image class="esh-thumbnail" src='/Pics/10.png' />
+</a>
+</td>
+<td>
+<p> .NET Foundation Sheet
+</p>
+</td>
+<td>
+<p> .NET Foundation Sheet
+</p>
+</td>
+<td>
+<p> .NET
+</p>
+</td>
+<td>
+<p> Sheet
+</p>
+</td>
+<td>
+<p>
+<span class="esh-price">12
+</span>
+</p>
+</td>
+<td>
+<p> 10.png
+</p>
+</td>
+<td>
+<p> 100
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<p> 0
+</p>
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/10"> Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/10"> Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/10"> Delete
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</span>
+</div>
+<div class="esh-pager">
+<div class="container">
+<article class="esh-pager-wrapper row">
+<nav>
+<a id="ctl00_MainContent_PaginationPrevious" class="esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" href="/Default/index/-1/size/10"> Previous
+</a>
+<span class="esh-pager-item">Showing 10 of 12 products - Page 1 - 2
+</span>
+<a id="ctl00_MainContent_PaginationNext" class="esh-pager-item esh-pager-item--navigable" href="/Default/index/1/size/10"> Next
+</a>
+</nav>
+</article>
+</div>
+</div>
+</div>
+<footer class="esh-app-footer">
+<div class="container">
+<article class="row">
+<section class="col-sm-6">
+<img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+</section>
+<section class="col-sm-6">
+<img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+<br />
+<small style="color:white">
+<span id="ctl00_SessionInfoLabel">{masked}
+</span>
+</small>
+</section>
+</article>
+</div>
+</footer>
+</form>
+</body>
+</html>

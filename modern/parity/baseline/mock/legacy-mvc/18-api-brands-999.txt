@@ -1,0 +1,6 @@
+GET /api/brands/999
+status: 404
+content-type: text/html
+cache-control: no-cache
+---
+(empty body)

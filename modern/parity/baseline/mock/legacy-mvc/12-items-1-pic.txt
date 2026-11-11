@@ -1,0 +1,6 @@
+GET /items/1/pic
+status: 200
+content-type: image/png
+cache-control: private
+---
+(binary image/png) bytes=151640 sha256=0487bc526da61586780355f4f50aa368f09c0a212809b1f08444382f4d789eb0

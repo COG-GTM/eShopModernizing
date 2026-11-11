@@ -1,0 +1,420 @@
+GET /
+status: 200
+content-type: text/html
+cache-control: private
+---
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index - Catalog manager (MVC)
+</title>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/custom.css" rel="stylesheet"/>
+<link href="/Content/base.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+<script src="/Scripts/modernizr-2.6.2.js">
+</script>
+<script src="/Scripts/modernizr-2.8.3.js">
+</script>
+</head>
+<body>
+<header class="navbar navbar-light navbar-static-top">
+<div class="esh-header-brand">
+<a href="/">
+<img src="/images/brand.png" />
+</a>
+</div>
+</header>
+<section class="esh-app-hero">
+<div class="container esh-header">
+<h1 class="esh-header-title" >Catalog manager
+<span>(MVC)
+</span>
+</h1>
+</div>
+</section>
+<div class="esh-table">
+<p class="esh-link-wrapper">
+<a class="btn esh-button esh-button-primary" href="/Catalog/Create">Create New
+</a>
+</p>
+<table class="table">
+<thead>
+<tr class="esh-table-header">
+<th>
+</th>
+<th> Name
+</th>
+<th> Description
+</th>
+<th> Brand
+</th>
+<th> Type
+</th>
+<th> Price
+</th>
+<th> Picture name
+</th>
+<th> Stock
+</th>
+<th> Restock
+</th>
+<th> Max stock
+</th>
+<th>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/1/pic" />
+</td>
+<td> .NET Bot Black Hoodie
+</td>
+<td> .NET Bot Black Hoodie
+</td>
+<td> .NET
+</td>
+<td> T-Shirt
+</td>
+<td class="esh-table-price"> $19.50
+</td>
+<td> 1.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/1">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/1">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/1">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/2/pic" />
+</td>
+<td> .NET Black &amp; White Mug
+</td>
+<td> .NET Black &amp; White Mug
+</td>
+<td> .NET
+</td>
+<td> Mug
+</td>
+<td class="esh-table-price"> $8.50
+</td>
+<td> 2.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/2">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/2">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/2">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/3/pic" />
+</td>
+<td> Prism White T-Shirt
+</td>
+<td> Prism White T-Shirt
+</td>
+<td> Other
+</td>
+<td> T-Shirt
+</td>
+<td class="esh-table-price"> $12.00
+</td>
+<td> 3.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/3">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/3">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/3">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/4/pic" />
+</td>
+<td> .NET Foundation T-shirt
+</td>
+<td> .NET Foundation T-shirt
+</td>
+<td> .NET
+</td>
+<td> T-Shirt
+</td>
+<td class="esh-table-price"> $12.00
+</td>
+<td> 4.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/4">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/4">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/4">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/5/pic" />
+</td>
+<td> Roslyn Red Sheet
+</td>
+<td> Roslyn Red Sheet
+</td>
+<td> Other
+</td>
+<td> Sheet
+</td>
+<td class="esh-table-price"> $8.50
+</td>
+<td> 5.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/5">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/5">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/5">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/6/pic" />
+</td>
+<td> .NET Blue Hoodie
+</td>
+<td> .NET Blue Hoodie
+</td>
+<td> .NET
+</td>
+<td> T-Shirt
+</td>
+<td class="esh-table-price"> $12.00
+</td>
+<td> 6.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/6">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/6">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/6">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/7/pic" />
+</td>
+<td> Roslyn Red T-Shirt
+</td>
+<td> Roslyn Red T-Shirt
+</td>
+<td> Other
+</td>
+<td> T-Shirt
+</td>
+<td class="esh-table-price"> $12.00
+</td>
+<td> 7.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/7">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/7">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/7">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/8/pic" />
+</td>
+<td> Kudu Purple Hoodie
+</td>
+<td> Kudu Purple Hoodie
+</td>
+<td> Other
+</td>
+<td> T-Shirt
+</td>
+<td class="esh-table-price"> $8.50
+</td>
+<td> 8.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/8">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/8">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/8">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/9/pic" />
+</td>
+<td> Cup&lt;T&gt; White Mug
+</td>
+<td> Cup&lt;T&gt; White Mug
+</td>
+<td> Other
+</td>
+<td> Mug
+</td>
+<td class="esh-table-price"> $12.00
+</td>
+<td> 9.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/9">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/9">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/9">Delete
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<img class="esh-thumbnail" src="{origin}/items/10/pic" />
+</td>
+<td> .NET Foundation Sheet
+</td>
+<td> .NET Foundation Sheet
+</td>
+<td> .NET
+</td>
+<td> Sheet
+</td>
+<td class="esh-table-price"> $12.00
+</td>
+<td> 10.png
+</td>
+<td> 100
+</td>
+<td> 0
+</td>
+<td> 0
+</td>
+<td>
+<a class="esh-table-link" href="/Catalog/Edit/10">Edit
+</a> |
+<a class="esh-table-link" href="/Catalog/Details/10">Details
+</a> |
+<a class="esh-table-link" href="/Catalog/Delete/10">Delete
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="esh-pager">
+<div class="container">
+<article class="esh-pager-wrapper row">
+<nav>
+<a class="esh-pager-item esh-pager-item--navigable esh-pager-item--hidden" href="/?pageSize=10&amp;pageIndex=-1">Previous
+</a>
+<span class="esh-pager-item"> Showing 10 of 12 products - Page 1 - 2
+</span>
+<a class="esh-pager-item esh-pager-item--navigable" href="/?pageSize=10&amp;pageIndex=1">Next
+</a>
+</nav>
+</article>
+</div>
+</div>
+</div>
+<footer class="esh-app-footer">
+<div class="container">
+<article class="row">
+<section class="col-sm-6">
+<img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+</section>
+<section class="col-sm-6">
+<img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+<br />
+<small>{masked}
+</small>
+</section>
+</article>
+</div>
+</footer>
+<script src="/Scripts/jquery-3.3.1.js">
+</script>
+<script src="/Scripts/bootstrap.js">
+</script>
+<script src="/Scripts/respond.js">
+</script>
+</body>
+</html>

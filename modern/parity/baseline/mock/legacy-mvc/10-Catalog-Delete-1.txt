@@ -1,0 +1,118 @@
+GET /Catalog/Delete/1
+status: 200
+content-type: text/html
+cache-control: private
+---
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete - Catalog manager (MVC)
+</title>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/custom.css" rel="stylesheet"/>
+<link href="/Content/base.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+<script src="/Scripts/modernizr-2.6.2.js">
+</script>
+<script src="/Scripts/modernizr-2.8.3.js">
+</script>
+</head>
+<body>
+<header class="navbar navbar-light navbar-static-top">
+<div class="esh-header-brand">
+<a href="/">
+<img src="/images/brand.png" />
+</a>
+</div>
+</header>
+<section class="esh-app-hero">
+<div class="container esh-header">
+<h1 class="esh-header-title" >Catalog manager
+<span>(MVC)
+</span>
+</h1>
+</div>
+</section>
+<h2 class="esh-body-title">Delete
+</h2>
+<div class="container">
+<h3>Are you sure you want to delete this?
+</h3>
+<div class="row">
+<img class="col-md-6 esh-picture" src="{origin}/items/1/pic" />
+<dl class="col-md-6 dl-horizontal">
+<dt> Name
+</dt>
+<dd> .NET Bot Black Hoodie
+</dd>
+<dt> Description
+</dt>
+<dd> .NET Bot Black Hoodie
+</dd>
+<dt> Brand
+</dt>
+<dd> .NET
+</dd>
+<dt> Type
+</dt>
+<dd> T-Shirt
+</dd>
+<dt> Price
+</dt>
+<dd> $19.50
+</dd>
+<dt> Picture name
+</dt>
+<dd> 1.png
+</dd>
+<dt> Stock
+</dt>
+<dd> 100
+</dd>
+<dt> Restock
+</dt>
+<dd> 0
+</dd>
+<dt> Max stock
+</dt>
+<dd> 0
+</dd>
+<dt>
+</dt>
+<dd class="text-right esh-button-actions">
+<form action="/Catalog/Delete/1" method="post">
+<input name="__RequestVerificationToken" type="hidden" value="{masked}" />
+<a class="btn esh-button esh-button-secondary" href="/">[ Cancel ]
+</a>
+<button type="submit" class="btn esh-button esh-button-primary">[ Delete ]
+</button>
+</form>
+</dd>
+</dl>
+</div>
+</div>
+<footer class="esh-app-footer">
+<div class="container">
+<article class="row">
+<section class="col-sm-6">
+<img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+</section>
+<section class="col-sm-6">
+<img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+<br />
+<small>{masked}
+</small>
+</section>
+</article>
+</div>
+</footer>
+<script src="/Scripts/jquery-3.3.1.js">
+</script>
+<script src="/Scripts/bootstrap.js">
+</script>
+<script src="/Scripts/respond.js">
+</script>
+</body>
+</html>
