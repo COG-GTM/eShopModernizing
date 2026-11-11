@@ -16,13 +16,14 @@ public class CatalogItemInputModel
     public int Id { get; set; }
 
     [Required]
+    [ColumnMaxLength(50)]
     public string? Name { get; set; }
 
     public string? Description { get; set; }
 
     [Required]
     [RegularExpression(@"^\d+(\.\d{0,2})*$", ErrorMessage = "The field Price must be a positive number with maximum two decimals.")]
-    [Range(0, 1000000)]
+    [SafeRange(0, 1000000)]
     [DataType(DataType.Currency)]
     public decimal? Price { get; set; }
 
