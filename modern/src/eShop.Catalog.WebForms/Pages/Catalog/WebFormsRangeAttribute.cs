@@ -44,6 +44,14 @@ public sealed partial class WebFormsRangeAttribute : ValidationAttribute
             return true;
         }
 
+        // Intentional hardening: legacy saved Price via decimal.Parse(raw text) and returned 500 for text its
+        // validator accepted (e.g. "1 ."); such text now fails validation with the legacy message instead.
+        if (Type == WebFormsValidationDataType.Currency
+            && !decimal.TryParse(text, NumberStyles.Number, CatalogItemFormInput.LegacyCulture, out _))
+        {
+            return false;
+        }
+
         return TryConvert(text, Type, out var number)
             && TryConvert(Minimum, Type, out var min)
             && TryConvert(Maximum, Type, out var max)

@@ -26,7 +26,7 @@ public abstract class CatalogItemFormInput
     public const string StockMinimum = "0";
     public const string StockMaximum = "10000000";
 
-    private static readonly CultureInfo LegacyCulture = CultureInfo.GetCultureInfo("en-US");
+    internal static readonly CultureInfo LegacyCulture = CultureInfo.GetCultureInfo("en-US");
 
     [ModelBinder(Name = FieldNamePrefix + nameof(Name))]
     [Required(ErrorMessage = NameRequiredMessage)]
