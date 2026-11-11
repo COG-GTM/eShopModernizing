@@ -1,0 +1,5 @@
+# Unmodified copies of the legacy eShopLegacyWebForms static files (jQuery, Bootstrap, MSAjax, WebForms scripts):
+# collapsed in diffs so reviews focus on the port.
+Scripts/** -diff linguist-vendored
+Content/bootstrap.css -diff linguist-vendored
+fonts/** linguist-vendored

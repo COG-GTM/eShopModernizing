@@ -1,0 +1,83 @@
+@*
+    Port of legacy Site.Master. Markup, attribute order and CSS classes follow the legacy render (parity/baseline):
+    ScriptManager is replaced by the plain script tags it rendered, ~/ links stay request-relative like WebForms.
+    The legacy page-wide <form> is opt-in (ViewData[LegacyLayout.PageFormKey] = true) so pages can own their forms.
+*@
+@{
+    var root = LegacyLayout.RelativeRoot(Context.Request.Path);
+    var pageForm = ViewData[LegacyLayout.PageFormKey] is true;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>
+	@ViewData["Title"]@LegacyLayout.TitleSuffix
+</title><script src="/Scripts/modernizr-2.8.3.js"></script>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/custom.css" rel="stylesheet"/>
+<link href="/Content/base.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+<link rel="shortcut icon" type="image/x-icon" href="@(root)favicon.ico" /></head>
+<body>
+@if (pageForm)
+{
+    @:<form method="post" action="@LegacyLayout.FormAction(Context.Request.Path, Context.Request.QueryString)" id="ctl00_ctl01">
+    @:<div class="aspNetHidden">
+    @Html.AntiForgeryToken()
+    @:</div>
+}
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjax.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js" type="text/javascript"></script>
+<script src="/Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+<script src="/Scripts/bootstrap.js" type="text/javascript"></script>
+<script src="/Scripts/respond.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/WebForms.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/WebUIValidation.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/MenuStandards.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/GridView.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/DetailsView.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/TreeView.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/WebParts.js" type="text/javascript"></script>
+<script src="/Scripts/WebForms/Focus.js" type="text/javascript"></script>
+
+        <header class="navbar navbar-light navbar-static-top">
+            <div class="esh-header-brand">
+                <a href="@LegacyLayout.HomeHref(Context.Request.Path)">
+                    <img src="/images/brand.png" />
+                </a>
+            </div>
+        </header>
+
+        <section class="esh-app-hero">
+            <div class="container esh-header">
+                <h1 class="esh-header-title">Catalog manager <span>(Web Forms)</span></h1>
+            </div>
+        </section>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <footer class="esh-app-footer">
+            <div class="container">
+                <article class="row">
+                    <section class="col-sm-6">
+                        <img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+                    </section>
+                    <section class="col-sm-6">
+                        <img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+                        <br />
+                        <small style="color:white"><span id="ctl00_SessionInfoLabel">@SessionInfoMiddleware.FooterText(Context.Session)</span></small>
+                    </section>
+                </article>
+            </div>
+        </footer>
+
+@if (pageForm)
+{
+    @:</form>
+}
+</body>
+</html>
