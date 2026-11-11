@@ -1,0 +1,33 @@
+@using eShop.Catalog.Mvc.Paging
+@model eShop.Catalog.Data.ViewModel.PaginatedItemsViewModel<CatalogItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="esh-table">
+    <p class="esh-link-wrapper">
+        @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn esh-button esh-button-primary" })
+    </p>
+
+    @await Html.PartialAsync("CatalogTable", Model.Data)
+
+    <div class="esh-pager">
+        <div class="container">
+            <article class="esh-pager-wrapper row">
+                <nav>
+
+                    @Html.ActionLink("Previous", "Index", CatalogPager.PreviousRouteValues(Model), new { @class = CatalogPager.PreviousCssClass(Model) })
+
+                    <span class="esh-pager-item">
+                        @CatalogPager.Summary(Model)
+                    </span>
+
+                    @Html.ActionLink("Next", "Index", CatalogPager.NextRouteValues(Model), new { @class = CatalogPager.NextCssClass(Model) })
+
+            </nav>
+        </article>
+    </div>
+</div>
+
+</div>
