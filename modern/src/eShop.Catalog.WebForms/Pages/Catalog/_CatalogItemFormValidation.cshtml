@@ -1,0 +1,63 @@
+@* Client-side port of the WebForms RequiredFieldValidator / RangeValidator (WebUIValidation.js) for the
+   validator spans rendered by WebFormsValidatorMarkup: validates on change and blocks submit while invalid. *@
+<script>
+    (function () {
+        'use strict';
+        function trim(s) { return (s || '').replace(/^\s+|\s+$/g, ''); }
+        function convert(text, span) {
+            var type = span.getAttribute('data-val-type'), m;
+            if (type === 'Integer') {
+                m = text.match(/^\s*([-+])?([0-9]+)\s*$/);
+                return m ? parseInt((m[1] || '') + m[2], 10) : null;
+            }
+            if (type === 'Currency') {
+                var dec = span.getAttribute('data-val-decimalchar'), grp = span.getAttribute('data-val-groupchar');
+                var digits = parseInt(span.getAttribute('data-val-digits'), 10), size = parseInt(span.getAttribute('data-val-groupsize'), 10);
+                var first = size > 0 ? '{1,' + size + '}' : '+', next = size > 0 ? '{' + size + '}' : '+';
+                var re = new RegExp('^\\s*([-+])?([0-9]' + first + '(\\' + grp + '[0-9]' + next + ')+|[0-9]*)' +
+                    (digits > 0 ? '(\\s*\\' + dec + '\\s*([0-9]{1,' + digits + '}))?' : '') + '\\s*$');
+                m = text.match(re);
+                if (!m) { return null; }
+                var whole = (m[2] || '').split(grp).join(''), frac = digits > 0 ? (m[5] || '') : '';
+                if (whole.length === 0 && frac.length === 0) { return null; }
+                var n = parseFloat((m[1] || '') + (whole || '0') + (frac ? '.' + frac : ''));
+                return isNaN(n) ? null : n;
+            }
+            return text;
+        }
+        function isValid(span) {
+            var control = document.getElementById(span.getAttribute('data-val-controltovalidate'));
+            if (!control) { return true; }
+            var fn = span.getAttribute('data-val-evaluationfunction');
+            if (fn === 'RequiredFieldValidatorEvaluateIsValid') {
+                return trim(control.value) !== trim(span.getAttribute('data-val-initialvalue'));
+            }
+            if (fn === 'RangeValidatorEvaluateIsValid') {
+                if (trim(control.value).length === 0) { return true; }
+                var value = convert(control.value, span);
+                var min = convert(span.getAttribute('data-val-minimumvalue'), span);
+                var max = convert(span.getAttribute('data-val-maximumvalue'), span);
+                return value !== null && value >= min && value <= max;
+            }
+            return true;
+        }
+        function update(span) {
+            var ok = isValid(span);
+            span.style.display = ok ? 'none' : 'inline';
+            return ok;
+        }
+        var spans = Array.prototype.slice.call(document.querySelectorAll('span[data-val="true"][data-val-evaluationfunction]'));
+        spans.forEach(function (span) {
+            var control = document.getElementById(span.getAttribute('data-val-controltovalidate'));
+            if (control) { control.addEventListener('change', function () { update(span); }); }
+        });
+        var form = spans.length ? spans[0].closest('form') : null;
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                var ok = true;
+                spans.forEach(function (span) { if (!update(span)) { ok = false; } });
+                if (!ok) { e.preventDefault(); }
+            });
+        }
+    })();
+</script>

@@ -9,6 +9,12 @@ public static class PagesRoutingExtensions
 {
     public static IServiceCollection AddCatalogPagesRouting(this IServiceCollection services)
     {
+        services.Configure<Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>(options =>
+        {
+            // S8: Catalog/Create.aspx is also reachable by its physical file name; /Catalog/Edit/{id} is the page's own route template.
+            options.Conventions.AddPageRoute("/Catalog/Create", "Catalog/Create.aspx");
+        });
+
         return services;
     }
 }
