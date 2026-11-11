@@ -2,7 +2,7 @@
 
 Both legacy and modern responses go through exactly the same functions, so any remaining difference is a real one:
 - body: capture_baseline.normalise_body (tokens/viewstate masked, session footer masked, origin -> {origin},
-  scripts/styles dropped, one tag per line, JSON re-serialised with sorted keys, binaries -> size + sha256)
+  scripts/styles dropped, one tag per line, JSON re-indented with property order kept (serialised order is part of the contract; json_shape compares sorted keys), binaries -> size + sha256)
   plus asset cache-busting hashes (?v=...) masked;
 - page-state tokens: the hidden __VIEWSTATE (legacy WebForms) and __RequestVerificationToken (modern, the
   antiforgery hardening) inputs are one canonical line; __EVENTVALIDATION / __VIEWSTATEGENERATOR and the
