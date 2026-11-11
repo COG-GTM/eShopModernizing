@@ -62,26 +62,28 @@ RULES = [
      "reason": "S7 (PR #109): Delete requires the Delete button field; a bare postback re-renders the page."},
 ]
 
-# Differences awaiting a classification decision from the story owner. They stay FAIL (fail-closed); the
-# reason only explains them in the report. Moving a rule into RULES is the decision.
-PENDING_A = ("Pending decision A (WebForms server-side validation with client-side validation bypassed): legacy "
-             "code-behind checks Page.ModelState.IsValid, not Page.IsValid, so without the JS validators it saves "
-             "the invalid item (302) or fails in EF (500); modern (S8, PR #114) re-renders with the legacy validator "
-             "message and saves nothing. With JS on, both block the submit identically.")
-PENDING_B = ("Pending decision B (legacy in-memory mock): legacy's mock service leaves CatalogBrand/CatalogType null "
-             "on created/edited items until the list page renders, so legacy MVC shows blank Brand/Type and legacy "
-             "WebForms throws a NullReferenceException (500) on Details/Delete; the later steps on item 13 inherit "
-             "that state. Modern resolves the lookups (S4). Absent in SQL mode.")
-PENDING = [
+# Story-owner decisions on MBA-3849 (both INTENTIONAL).
+VALIDATION_ENFORCED = (
+    "Decision A: WebForms server-side validation is enforced even when client-side JS is bypassed (same hardening "
+    "family as #117/#118). Legacy code-behind checks Page.ModelState.IsValid, not Page.IsValid, so without the JS "
+    "validators it saves the invalid item (302) or fails in EF (500); modern (S8, PR #114) re-renders with the "
+    "legacy validator message and saves nothing. With JS on, both block the submit identically.")
+LEGACY_MOCK_LOOKUPS = (
+    "Decision B: legacy in-memory mock artefact. Legacy's mock service leaves CatalogBrand/CatalogType null on "
+    "created/edited items until the list page renders, so legacy MVC shows blank Brand/Type and legacy WebForms "
+    "throws a NullReferenceException (500) on Details/Delete; the later steps on item 13 inherit that state. "
+    "Modern resolves the lookups (S4). SQL mode matches.")
+RULES += [
     {"apps": ["webforms"], "steps": ["create-post-price-unparseable", "create-post-noname", "create-post-price-range",
                                      "create-post-stock-range", "edit-1-post-price-range"],
-     "fields": {"status", "location", "body"}, "legacy": {302, 500}, "modern": {200}, "reason": PENDING_A},
+     "fields": {"status", "location", "body"}, "legacy": {302, 500}, "modern": {200}, "reason": VALIDATION_ENFORCED},
     {"apps": ["mvc"], "modes": ["mock"], "steps": ["details-13-edited", "delete-13-get", "details-13-after-noaf-delete"],
-     "fields": {"body"}, "legacy": {200}, "modern": {200}, "reason": PENDING_B},
+     "fields": {"body"}, "legacy": {200}, "modern": {200}, "reason": LEGACY_MOCK_LOOKUPS},
+    # legacy's 500 on GET Delete/13 leaves no form to post, hence the "harness" field on the two Delete posts
     {"apps": ["webforms"], "modes": ["mock"],
      "steps": ["details-13", "details-13-edited", "delete-13-get", "delete-13-post-no-button",
                "details-13-after-nobutton", "delete-13-post", "list-after-delete", "details-13-deleted"],
-     "fields": {"status", "body", "harness"}, "legacy": None, "modern": None, "reason": PENDING_B},
+     "fields": {"status", "body", "harness"}, "legacy": None, "modern": None, "reason": LEGACY_MOCK_LOOKUPS},
 ]
 
 
@@ -96,11 +98,10 @@ def _match(rule, app, mode, step_id, diffs, legacy, modern):
 def classify(app, mode, step_id, diffs, legacy, modern):
     if not diffs:
         return "PASS", ""
-    pending = next((r["reason"] for r in PENDING if _match(r, app, mode, step_id, diffs, legacy, modern)), None)
+    rule = next((r for r in RULES if _match(r, app, mode, step_id, diffs, legacy, modern)), None)
     if "harness" in diffs:
-        return "FAIL", (pending + " | " if pending else "") + "harness error: %s / %s" % (
-            legacy.get("error"), modern.get("error"))
-    for rule in RULES:
-        if _match(rule, app, mode, step_id, diffs, legacy, modern):
-            return "INTENTIONAL", rule["reason"]
-    return "FAIL", pending or "differs in: " + ", ".join(diffs)
+        error = "harness error: %s / %s" % (legacy.get("error"), modern.get("error"))
+        return ("INTENTIONAL", rule["reason"] + " | " + error) if rule else ("FAIL", error)
+    if rule:
+        return "INTENTIONAL", rule["reason"]
+    return "FAIL", "differs in: " + ", ".join(diffs)

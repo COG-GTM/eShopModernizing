@@ -144,16 +144,28 @@ class Classification(unittest.TestCase):
                               {"status": 500}, {"status": 200})
         self.assertEqual("FAIL", verdict)
 
-    def test_pending_decision_stays_fail_with_explanation(self):
+    def test_server_side_validation_decision_is_intentional(self):
         verdict, reason = classify("webforms", "sql", "create-post-noname", ["status", "location", "body"],
                                    {"status": 302}, {"status": 200})
-        self.assertEqual("FAIL", verdict)
-        self.assertIn("Pending decision A", reason)
+        self.assertEqual("INTENTIONAL", verdict)
+        self.assertIn("Decision A", reason)
 
-    def test_mock_only_pending_rule_does_not_cover_sql(self):
+    def test_validation_decision_requires_modern_rerender(self):
+        verdict, _ = classify("webforms", "sql", "create-post-noname", ["status", "location", "body"],
+                              {"status": 302}, {"status": 302})
+        self.assertEqual("FAIL", verdict)
+
+    def test_legacy_mock_decision_covers_harness_error_in_mock(self):
+        verdict, reason = classify("webforms", "mock", "delete-13-post", ["status", "body", "harness"],
+                                   {"status": None, "error": "no POST form"}, {"status": 302})
+        self.assertEqual("INTENTIONAL", verdict)
+        self.assertIn("Decision B", reason)
+        self.assertIn("harness error", reason)
+
+    def test_mock_only_rule_does_not_cover_sql(self):
         verdict, reason = classify("mvc", "sql", "details-13-edited", ["body"], {"status": 200}, {"status": 200})
         self.assertEqual("FAIL", verdict)
-        self.assertNotIn("Pending", reason)
+        self.assertNotIn("Decision", reason)
 
     def test_harness_error_is_fail(self):
         self.assertEqual("FAIL", classify("mvc", "mock", "root", ["harness"], {"error": "x"}, {})[0])
