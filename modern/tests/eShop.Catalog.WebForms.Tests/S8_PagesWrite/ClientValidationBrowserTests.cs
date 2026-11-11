@@ -81,7 +81,9 @@ public sealed class ClientValidationBrowserTests : IClassFixture<KestrelCatalogF
 
         return await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
-            Headless = true,
+            // Chrome 132+ removed the old headless mode Playwright 1.48 requests; ask for the new one explicitly.
+            Headless = false,
+            Args = ["--headless=new"],
             ExecutablePath = string.IsNullOrEmpty(executable) ? null : executable,
         });
     }
