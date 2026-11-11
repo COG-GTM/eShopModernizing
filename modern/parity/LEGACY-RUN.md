@@ -86,6 +86,6 @@ modern hosts later, so both sides are normalised identically):
   (on IIS it is expected to return `{"Message":"Hello World!"}`).
 - mock vs sql: prices render as `19.5` (mock decimal literal) vs `19.50` (SQL `decimal(18,2)`); everything else is
   the same. Only `baseline/mock/` is committed (the parity reference, since the modern hosts default to
-  `UseMockData=true`); `baseline/sql/` is git-ignored and regenerated with `--sql` when S1 needs it. Mock mode is the primary parity reference because the modern hosts default to `UseMockData=true`.
+  `UseMockData=true`); `baseline/sql/` is git-ignored and regenerated with `--sql` when S1 needs it.
 - MVC `/api/files` is a BinaryFormatter payload served as `text/html`; only its size/hash is recorded. The modern
   replacement is JSON (intentional hardening), so this route is compared by status only.
