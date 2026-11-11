@@ -42,10 +42,11 @@ wait_200() {  # $1 name, $2 url
     [ "$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$2" || true)" = 200 ] && { echo "  $1 ready (${i}s)"; return 0; }
     sleep 1
   done
-  echo "$1 not ready: $2 (log $WORK/logs/$1.log)" >&2; tail -20 "$WORK/logs/$1.log" >&2; exit 1
+  echo "$1 not ready: $2 (log $WORK/logs/$1.log)" >&2; tail -20 "$WORK/logs/$1.log" >&2; stop_all; exit 1
 }
 
-port_free() { ! (exec 3<>"/dev/tcp/127.0.0.1/$1") 2>/dev/null || { echo "port $1 in use" >&2; exit 1; }; }
+port_free() { ! (exec 3<>"/dev/tcp/127.0.0.1/$1") 2>/dev/null || { echo "port $1 in use" >&2; stop_all; exit 1; }; }
+trap 'stop_all; exit 130' INT TERM
 
 start_legacy() {  # $1 name, $2 dir, $3 port
   port_free "$3"; mkdir -p "$WORK/logs"
@@ -106,7 +107,11 @@ run_mode() {  # $1 mock|sql
   wait_200 "legacy-mvc-$m" "http://127.0.0.1:$lm/api/brands"
   wait_200 "legacy-webforms-$m" "http://127.0.0.1:$lw/About.aspx"
   local rc=0
-  if [ "${PARITY_NO_REPLAY:-0}" = 1 ]; then echo "  serving only (PARITY_NO_REPLAY=1); stop with --stop"; return 0; fi
+  if [ "${PARITY_NO_REPLAY:-0}" = 1 ]; then
+    if [ "$KEEP" = 1 ]; then echo "  serving only (PARITY_NO_REPLAY=1); stop with --stop"; else stop_all; fi
+    return 0
+  fi
+  mkdir -p "$OUT/$m" && cp "$OUT/HEAD" "$OUT/$m/HEAD"   # report.py only uses results replayed on the current HEAD
   echo " mvc:";      python3 "$HERE/replay.py" --app mvc --mode "$m" --legacy "http://127.0.0.1:$lm" --modern "http://127.0.0.1:$mm" --out "$OUT/$m/mvc" || rc=1
   echo " webforms:"; python3 "$HERE/replay.py" --app webforms --mode "$m" --legacy "http://127.0.0.1:$lw" --modern "http://127.0.0.1:$mw" --out "$OUT/$m/webforms" || rc=1
   [ "$KEEP" = 1 ] || stop_all
