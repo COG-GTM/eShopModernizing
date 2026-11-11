@@ -3,6 +3,12 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
+  <ItemGroup Label="S1 data (EF Core 8)">
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.20" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.20" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.20" />
+    <PackageVersion Include="Testcontainers.MsSql" Version="4.14.0" />
+  </ItemGroup>
   <ItemGroup Label="Ops (S9)">
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.1.6" />
   </ItemGroup>
