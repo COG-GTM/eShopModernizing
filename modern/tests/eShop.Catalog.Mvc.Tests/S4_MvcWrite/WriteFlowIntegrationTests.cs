@@ -163,6 +163,24 @@ public sealed class WriteFlowIntegrationTests : IDisposable
         Assert.NotNull(CatalogOf(factory).FindCatalogItem(2));
     }
 
+    [Theory]
+    [InlineData("/Catalog/Create", "CatalogBrandId")]
+    [InlineData("/Catalog/Create", "CatalogTypeId")]
+    [InlineData("/Catalog/Edit/1", "CatalogBrandId")]
+    [InlineData("/Catalog/Edit/1", "CatalogTypeId")]
+    public async Task Unknown_brand_or_type_id_returns_400_and_changes_nothing(string path, string field)
+    {
+        var (_, token) = await GetFormAsync(client, path);
+        var form = path.Contains("Edit") ? EditItem1Form(token, "21.00") : ValidCreateForm(token);
+        form[field] = "999";
+
+        using var response = await PostFormAsync(client, path, form);
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal(12, TotalItems);
+        Assert.Equal(19.5m, CatalogOf(factory).FindCatalogItem(1)!.Price);
+    }
+
     [Fact]
     public async Task Over_posted_picture_and_reorder_fields_are_ignored()
     {

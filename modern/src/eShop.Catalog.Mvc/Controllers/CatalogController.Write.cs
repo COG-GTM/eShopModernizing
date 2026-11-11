@@ -26,6 +26,11 @@ public partial class CatalogController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create([FromServices] ICatalogService service, CatalogItemInputModel catalogItem)
     {
+        if (!LookupsExist(service, catalogItem))
+        {
+            return BadRequest();
+        }
+
         if (ModelState.IsValid)
         {
             service.CreateCatalogItem(catalogItem.ToNewEntity());
@@ -62,6 +67,11 @@ public partial class CatalogController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit([FromServices] ICatalogService service, CatalogItemInputModel catalogItem)
     {
+        if (!LookupsExist(service, catalogItem))
+        {
+            return BadRequest();
+        }
+
         var existing = service.FindCatalogItem(catalogItem.Id);
         if (ModelState.IsValid)
         {
@@ -123,6 +133,14 @@ public partial class CatalogController : Controller
     private RedirectResult RedirectToCatalogIndex()
     {
         return Redirect(Url.Content("~/"));
+    }
+
+    // The dropdowns only offer known ids; anything else is a tampered request. Rejecting it before it is stored keeps
+    // a dangling brand/type id out of the catalog (legacy SQL failed the FK constraint, the mock broke every list read).
+    private static bool LookupsExist(ICatalogService service, CatalogItemInputModel input)
+    {
+        return (input.CatalogBrandId is not { } brandId || service.GetCatalogBrands().Any(b => b.Id == brandId))
+            && (input.CatalogTypeId is not { } typeId || service.GetCatalogTypes().Any(t => t.Id == typeId));
     }
 
     private void PopulateWriteSelectLists(ICatalogService service, int? selectedBrandId, int? selectedTypeId)
