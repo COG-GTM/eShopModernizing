@@ -12,6 +12,9 @@ public class DeleteModel : CatalogItemPageModel
 {
     public const string RedirectLocation = "/";
 
+    /// <summary>Posted name of the legacy "[ Delete ]" asp:Button; only that button raises Delete_Click.</summary>
+    public const string DeleteButtonName = "ctl00$MainContent$ctl11";
+
     public DeleteModel(ICatalogService catalogService, ILogger<DeleteModel> logger)
         : base(catalogService, logger)
     {
@@ -26,6 +29,12 @@ public class DeleteModel : CatalogItemPageModel
         if (!TryLoadItem(id))
         {
             return LegacyNotFound();
+        }
+
+        if (!Request.HasFormContentType || !Request.Form.ContainsKey(DeleteButtonName))
+        {
+            // A postback not raised by the Delete button just re-renders the confirmation, like legacy.
+            return Page();
         }
 
         CatalogService.RemoveCatalogItem(Item);

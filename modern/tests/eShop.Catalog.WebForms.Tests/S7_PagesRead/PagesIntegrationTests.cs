@@ -123,6 +123,20 @@ public sealed partial class PagesIntegrationTests : IDisposable
     }
 
     [Fact]
+    public async Task Delete_post_with_token_but_without_delete_button_rerenders_and_changes_nothing()
+    {
+        var token = AntiforgeryToken(await GetOk("/Catalog/Delete/2"));
+
+        using var response = await client.PostAsync(
+            "/Catalog/Delete/2",
+            new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("__RequestVerificationToken", token) }));
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Contains("Are you sure you want to delete this?", await response.Content.ReadAsStringAsync());
+        Assert.NotNull(Catalog().FindCatalogItem(2));
+    }
+
+    [Fact]
     public async Task Delete_post_without_token_is_400_and_changes_nothing()
     {
         await GetOk("/Catalog/Delete/2"); // antiforgery cookie present, form token missing
@@ -165,7 +179,7 @@ public sealed partial class PagesIntegrationTests : IDisposable
 
     private static FormUrlEncodedContent Form(string? token)
     {
-        var fields = new List<KeyValuePair<string, string>> { new("ctl00$MainContent$ctl11", "[ Delete ]") };
+        var fields = new List<KeyValuePair<string, string>> { new(eShop.Catalog.WebForms.Pages.Catalog.DeleteModel.DeleteButtonName, "[ Delete ]") };
         if (token is not null)
         {
             fields.Add(new("__RequestVerificationToken", token));

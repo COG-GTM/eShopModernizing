@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Primitives;
 
 namespace eShop.Catalog.WebForms.Tests.S7_PagesRead;
 
@@ -136,6 +137,17 @@ public class PageModelTests
         Assert.Equal(11, catalogService.GetCatalogItemsPaginated(20, 0).TotalItems);
     }
 
+    [Fact]
+    public void Delete_post_not_raised_by_delete_button_rerenders_and_removes_nothing()
+    {
+        var page = Delete(withDeleteButton: false);
+
+        var result = page.OnPost("2");
+
+        Assert.IsType<PageResult>(result);
+        Assert.NotNull(catalogService.FindCatalogItem(2));
+    }
+
     [Theory]
     [InlineData("/", "./")]
     [InlineData("/Catalog/Details/1", "../../")]
@@ -153,8 +165,20 @@ public class PageModelTests
         return page;
     }
 
-    private DeleteModel Delete() => new(catalogService, NullLogger<DeleteModel>.Instance)
+    private DeleteModel Delete(bool withDeleteButton = true)
     {
-        PageContext = new PageContext { HttpContext = new DefaultHttpContext() },
-    };
+        var httpContext = new DefaultHttpContext();
+        httpContext.Request.ContentType = "application/x-www-form-urlencoded";
+        var fields = new Dictionary<string, StringValues>();
+        if (withDeleteButton)
+        {
+            fields[DeleteModel.DeleteButtonName] = "[ Delete ]";
+        }
+
+        httpContext.Request.Form = new FormCollection(fields);
+        return new DeleteModel(catalogService, NullLogger<DeleteModel>.Instance)
+        {
+            PageContext = new PageContext { HttpContext = httpContext },
+        };
+    }
 }
