@@ -1,0 +1,13 @@
+# Build context for deploy/Dockerfile.* is modern/; only global.json, Directory.*.props and src/ are needed.
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/*.user
+**/node_modules/
+tests/
+parity/
+deploy/
+.env
+.env.*
+*.md
