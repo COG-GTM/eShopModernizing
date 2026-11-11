@@ -3,6 +3,7 @@ using System.Net;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace eShop.Catalog.WebForms.Hosting;
@@ -61,12 +62,35 @@ public static class PagesUiExtensions
     public static IApplicationBuilder UseCatalogStaticFiles(this IApplicationBuilder app)
     {
         var environment = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
+        UsePublishedWebRootWhenMissing(environment, AppContext.BaseDirectory);
         app.UseStaticFiles(new StaticFileOptions
         {
             FileProvider = new CaseInsensitiveFileProvider(environment.WebRootFileProvider),
             ContentTypeProvider = CreateContentTypeProvider(),
         });
         return app;
+    }
+
+    /// <summary>
+    /// The content root defaults to the working directory, so a published app started from elsewhere
+    /// (<c>dotnet /app/eShop.Catalog.WebForms.dll</c>) has no wwwroot and every picture and stylesheet 404s.
+    /// Falls back to the wwwroot published next to the assembly when the content root has none.
+    /// </summary>
+    public static void UsePublishedWebRootWhenMissing(IWebHostEnvironment environment, string appBaseDirectory)
+    {
+        if (environment.WebRootPath is { Length: > 0 } webRoot && Directory.Exists(webRoot))
+        {
+            return;
+        }
+
+        var publishedWebRoot = Path.Combine(appBaseDirectory, "wwwroot");
+        if (!Directory.Exists(publishedWebRoot))
+        {
+            return;
+        }
+
+        environment.WebRootPath = publishedWebRoot;
+        environment.WebRootFileProvider = new PhysicalFileProvider(publishedWebRoot);
     }
 
     public static FileExtensionContentTypeProvider CreateContentTypeProvider()
