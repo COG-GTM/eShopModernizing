@@ -253,6 +253,36 @@ public class SqlServerCatalogTests
     }
 
     [Fact]
+    public async Task Existing_ef6_database_is_adopted_without_recreating_tables_or_reseeding()
+    {
+        var (app, cs) = await StartedAppAsync();
+        await app.DisposeAsync();
+        // Legacy EF6 databases have the same schema and data but no EF Core history (EF6 used dbo.__MigrationHistory).
+        await ScalarAsync<int>(cs, "DROP TABLE dbo.__EFMigrationsHistory; UPDATE dbo.Catalog SET Name = N'Edited in legacy' WHERE Id = 1; SELECT 0");
+
+        await using var restarted = BuildApp(cs);
+        await StartAsync(restarted);
+
+        Assert.Equal(new[] { "20261111211428_InitialCatalogSchema" }, await RowsAsync(cs, "SELECT MigrationId FROM dbo.__EFMigrationsHistory"));
+        Assert.Equal(new[] { "12|Edited in legacy" }, await RowsAsync(cs, "SELECT (SELECT COUNT(*) FROM dbo.Catalog), (SELECT Name FROM dbo.Catalog WHERE Id = 1)"));
+    }
+
+    [Fact]
+    public async Task Partial_legacy_schema_is_refused()
+    {
+        var cs = sql.NewDatabaseConnectionString();
+        var master = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(cs) { InitialCatalog = "master" }.ConnectionString;
+        var database = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(cs).InitialCatalog;
+        await ScalarAsync<int>(master, $"CREATE DATABASE [{database}]; SELECT 0");
+        await ScalarAsync<int>(cs, "CREATE TABLE dbo.CatalogBrand (Id int NOT NULL PRIMARY KEY, Brand nvarchar(100) NOT NULL); SELECT 0");
+        await using var app = BuildApp(cs);
+
+        var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => StartAsync(app));
+
+        Assert.Contains("1 of 3 tables", ex.Message);
+    }
+
+    [Fact]
     public async Task Two_apps_starting_concurrently_on_one_database_seed_exactly_once()
     {
         var cs = sql.NewDatabaseConnectionString();

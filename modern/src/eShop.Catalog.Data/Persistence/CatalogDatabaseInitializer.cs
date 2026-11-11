@@ -2,6 +2,9 @@ using System.Data;
 using eShop.Catalog.Data.Seeding;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -46,6 +49,7 @@ public class CatalogDatabaseInitializer
         await AcquireAppLockAsync(lockConnection, resource, cancellationToken);
         try
         {
+            await BaselineLegacyDatabaseAsync(db, database, cancellationToken);
             logger.LogInformation("Applying catalog migrations to {Database}", database);
             await db.Database.MigrateAsync(cancellationToken);
             await seeder.SeedAsync(db, cancellationToken);
@@ -54,6 +58,42 @@ public class CatalogDatabaseInitializer
         {
             await ReleaseAppLockAsync(lockConnection, resource);
         }
+    }
+
+    /// <summary>
+    /// A database created by the legacy EF6 apps already has the baseline schema but no EF Core migration history.
+    /// Record the baseline migration as applied so <c>MigrateAsync</c> adopts it instead of re-creating the tables.
+    /// </summary>
+    private async Task BaselineLegacyDatabaseAsync(CatalogDbContext db, string database, CancellationToken cancellationToken)
+    {
+        if (!await db.GetService<IRelationalDatabaseCreator>().ExistsAsync(cancellationToken))
+        {
+            return;
+        }
+
+        var history = db.GetService<IHistoryRepository>();
+        if (await history.ExistsAsync(cancellationToken))
+        {
+            return;
+        }
+
+        var legacyTables = await db.Database
+            .SqlQueryRaw<int>("SELECT COUNT(*) AS [Value] FROM sys.tables WHERE schema_id = SCHEMA_ID(N'dbo') AND name IN (N'Catalog', N'CatalogBrand', N'CatalogType')")
+            .SingleAsync(cancellationToken);
+        if (legacyTables == 0)
+        {
+            return;
+        }
+
+        if (legacyTables != 3)
+        {
+            throw new InvalidOperationException($"Database {database} has only part of the legacy catalog schema ({legacyTables} of 3 tables); refusing to migrate it.");
+        }
+
+        var baseline = db.GetService<IMigrationsAssembly>().Migrations.Keys.Order(StringComparer.Ordinal).First();
+        logger.LogInformation("Adopting existing EF6 catalog schema in {Database} as migration {Migration}", database, baseline);
+        await db.Database.ExecuteSqlRawAsync(history.GetCreateIfNotExistsScript(), cancellationToken);
+        await db.Database.ExecuteSqlRawAsync(history.GetInsertScript(new HistoryRow(baseline, ProductInfo.GetVersion())), cancellationToken);
     }
 
     private async Task<SqlConnection> OpenLockConnectionAsync(string connectionString, CancellationToken cancellationToken)
