@@ -33,7 +33,7 @@ services:
       MSSQL_PID: Developer
       MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
     ports:
-      - "${SQLSERVER_PORT:-5433}:1433"
+      - "127.0.0.1:${SQLSERVER_PORT:-5433}:1433"
     volumes:
       - sqldata:/var/opt/mssql
     healthcheck:
