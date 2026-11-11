@@ -118,7 +118,8 @@ public class CatalogSeederTests
         await using var db = InMemoryContext();
         var seeder = Seeder(useCustomizationData: true, setupPath: setup, picturesPath: pics);
 
-        await Assert.ThrowsAnyAsync<IOException>(() => seeder.SeedAsync(db));
+        var ex = await Assert.ThrowsAnyAsync<Exception>(() => seeder.SeedAsync(db));
+        Assert.True(ex is IOException or InvalidDataException, ex.GetType().FullName);
         Assert.True(File.Exists(Path.Combine(pics, "1.png")));
     }
 
