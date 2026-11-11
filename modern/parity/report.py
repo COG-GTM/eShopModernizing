@@ -12,6 +12,7 @@ import json
 import pathlib
 import io
 import subprocess
+import sys
 
 from PIL import Image
 
@@ -67,9 +68,13 @@ def environment():
     ]
 
 
-def load(results):
+def load(results, head):
     runs = {}
     for mode in MODES:
+        mode_head = results / mode / "HEAD"
+        if not mode_head.exists() or mode_head.read_text().strip() != head:
+            print("skipping %s results: not replayed on %s" % (mode, head), file=sys.stderr)
+            continue
         for app in APPS:
             f = results / mode / app / "results.json"
             if f.exists():
@@ -225,7 +230,7 @@ def main():
     results, shotdir = pathlib.Path(a.results).expanduser(), pathlib.Path(a.screenshots).expanduser()
     head = (results / "HEAD").read_text().strip()
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    runs, env = load(results), environment()
+    runs, env = load(results, head), environment()
     shots = json.loads((shotdir / "screens.json").read_text())
     for s in shots:
         for side in ("legacy", "modern"):
