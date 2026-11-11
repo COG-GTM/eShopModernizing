@@ -1,0 +1,27 @@
+GET /api/brands
+status: 200
+content-type: application/json; charset=utf-8
+cache-control: no-cache
+---
+[
+  {
+    "Id": 1,
+    "Brand": "Azure"
+  },
+  {
+    "Id": 2,
+    "Brand": ".NET"
+  },
+  {
+    "Id": 3,
+    "Brand": "Visual Studio"
+  },
+  {
+    "Id": 4,
+    "Brand": "SQL Server"
+  },
+  {
+    "Id": 5,
+    "Brand": "Other"
+  }
+]

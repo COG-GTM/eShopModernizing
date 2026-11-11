@@ -1,0 +1,6 @@
+GET /items/999/pic
+status: 404
+content-type: text/html
+cache-control: private
+---
+(empty body)

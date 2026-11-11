@@ -1,0 +1,36 @@
+{
+  "_comment": "Main GET routes recorded for parity. Order matters: the legacy mock service mutates on first list render, so captures always run in this order against a freshly started app.",
+  "legacy-mvc": [
+    "/",
+    "/Catalog/Index?pageSize=10&pageIndex=1",
+    "/Catalog/Index?pageSize=5&pageIndex=2",
+    "/Catalog/Details/1",
+    "/Catalog/Details/999",
+    "/Catalog/Details",
+    "/Catalog/Create",
+    "/Catalog/Edit/1",
+    "/Catalog/Edit/999",
+    "/Catalog/Delete/1",
+    "/Catalog/Delete/999",
+    "/items/1/pic",
+    "/items/999/pic",
+    "/items/0/pic",
+    "/api",
+    "/api/brands",
+    "/api/brands/2",
+    "/api/brands/999",
+    "/api/files"
+  ],
+  "legacy-webforms": [
+    "/",
+    "/Default/index/1/size/10",
+    "/About.aspx",
+    "/Contact.aspx",
+    "/About",
+    "/Catalog/Details/1",
+    "/Catalog/Details/999",
+    "/Catalog/Create",
+    "/Catalog/Edit/1",
+    "/Catalog/Delete/1"
+  ]
+}

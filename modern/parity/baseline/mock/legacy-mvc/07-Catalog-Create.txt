@@ -1,0 +1,178 @@
+GET /Catalog/Create
+status: 200
+content-type: text/html
+cache-control: private
+---
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create - Catalog manager (MVC)
+</title>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/custom.css" rel="stylesheet"/>
+<link href="/Content/base.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+<script src="/Scripts/modernizr-2.6.2.js">
+</script>
+<script src="/Scripts/modernizr-2.8.3.js">
+</script>
+</head>
+<body>
+<header class="navbar navbar-light navbar-static-top">
+<div class="esh-header-brand">
+<a href="/">
+<img src="/images/brand.png" />
+</a>
+</div>
+</header>
+<section class="esh-app-hero">
+<div class="container esh-header">
+<h1 class="esh-header-title" >Catalog manager
+<span>(MVC)
+</span>
+</h1>
+</div>
+</section>
+<h2 class="esh-body-title">Create
+</h2>
+<form action="/Catalog/Create" method="post">
+<input name="__RequestVerificationToken" type="hidden" value="{masked}" />
+<div class="form-horizontal">
+<div class="form-group">
+<label class="control-label col-md-2" for="Name">Name
+</label>
+<div class="col-md-3">
+<input class="form-control text-box single-line" data-val="true" data-val-required="The Name field is required." id="Name" name="Name" type="text" value="" />
+<span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="Description">Description
+</label>
+<div class="col-md-3">
+<input class="form-control text-box single-line" id="Description" name="Description" type="text" value="" />
+<span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="CatalogBrandId">Brand
+</label>
+<div class="col-md-3">
+<select class="form-control" id="CatalogBrandId" name="CatalogBrandId">
+<option value="1">Azure
+</option>
+<option value="2">.NET
+</option>
+<option value="3">Visual Studio
+</option>
+<option value="4">SQL Server
+</option>
+<option value="5">Other
+</option>
+</select>
+<span class="field-validation-valid text-danger" data-valmsg-for="CatalogBrandId" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="CatalogTypeId">Type
+</label>
+<div class="col-md-3">
+<select class="form-control" id="CatalogTypeId" name="CatalogTypeId">
+<option value="1">Mug
+</option>
+<option value="2">T-Shirt
+</option>
+<option value="3">Sheet
+</option>
+<option value="4">USB Memory Stick
+</option>
+</select>
+<span class="field-validation-valid text-danger" data-valmsg-for="CatalogTypeId" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="Price">Price
+</label>
+<div class="col-md-3">
+<input class="form-control text-box single-line" data-val="true" data-val-number="The field Price must be a number." data-val-range="The field Price must be between 0 and 1000000." data-val-range-max="1000000" data-val-range-min="0" data-val-regex="The field Price must be a positive number with maximum two decimals." data-val-regex-pattern="^\d+(\.\d{0,2})*$" data-val-required="The Price field is required." id="Price" name="Price" type="text" value="0.00" />
+<span class="field-validation-valid text-danger" data-valmsg-for="Price" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="PictureFileName">Picture name
+</label>
+<div class="col-md-4 esh-form-information"> Uploading images not allowed for this version.
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="AvailableStock">Stock
+</label>
+<div class="col-md-3">
+<input class="form-control text-box single-line" data-val="true" data-val-number="The field Stock must be a number." data-val-range="The field Stock must be between 0 and 10 million." data-val-range-max="10000000" data-val-range-min="0" data-val-required="The Stock field is required." id="AvailableStock" name="AvailableStock" type="number" value="0" />
+<span class="field-validation-valid text-danger" data-valmsg-for="AvailableStock" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="RestockThreshold">Restock
+</label>
+<div class="col-md-3">
+<input class="form-control text-box single-line" data-val="true" data-val-number="The field Restock must be a number." data-val-range="The field Restock must be between 0 and 10 million." data-val-range-max="10000000" data-val-range-min="0" data-val-required="The Restock field is required." id="RestockThreshold" name="RestockThreshold" type="number" value="0" />
+<span class="field-validation-valid text-danger" data-valmsg-for="RestockThreshold" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-2" for="MaxStockThreshold">Max stock
+</label>
+<div class="col-md-3">
+<input class="form-control text-box single-line" data-val="true" data-val-number="The field Max stock must be a number." data-val-range="The field Max stock must be between 0 and 10 million." data-val-range-max="10000000" data-val-range-min="0" data-val-required="The Max stock field is required." id="MaxStockThreshold" name="MaxStockThreshold" type="number" value="0" />
+<span class="field-validation-valid text-danger" data-valmsg-for="MaxStockThreshold" data-valmsg-replace="true">
+</span>
+</div>
+</div>
+<div class="form-group">
+<div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
+<a class="btn esh-button esh-button-secondary" href="/">[ Cancel ]
+</a>
+<input type="submit" value="[ Create ]" class="btn esh-button esh-button-primary" />
+</div>
+</div>
+</div>
+</form>
+<div>
+</div>
+<footer class="esh-app-footer">
+<div class="container">
+<article class="row">
+<section class="col-sm-6">
+<img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+</section>
+<section class="col-sm-6">
+<img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+<br />
+<small>{masked}
+</small>
+</section>
+</article>
+</div>
+</footer>
+<script src="/Scripts/jquery-3.3.1.js">
+</script>
+<script src="/Scripts/bootstrap.js">
+</script>
+<script src="/Scripts/respond.js">
+</script>
+<script src="/Scripts/jquery.validate.js">
+</script>
+<script src="/Scripts/jquery.validate.unobtrusive.js">
+</script>
+</body>
+</html>

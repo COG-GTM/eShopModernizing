@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "eShop.Catalog.Mvc": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5200",
+      "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
+    }
+  }
+}

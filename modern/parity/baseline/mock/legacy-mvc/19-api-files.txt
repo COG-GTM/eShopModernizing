@@ -1,0 +1,6 @@
+GET /api/files
+status: 200
+content-type: text/html
+cache-control: no-cache
+---
+(binary text/html) bytes=719 sha256=8a33ee7cf9c7a24426c97210ca1dd72ea13f8e4f923936b68c145a0954c06361
