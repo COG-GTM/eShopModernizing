@@ -49,7 +49,17 @@ dotnet run --project src/eShop.Catalog.WebForms   # http://localhost:5201, GET /
 
 # legacy apps on Mono + xsp4 and the parity baseline
 parity/run-legacy.sh            # MVC :5100, WebForms :5101, writes parity/baseline/mock/
+
+# Linux containers (S9): SQL Server 2022 + both apps, or in-memory mock data
+cp .env.example .env                                  # set MSSQL_SA_PASSWORD; .env is git-ignored
+docker compose up --build --wait                      # MVC :5300, WebForms :5301 (UseMockData=false)
+docker compose --profile mock up --build --wait catalog-mvc-mock catalog-webforms-mock   # :5310 / :5311
+deploy/compose-smoke.sh [sql|mock|all]                # end-to-end smoke test (own project "eshop-catalog-smoke"; stop a running stack first or change ports, host ports are shared)
 ```
+
+Probes: `GET /healthz` (liveness, no dependencies) and `GET /healthz/ready` (readiness: SQL Server `SELECT 1`,
+always healthy in mock mode; any health check tagged `ready` is included). Logs are JSON on stdout, one
+`RequestFinished` entry per request with `Method`, `Path`, `StatusCode`, `ElapsedMs` and the W3C `TraceId`.
 
 When backgrounding a host from a non-interactive shell use
 `(cd dir && exec setsid nohup dotnet X.dll --contentRoot $PWD) > log 2>&1 < /dev/null &`.
@@ -88,7 +98,7 @@ When backgrounding a host from a non-interactive shell use
 | S6 Razor Pages host/layout/static/About/Contact | `src/eShop.Catalog.WebForms/Hosting/PagesUiExtensions.cs`, `Pages/Shared/`, `Pages/_ViewStart.cshtml`, `Pages/_ViewImports.cshtml`, `Pages/About.cshtml`, `Pages/Contact.cshtml`, `wwwroot/`, `tests/…WebForms.Tests/S6_PagesHost/` | — |
 | S7 Razor Pages list/details/delete | `Pages/Index.cshtml` (Default.aspx list + paging), `Pages/Catalog/Details.cshtml`, `Pages/Catalog/Delete.cshtml`, `Hosting/PagesRoutingExtensions.cs`, `tests/…WebForms.Tests/S7_PagesRead/` | — |
 | S8 Razor Pages create/edit | `Pages/Catalog/Create.cshtml`, `Pages/Catalog/Edit.cshtml`, `tests/…WebForms.Tests/S8_PagesWrite/` | `Hosting/PagesRoutingExtensions.cs` (add Create/Edit route conventions only) |
-| S9 Dockerfiles/compose/health/logging | `deploy/`, `src/*/Hosting/ObservabilityExtensions.cs`, `.dockerignore`, `tests/*/S9_Ops/` | `appsettings*.json` logging sections |
+| S9 Dockerfiles/compose/health/logging | `deploy/`, `docker-compose.yml`, `.env.example`, `src/*/Hosting/ObservabilityExtensions.cs`, `src/*/Hosting/Observability/`, `.dockerignore`, `tests/*/S9_Ops/` | `appsettings*.json` logging sections, `Directory.Packages.props` + host csproj (`Microsoft.Data.SqlClient` for the readiness check) |
 
 Every host's `Program.cs` is annotated with the owning slice per line. Empty folders contain a `.gitkeep`; delete it
 when you add the first real file.
