@@ -103,16 +103,29 @@ public class CatalogSeederTests
     }
 
     [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public async Task Missing_or_corrupt_zip_fails_without_deleting_existing_pictures(bool corrupt)
+    [InlineData("missing")]
+    [InlineData("corrupt")]
+    [InlineData("bad-entry")]
+    public async Task Missing_or_corrupt_zip_fails_without_deleting_existing_pictures(string zipState)
     {
         var setup = TempDirectory();
         var pics = TempDirectory();
         File.WriteAllText(Path.Combine(pics, "1.png"), "keep");
-        if (corrupt)
+        var zipPath = Path.Combine(setup, "CatalogItems.zip");
+        if (zipState == "corrupt")
         {
-            File.WriteAllText(Path.Combine(setup, "CatalogItems.zip"), "not a zip");
+            File.WriteAllText(zipPath, "not a zip");
+        }
+        else if (zipState == "bad-entry")
+        {
+            // A readable archive whose second entry fails during extraction.
+            using var zip = ZipFile.Open(zipPath, ZipArchiveMode.Create);
+            using (var writer = new StreamWriter(zip.CreateEntry("2.png").Open()))
+            {
+                writer.Write("new");
+            }
+
+            zip.CreateEntry("../escape.png");
         }
 
         await using var db = InMemoryContext();
@@ -121,6 +134,8 @@ public class CatalogSeederTests
         var ex = await Assert.ThrowsAnyAsync<Exception>(() => seeder.SeedAsync(db));
         Assert.True(ex is IOException or InvalidDataException, ex.GetType().FullName);
         Assert.True(File.Exists(Path.Combine(pics, "1.png")));
+        Assert.False(File.Exists(Path.Combine(pics, "2.png")));
+        Assert.Empty(Directory.GetDirectories(Path.GetDirectoryName(pics)!, $".{Path.GetFileName(pics)}.staging-*"));
     }
 
     [Fact]

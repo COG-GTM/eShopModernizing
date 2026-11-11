@@ -160,14 +160,38 @@ public class CatalogSeeder
             return;
         }
 
-        // Open the archive before clearing Pics/ so a missing or corrupt zip fails without deleting existing pictures.
-        using var archive = ZipFile.OpenRead(Path.Combine(setupPath, "CatalogItems.zip"));
+        // Extract into a sibling staging folder first so a missing or corrupt zip fails without deleting existing pictures.
         var pictures = Directory.CreateDirectory(picturesPath);
-        foreach (var file in pictures.GetFiles())
+        var staging = new DirectoryInfo(Path.Combine(pictures.Parent!.FullName, $".{pictures.Name}.staging-{Guid.NewGuid():N}"));
+        try
         {
-            file.Delete();
-        }
+            staging.Create();
+            ZipFile.ExtractToDirectory(Path.Combine(setupPath, "CatalogItems.zip"), staging.FullName);
 
-        archive.ExtractToDirectory(pictures.FullName);
+            foreach (var file in pictures.GetFiles())
+            {
+                file.Delete();
+            }
+
+            foreach (var entry in staging.EnumerateFileSystemInfos())
+            {
+                var target = Path.Combine(pictures.FullName, entry.Name);
+                if (entry is DirectoryInfo dir)
+                {
+                    dir.MoveTo(target);
+                }
+                else
+                {
+                    ((FileInfo)entry).MoveTo(target, overwrite: true);
+                }
+            }
+        }
+        finally
+        {
+            if (staging.Exists)
+            {
+                staging.Delete(recursive: true);
+            }
+        }
     }
 }
