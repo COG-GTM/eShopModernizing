@@ -38,7 +38,8 @@ public sealed partial class FormRoundTripTests : IDisposable
     {
         var html = await GetOk(url);
 
-        Assert.Contains("<form method=\"post\" action=\"Create\" id=\"ctl00_ctl01\">", html);
+        Assert.Contains($"<form method=\"post\" action=\"{url[(url.LastIndexOf('/') + 1)..]}\" id=\"ctl00_ctl01\">", html);
+        AssertSingleFormAndToken(html);
         Assert.Contains("<h2 class=\"esh-body-title\">Create</h2>", html);
         foreach (var label in new[] { "Name", "Description", "Brand", "Type", "Price", "Picture name", "Stock", "Restock", "Max stock" })
         {
@@ -56,8 +57,9 @@ public sealed partial class FormRoundTripTests : IDisposable
         Assert.Equal(["Mug", "T-Shirt", "Sheet", "USB Memory Stick"], Options(html, "Type").Select(o => o.Text));
         Assert.Equal(["1", "2", "3", "4", "5"], Options(html, "Brand").Select(o => o.Value));
 
-        Assert.DoesNotContain("<span", html);
-        Assert.DoesNotContain("<script", html);
+        var content = MainContent(html);
+        Assert.DoesNotContain("<span", content);
+        Assert.DoesNotContain("<script", content);
         Assert.Contains("<div class=\"col-md-4 esh-form-information\">", html);
         Assert.Contains("value=\"[ Create ]\" class=\"btn esh-button esh-button-primary\" />", html);
         Assert.Matches(TokenPattern(), html);
@@ -187,6 +189,7 @@ public sealed partial class FormRoundTripTests : IDisposable
         var html = await GetOk("/Catalog/Edit/1");
 
         Assert.Contains("<form method=\"post\" action=\"1\" id=\"ctl00_ctl01\">", html);
+        AssertSingleFormAndToken(html);
         Assert.Contains("<img class=\"col-md-6 esh-picture\" src=\"/Pics/1.png\" />", html);
         Assert.Contains("<input type=\"text\" value=\".NET Bot Black Hoodie\" name=\"ctl00$MainContent$Name\" id=\"ctl00_MainContent_Name\" class=\"form-control\" />", html);
         Assert.Contains("<input type=\"text\" value=\"19.5\" name=\"ctl00$MainContent$Price\" id=\"ctl00_MainContent_Price\" class=\"form-control\" />", html);
@@ -343,6 +346,20 @@ public sealed partial class FormRoundTripTests : IDisposable
         }
 
         return await client.PostAsync(url, new FormUrlEncodedContent(form));
+    }
+
+    private static void AssertSingleFormAndToken(string html)
+    {
+        Assert.Single(Regex.Matches(html, "<form "));
+        Assert.Single(TokenPattern().Matches(html));
+    }
+
+    /// <summary>The page body inside the S6 layout (header/footer markup is S6's).</summary>
+    private static string MainContent(string html)
+    {
+        var start = html.IndexOf("<h2 class=\"esh-body-title\">", StringComparison.Ordinal);
+        var end = html.IndexOf("<footer", start, StringComparison.Ordinal);
+        return end < 0 ? html[start..] : html[start..end];
     }
 
     [GeneratedRegex("<input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"([^\"]+)\" />")]

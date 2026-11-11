@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
     // With the S6 layout the legacy page-wide form (and its antiforgery token) wraps the content, like Site.Master.
     var layoutRendersForm = !string.IsNullOrEmpty(Layout);
-    ViewData[LegacyPage.PageFormKey] = layoutRendersForm;
+    ViewData[LegacyLayout.PageFormKey] = layoutRendersForm;
     var input = Model.Input;
 }
 @{
