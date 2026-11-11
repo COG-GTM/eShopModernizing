@@ -252,13 +252,16 @@ public class SqlServerCatalogTests
         Assert.Equal(new[] { "12|5|4" }, await RowsAsync(cs, "SELECT (SELECT COUNT(*) FROM dbo.Catalog), (SELECT COUNT(*) FROM dbo.CatalogBrand), (SELECT COUNT(*) FROM dbo.CatalogType)"));
     }
 
-    [Fact]
-    public async Task Existing_ef6_database_is_adopted_without_recreating_tables_or_reseeding()
+    [Theory]
+    [InlineData("DROP TABLE dbo.__EFMigrationsHistory")]
+    [InlineData("DELETE FROM dbo.__EFMigrationsHistory")]
+    public async Task Existing_ef6_database_is_adopted_without_recreating_tables_or_reseeding(string removeHistory)
     {
         var (app, cs) = await StartedAppAsync();
         await app.DisposeAsync();
         // Legacy EF6 databases have the same schema and data but no EF Core history (EF6 used dbo.__MigrationHistory).
-        await ScalarAsync<int>(cs, "DROP TABLE dbo.__EFMigrationsHistory; UPDATE dbo.Catalog SET Name = N'Edited in legacy' WHERE Id = 1; SELECT 0");
+        // An empty history table is what an adoption interrupted between creating the table and inserting the row leaves.
+        await ScalarAsync<int>(cs, $"{removeHistory}; UPDATE dbo.Catalog SET Name = N'Edited in legacy' WHERE Id = 1; SELECT 0");
 
         await using var restarted = BuildApp(cs);
         await StartAsync(restarted);

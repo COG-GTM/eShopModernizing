@@ -71,8 +71,10 @@ public class CatalogDatabaseInitializer
             return;
         }
 
+        // An empty history table (e.g. an adoption interrupted after creating it) still counts as un-adopted.
         var history = db.GetService<IHistoryRepository>();
-        if (await history.ExistsAsync(cancellationToken))
+        if (await history.ExistsAsync(cancellationToken)
+            && (await history.GetAppliedMigrationsAsync(cancellationToken)).Count > 0)
         {
             return;
         }
