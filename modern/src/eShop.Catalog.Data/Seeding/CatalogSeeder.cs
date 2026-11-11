@@ -160,38 +160,30 @@ public class CatalogSeeder
             return;
         }
 
-        // Extract into a sibling staging folder first so a missing or corrupt zip fails without deleting existing pictures.
+        // Read every entry before clearing Pics/ so a missing or corrupt zip fails without deleting existing pictures.
+        using var archive = ZipFile.OpenRead(Path.Combine(setupPath, "CatalogItems.zip"));
         var pictures = Directory.CreateDirectory(picturesPath);
-        var staging = new DirectoryInfo(Path.Combine(pictures.Parent!.FullName, $".{pictures.Name}.staging-{Guid.NewGuid():N}"));
-        try
+        ValidateArchive(archive, pictures.FullName);
+        foreach (var file in pictures.GetFiles())
         {
-            staging.Create();
-            ZipFile.ExtractToDirectory(Path.Combine(setupPath, "CatalogItems.zip"), staging.FullName);
-
-            foreach (var file in pictures.GetFiles())
-            {
-                file.Delete();
-            }
-
-            foreach (var entry in staging.EnumerateFileSystemInfos())
-            {
-                var target = Path.Combine(pictures.FullName, entry.Name);
-                if (entry is DirectoryInfo dir)
-                {
-                    dir.MoveTo(target);
-                }
-                else
-                {
-                    ((FileInfo)entry).MoveTo(target, overwrite: true);
-                }
-            }
+            file.Delete();
         }
-        finally
+
+        archive.ExtractToDirectory(pictures.FullName, overwriteFiles: true);
+    }
+
+    private static void ValidateArchive(ZipArchive archive, string destination)
+    {
+        var root = Path.TrimEndingDirectorySeparator(Path.GetFullPath(destination)) + Path.DirectorySeparatorChar;
+        foreach (var entry in archive.Entries)
         {
-            if (staging.Exists)
+            if (!Path.GetFullPath(Path.Combine(root, entry.FullName)).StartsWith(root, StringComparison.Ordinal))
             {
-                staging.Delete(recursive: true);
+                throw new IOException($"CatalogItems.zip entry '{entry.FullName}' would extract outside {destination}");
             }
+
+            using var stream = entry.Open();
+            stream.CopyTo(Stream.Null);
         }
     }
 }

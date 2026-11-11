@@ -135,7 +135,25 @@ public class CatalogSeederTests
         Assert.True(ex is IOException or InvalidDataException, ex.GetType().FullName);
         Assert.True(File.Exists(Path.Combine(pics, "1.png")));
         Assert.False(File.Exists(Path.Combine(pics, "2.png")));
-        Assert.Empty(Directory.GetDirectories(Path.GetDirectoryName(pics)!, $".{Path.GetFileName(pics)}.staging-*"));
+    }
+
+    [Fact]
+    public async Task Customization_zip_overwrites_existing_picture_subfolders()
+    {
+        var setup = TempDirectory();
+        var pics = TempDirectory();
+        Directory.CreateDirectory(Path.Combine(pics, "thumbs"));
+        File.WriteAllText(Path.Combine(pics, "thumbs", "1.png"), "old");
+        using (var zip = ZipFile.Open(Path.Combine(setup, "CatalogItems.zip"), ZipArchiveMode.Create))
+        using (var writer = new StreamWriter(zip.CreateEntry("thumbs/1.png").Open()))
+        {
+            writer.Write("new");
+        }
+
+        await using var db = InMemoryContext();
+        await Seeder(useCustomizationData: true, setupPath: setup, picturesPath: pics).SeedAsync(db);
+
+        Assert.Equal("new", File.ReadAllText(Path.Combine(pics, "thumbs", "1.png")));
     }
 
     [Fact]
