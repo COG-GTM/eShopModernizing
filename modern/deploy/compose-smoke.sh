@@ -12,29 +12,17 @@ export COMPOSE_PROJECT_NAME="${SMOKE_PROJECT_NAME:-eshop-catalog-smoke}"
 FAILURES=0
 PASSES=0
 
-# Mirror Compose's precedence: shell env wins, then .env, then the defaults below.
-if [[ -f .env ]]; then
-  while IFS='=' read -r key value || [[ -n "$key" ]]; do
-    [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]] || continue
-    [[ -n "${!key+x}" ]] && continue
-    value="${value%$'\r'}"; value="${value#[\"\']}"; value="${value%[\"\']}"
-    export "$key=$value"
-  done < .env
-fi
-
-if [[ -z "${MSSQL_SA_PASSWORD:-}" ]]; then
+if [[ -z "${MSSQL_SA_PASSWORD:-}" ]] && ! grep -qE '^MSSQL_SA_PASSWORD=.+' .env 2>/dev/null; then
   MSSQL_SA_PASSWORD="Smoke!$(openssl rand -hex 12)Aa1"
   export MSSQL_SA_PASSWORD
   echo "info: MSSQL_SA_PASSWORD not set; using a random throwaway password for this run"
 fi
 
+# Ask Compose for the published host port so .env / shell overrides are honoured exactly as Compose parses them.
 port_of() {
-  case "$1" in
-    catalog-mvc) echo "${CATALOG_MVC_PORT:-5300}" ;;
-    catalog-webforms) echo "${CATALOG_WEBFORMS_PORT:-5301}" ;;
-    catalog-mvc-mock) echo "${CATALOG_MVC_MOCK_PORT:-5310}" ;;
-    catalog-webforms-mock) echo "${CATALOG_WEBFORMS_MOCK_PORT:-5311}" ;;
-  esac
+  local out
+  out="$(docker compose --profile mock port "$1" 8080 2>/dev/null | head -n1)"
+  echo "${out##*:}"
 }
 
 pass() { PASSES=$((PASSES + 1)); echo "PASS  $*"; }
