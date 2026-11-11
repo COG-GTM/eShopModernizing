@@ -1,0 +1,138 @@
+@page "{id}"
+@model EditModel
+@{
+    ViewData["Title"] = "Edit";
+    // With the S6 layout the legacy page-wide form (and its antiforgery token) wraps the content, like Site.Master.
+    var layoutRendersForm = !string.IsNullOrEmpty(Layout);
+    ViewData[LegacyLayout.PageFormKey] = layoutRendersForm;
+    var input = Model.Input;
+}
+@{
+    async Task Content()
+    {
+    <h2 class="esh-body-title">Edit</h2>
+
+    <div class="container">
+        <div class="row">
+            <img class="col-md-6 esh-picture" src="@("/Pics/" + Model.PictureFileName)" />
+            <div class="col-md-6 form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Name</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@CatalogItemFormPageModel.AttributeValue(input.Name)" name="ctl00$MainContent$Name" id="ctl00_MainContent_Name" class="form-control" />
+                        @WebFormsValidatorMarkup.RequiredField("ctl00_MainContent_ctl01", "ctl00_MainContent_Name", "field-validation-valid text-danger", CatalogItemFormInput.NameRequiredMessage, Model.IsFieldValid("Name"), Model.RenderUplevel)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Description</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@CatalogItemFormPageModel.AttributeValue(input.Description)" name="ctl00$MainContent$Description" id="ctl00_MainContent_Description" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Brand</label>
+                    <div class="col-md-8">
+                        <select name="ctl00$MainContent$BrandDropDownList" id="ctl00_MainContent_BrandDropDownList" class="form-control">
+                            @foreach (var brand in Model.Brands)
+                            {
+                                if (brand.Id.ToString() == input.BrandDropDownList)
+                                {
+                            <!option selected="selected" value="@brand.Id">@brand.Brand</!option>
+                                }
+                                else
+                                {
+                            <!option value="@brand.Id">@brand.Brand</!option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Type</label>
+                    <div class="col-md-8">
+                        <select name="ctl00$MainContent$TypeDropDownList" id="ctl00_MainContent_TypeDropDownList" class="form-control">
+                            @foreach (var type in Model.Types)
+                            {
+                                if (type.Id.ToString() == input.TypeDropDownList)
+                                {
+                            <!option selected="selected" value="@type.Id">@type.Type</!option>
+                                }
+                                else
+                                {
+                            <!option value="@type.Id">@type.Type</!option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Price</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@CatalogItemFormPageModel.AttributeValue(input.Price)" name="ctl00$MainContent$Price" id="ctl00_MainContent_Price" class="form-control" />
+                        @WebFormsValidatorMarkup.Range("ctl00_MainContent_ctl02", "ctl00_MainContent_Price", "text-danger", CatalogItemFormInput.PriceRangeMessage, WebFormsValidationDataType.Currency, CatalogItemFormInput.PriceMinimum, CatalogItemFormInput.PriceMaximum, Model.IsFieldValid("Price"), Model.RenderUplevel)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Picture name</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@CatalogItemFormPageModel.AttributeValue(Model.PictureFileName)" readonly="ReadOnly" name="ctl00$MainContent$PictureFileName" id="ctl00_MainContent_PictureFileName" title="Not allowed for edition" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Stock</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@CatalogItemFormPageModel.AttributeValue(input.Stock)" name="ctl00$MainContent$Stock" id="ctl00_MainContent_Stock" class="form-control" />
+                        @WebFormsValidatorMarkup.Range("ctl00_MainContent_ctl03", "ctl00_MainContent_Stock", "text-danger", CatalogItemFormInput.StockRangeMessage, WebFormsValidationDataType.Integer, CatalogItemFormInput.StockMinimum, CatalogItemFormInput.StockMaximum, Model.IsFieldValid("Stock"), Model.RenderUplevel)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Restock</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@CatalogItemFormPageModel.AttributeValue(input.Restock)" name="ctl00$MainContent$Restock" id="ctl00_MainContent_Restock" class="form-control" />
+                        @WebFormsValidatorMarkup.Range("ctl00_MainContent_ctl04", "ctl00_MainContent_Restock", "text-danger", CatalogItemFormInput.RestockRangeMessage, WebFormsValidationDataType.Integer, CatalogItemFormInput.StockMinimum, CatalogItemFormInput.StockMaximum, Model.IsFieldValid("Restock"), Model.RenderUplevel)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Max stock</label>
+                    <div class="col-md-8">
+                        <input type="text" value="@CatalogItemFormPageModel.AttributeValue(input.Maxstock)" name="ctl00$MainContent$Maxstock" id="ctl00_MainContent_Maxstock" class="form-control" />
+                        @WebFormsValidatorMarkup.Range("ctl00_MainContent_ctl05", "ctl00_MainContent_Maxstock", "text-danger", CatalogItemFormInput.MaxStockRangeMessage, WebFormsValidationDataType.Integer, CatalogItemFormInput.StockMinimum, CatalogItemFormInput.StockMaximum, Model.IsFieldValid("Maxstock"), Model.RenderUplevel)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12 text-right esh-button-actions">
+                        <a class="btn esh-button esh-button-secondary" href="../../">[ Cancel ]
+                        </a>
+                        <input type="submit" name="ctl00$MainContent$ctl07" value="[ Save ]" class="btn esh-button esh-button-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    if (Model.RenderUplevel)
+    {
+    <partial name="_CatalogItemFormValidation" />
+    }
+    }
+}
+@* Site.Master wraps every page in its single postback form; until the S6 layout provides it, render that form here. *@
+@if (!layoutRendersForm)
+{
+    <form method="post" action="@RouteData.Values["id"]" id="ctl00_ctl01" asp-antiforgery="true">
+        @{ await Content(); }
+    </form>
+}
+else
+{
+    await Content();
+}

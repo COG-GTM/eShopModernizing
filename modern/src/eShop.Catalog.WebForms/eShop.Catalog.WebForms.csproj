@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>eShop.Catalog.WebForms</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eShop.Catalog.Data\eShop.Catalog.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup Label="Ops (S9)">
+    <PackageReference Include="Microsoft.Data.SqlClient" />
+  </ItemGroup>
+</Project>

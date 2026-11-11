@@ -1,0 +1,6 @@
+GET /Catalog/Details/999
+status: 404
+content-type: text/html
+cache-control: private
+---
+(empty body)
