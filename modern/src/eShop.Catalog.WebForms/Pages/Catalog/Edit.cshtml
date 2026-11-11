@@ -2,6 +2,9 @@
 @model EditModel
 @{
     ViewData["Title"] = "Edit";
+    // With the S6 layout the legacy page-wide form (and its antiforgery token) wraps the content, like Site.Master.
+    var layoutRendersForm = !string.IsNullOrEmpty(Layout);
+    ViewData[LegacyPage.PageFormKey] = layoutRendersForm;
     var input = Model.Input;
 }
 @{
@@ -123,7 +126,7 @@
     }
 }
 @* Site.Master wraps every page in its single postback form; until the S6 layout provides it, render that form here. *@
-@if (Layout is null)
+@if (!layoutRendersForm)
 {
     <form method="post" action="@RouteData.Values["id"]" id="ctl00_ctl01" asp-antiforgery="true">
         @{ await Content(); }
