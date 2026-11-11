@@ -1,0 +1,19 @@
+@page "{id}"
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    // With the S6 layout the legacy page-wide form (and its antiforgery token) wraps the content, like Site.Master;
+    // without a layout the page renders its own post form.
+    var layoutRendersForm = !string.IsNullOrEmpty(Layout);
+    ViewData[LegacyPage.PageFormKey] = layoutRendersForm;
+}
+@if (layoutRendersForm)
+{
+    <partial name="_DeleteConfirm" model="Model" />
+}
+else
+{
+    <form method="post">
+        <partial name="_DeleteConfirm" model="Model" />
+    </form>
+}

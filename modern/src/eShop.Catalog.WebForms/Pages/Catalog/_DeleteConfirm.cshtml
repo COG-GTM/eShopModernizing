@@ -1,0 +1,22 @@
+@model DeleteModel
+<h2 class="esh-body-title">Delete</h2>
+
+<div class="container">
+    <h3>Are you sure you want to delete this?</h3>
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="/Pics/@Model.Item.PictureFileName" />
+        <dl class="col-md-6 dl-horizontal">
+            <partial name="_CatalogItemFields" model="Model.Item" />
+
+            <dt></dt>
+
+            <dd class="text-right esh-button-actions">
+                <a class="btn esh-button esh-button-secondary" href="@LegacyPage.AppRootRelativeTo(Context.Request.Path)">[ Cancel ]
+                </a>
+                <input type="submit" name="@DeleteModel.DeleteButtonName" value="[ Delete ]" class="btn esh-button esh-button-primary" />
+            </dd>
+
+        </dl>
+    </div>
+
+</div>

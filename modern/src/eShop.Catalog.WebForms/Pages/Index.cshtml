@@ -1,0 +1,143 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData[LegacyPage.PageFormKey] = true;
+}
+
+<div class="esh-table">
+    <p class="esh-link-wrapper">
+        <a class="btn esh-button esh-button-primary" href="/Catalog/Create">
+            Create New
+        </a>
+    </p>
+
+    @* The legacy ListView renders inside a span carrying its client id. *@
+    <span id="ctl00_MainContent_productList">
+        @if (!Model.Catalog.Data.Any())
+        {
+            <table>
+                <tr>
+                    <td>No data was returned.</td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr class="esh-table-header">
+                        <th></th>
+                        <th>Name
+                        </th>
+                        <th>Description
+                        </th>
+                        <th>Brand
+                        </th>
+                        <th>Type
+                        </th>
+                        <th>Price
+                        </th>
+                        <th>Picture name
+                        </th>
+                        <th>Stock
+                        </th>
+                        <th>Restock
+                        </th>
+                        <th>Max stock
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Catalog.Data)
+                    {
+                        <tr>
+                            <td>
+                                <image class="esh-thumbnail" src='/Pics/@item.PictureFileName' />
+                                @* Stray closing tag kept from the legacy ItemTemplate. *@
+                                @Html.Raw("</a>")
+                            </td>
+                            <td>
+                                <p>
+                                    @item.Name
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @item.Description
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @item.CatalogBrand?.Brand
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @item.CatalogType?.Type
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <span class="esh-price">@item.Price</span>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @item.PictureFileName
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @item.AvailableStock
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @item.RestockThreshold
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    @item.MaxStockThreshold
+                                </p>
+                            </td>
+                            <td>
+                                <a class="esh-table-link" href="/Catalog/Edit/@item.Id">
+                                    Edit
+                                </a>
+                                |
+                                <a class="esh-table-link" href="/Catalog/Details/@item.Id">
+                                    Details
+                                </a>
+                                |
+                                <a class="esh-table-link" href="/Catalog/Delete/@item.Id">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </span>
+</div>
+
+<div class="esh-pager">
+    <div class="container">
+        <article class="esh-pager-wrapper row">
+            <nav>
+                <a id="ctl00_MainContent_PaginationPrevious" class="@Model.PreviousCssClass" href="@Model.PreviousUrl">
+                    Previous
+                </a>
+
+                <span class="esh-pager-item">Showing @Model.Catalog.ItemsPerPage of @Model.Catalog.TotalItems products - Page @(Model.Catalog.ActualPage + 1) - @Model.Catalog.TotalPages
+                </span>
+
+                <a id="ctl00_MainContent_PaginationNext" class="@Model.NextCssClass" href="@Model.NextUrl">
+                    Next
+                </a>
+            </nav>
+        </article>
+    </div>
+</div>
