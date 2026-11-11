@@ -102,6 +102,26 @@ public class CatalogSeederTests
         Assert.True(Directory.Exists(Path.Combine(setup, "Pics")));
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task Missing_or_corrupt_zip_fails_without_deleting_existing_pictures(bool corrupt)
+    {
+        var setup = TempDirectory();
+        var pics = TempDirectory();
+        File.WriteAllText(Path.Combine(pics, "1.png"), "keep");
+        if (corrupt)
+        {
+            File.WriteAllText(Path.Combine(setup, "CatalogItems.zip"), "not a zip");
+        }
+
+        await using var db = InMemoryContext();
+        var seeder = Seeder(useCustomizationData: true, setupPath: setup, picturesPath: pics);
+
+        await Assert.ThrowsAnyAsync<IOException>(() => seeder.SeedAsync(db));
+        Assert.True(File.Exists(Path.Combine(pics, "1.png")));
+    }
+
     [Fact]
     public async Task Without_customization_pictures_folder_is_untouched()
     {

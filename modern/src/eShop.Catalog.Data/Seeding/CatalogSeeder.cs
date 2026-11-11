@@ -160,13 +160,14 @@ public class CatalogSeeder
             return;
         }
 
-        var zipFile = Path.Combine(setupPath, "CatalogItems.zip");
+        // Open the archive before clearing Pics/ so a missing or corrupt zip fails without deleting existing pictures.
+        using var archive = ZipFile.OpenRead(Path.Combine(setupPath, "CatalogItems.zip"));
         var pictures = Directory.CreateDirectory(picturesPath);
         foreach (var file in pictures.GetFiles())
         {
             file.Delete();
         }
 
-        ZipFile.ExtractToDirectory(zipFile, pictures.FullName);
+        archive.ExtractToDirectory(pictures.FullName);
     }
 }
