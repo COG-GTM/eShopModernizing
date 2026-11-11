@@ -22,9 +22,9 @@ public class DeleteModel : CatalogItemPageModel
 
     protected override string LegacyPagePath => "/Catalog/Delete.aspx";
 
-    public IActionResult OnGet(string? id) => TryLoadItem(id) ? Page() : LegacyNotFound();
+    public IActionResult OnGet([FromRoute] string? id) => TryLoadItem(id) ? Page() : LegacyNotFound();
 
-    public IActionResult OnPost(string? id)
+    public IActionResult OnPost([FromRoute] string? id)
     {
         if (!TryLoadItem(id))
         {

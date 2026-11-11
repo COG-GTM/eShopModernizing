@@ -19,7 +19,7 @@ public class EditModel : CatalogItemFormPageModel
     /// <summary>Read-only, never bound from the form: always the stored value.</summary>
     public string PictureFileName { get; private set; } = string.Empty;
 
-    public void OnGet(int id)
+    public void OnGet([FromRoute] int id)
     {
         var item = FindItem(id);
         Input = EditCatalogItemInput.From(item);
@@ -27,7 +27,7 @@ public class EditModel : CatalogItemFormPageModel
         LoadLookups();
     }
 
-    public IActionResult OnPost(int id)
+    public IActionResult OnPost([FromRoute] int id)
     {
         var item = FindItem(id);
         PictureFileName = item.PictureFileName;

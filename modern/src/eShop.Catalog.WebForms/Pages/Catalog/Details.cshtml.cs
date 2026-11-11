@@ -13,5 +13,5 @@ public class DetailsModel : CatalogItemPageModel
 
     protected override string LegacyPagePath => "/Catalog/Details.aspx";
 
-    public IActionResult OnGet(string? id) => TryLoadItem(id) ? Page() : LegacyNotFound();
+    public IActionResult OnGet([FromRoute] string? id) => TryLoadItem(id) ? Page() : LegacyNotFound();
 }

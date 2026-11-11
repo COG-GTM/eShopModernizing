@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Options;
 
 namespace eShop.Catalog.Mvc.Hosting;
@@ -77,7 +78,15 @@ public static class MvcUiExtensions
         return app.UseStaticFiles(new StaticFileOptions
         {
             FileProvider = new CaseInsensitiveFileProvider(environment.WebRootFileProvider),
+            ContentTypeProvider = CreateContentTypeProvider(),
         });
+    }
+
+    public static FileExtensionContentTypeProvider CreateContentTypeProvider()
+    {
+        var provider = new FileExtensionContentTypeProvider();
+        provider.Mappings[".woff2"] = "application/octet-stream"; // legacy (Mono) has no .woff2 type
+        return provider;
     }
 
     public static IApplicationBuilder UseCatalogSession(this IApplicationBuilder app)

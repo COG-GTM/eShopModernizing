@@ -221,6 +221,8 @@ public sealed class WriteFlowIntegrationTests : IDisposable
         using var response = await client.GetAsync(path);
 
         Assert.Equal(expected, response.StatusCode);
+        Assert.Equal("text/html", response.Content.Headers.ContentType?.MediaType);
+        Assert.Empty(await response.Content.ReadAsStringAsync());
     }
 
     private static int CountOptions(string html, string selectId)

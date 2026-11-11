@@ -99,7 +99,7 @@ public static class PagesUiExtensions
         provider.Mappings[".js"] = "application/javascript";
         provider.Mappings[".ttf"] = "application/x-font-ttf";
         provider.Mappings[".woff"] = "application/font-woff";
-        provider.Mappings[".woff2"] = "font/woff2";
+        provider.Mappings[".woff2"] = "application/octet-stream"; // legacy (Mono) has no .woff2 type
         provider.Mappings[".eot"] = "application/vnd.ms-fontobject";
         return provider;
     }

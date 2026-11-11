@@ -48,13 +48,13 @@ public partial class CatalogController : Controller
     {
         if (id == null)
         {
-            return BadRequest();
+            return EmptyStatus(StatusCodes.Status400BadRequest);
         }
 
         var item = service.FindCatalogItem(id.Value);
         if (item == null)
         {
-            return NotFound();
+            return EmptyStatus(StatusCodes.Status404NotFound);
         }
 
         SetPictureUri(item);
@@ -97,13 +97,13 @@ public partial class CatalogController : Controller
     {
         if (id == null)
         {
-            return BadRequest();
+            return EmptyStatus(StatusCodes.Status400BadRequest);
         }
 
         var item = service.FindCatalogItem(id.Value);
         if (item == null)
         {
-            return NotFound();
+            return EmptyStatus(StatusCodes.Status404NotFound);
         }
 
         // The legacy mock only fills these navigations once the list page has rendered; resolve them here so the

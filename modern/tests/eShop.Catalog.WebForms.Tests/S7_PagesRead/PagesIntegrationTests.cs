@@ -100,6 +100,18 @@ public sealed partial class PagesIntegrationTests : IDisposable
         Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
     }
 
+    // Legacy code-behind reads only Page.RouteData["id"]: a query-string id resolves to item 0 -> NRE -> 500.
+    [Theory]
+    [InlineData("/Catalog/Details.aspx?id=1")]
+    [InlineData("/Catalog/Delete.aspx?id=1")]
+    [InlineData("/Catalog/Edit.aspx?id=1")]
+    public async Task Query_string_id_is_ignored_like_legacy_route_data(string path)
+    {
+        using var response = await client.GetAsync(path);
+
+        Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
+    }
+
     [Fact]
     public async Task Delete_confirm_then_post_with_token_redirects_to_root_and_removes_item()
     {

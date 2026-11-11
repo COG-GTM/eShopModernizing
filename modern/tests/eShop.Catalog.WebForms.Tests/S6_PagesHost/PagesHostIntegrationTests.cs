@@ -188,6 +188,7 @@ public class PagesHostIntegrationTests : IClassFixture<WebApplicationFactory<Pro
         { "/Fonts/Montserrat-Regular.ttf", "fonts/Montserrat-Regular.ttf", "application/x-font-ttf" },
         { "/fonts/Montserrat-Regular.svg", "fonts/Montserrat-Regular.svg", "image/svg+xml" },
         { "/fonts/Montserrat-Bold.eot", "fonts/Montserrat-Bold.eot", "application/vnd.ms-fontobject" },
+        { "/fonts/Montserrat-Bold.woff2", "fonts/Montserrat-Bold.woff2", "application/octet-stream" },
         { "/Pics/1.png", "Pics/1.png", "image/png" },
         { "/pics/12.png", "Pics/12.png", "image/png" },
     };
