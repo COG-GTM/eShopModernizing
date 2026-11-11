@@ -123,9 +123,10 @@ start_app() {  # $1 name, $2 dir, $3 port
   echo "$name did not answer 200 on :$port; see $RUN/$name.log" >&2; tail -20 "$RUN/$name.log" >&2; exit 1
 }
 
-if [ "$SKIP_BUILD" = 0 ] || [ ! -d "$MVC/bin" ] || [ ! -d "$WF/bin" ]; then build; fi
+# Stop servers left by an earlier --keep-running run before build deletes their scratch dirs.
 mkdir -p "$RUN"
 stop_app legacy-mvc; stop_app legacy-webforms
+if [ "$SKIP_BUILD" = 0 ] || [ ! -d "$MVC/bin" ] || [ ! -d "$WF/bin" ]; then build; fi
 [ "$KEEP" = 1 ] || trap 'stop_app legacy-mvc; stop_app legacy-webforms' EXIT
 
 echo "== starting legacy apps under xsp4 ($MODE mode)"
