@@ -61,7 +61,9 @@ nuget_install() {  # $1 packages.config, $2 output dir
 
 patch_sql_mode() {  # $1 app dir: EF6 against SQL Server instead of the mock / LocalDB
   local dir="$1" pw_esc
-  pw_esc=$(printf '%s' "$LEGACY_SQL_PASSWORD" | sed 's/[&#\\]/\\&/g')
+  # XML-escape for Web.config, then escape for the sed replacement below
+  pw_esc=$(printf '%s' "$LEGACY_SQL_PASSWORD" | python3 -c 'import sys, xml.sax.saxutils as x; sys.stdout.write(x.escape(sys.stdin.read(), {"\"": "&quot;", "'"'"'": "&apos;"}))' \
+    | sed 's/[&#\\]/\\&/g')
   sed -i 's/key="UseMockData" value="true"/key="UseMockData" value="false"/' "$dir/Web.config"
   sed -i "s#connectionString=\"Data Source=(localdb)[^\"]*\"#connectionString=\"Data Source=$SQL_SERVER; Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb; User ID=sa; Password=$pw_esc; MultipleActiveResultSets=True; Pooling=false;\"#" "$dir/Web.config"
   chmod 600 "$dir/Web.config"
