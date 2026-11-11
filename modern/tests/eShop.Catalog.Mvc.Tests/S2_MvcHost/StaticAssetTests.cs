@@ -23,6 +23,7 @@ public class StaticAssetTests : IClassFixture<S2HostFactory>
     [InlineData("/images/main_footer_text.png", "image/png", "Images/main_footer_text.png")]
     [InlineData("/images/main_banner.png", "image/png", "Images/main_banner.png")]
     [InlineData("/fonts/Montserrat-Regular.woff", "application/font-woff", "fonts/Montserrat-Regular.woff")]
+    [InlineData("/fonts/Montserrat-Regular.woff2", "application/octet-stream", "fonts/Montserrat-Regular.woff2")]
     [InlineData("/fonts/Montserrat-Bold.ttf", "application/x-font-ttf", "fonts/Montserrat-Bold.ttf")]
     [InlineData("/favicon.ico", "image/x-icon", "favicon.ico")]
     [InlineData("/Pics/1.png", "image/png", "Pics/1.png")]
