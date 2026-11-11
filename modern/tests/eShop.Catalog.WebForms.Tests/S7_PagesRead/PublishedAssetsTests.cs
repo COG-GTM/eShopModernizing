@@ -55,7 +55,7 @@ public sealed partial class PublishedAssetsTests : IDisposable
             File.WriteAllText(Path.Combine(appBase, "wwwroot", "Pics", "1.png"), "png");
             var environment = new TestEnvironment { ContentRootPath = emptyContentRoot };
 
-            ((Action<IWebHostEnvironment,string>)((e,b)=>{}))(environment, appBase);
+            PagesUiExtensions.UsePublishedWebRootWhenMissing(environment, appBase);
 
             Assert.Equal(Path.Combine(appBase, "wwwroot"), environment.WebRootPath);
             Assert.True(environment.WebRootFileProvider.GetFileInfo("Pics/1.png").Exists);
@@ -73,7 +73,7 @@ public sealed partial class PublishedAssetsTests : IDisposable
         var provider = new PhysicalFileProvider(webRoot);
         var environment = new TestEnvironment { WebRootPath = webRoot, WebRootFileProvider = provider };
 
-        ((Action<IWebHostEnvironment,string>)((e,b)=>{}))(environment, AppContext.BaseDirectory);
+        PagesUiExtensions.UsePublishedWebRootWhenMissing(environment, AppContext.BaseDirectory);
 
         Assert.Equal(webRoot, environment.WebRootPath);
         Assert.Same(provider, environment.WebRootFileProvider);
@@ -84,7 +84,7 @@ public sealed partial class PublishedAssetsTests : IDisposable
     {
         var environment = new TestEnvironment();
 
-        ((Action<IWebHostEnvironment,string>)((e,b)=>{}))(environment, emptyContentRoot);
+        PagesUiExtensions.UsePublishedWebRootWhenMissing(environment, emptyContentRoot);
 
         Assert.Null(environment.WebRootPath);
         Assert.IsType<NullFileProvider>(environment.WebRootFileProvider);
