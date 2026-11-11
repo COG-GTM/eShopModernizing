@@ -7,6 +7,8 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 MODE="${1:-all}"
+# Own Compose project so cleanup (down -v) never touches a regular deployment's sqldata volume.
+export COMPOSE_PROJECT_NAME="${SMOKE_PROJECT_NAME:-eshop-catalog-smoke}"
 FAILURES=0
 PASSES=0
 

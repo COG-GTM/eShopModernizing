@@ -54,7 +54,7 @@ parity/run-legacy.sh            # MVC :5100, WebForms :5101, writes parity/basel
 cp .env.example .env                                  # set MSSQL_SA_PASSWORD; .env is git-ignored
 docker compose up --build --wait                      # MVC :5300, WebForms :5301 (UseMockData=false)
 docker compose --profile mock up --build --wait catalog-mvc-mock catalog-webforms-mock   # :5310 / :5311
-deploy/compose-smoke.sh [sql|mock|all]                # end-to-end smoke test
+deploy/compose-smoke.sh [sql|mock|all]                # end-to-end smoke test (own project "eshop-catalog-smoke"; stop a running stack first or change ports, host ports are shared)
 ```
 
 Probes: `GET /healthz` (liveness, no dependencies) and `GET /healthz/ready` (readiness: SQL Server `SELECT 1`,
