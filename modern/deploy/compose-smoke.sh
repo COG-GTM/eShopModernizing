@@ -12,7 +12,8 @@ export COMPOSE_PROJECT_NAME="${SMOKE_PROJECT_NAME:-eshop-catalog-smoke}"
 FAILURES=0
 PASSES=0
 
-if [[ -z "${MSSQL_SA_PASSWORD:-}" ]] && ! grep -qE '^MSSQL_SA_PASSWORD=.+' .env 2>/dev/null; then
+# Compose prefers the shell value (even empty) over .env, so only defer to .env when the variable is unset.
+if [[ -z "${MSSQL_SA_PASSWORD:-}" ]] && { [[ -n "${MSSQL_SA_PASSWORD+x}" ]] || ! grep -qE '^MSSQL_SA_PASSWORD=.+' .env 2>/dev/null; }; then
   MSSQL_SA_PASSWORD="Smoke!$(openssl rand -hex 12)Aa1"
   export MSSQL_SA_PASSWORD
   echo "info: MSSQL_SA_PASSWORD not set; using a random throwaway password for this run"
