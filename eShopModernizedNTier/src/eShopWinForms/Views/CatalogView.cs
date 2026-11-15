@@ -141,6 +141,12 @@ namespace eShopWinForms
          */
         private void searchAvailabilityButton_Click(object sender, EventArgs e)
         {
+            if (listBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a product to search stock availability for.", "No product selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             string[] separator = new string[] { " - " };
             string[] results = listBox1.SelectedItem.ToString().Split(separator, StringSplitOptions.None);
 
