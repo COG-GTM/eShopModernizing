@@ -344,15 +344,15 @@
             this.listBox1.Location = new System.Drawing.Point(36, 39);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(243, 148);
+            this.listBox1.Size = new System.Drawing.Size(243, 112);
             this.listBox1.TabIndex = 5;
             // 
             // searchAvailabilityButton
             // 
-            this.searchAvailabilityButton.Location = new System.Drawing.Point(103, 206);
+            this.searchAvailabilityButton.Location = new System.Drawing.Point(107, 154);
             this.searchAvailabilityButton.Margin = new System.Windows.Forms.Padding(2);
             this.searchAvailabilityButton.Name = "searchAvailabilityButton";
-            this.searchAvailabilityButton.Size = new System.Drawing.Size(101, 44);
+            this.searchAvailabilityButton.Size = new System.Drawing.Size(101, 30);
             this.searchAvailabilityButton.TabIndex = 7;
             this.searchAvailabilityButton.Text = "Search";
             this.searchAvailabilityButton.UseVisualStyleBackColor = true;
@@ -379,7 +379,7 @@
             this.listView1.Location = new System.Drawing.Point(38, 39);
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(246, 214);
+            this.listView1.Size = new System.Drawing.Size(246, 145);
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -426,10 +426,10 @@
             // 
             // addAvailabilityButton
             // 
-            this.addAvailabilityButton.Location = new System.Drawing.Point(108, 143);
+            this.addAvailabilityButton.Location = new System.Drawing.Point(96, 126);
             this.addAvailabilityButton.Margin = new System.Windows.Forms.Padding(2);
             this.addAvailabilityButton.Name = "addAvailabilityButton";
-            this.addAvailabilityButton.Size = new System.Drawing.Size(92, 44);
+            this.addAvailabilityButton.Size = new System.Drawing.Size(92, 26);
             this.addAvailabilityButton.TabIndex = 6;
             this.addAvailabilityButton.Text = "Add Shipment";
             this.addAvailabilityButton.UseVisualStyleBackColor = true;
