@@ -25,8 +25,8 @@ The `.conf` files at the repo root hold `upstream` and `server` blocks only, so 
 | Path | Upstream | Goes to |
 |------|----------|---------|
 | `/api/` (including `/api/health` and `/api/health/detailed`) | `core_backend` | eShopCoreModernized, 100% |
-| `/Catalog/` (trailing slash, and everything below it) | `catalog_migration` | weighted split between :5001 and :5002, see below |
-| `/` (everything else, including `/` itself and `/Catalog` without a trailing slash) | `modernized_backend` | eShopModernizedMVC, 100% |
+| `/Catalog/` and everything below it (nginx answers `/Catalog` with a 301 to `/Catalog/`) | `catalog_migration` | weighted split between :5001 and :5002, see below |
+| `/` (everything else, including `/` itself) | `modernized_backend` | eShopModernizedMVC, 100% |
 
 ### Traffic migration stages
 

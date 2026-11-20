@@ -13,7 +13,7 @@ digraph eshop_strangler {
     style="rounded,filled"; fillcolor="#fff7e6"; color="#d99a00"; fontsize=16;
     r_api     [label="location /api/\n(incl. /api/health, /api/health/detailed)", fillcolor="#fffdf5"];
     r_catalog [label="location /Catalog/\nupstream catalog_migration\nnginx.conf on main: weight 3 (:5001) / 1 (:5002) = 25%", fillcolor="#fffdf5"];
-    r_root    [label="location /\n(everything else, incl. / and /Catalog without slash)", fillcolor="#fffdf5"];
+    r_root    [label="location /\n(everything else, incl. /;\n/Catalog gets a 301 to /Catalog/)", fillcolor="#fffdf5"];
     {rank=same; r_api; r_catalog; r_root;}
   }
 
