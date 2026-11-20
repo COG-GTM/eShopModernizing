@@ -9,9 +9,12 @@
    sudo nginx -s reload
    ```
 
-2. **Verify Legacy System Health**
+2. **Verify Health**
    ```bash
-   curl http://localhost:5001/health
+   # ASP.NET Core health endpoint (the .NET Framework app on port 5001 has no health endpoint)
+   curl http://localhost:5002/api/health
+   # .NET Framework app: check that the catalog page loads
+   curl -I http://localhost:5001/
    ```
 
 ## Gradual Rollback
@@ -20,7 +23,7 @@
    - 100% → 75%: `./migrate-traffic.sh 75`
    - 75% → 50%: `./migrate-traffic.sh 50`
    - 50% → 25%: `./migrate-traffic.sh 25`
-   - 25% → 0%: Restore original nginx.conf
+   - 25% → 0%: there is no 0% stage file; point `location /Catalog/` at `modernized_backend` (or remove `localhost:5002` from `catalog_migration`) and reload nginx. `/api/` stays on port 5002 in every stage file
 
 2. **Monitor During Rollback**
    - Check error rates in Application Insights

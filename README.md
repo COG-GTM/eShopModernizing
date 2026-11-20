@@ -55,6 +55,11 @@ The winforms application is a catalog management, and uses a WCF as a back-end. 
 ### DEPLOYMENT TO AZURE WEB APP FOR CONTAINERS
 ![image](https://docs.microsoft.com/en-us/dotnet/architecture/modernize-with-azure-containers/media/image5-11.png)
 
+### STRANGLER FIG MIGRATION TO ASP.NET CORE (.NET 8)
+The catalog MVC app is being migrated route by route to [eShopCoreModernized](./eShopModernized/src/eShopCoreModernized) behind an nginx reverse proxy. See the [architecture doc](./docs/architecture.md) and its [diagram](./docs/diagrams/architecture.svg) (Graphviz source: [architecture.dot](./docs/diagrams/architecture.dot)), plus [README-Migration.md](./README-Migration.md), [MIGRATION-COMPLETE.md](./MIGRATION-COMPLETE.md) and [ROLLBACK-PROCEDURES.md](./ROLLBACK-PROCEDURES.md).
+
+![Strangler fig architecture](./docs/diagrams/architecture.png)
+
 ## Quick start: Running all apps together in your local Windows 10 PC with "Docker for Windows"
 
 You have more detailed procedures at the [Wiki](https://github.com/dotnet-architecture/eShopModernizing/wiki), but for the quickest way to get started and run all samples together using Docker for Windows, open a **"Developer Command Prompt for VS 2017 (or 2019)"** (to ensure you have right `msbuild` on `PATH`), go to the eShopModernizing root folder and run the `build.cmd` script.
