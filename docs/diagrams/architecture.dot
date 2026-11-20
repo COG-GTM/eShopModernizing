@@ -1,0 +1,74 @@
+// eShopModernizing strangler fig setup on main.
+// Edit this file, then run ./render.sh to regenerate architecture.png and architecture.svg.
+digraph eshop_strangler {
+  graph [rankdir=TB, fontname="DejaVu Sans", fontsize=18, labelloc=t, nodesep=0.45, ranksep=0.6, pad=0.3,
+         label="eShopModernizing: strangler fig migration of eShopModernizedMVC to ASP.NET Core (main)"];
+  node  [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=16, fillcolor=white, color="#555555"];
+  edge  [fontname="DejaVu Sans", fontsize=14, color="#444444"];
+
+  browser [label="Back-office user\n(browser)", shape=oval, fillcolor="#eeeeee"];
+
+  subgraph cluster_proxy {
+    label="nginx reverse proxy :80 (nginx.conf, server block for an http {} context)";
+    style="rounded,filled"; fillcolor="#fff7e6"; color="#d99a00"; fontsize=16;
+    r_api     [label="location /api/\n(incl. /api/health, /api/health/detailed)", fillcolor="#fffdf5"];
+    r_catalog [label="location /Catalog/\nupstream catalog_migration\nnginx.conf on main: weight 3 (:5001) / 1 (:5002) = 25%", fillcolor="#fffdf5"];
+    r_root    [label="location /\n(everything else, incl. /;\n/Catalog gets a 301 to /Catalog/)", fillcolor="#fffdf5"];
+    {rank=same; r_api; r_catalog; r_root;}
+  }
+
+  subgraph cluster_ops {
+    label="Traffic migration tooling (repo root)";
+    style="rounded,dashed"; color="#888888"; fontsize=16;
+    script  [label="migrate-traffic.sh {25|50|75|100}\ncopies nginx-<N>percent.conf over nginx.conf,\nbacks up to nginx-backups/, polls /api/health", fillcolor="#f5f5f5"];
+  }
+
+  subgraph cluster_core {
+    label="eShopCoreModernized (.NET 8 ASP.NET Core MVC) :5002\neShopModernized/src/eShopCoreModernized";
+    style="rounded,filled"; fillcolor="#e8f4ff"; color="#2b6cb0"; fontsize=16;
+    core_mvc [label="CatalogController + Razor views\nIndex / Details (anonymous)\nCreate / Edit / Delete ([Authorize])\nAccountController (cookie login)\nPicController items/{id}/pic"];
+    core_api [label="API controllers\napi/brands, api/files,\napi/imageupload, api/health"];
+    core_svc [label="Services (picked by AppSettings flags)\nUseMockData: CatalogServiceMock | CatalogService (EF Core)\nUseAzureStorage: ImageAzureStorage | ImageMockStorage\nCatalogItemHiLoGenerator"];
+    {rank=same; core_mvc; core_api;}
+  }
+
+  subgraph cluster_fx {
+    label="eShopModernizedMVC (.NET Framework 4.7.2, Windows container) :5001\neShopModernizedMVCSolution";
+    style="rounded,filled"; fillcolor="#f0f0f0"; color="#777777"; fontsize=16;
+    fx_app [label="MVC 5 + Autofac + EF6\nCatalog CRUD, remaining routes"];
+  }
+
+  legacy [label="legacy_backend :5000\n(eShopLegacyMVC, upstream still declared,\nno location routes to it)", style="rounded,dashed", fillcolor="#fafafa", color="#999999", fontcolor="#666666"];
+
+  sql [label="SQL Server\nMicrosoft.eShopOnContainers.Services.CatalogDb\ntables Catalog, CatalogBrand, CatalogType\nsequence catalog_hilo (shared by both apps)", shape=cylinder, fillcolor="#f3ecff", color="#6b46c1"];
+
+  subgraph cluster_azure {
+    label="Azure services (each behind a flag or setting, all off by default)";
+    style="rounded,filled"; fillcolor="#eefaf0"; color="#2f855a"; fontsize=16;
+    kv    [label="Key Vault\nAzure:KeyVaultName\n(non-Development only)"];
+    blob  [label="Blob Storage\nUseAzureStorage"];
+    ai    [label="Application Insights\nAzure:ApplicationInsights"];
+    aad   [label="Azure AD (OpenID Connect)\nUseAzureActiveDirectory"];
+    msi   [label="Managed Identity SQL\nUseAzureManagedIdentity"];
+    {rank=same; kv; blob; ai; aad; msi;}
+  }
+
+  browser -> r_api; browser -> r_catalog; browser -> r_root;
+  script -> r_catalog [style=dashed, label="swaps weights"];
+
+  r_api     -> core_api [label="100%"];
+  r_catalog -> core_mvc [label="25% (100% after\nmigrate-traffic.sh 100)", color="#2b6cb0", fontcolor="#2b6cb0"];
+  r_catalog -> fx_app   [label="75%", color="#777777", fontcolor="#555555"];
+  r_root    -> fx_app   [label="100%"];
+  legacy -> r_root [style=invis];
+
+  core_mvc -> core_svc; core_api -> core_svc;
+  core_svc -> sql [label="EF Core"];
+  fx_app   -> sql [label="EF6"];
+
+  core_svc -> blob [style=dashed];
+  core_svc -> msi  [style=dashed];
+  core_svc -> kv   [style=dashed];
+  core_svc -> ai   [style=dashed];
+  core_mvc -> aad  [style=dashed];
+}

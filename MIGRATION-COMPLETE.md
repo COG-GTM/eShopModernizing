@@ -4,12 +4,14 @@
 
 The strangler fig migration from .NET Framework to .NET Core has been completed successfully. This document outlines the final architecture and operational procedures.
 
+> **Status on `main`:** the code, nginx stage files and scripts for the final architecture are in place, but the committed `nginx.conf` is the 25% stage, so `/Catalog/` is split 75% port 5001 / 25% port 5002 until `./migrate-traffic.sh 100` is applied and nginx reloaded. Port 5000 is no longer routed by any `location`, but eShopLegacyMVC itself has not been removed. See [docs/architecture.md](./docs/architecture.md) for the current setup.
+
 ## Final Architecture
 
 ### Traffic Routing
 - **API Endpoints** (`/api/*`): 100% .NET Core (port 5002)
 - **Catalog Endpoints** (`/Catalog/*`): 100% .NET Core (port 5002)
-- **Health Checks** (`/health*`): .NET Core (port 5002)
+- **Health Checks** (`/api/health`, `/api/health/detailed`): .NET Core (port 5002)
 - **Legacy Endpoints**: Modernized .NET Framework (port 5001)
 
 ### Service Ports
@@ -37,8 +39,8 @@ All Azure services are fully integrated and tested:
 ## Monitoring and Health Checks
 
 ### Health Endpoints
-- `/health`: Basic health check
-- `/health/detailed`: Comprehensive service status including Azure services
+- `/api/health`: Basic health check
+- `/api/health/detailed`: Comprehensive service status including Azure services
 
 ### Application Insights
 - Custom telemetry for migration tracking
@@ -120,11 +122,11 @@ The migration is considered successful based on:
 ## Configuration Files
 
 ### Nginx Configurations
-- `nginx.conf`: Final configuration (100% .NET Core)
+- `nginx.conf`: Active configuration; as committed on `main` it is the 25% stage (identical to `nginx-25percent.conf`), so run `./migrate-traffic.sh 100` to reach the state above
 - `nginx-25percent.conf`: 25% migration phase
 - `nginx-50percent.conf`: 50% migration phase
 - `nginx-75percent.conf`: 75% migration phase
-- `nginx-100percent.conf`: 100% migration phase (same as nginx.conf)
+- `nginx-100percent.conf`: 100% migration phase (the final configuration)
 
 ### Docker Compose
 - `docker-compose.yml`: Service definitions including .NET Core service

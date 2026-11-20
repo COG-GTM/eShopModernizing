@@ -4,7 +4,7 @@ This project represents the .NET Core foundation for migrating the eShopLegacyMV
 
 ## Features
 
-- **Modern .NET 6+ ASP.NET Core MVC application**
+- **ASP.NET Core MVC application targeting .NET 8 (`net8.0`)**
 - **Comprehensive Azure integrations:**
   - Azure Key Vault for configuration management
   - Azure Blob Storage for image handling
@@ -69,7 +69,7 @@ The application uses `appsettings.json` for configuration with support for Azure
 ## Development Setup
 
 1. **Prerequisites:**
-   - .NET 6+ SDK
+   - .NET 8 SDK
    - SQL Server LocalDB (for local development)
    - Visual Studio 2022 or VS Code
 
@@ -77,13 +77,14 @@ The application uses `appsettings.json` for configuration with support for Azure
    ```bash
    dotnet restore
    dotnet build
-   dotnet run
+   dotnet run --urls http://localhost:5002
    ```
+   nginx expects this app on port 5002; there is no `launchSettings.json`, so without `--urls` Kestrel listens on port 5000. With the default `UseMockData: true` no database is needed. See [docs/architecture.md](../../../docs/architecture.md) for how it fits behind nginx.
 
 3. **Database Setup:**
    - The application uses the same database schema as the legacy system
    - Connection string points to LocalDB by default
-   - Entity Framework migrations handle database initialization
+   - With `UseMockData: false` the app calls `Database.EnsureCreated()` at startup (there are no EF Core migrations)
 
 ## Deployment
 
