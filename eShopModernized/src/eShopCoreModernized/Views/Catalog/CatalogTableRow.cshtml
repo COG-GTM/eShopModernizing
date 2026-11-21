@@ -1,0 +1,38 @@
+@model eShopCoreModernized.Models.CatalogItem
+<tr>
+                <td>
+                    <img class="esh-thumbnail" src="@Model.PictureUri" />
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.CatalogBrand.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.CatalogType.Type)
+                </td>
+                <td class="esh-table-price">
+                    @Html.DisplayFor(m => m.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.PictureFileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.AvailableStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.RestockThreshold)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.MaxStockThreshold)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "esh-table-link" }) |
+                    @Html.ActionLink("Details", "Details", new { id = Model.Id }, new { @class = "esh-table-link" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "esh-table-link" })
+                </td>
+            </tr>
